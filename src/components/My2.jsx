@@ -18,10 +18,10 @@ const My2 = ({ info, setInfo }) => {
 
 
   return (
-    
+
     <div>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', py: 10 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', mt: 5 }}>
 
 
 

@@ -47,9 +47,6 @@ export const Home = () => {
 
   
 
-
-
-
   return (
 
     <>
@@ -63,7 +60,7 @@ export const Home = () => {
         </Typography>
 
 
-        <Button onClick={handleOpen} variant='outlined'>+ Yeni Kayıt</Button>
+        <Button onClick={handleOpen} variant='contained'>+ Yeni</Button>
 
         </Box>
         

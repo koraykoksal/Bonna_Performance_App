@@ -42,6 +42,7 @@ export default function NewRecord({ open, handleClose, info, setInfo  }) {
     }
   }
 
+  
 
   return (
     <div>
@@ -55,8 +56,8 @@ export default function NewRecord({ open, handleClose, info, setInfo  }) {
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
-            <Typography variant="subtitle1" fontWeight={700} sx={{ p: 1, color: '#367E18' }}>
-              Değerlendirme Tipini Seçiniz
+            <Typography variant="subtitle1" fontWeight={700} sx={{ p: 1, color: '#D80032' }}>
+              Değerlendirme Tipini Seçiniz !
             </Typography>
 
             <CloseIcon sx={{ color: '#C70039', fontSize: 28, mr: 1, '&:hover': { cursor: 'pointer', color: '#900C3F' } }} onClick={()=>{handleClose()}} />
@@ -77,7 +78,7 @@ export default function NewRecord({ open, handleClose, info, setInfo  }) {
                 defaultChecked
                 sx={{
                   fontWeight: '700', backgroundColor: tabValue === 'my1' ? '#f7f7f7' : 'default',
-                  color: tabValue === 'my1' ? '#000000' : '#ff0000', borderTopLeftRadius: 5, borderTopRightRadius: 5
+                  color: tabValue === 'my1' ? '#000000' : '#D80032', borderTopLeftRadius: 5, borderTopRightRadius: 5
                 }}
               />
 
@@ -86,7 +87,7 @@ export default function NewRecord({ open, handleClose, info, setInfo  }) {
                 label='my2'
                 sx={{
                   fontWeight: '700', backgroundColor: tabValue === 'my2' ? '#f7f7f7' : 'default',
-                  color: tabValue === 'my2' ? '#000000' : '#ff0000', borderTopLeftRadius: 5, borderTopRightRadius: 5
+                  color: tabValue === 'my2' ? '#000000' : '#D80032', borderTopLeftRadius: 5, borderTopRightRadius: 5
                 }}
               />
 
