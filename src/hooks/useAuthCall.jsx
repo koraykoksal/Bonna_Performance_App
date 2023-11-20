@@ -1,8 +1,8 @@
 
 import React from 'react'
 import axios from "axios";
-import {toastSuccessNotify,toastErrorNotify} from '../helper/ToastNotify'
-import {fetchStart,fetchFail,loginSuccess,logoutSuccess,registerSuccess} from '../features/authSlice'
+import { toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
+import { fetchStart, fetchFail, loginSuccess, logoutSuccess, registerSuccess } from '../features/authSlice'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,34 +10,30 @@ const useAuthCall = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    
-    const login=async (userdata)=>{
 
+
+    const login = async (userdata) => {
+
+        console.log("userdara : ",userdata)
         dispatch(fetchStart())
 
         try {
 
-            const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/auth/login/`,userdata)
+            const options = {
+                method: 'POST',
+                url: "http://172.41.11.5:3019/butunbiApi/postUserControls",
+                headers: {
+                    'USERNM': userdata.username,
+                    'pass': userdata.password
+                }
+            }
+
+
+            const { data } = await axios.post(options)
 
             dispatch(loginSuccess(data))
             toastSuccessNotify('Login Successful.')
-            navigate('/')
-            
-        } catch (error) {
-            dispatch(fetchFail())
-            toastErrorNotify("'Something Went Wrong !'")
-        }
-    }
-
-
-    const logout=async ()=>{
-        dispatch(fetchStart())
-
-        try {
-            await axios.post(`${import.meta.env.VITE_BASE_URL}/users/auth/logout/`)
-            dispatch(logoutSuccess(9))
-            toastSuccessNotify('Logout Successful.')
-            navigate('/')
+            navigate('/data')
 
         } catch (error) {
             dispatch(fetchFail())
@@ -47,26 +43,10 @@ const useAuthCall = () => {
 
 
 
-    const register= async (userdata)=>{
-
-        dispatch(fetchStart())
-
-        try {
-            const {data} = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register/`,userdata)
-
-            dispatch(registerSuccess(data))
-            toastSuccessNotify('Register Successful.')
-            navigate('/')
-            
-        } catch (error) {
-            dispatch(fetchFail())
-            toastErrorNotify('Something Went Wrong !')
-        }
-
-    }
 
 
-    return {login,logout,register}
+
+    return { login }
 }
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import {FcGoogle} from 'react-icons/fc'
+import { FcGoogle } from 'react-icons/fc'
 import Avatar from "@mui/material/Avatar"
 import Container from "@mui/material/Container"
 import Grid from "@mui/material/Grid"
@@ -14,33 +14,40 @@ import { Formik, Form } from "formik"
 import { object, string } from "yup"
 import useAuthCall from '../hooks/useAuthCall'
 import { useSelector } from 'react-redux'
+import { useState } from 'react'
 
 export const Login = () => {
 
-  const {token,currentUser} = useSelector((state)=>state.auth)
 
-    const {login} = useAuthCall()
+  const [info, setInfo] = useState({
+      username:"",
+      password:""
+  })
 
-    //? harici validasyon şemasi
-    const loginSchema = object({
-      email: string()
-        .email("Lutfen valid bir email giriniz")
-        .required("Bu alan zorunludur"),
-      password: string()
-        .required("Bu alan zorunludur")
-        .min(8, "En az 8 karakter girilmelidir")
-        .max(16, "En fazla 16 karakter girilmelidir")
-        .matches(/\d+/, "En az bir rakam içermelidir.")
-        .matches(/[a-z]/, "En az bir küçük harf içermelidir.")
-        .matches(/[A-Z]/, "En az bir büyük harf içermelidir.")
-        .matches(/[!,?{}><%&$#£+-.]+/, "En az bir özel karekter içermelidir."),
+  const { login } = useAuthCall()
+
+  const handleChange=(e)=>{
+    setInfo({ ...info, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit=(e)=>{
+
+    e.preventDefault()
+
+    login(info)
+
+    setInfo({
+      username:"",
+      password:""
     })
+  }
 
-  
-    return (
-      
+  console.log(info)
 
-      <Container maxWidth="lg" sx={{mt:10}}>
+  return (
+
+
+    <Container maxWidth="lg" sx={{ mt: 10 }}>
       <Grid
         container
         justifyContent="center"
@@ -50,7 +57,7 @@ export const Login = () => {
           p: 2,
         }}
       >
-        
+
 
         <Grid item xs={12} sm={10} md={6}>
           <Avatar
@@ -72,54 +79,39 @@ export const Login = () => {
             Login
           </Typography>
 
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            validationSchema={loginSchema}
-            onSubmit={(values, action) => {
-              login(values)
-              action.resetForm()
-              action.setSubmitting(false)
-            }}
-          >
-            {({ handleChange, handleBlur, values, touched, errors }) => (
-              <Form>
-                <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                  <TextField
-                    label="Email"
-                    name="email"
-                    id="email"
-                    type="email"
-                    variant="outlined"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.email && Boolean(errors.email)}
-                    helperText={errors.email}
-                  />
-                  <TextField
-                    label="Password"
-                    name="password"
-                    id="password"
-                    type="password"
-                    variant="outlined"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.password && Boolean(errors.password)}
-                    helperText={errors.password}
-                  />
-                  <Button variant="contained" type="submit">
-                    Submit
-                  </Button>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} >
+            <TextField
+              label="Username"
+              name="username"
+              id="username"
+              type="text"
+              variant="outlined"
+              value={info.username}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Password"
+              name="password"
+              id="password"
+              type="password"
+              variant="outlined"
+              value={info.password}
+              onChange={handleChange}
+            />
+            <Button variant="contained" type="submit" onClick={handleSubmit}>
+              Submit
+            </Button>
 
-                </Box>
-              </Form>
-            )}
-          </Formik>
-
-          <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Link to="/register">Don't you have an account?</Link>
           </Box>
+
+
+
+
+
+          {/* <Box sx={{ textAlign: "center", mt: 2 }}>
+            <Link to="/register">Don't you have an account?</Link>
+          </Box> */}
+
         </Grid>
 
         <Grid item xs={10} sm={7} md={6}>
@@ -130,6 +122,6 @@ export const Login = () => {
       </Grid>
     </Container>
 
-    )
+  )
 
 }

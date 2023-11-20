@@ -37,9 +37,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-
-
-
 const My1_Table = ({ info, handleChange }) => {
 
 
