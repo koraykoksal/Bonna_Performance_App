@@ -21,10 +21,10 @@ const style = {
 
 
 
-export default function PostModal({ open, setOpen }) {
+export default function NewRecord({ open, handleClose, info, setInfo  }) {
 
 
-  const handleClose = () => setOpen(false);
+//   const handleClose = () => setOpen(false);
 
   //? tab elementinin varsayılan seçimi Overview
   const [tabValue, settabValue] = useState('my1')
@@ -47,7 +47,7 @@ export default function PostModal({ open, setOpen }) {
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={()=>{handleClose()}}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -59,7 +59,7 @@ export default function PostModal({ open, setOpen }) {
               New Evaluation
             </Typography>
 
-            <CloseIcon sx={{ color: '#C70039', fontSize: 28, mr: 1, '&:hover': { cursor: 'pointer', color: '#900C3F' } }} onClick={handleClose} />
+            <CloseIcon sx={{ color: '#C70039', fontSize: 28, mr: 1, '&:hover': { cursor: 'pointer', color: '#900C3F' } }} onClick={()=>{handleClose()}} />
           </Box>
 
           <Box sx={{ display: 'flex', gap: 3, mt: 1 }}>
@@ -97,7 +97,7 @@ export default function PostModal({ open, setOpen }) {
           </Box>
 
           {
-            showComponent ? <My1 /> : <My2 />
+            showComponent ? <My1 info={info} setInfo={setInfo} /> : <My2 info={info} setInfo={setInfo}/>
           }
 
         </Box>

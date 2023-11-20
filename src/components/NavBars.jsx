@@ -14,18 +14,19 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {PiUserListDuotone} from 'react-icons/pi'
+import { PiUserListDuotone } from 'react-icons/pi'
 import useAuthCall from '../hooks/useAuthCall';
 import { Navigate } from 'react-router-dom';
 import { ListItem, ListItemText } from '@mui/material';
 import logo from '../assets/img/logobonna.png'
 import PostModal from './PostModal';
+import { IoIosLogOut } from "react-icons/io";
 
 
 function Navbars() {
 
-  const {currentUser} = useSelector((state)=>state.auth)
-  const {logout} = useAuthCall()
+  const { currentUser } = useSelector((state) => state.auth)
+  const { logout } = useAuthCall()
   const navi = useNavigate()
   const dispatch = useDispatch()
 
@@ -34,16 +35,16 @@ function Navbars() {
 
   const pages = [
     {
-      title:'Home',
-      url:'/'
+      title: 'Home',
+      url: '/'
     },
     {
-      title:'About',
-      url:'/about'
+      title: 'About',
+      url: '/about'
     },
     {
-      title:'Contact',
-      url:'/contact'
+      title: 'Contact',
+      url: '/contact'
     }
   ];
 
@@ -69,28 +70,13 @@ function Navbars() {
 
 
   return (
-    <AppBar position="fixed" sx={{backgroundColor:'#000000'}}>
+    <AppBar position="fixed" sx={{ backgroundColor: '#000000' }}>
       <Container maxWidth="xl">
 
         <Toolbar disableGutters>
 
-          {/* <Typography
-            variant="h6"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#C23373',
-              textDecoration: 'none',
-            }}
-          >
-            K-BLOG
-          </Typography> */}
-
-          <Box sx={{display:{xs:'none',md:'flex'}}}>
-            <img src={logo} alt="" style={{height:'50px',marginRight:'1rem'}} />
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <img src={logo} alt="" style={{ height: '50px', marginRight: '1rem' }} />
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -123,8 +109,8 @@ function Navbars() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((item,index) => (
-                <MenuItem key={index} onClick={()=>{
+              {pages.map((item, index) => (
+                <MenuItem key={index} onClick={() => {
                   handleCloseNavMenu()
                   navi(item.url)
                 }}>
@@ -138,10 +124,10 @@ function Navbars() {
 
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((item,index) => (
+            {pages.map((item, index) => (
               <Button
                 key={index}
-                onClick={()=>navi(item.url)}
+                onClick={() => navi(item.url)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {item.title}
@@ -151,30 +137,27 @@ function Navbars() {
 
           <Box sx={{ flexGrow: 0 }}>
 
-              {
-                currentUser ? (
-                <Box sx={{display:'flex',gap:3}} >
-                  <Button onClick={handleOpen} variant="outlined" sx={{color:'#ffffff',borderColor:'#C23373','&:hover':{backgroundColor:'#79155B',borderColor:'#79155B'}}}>
-                    + New
-                    </Button> 
+            {
+              currentUser ? (
+                <Box sx={{ display: 'flex', gap: 3 }} >
 
-                  <IconButton sx={{'&:hover':{scale:'1.1'}}}> 
-                  <PiUserListDuotone onClick={handleOpenUserMenu} size={'35px'} color='#ffffff' style={{padding:3}}/> 
-                  </IconButton>
+                  {/* <IconButton sx={{ '&:hover': { scale: '1.1' } }}>
+                    <PiUserListDuotone onClick={handleOpenUserMenu} size={'35px'} color='#ffffff' style={{ padding: 3 }} />
+                  </IconButton> */}
+
+                  <IoIosLogOut size={25} cursor='pointer' color='#C70039' />
+
                 </Box>
-                ):(
-                <Box sx={{display:'flex',gap:3}}>
-                  <Button onClick={()=>navi('/login')} sx={{color:'#ffffff','&:hover':{color:'#C23373'}}}>Login</Button>
-                  <Button onClick={()=>navi('/register')} sx={{backgroundColor:'#79155B',color:'#ffffff','&:hover':{backgroundColor:'#C23373'}}}>Register</Button>
-                </Box>
-                  )
-              }
-              <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',gap:3}}>
+              ) : (
+                ""
+              )
+            }
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
 
 
-              </Box>
+            </Box>
 
-            <Menu
+            {/* <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -191,21 +174,21 @@ function Navbars() {
               onClose={handleCloseUserMenu}
             >
 
-              <Box onClick={handleCloseUserMenu} sx={{display:'flex',flexDirection:'column'}}>
-                  <Button sx={{color:'#000000'}} onClick={()=>navi('/profile')}>Profile</Button>
-                  <Button sx={{color:'#000000'}} onClick={()=>navi('/mypost')}>My Post</Button>
-                  {/* <Button sx={{color:'#000000'}} onClick={()=>navi('/draft')}>Draft</Button> */}
-                  <Button sx={{color:'#000000'}} onClick={()=>logout()}>Logout</Button>
-                  <MenuItem>
-                  
-                  </MenuItem>
+              <Box onClick={handleCloseUserMenu} sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Button sx={{ color: '#000000' }} onClick={() => navi('/profile')}>Profile</Button>
+                <Button sx={{ color: '#000000' }} onClick={() => navi('/mypost')}>My Post</Button>
+                <Button sx={{ color: '#000000' }} onClick={() => logout()}>Logout</Button>
+                <MenuItem>
+
+                </MenuItem>
               </Box>
-            </Menu>
+
+            </Menu> */}
 
           </Box>
         </Toolbar>
       </Container>
-      <PostModal open={open} setOpen={setOpen}/>
+      <PostModal open={open} setOpen={setOpen} />
     </AppBar>
   );
 }
