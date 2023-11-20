@@ -56,7 +56,7 @@ export default function NewRecord({ open, handleClose, info, setInfo  }) {
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
             <Typography variant="subtitle1" fontWeight={700} sx={{ p: 1, color: '#367E18' }}>
-              New Evaluation
+              Değerlendirme Tipini Seçiniz
             </Typography>
 
             <CloseIcon sx={{ color: '#C70039', fontSize: 28, mr: 1, '&:hover': { cursor: 'pointer', color: '#900C3F' } }} onClick={()=>{handleClose()}} />

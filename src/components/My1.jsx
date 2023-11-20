@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 
-const My1 = ({info,setInfo}) => {
+const My1 = ({ info, setInfo }) => {
 
 
 
@@ -17,30 +17,55 @@ const My1 = ({info,setInfo}) => {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }
 
-  
+
 
   return (
 
     <div>
 
+      <Box sx={{display:'flex',flexDirection:'column',py:10}}>
 
-      <FormControl fullWidth>
-        <InputLabel id="lokasyon">Red/Kabul/Şartlı Kabul</InputLabel>
-        <Select
-          labelId="lokasyon"
-          id="lokasyon"
-          name='lokasyon'
-          label="lokasyon"
-          value={info.lokasyon}
-          onChange={handleChange}
-        >
-          <MenuItem value="RED">RED</MenuItem>
-          <MenuItem value="KABUL">KABUL</MenuItem>
-          <MenuItem value="ŞARTLI KABUL">ŞARTLI KABUL</MenuItem>
-        </Select>
-      </FormControl>
+      
 
 
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+
+        <FormControl fullWidth>
+          <InputLabel id="lokasyon">Lokasyon</InputLabel>
+          <Select
+            labelId="lokasyon"
+            id="lokasyon"
+            name='lokasyon'
+            label="lokasyon"
+            value={info.lokasyon}
+            onChange={handleChange}
+          >
+            <MenuItem value="Çayırova">Çayırova</MenuItem>
+            <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl fullWidth>
+          <InputLabel id="lokasyon">Personel</InputLabel>
+          <Select
+            labelId="lokasyon"
+            id="lokasyon"
+            name='lokasyon'
+            label="lokasyon"
+            value={info.lokasyon}
+            onChange={handleChange}
+          >
+            <MenuItem value="Çayırova">Çayırova</MenuItem>
+            <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
+          </Select>
+        </FormControl>
+
+
+      </Box>
+
+
+
+      </Box>
 
     </div>
   )

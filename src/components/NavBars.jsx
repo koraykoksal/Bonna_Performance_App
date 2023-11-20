@@ -35,15 +35,11 @@ function Navbars() {
 
   const pages = [
     {
-      title: 'Home',
+      title: 'Ana Sayfa',
       url: '/'
     },
     {
-      title: 'About',
-      url: '/about'
-    },
-    {
-      title: 'Contact',
+      title: 'Talep',
       url: '/contact'
     }
   ];
@@ -141,11 +137,11 @@ function Navbars() {
               currentUser ? (
                 <Box sx={{ display: 'flex', gap: 3 }} >
 
-                  {/* <IconButton sx={{ '&:hover': { scale: '1.1' } }}>
+                  <IconButton sx={{ '&:hover': { scale: '1.1' } }}>
                     <PiUserListDuotone onClick={handleOpenUserMenu} size={'35px'} color='#ffffff' style={{ padding: 3 }} />
-                  </IconButton> */}
+                  </IconButton>
 
-                  <IoIosLogOut size={25} cursor='pointer' color='#C70039' />
+                  {/* <IoIosLogOut size={25} cursor='pointer' color='#C70039' /> */}
 
                 </Box>
               ) : (
@@ -157,7 +153,7 @@ function Navbars() {
 
             </Box>
 
-            {/* <Menu
+            <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -175,15 +171,15 @@ function Navbars() {
             >
 
               <Box onClick={handleCloseUserMenu} sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Button sx={{ color: '#000000' }} onClick={() => navi('/profile')}>Profile</Button>
-                <Button sx={{ color: '#000000' }} onClick={() => navi('/mypost')}>My Post</Button>
-                <Button sx={{ color: '#000000' }} onClick={() => logout()}>Logout</Button>
+                <Button sx={{ color: '#000000' }} onClick={() => navi('/mypost')}>Rapor</Button>
+                <Button sx={{ color: '#C70039',fontWeight:'700' }} onClick={() => logout()}>Çıkış</Button>
+              
                 <MenuItem>
 
                 </MenuItem>
               </Box>
 
-            </Menu> */}
+            </Menu>
 
           </Box>
         </Toolbar>
