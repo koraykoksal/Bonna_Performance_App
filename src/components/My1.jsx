@@ -8,6 +8,9 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import My1_Table from './My1_Table';
+
 
 const My1 = ({ info, setInfo }) => {
 
@@ -23,49 +26,7 @@ const My1 = ({ info, setInfo }) => {
 
     <div>
 
-      <Box sx={{display:'flex',flexDirection:'column',mt:5}}>
-
-      
-
-
-      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-
-        <FormControl fullWidth>
-          <InputLabel id="lokasyon">Lokasyon</InputLabel>
-          <Select
-            labelId="lokasyon"
-            id="lokasyon"
-            name='lokasyon'
-            label="lokasyon"
-            value={info.lokasyon}
-            onChange={handleChange}
-          >
-            <MenuItem value="Çayırova">Çayırova</MenuItem>
-            <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl fullWidth>
-          <InputLabel id="lokasyon">Personel</InputLabel>
-          <Select
-            labelId="lokasyon"
-            id="lokasyon"
-            name='lokasyon'
-            label="lokasyon"
-            value={info.lokasyon}
-            onChange={handleChange}
-          >
-            <MenuItem value="Çayırova">Çayırova</MenuItem>
-            <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
-          </Select>
-        </FormControl>
-
-
-      </Box>
-
-
-
-      </Box>
+      <My1_Table info={info} handleChange={handleChange} />
 
     </div>
   )
