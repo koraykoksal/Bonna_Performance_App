@@ -4,7 +4,7 @@ const initialState={
     currentUser:"",
     loading:false,
     error:false,
-    //isAdmin:false,
+    securityKey:"",
     token:"",
     userInfo:[]
 
@@ -27,11 +27,12 @@ const authSlice=createSlice({
             state.error=true;
 
         },
-        loginSuccess:(state,action)=>{
+        loginSuccess:(state,{payload})=>{
+
             state.loading=false;
-            state.currentUser=action?.payload?.user?.username
-            state.token=action?.payload?.key
-            state.userInfo=action?.payload?.user
+            state.currentUser=payload[0]?.NAME+" "+payload[0]?.SURNAME
+            state.securityKey=payload[0]?.SECURITYKEY
+        
             
         },
         logoutSuccess:(state)=>{
@@ -40,13 +41,7 @@ const authSlice=createSlice({
             state.token="";
 
         },
-        //*payload içindeki dataya action olmadan erişmek için payload bilgisini object içinde belirtmek gerekir
-        registerSuccess:(state,{payload})=>{
-            state.loading=true;
-            state.currentUser=payload?.username;
-            state.token=payload?.token;
-            
-        }
+
     }
 
 
@@ -58,7 +53,6 @@ export const
     fetchFail,
     loginSuccess,
     logoutSuccess,
-    registerSuccess
 
 }=authSlice.actions
 

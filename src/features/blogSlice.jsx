@@ -3,12 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState={
     loading:false,
     error:false,
-    allPost:[],
-    categories:[],
-    comments:[],
-    likes:0,
-    viewedPost:[],
-    userBlogs:[]
+    all_performanceData:[],
 }
 
 const blogSlice=createSlice({
@@ -28,28 +23,13 @@ const blogSlice=createSlice({
             state.error=true;
 
         },
-        fetchSuccessPost:(state,action)=>{
+        fetchPerformanceData:(state,action)=>{
             state.loading=false;
-            state.allPost=action?.payload
+            state.all_performanceData=action?.payload
 
 
         },
-        fetchSuccessCategory:(state,action)=>{
-            state.loading=false;
-            state.categories=action?.payload
-        },
-        fetchSuccessComments:(state,action)=>{
-            state.loading=false;
-            state.comments=action?.payload
-        },
-        fetchViewSuccessPost:(state,action)=>{
-            state.loading = false;
-            state.viewedPost = action?.payload
-        },
-        fetchSuccessUserBlog:(state,action)=>{
-            state.loading=false;
-            state.userBlogs=action?.payload;
-        }
+        
     }
 
 })
@@ -57,11 +37,7 @@ const blogSlice=createSlice({
 export const {
     fetchStart,
     fetchFail,
-    fetchSuccessPost,
-    fetchSuccessCategory,
-    fetchSuccessComments,
-    fetchViewSuccessPost,
-    fetchSuccessUserBlog
+    fetchPerformanceData,
     
     } = blogSlice.actions
 

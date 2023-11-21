@@ -129,11 +129,17 @@ function Dashboard() {
                             ))}
                         </Box>
 
+
+
                         <Box sx={{ flexGrow: 0 }}>
+
+
 
                             {
                                 currentUser ? (
-                                    <Box sx={{ display: 'flex', gap: 3 }} >
+                                    <Box sx={{ display: 'flex', gap: 3,alignItems:'center' }} >
+
+                                        <Typography variant='subtitle2' align='center'>{currentUser}</Typography>
 
                                         <IconButton sx={{ '&:hover': { scale: '1.1' } }}>
                                             <PiUserListDuotone onClick={handleOpenUserMenu} size={'35px'} color='#ffffff' style={{ padding: 3 }} />
@@ -151,6 +157,8 @@ function Dashboard() {
 
                             </Box>
 
+
+
                             <Menu
                                 sx={{ mt: '45px' }}
                                 id="menu-appbar"
@@ -167,6 +175,8 @@ function Dashboard() {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
+
+
 
                                 <Box onClick={handleCloseUserMenu} sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <Button sx={{ color: '#000000' }} onClick={() => navi('/data/myreport')}>Rapor</Button>
