@@ -8,6 +8,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import My2_Table from './My2_Table';
 
 
 const My2 = ({ info, setInfo }) => {
@@ -26,7 +27,7 @@ const My2 = ({ info, setInfo }) => {
 
 
 
-  
+      <My2_Table info={info} handleChange={handleChange}/>
 
 
 

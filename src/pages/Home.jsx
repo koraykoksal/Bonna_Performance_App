@@ -14,7 +14,8 @@ export const Home = () => {
   const nextYear = new Date().getFullYear() + 1
 
   const [info, setInfo] = useState({
-    lokasyon:""
+    lokasyon:"",
+    personel:""
   })
 
   const [open, setOpen] = useState(false)
@@ -22,7 +23,8 @@ export const Home = () => {
   const handleClose = () => {
     setOpen(false)
     setInfo({
-      lokasyon:""
+      lokasyon:"",
+      personel:""
     })
   }
 
