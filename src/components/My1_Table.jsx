@@ -55,9 +55,9 @@ const My1_Table = ({ info, handleChange }) => {
             calisan: <input name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q1Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q1Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 2,
@@ -65,12 +65,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q2Yonetici'  type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q2Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 3,
@@ -78,12 +78,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q3Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q3Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 4,
@@ -91,12 +91,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q4Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q4Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 5,
@@ -104,12 +104,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q5Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q5Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 6,
@@ -117,12 +117,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q6Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q6Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 7,
@@ -130,12 +130,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q7Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q7Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 8,
@@ -143,12 +143,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q8Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q8Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 9,
@@ -156,12 +156,12 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q9Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q9Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
         {
             id: 10,
@@ -169,16 +169,38 @@ const My1_Table = ({ info, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            calisan: <input name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
 
-            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            yonetici: <input name='q10Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
 
-            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+            ortak: <input name='q10Ortak'type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
         },
-
-
     ];
+
+    const topics2=[
+        {
+            konu:"Operasyonel Yetkinlik Puanı",
+            referans:'60',
+            calisan: <Typography></Typography>,
+            yonetici: <Typography></Typography>,
+            ortak: <Typography></Typography>,
+        },
+        {
+            konu:"Davranışsal Yetkinlik Puanı",
+            referans:'40',
+            calisan: <Typography></Typography>,
+            yonetici: <Typography></Typography>,
+            ortak: <Typography></Typography>,
+        },
+        {
+            konu:"Toplam Performans Puanı",
+            referans:'40',
+            calisan: <Typography></Typography>,
+            yonetici: <Typography></Typography>,
+            ortak: <Typography></Typography>,
+        }
+    ]
 
 
     return (
@@ -251,6 +273,17 @@ const My1_Table = ({ info, handleChange }) => {
                                         <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
                                         <StyledTableCell align="center">{item.ortak}</StyledTableCell>
                                     </StyledTableRow>
+                                ))
+                            }
+                            {
+                                topics2.map((item,index)=>(
+                                    <StyledTableRow key={index}>
+                                    <StyledTableCell align="center">{item.konu}</StyledTableCell>
+                                    <StyledTableCell align="center">{item.referans}</StyledTableCell>
+                                    <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                                    <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
+                                    <StyledTableCell align="center">{item.ortak}</StyledTableCell>
+                                </StyledTableRow>
                                 ))
                             }
                         </TableBody>

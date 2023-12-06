@@ -1,5 +1,5 @@
 
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore ,getDefaultMiddleware} from "@reduxjs/toolkit";
 import authReducer from '../features/authSlice'
 import performanceReducer from '../features/performanceSlice'
 import { persistStore, persistReducer } from 'redux-persist'

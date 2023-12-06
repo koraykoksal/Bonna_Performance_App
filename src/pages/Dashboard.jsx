@@ -137,7 +137,7 @@ function Dashboard() {
 
                             {
                                 currentUser ? (
-                                    <Box sx={{ display: 'flex', gap: 3,alignItems:'center' }} >
+                                    <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }} >
 
                                         <Typography variant='subtitle2' align='center'>{currentUser}</Typography>
 
