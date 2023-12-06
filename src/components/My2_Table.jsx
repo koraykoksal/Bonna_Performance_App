@@ -15,7 +15,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-
+import { rows } from '../helper/my2';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -39,14 +39,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-const rows = [
-  "Konular",
-  "Yetkinlik",
-  "Referans",
-  "Çalışan",
-  "Yönetici",
-  "Ortak",
-]
 
 
 const topics = [
@@ -187,7 +179,7 @@ const topics = [
 
 const My2_Table = ({ info, handleChange }) => {
 
-  console.log(rows)
+
 
   return (
 
@@ -243,7 +235,7 @@ const My2_Table = ({ info, handleChange }) => {
               <TableRow>
                 {
                   rows.map((item, index) => (
-                    <StyledTableCell key={index} align="center">{item}</StyledTableCell>
+                    <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
                   ))
                 }
               </TableRow>
@@ -261,17 +253,6 @@ const My2_Table = ({ info, handleChange }) => {
                   </StyledTableRow>
                 ))
               }
-              {/* {rows.map((row) => (
-                                  <StyledTableRow key={row.name}>
-                                      <StyledTableCell component="th" scope="row">
-                                          {row.name}
-                                      </StyledTableCell>
-                                      <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                                      <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                                      <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                      <StyledTableCell align="right">{row.protein}</StyledTableCell>
-                                  </StyledTableRow>
-                              ))} */}
             </TableBody>
           </Table>
         </TableContainer>

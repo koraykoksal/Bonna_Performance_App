@@ -11,8 +11,12 @@ import { useState } from 'react';
 import My2_Table from './My2_Table';
 
 
-const My2 = ({ info, setInfo }) => {
+const My2 = () => {
 
+  const [info, setInfo] = useState({
+
+  })
+  
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }

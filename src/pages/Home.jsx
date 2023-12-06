@@ -13,19 +13,11 @@ export const Home = () => {
   const thisYear = new Date().getFullYear()
   const nextYear = new Date().getFullYear() + 1
 
-  const [info, setInfo] = useState({
-    lokasyon:"",
-    personel:""
-  })
 
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
-    setInfo({
-      lokasyon:"",
-      personel:""
-    })
   }
 
   let performanceResult = ""
@@ -67,7 +59,7 @@ export const Home = () => {
         </Box>
         
 
-        <NewRecord open={open} handleClose={handleClose} info={info} setInfo={setInfo} />
+        <NewRecord open={open} handleClose={handleClose}/>
 
       </Grid>
 

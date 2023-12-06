@@ -15,7 +15,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-
+import { rows } from "../helper/my1"
+import { useState, useEffect } from 'react';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -39,156 +40,146 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-const rows = [
-    "Konular",
-    "Yetkinlik",
-    "Referans",
-    "Çalışan",
-    "Yönetici",
-    "Ortak",
-]
 
-
-const topics = [
-    {
-        id:1,
-        konu: 'Bölüm talimatlarını ve çalışma parametrelerini uygulayabilir.',
-        yetkimlik: 'Operasyonel Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:2,
-        konu: 'Operasyon için İşgüvenliği  kurallarını uygular.',
-        yetkimlik: 'Operasyonel Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:3,
-        konu: 'İş takibi ve Raporlama yapabilir.',
-        yetkimlik: 'Operasyonel Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:4,
-        konu: 'Makine, Alet ve aparatları tanıyor ve kullanabiliyor.',
-        yetkimlik: 'Operasyonel Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:5,
-        konu: 'Kalite standartlarını uygulayabilir. Hatalı parçaları tanıyabilir ve seçebilir. ',
-        yetkimlik: 'Operasyonel Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:6,
-        konu: 'İstenilen standart ve sürede tüm operasyonu tamamen bağımsız olarak yapabilir.',
-        yetkimlik: 'Operasyonel Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:7,
-        konu: 'İşe devamlılığı iyidir.',
-        yetkimlik: 'Davranışsal Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:8,
-        konu: 'İş yeri disiplin kurallarına uygun davranır.',
-        yetkimlik: 'Davranışsal Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:9,
-        konu: 'Ekip çalışmasına uygun davranır, iletişimi iyidir. ',
-        yetkimlik: 'Davranışsal Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    {
-        id:10,
-        konu: 'Farkındalığı yüksektir ve katma değer sağlayacak önerilerde bulanabilir. ',
-        yetkimlik: 'Davranışsal Yetkinlik',
-        referans: '10',
-       
-        calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
-        ,
-       
-        yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-      
-        ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
-    },
-    
-
-];
 
 
 const My1_Table = ({ info, handleChange }) => {
 
+    const topics = [
+        {
+            id: 1,
+            konu: 'Bölüm talimatlarını ve çalışma parametrelerini uygulayabilir.',
+            yetkinlik: 'Operasyonel Yetkinlik',
+            referans: '10',
 
-    console.log(rows)
+            calisan: <input name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 2,
+            konu: 'Operasyon için İşgüvenliği  kurallarını uygular.',
+            yetkinlik: 'Operasyonel Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 3,
+            konu: 'İş takibi ve Raporlama yapabilir.',
+            yetkinlik: 'Operasyonel Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 4,
+            konu: 'Makine, Alet ve aparatları tanıyor ve kullanabiliyor.',
+            yetkinlik: 'Operasyonel Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 5,
+            konu: 'Kalite standartlarını uygulayabilir. Hatalı parçaları tanıyabilir ve seçebilir. ',
+            yetkinlik: 'Operasyonel Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 6,
+            konu: 'İstenilen standart ve sürede tüm operasyonu tamamen bağımsız olarak yapabilir.',
+            yetkinlik: 'Operasyonel Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 7,
+            konu: 'İşe devamlılığı iyidir.',
+            yetkinlik: 'Davranışsal Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 8,
+            konu: 'İş yeri disiplin kurallarına uygun davranır.',
+            yetkinlik: 'Davranışsal Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 9,
+            konu: 'Ekip çalışmasına uygun davranır, iletişimi iyidir. ',
+            yetkinlik: 'Davranışsal Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+        {
+            id: 10,
+            konu: 'Farkındalığı yüksektir ve katma değer sağlayacak önerilerde bulanabilir. ',
+            yetkinlik: 'Davranışsal Yetkinlik',
+            referans: '10',
+
+            calisan: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            ,
+
+            yonetici: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+
+            ortak: <input type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />,
+        },
+
+
+    ];
+
 
     return (
 
@@ -198,8 +189,8 @@ const My1_Table = ({ info, handleChange }) => {
             <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 5 }}>
 
                 {/* LOKASYON */}
-                <FormControl 
-                sx={{width:'300px'}}
+                <FormControl
+                    sx={{ width: '300px' }}
                 >
                     <InputLabel id="lokasyon">Lokasyon</InputLabel>
                     <Select
@@ -217,8 +208,8 @@ const My1_Table = ({ info, handleChange }) => {
 
 
                 {/* PERSONEL */}
-                <FormControl 
-                sx={{width:'300px'}}
+                <FormControl
+                    sx={{ width: '300px' }}
                 >
                     <InputLabel id="personel">Personel</InputLabel>
                     <Select
@@ -244,7 +235,7 @@ const My1_Table = ({ info, handleChange }) => {
                             <TableRow>
                                 {
                                     rows.map((item, index) => (
-                                        <StyledTableCell key={index} align="center">{item}</StyledTableCell>
+                                        <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
                                     ))
                                 }
                             </TableRow>
@@ -254,7 +245,7 @@ const My1_Table = ({ info, handleChange }) => {
                                 topics.map((item, index) => (
                                     <StyledTableRow key={index}>
                                         <StyledTableCell align="center">{item.konu}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.yetkimlik}</StyledTableCell>
+                                        <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
                                         <StyledTableCell align="center">{item.referans}</StyledTableCell>
                                         <StyledTableCell align="center">{item.calisan}</StyledTableCell>
                                         <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
@@ -262,17 +253,6 @@ const My1_Table = ({ info, handleChange }) => {
                                     </StyledTableRow>
                                 ))
                             }
-                            {/* {rows.map((row) => (
-                                    <StyledTableRow key={row.name}>
-                                        <StyledTableCell component="th" scope="row">
-                                            {row.name}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.protein}</StyledTableCell>
-                                    </StyledTableRow>
-                                ))} */}
                         </TableBody>
                     </Table>
                 </TableContainer>

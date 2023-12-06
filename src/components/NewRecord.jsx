@@ -21,12 +21,10 @@ const style = {
 
 
 
-export default function NewRecord({ open, handleClose, info, setInfo  }) {
+export default function NewRecord({ open, handleClose}) {
 
 
-//   const handleClose = () => setOpen(false);
 
-  //? tab elementinin varsayılan seçimi Overview
   const [tabValue, settabValue] = useState('my1')
   const [showComponent, setshowComponent] = useState(true)
 
@@ -67,7 +65,7 @@ export default function NewRecord({ open, handleClose, info, setInfo  }) {
 
 
             <Tabs
-              // variant="scrollable"
+              // variant="standard"
               scrollButtons
               onChange={handleChange}
               value={tabValue}
@@ -93,12 +91,10 @@ export default function NewRecord({ open, handleClose, info, setInfo  }) {
 
             </Tabs>
 
-
-
           </Box>
 
           {
-            showComponent ? <My1 info={info} setInfo={setInfo} /> : <My2 info={info} setInfo={setInfo}/>
+            showComponent ? <My1 /> : <My2 />
           }
 
         </Box>
