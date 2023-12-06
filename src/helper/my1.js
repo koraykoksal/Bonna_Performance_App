@@ -8,9 +8,17 @@ export const rows = [
     {title:"Ortak"},
 ]
 
+export const rows2 = [
+
+    {title:"Sonuç"},
+    {title:"Skala"},
+    {title:"Yonetici Değerlendirme"},
+    {title:"Personel Değerlendirme"},
+    {title:"Ortak Değerlendirme"},
+]
 
 
-// export const topics = [
+
 //     {
 //         id:1,
 //         konu: 'Bölüm talimatlarını ve çalışma parametrelerini uygulayabilir.',

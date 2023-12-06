@@ -47,6 +47,20 @@ const My1 = () => {
     q8Ortak:0,
     q9Ortak:0,
     q10Ortak:0,
+    oypCalisan:0,
+    oypYonetici:0,
+    oypOrtak:0,
+    dypCalisan:0,
+    dypYonetici:0,
+    dypOrtak:0,
+    tppCalisan:0,
+    tppYonetici:0,
+    tppOrtak:0,
+    calisanAciklama:"",
+    yoneticiAciklama:"",
+    yd:0,
+    pd:0,
+    od:0
   })
 
 
