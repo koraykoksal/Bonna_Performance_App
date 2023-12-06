@@ -48,18 +48,20 @@ export const Login = () => {
 
 
     <Container maxWidth="lg" sx={{ mt: 10 }}>
+
       <Grid
         container
         justifyContent="center"
         direction="row-reverse"
         sx={{
-          height: "100vh",
+          
           p: 2,
+          gap:5
         }}
       >
 
 
-        <Grid item xs={12} sm={10} md={6}>
+        <Grid item xs={10} sm={8} md={6}>
           <Avatar
             sx={{
               backgroundColor: "secondary.light",
@@ -116,11 +118,12 @@ export const Login = () => {
 
         </Grid>
 
-        <Grid item xs={10} sm={7} md={6}>
+        <Grid item xs={10} sm={8} md={5}>
           <Container>
             <img src={image} alt="img" />
           </Container>
         </Grid>
+
       </Grid>
     </Container>
 

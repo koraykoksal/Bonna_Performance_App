@@ -1,5 +1,5 @@
 import React from 'react'
-import useBlogCall from '../hooks/useBlogCall'
+import useBlogCall from '../hooks/usePerformanceCall'
 import { useEffect,useState } from 'react'
 import { useSelector } from 'react-redux'
 import Typography from '@mui/material/Typography';

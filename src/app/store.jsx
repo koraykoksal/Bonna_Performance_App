@@ -1,7 +1,7 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from '../features/authSlice'
-import blogReducer from '../features/blogSlice'
+import performanceReducer from '../features/performanceSlice'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
  
@@ -17,9 +17,17 @@ const store=configureStore({
 
   reducer:{
     auth:persistedReducer,
-    blog:blogReducer,
+    performance:performanceReducer,
   }
+
+  
   ,devTools: process.env.NODE_ENV !== "production",
+
+   //consolda çıkan serileştirme hatasını göstermiyor
+   middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
+  
 })
 
 

@@ -6,7 +6,7 @@ import {
     fetchStart,
     fetchPerformanceData 
 
-} from '../features/blogSlice'
+} from '../features/performanceSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 

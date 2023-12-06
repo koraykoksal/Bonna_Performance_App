@@ -6,9 +6,9 @@ const initialState={
     all_performanceData:[],
 }
 
-const blogSlice=createSlice({
+const performanceSlice=createSlice({
 
-    name:'blog',
+    name:'performance',
 
     initialState,
 
@@ -39,9 +39,9 @@ export const {
     fetchFail,
     fetchPerformanceData,
     
-    } = blogSlice.actions
+    } = performanceSlice.actions
 
-export default blogSlice.reducer;
+export default performanceSlice.reducer;
 
 
 
