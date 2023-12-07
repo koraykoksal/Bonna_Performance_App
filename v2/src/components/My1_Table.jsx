@@ -18,6 +18,7 @@ import { Container, FormControlLabel, FormGroup, TextField } from '@mui/material
 import { rows, rows2 } from "../helper/my1"
 import { useState, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
+import ReadUnderstood from './modals/ReadUnderstood';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -43,8 +44,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-
 const My1_Table = ({ info, handleChange }) => {
+
+    const [okudumAnladim, setokudumAnladim] = useState(false)
+
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false)
+    }
 
 
     const topics = [
@@ -245,6 +253,18 @@ const My1_Table = ({ info, handleChange }) => {
         }
     ]
 
+    const handleOkudumAnladim=(e)=>{
+
+        if(!okudumAnladim){
+            handleOpen()
+            setokudumAnladim(true)
+        }
+        else{
+            setokudumAnladim(false)
+            setOpen(false)
+        }
+        
+    }
 
     return (
 
@@ -404,16 +424,18 @@ const My1_Table = ({ info, handleChange }) => {
                 </TableContainer>
             </Box>
 
-            <Box sx={{ display: 'flex',flexDirection:'column',gap:3 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
 
-                <FormGroup style={{padding:10}}>
-                    <FormControlLabel required control={<Checkbox/>} label="Okudum, Anladım, Onaylıyorum." />
+                <FormGroup style={{ padding: 10 }}>
+                    <FormControlLabel required control={<Checkbox onClick={handleOkudumAnladim}/>} label="Okudum, Anladım, Onaylıyorum."  />
                 </FormGroup>
 
                 <Box>
                     <Button fullWidth variant='contained'>Kaydet</Button>
                 </Box>
             </Box>
+
+            <ReadUnderstood open={open} handleClose={handleClose}/>
 
         </Box>
 
