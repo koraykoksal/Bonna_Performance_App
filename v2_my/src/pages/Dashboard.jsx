@@ -24,7 +24,9 @@ import { IoIosLogOut } from "react-icons/io";
 
 function Dashboard() {
 
-    const { currentUser } = useSelector((state) => state.auth)
+    // const { currentUser } = useSelector((state) => state.auth)
+    const currentUser = "koray"
+
     const { logout } = useAuthCall()
     const navi = useNavigate()
     const dispatch = useDispatch()
@@ -58,7 +60,7 @@ function Dashboard() {
         setAnchorElUser(null);
     };
 
-
+    console.log(currentUser)
 
     return (
 
@@ -134,62 +136,13 @@ function Dashboard() {
                         <Box sx={{ flexGrow: 0 }}>
 
 
+                            <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
+                                {
+                                    currentUser && (<Typography variant='subtitle2' align='center'>{currentUser}</Typography>)
+                                }
 
-                            {
-                                currentUser ? (
-                                    <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }} >
-
-                                        <Typography variant='subtitle2' align='center'>{currentUser}</Typography>
-
-                                        <IconButton sx={{ '&:hover': { scale: '1.1' } }}>
-                                            <PiUserListDuotone onClick={handleOpenUserMenu} size={'35px'} color='#ffffff' style={{ padding: 3 }} />
-                                        </IconButton>
-
-                                        {/* <IoIosLogOut size={25} cursor='pointer' color='#C70039' /> */}
-
-                                    </Box>
-                                ) : (
-                                    ""
-                                )
-                            }
-                            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
-
-
+                                <IoIosLogOut size={25} cursor='pointer' color='#C70039' onClick={()=>logout()}/>
                             </Box>
-
-
-
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-
-
-
-                                <Box onClick={handleCloseUserMenu} sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Button sx={{ color: '#000000' }} onClick={() => navi('/data/myreport')}>Rapor</Button>
-                                    <Button sx={{ color: '#C70039', fontWeight: '700' }} onClick={() => logout()}>Çıkış</Button>
-
-                                    <MenuItem>
-
-                                    </MenuItem>
-                                </Box>
-
-                            </Menu>
-
-
 
                         </Box>
 

@@ -17,32 +17,32 @@ const useAuthCall = () => {
 
         dispatch(fetchStart())
 
-        try {
+        // try {
 
-            const options = {
-                method: 'POST',
-                url: `${import.meta.env.VITE_ERP_LOGIN_BASE_URL}`,
-                headers: {
-                    'USERNM': userdata.username,
-                    'PASS': userdata.password,
-                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+        //     const options = {
+        //         method: 'POST',
+        //         url: `${import.meta.env.VITE_ERP_LOGIN_BASE_URL}`,
+        //         headers: {
+        //             'USERNM': userdata.username,
+        //             'PASS': userdata.password,
+        //             'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
 
-                }
-            }
+        //         }
+        //     }
 
 
-            const { data } = await axios(options)
+        //     const { data } = await axios(options)
 
-            dispatch(loginSuccess(data))
-            toastSuccessNotify('Login Successful.')
-            navigate('/data')
+        //     dispatch(loginSuccess(data))
+        //     toastSuccessNotify('Login Successful.')
+        //     navigate('/data')
 
-            console.log(data)
+        //     console.log(data)
 
-        } catch (error) {
-            dispatch(fetchFail())
-            toastErrorNotify("'Something Went Wrong !'")
-        }
+        // } catch (error) {
+        //     dispatch(fetchFail())
+        //     toastErrorNotify("'Something Went Wrong !'")
+        // }
     }
 
     const logout = async () => {

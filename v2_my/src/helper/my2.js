@@ -7,3 +7,15 @@ export const rows = [
     {title:"Yönetici"},
     {title:"Ortak"},
 ]
+
+
+
+export const my2Titles=[
+
+]
+
+
+
+
+
+

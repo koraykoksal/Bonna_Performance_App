@@ -64,10 +64,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q1Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q1Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 2,
@@ -77,10 +73,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q2Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q2Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 3,
@@ -90,10 +82,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q3Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q3Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 4,
@@ -103,10 +91,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q4Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q4Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 5,
@@ -116,10 +100,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q5Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q5Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 6,
@@ -129,10 +109,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q6Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q6Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 7,
@@ -142,10 +118,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q7Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q7Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 8,
@@ -155,10 +127,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q8Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q8Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 9,
@@ -168,10 +136,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q9Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q9Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
         {
             id: 10,
@@ -181,10 +145,6 @@ const My1_Table = ({ info, handleChange }) => {
 
             calisan: <input name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
-
-            yonetici: <input name='q10Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-
-            ortak: <input name='q10Ortak' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
         },
     ];
 
@@ -194,24 +154,18 @@ const My1_Table = ({ info, handleChange }) => {
             referans: '60',
             yetkinlik: "",
             calisan: <Typography>{info?.oypCalisan}</Typography>,
-            yonetici: <Typography>{info?.oypYonetici}</Typography>,
-            ortak: <Typography>{info?.oypOrtak}</Typography>,
         },
         {
             konu: "Davranışsal Yetkinlik Puanı",
             referans: '40',
             yetkinlik: "",
             calisan: <Typography>{info?.dypCalisan}</Typography>,
-            yonetici: <Typography>{info?.dypYonetici}</Typography>,
-            ortak: <Typography>{info?.dypOrtak}</Typography>,
         },
         {
             konu: "Toplam Performans Puanı",
             referans: '40',
             yetkinlik: "",
             calisan: <Typography>{info?.tppCalisan}</Typography>,
-            yonetici: <Typography>{info?.tppYonetici}</Typography>,
-            ortak: <Typography>{info?.tppOrtak}</Typography>,
         }
     ]
 
@@ -272,48 +226,6 @@ const My1_Table = ({ info, handleChange }) => {
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxHeight: '500px', overflow: 'auto', p: 3 }}>
 
 
-            {/* LOKASYON VE PERSONEL */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 5 }}>
-
-                {/* LOKASYON */}
-                <FormControl
-                    sx={{ width: '300px' }}
-                >
-                    <InputLabel id="lokasyon">Lokasyon</InputLabel>
-                    <Select
-                        labelId="lokasyon"
-                        id="lokasyon"
-                        name='lokasyon'
-                        label="lokasyon"
-                        value={info.lokasyon}
-                        onChange={handleChange}
-                    >
-                        <MenuItem value="Çayırova">Çayırova</MenuItem>
-                        <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
-                    </Select>
-                </FormControl>
-
-
-                {/* PERSONEL */}
-                <FormControl
-                    sx={{ width: '300px' }}
-                >
-                    <InputLabel id="personel">Personel</InputLabel>
-                    <Select
-                        labelId="personel"
-                        id="personel"
-                        name='personel'
-                        label="personel"
-                        value={info.personel}
-                        onChange={handleChange}
-                    >
-                        <MenuItem value="Çayırova">Çayırova</MenuItem>
-                        <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
-                    </Select>
-                </FormControl>
-
-            </Box>
-
             {/* DEĞERLENDİRME */}
             <Box sx={{ display: 'flex', justifyContent: 'center', }}>
 
@@ -336,8 +248,6 @@ const My1_Table = ({ info, handleChange }) => {
                                         <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
                                         <StyledTableCell align="center">{item.referans}</StyledTableCell>
                                         <StyledTableCell align="center">{item.calisan}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.ortak}</StyledTableCell>
                                     </StyledTableRow>
                                 ))
                             }
@@ -350,8 +260,6 @@ const My1_Table = ({ info, handleChange }) => {
                                         <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
                                         <StyledTableCell align="center">{item.referans}</StyledTableCell>
                                         <StyledTableCell align="center">{item.calisan}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.ortak}</StyledTableCell>
                                     </StyledTableRow>
                                 ))
                             }
@@ -377,53 +285,10 @@ const My1_Table = ({ info, handleChange }) => {
                     onChange={handleChange}
                 />
 
-
-                {/* YONETICI ACIKLAMA */}
-                <TextField
-                    fullWidth
-                    label='Yönetici Açıklama'
-                    name='yoneticiAciklama'
-                    id='yoneticiAciklama'
-                    type='text'
-                    variant='outlined'
-                    inputProps={{ maxlength: 100 }}
-                    value={info.yoneticiAciklama}
-                    onChange={handleChange}
-                />
-
             </Container>
 
-            {/* SONUÇLAR */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', }}>
 
-                <TableContainer >
-                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                        <TableHead>
-                            <TableRow>
-                                {
-                                    rows2.map((item, index) => (
-                                        <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
-                                    ))
-                                }
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                topics3.map((item, index) => (
-                                    <StyledTableRow key={index}>
-                                        <StyledTableCell align="center">{item.konu}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.skala}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.yd}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.pd}</StyledTableCell>
-                                        <StyledTableCell align="center">{item.od}</StyledTableCell>
-                                    </StyledTableRow>
-                                ))
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Box>
-
+            {/* ONAY VE KAYIT */}
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
 
                 <FormGroup style={{ padding: 10 }}>

@@ -20,8 +20,7 @@ export const Login = () => {
 
 
   const [info, setInfo] = useState({
-      username:"",
-      password:""
+    tcno:"",
   })
 
   const { login } = useAuthCall()
@@ -37,8 +36,7 @@ export const Login = () => {
     login(info)
 
     setInfo({
-      username:"",
-      password:""
+      tcno:"",
     })
   }
 
@@ -61,7 +59,8 @@ export const Login = () => {
       >
 
 
-        <Grid item xs={10} sm={8} md={6}>
+        <Grid item xs={10} sm={8} md={10}>
+
           <Avatar
             sx={{
               backgroundColor: "secondary.light",
@@ -72,6 +71,7 @@ export const Login = () => {
           >
             <LockIcon size="30" />
           </Avatar>
+
           <Typography
             variant="h4"
             align="center"
@@ -84,21 +84,12 @@ export const Login = () => {
           <form>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} >
             <TextField
-              label="Username"
-              name="username"
-              id="username"
+              label="TC NO"
+              name="tcno"
+              id="tcno"
               type="text"
               variant="outlined"
-              value={info.username}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Password"
-              name="password"
-              id="password"
-              type="password"
-              variant="outlined"
-              value={info.password}
+              value={info.tcno}
               onChange={handleChange}
             />
             <Button variant="contained" type="submit" onClick={handleSubmit}>
@@ -108,13 +99,6 @@ export const Login = () => {
           </Box>
           </form>
 
-
-
-
-
-          {/* <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Link to="/register">Don't you have an account?</Link>
-          </Box> */}
 
         </Grid>
 
