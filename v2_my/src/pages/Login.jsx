@@ -15,32 +15,38 @@ import { object, string } from "yup"
 import useAuthCall from '../hooks/useAuthCall'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import { toastWarnNotify } from '../helper/ToastNotify'
 
 export const Login = () => {
 
 
   const [info, setInfo] = useState({
-    tcno:"",
+    tcno: "",
   })
 
   const { login } = useAuthCall()
 
-  const handleChange=(e)=>{
+  const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
 
-    e.preventDefault()
+    if (!info.tcno) {
+      toastWarnNotify('Lütfen kimlik numaranızı giriniz !')
+    }
+    else {
+      e.preventDefault()
 
-    login(info)
+      login(info)
 
-    setInfo({
-      tcno:"",
-    })
+      setInfo({
+        tcno: "",
+      })
+    }
+
   }
 
-  console.log(info)
 
   return (
 
@@ -52,9 +58,9 @@ export const Login = () => {
         justifyContent="center"
         direction="row-reverse"
         sx={{
-          
+
           p: 2,
-          gap:5
+          gap: 5
         }}
       >
 
@@ -82,24 +88,25 @@ export const Login = () => {
           </Typography>
 
           <form>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} >
-            <TextField
-              label="TC Kimlik No"
-              name="tcno"
-              id="tcno"
-              type="text"
-              variant="outlined"
-              value={info.tcno}
-              onChange={handleChange}
-              inputProps={{
-                maxLength: 12
-              }}
-            />
-            <Button variant="contained" type="submit" onClick={handleSubmit}>
-              Submit
-            </Button>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} >
+              <TextField
+                required
+                label="TC Kimlik No"
+                name="tcno"
+                id="tcno"
+                type="text"
+                variant="outlined"
+                value={info.tcno}
+                onChange={handleChange}
+                inputProps={{
+                  maxLength: 12
+                }}
+              />
+              <Button variant="contained" type="submit" onClick={handleSubmit}>
+                Submit
+              </Button>
 
-          </Box>
+            </Box>
           </form>
 
 

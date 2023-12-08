@@ -29,6 +29,8 @@ const My2 = () => {
     dypCalisan: 0,
     tppCalisan: 0,
     calisanAciklama: "",
+    degerlendirmeSonucu: 0,
+    calisanDegerlendirmeYuzdesi: 0.35
 
   })
 
@@ -38,20 +40,23 @@ const My2 = () => {
 
     setInfo(prevInfo => {
 
-      const newInfo= {...prevInfo,[e.target.name]:e.target.value}
+      const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
 
       const operayonelYetkinlikPuani = Number(newInfo.q1Calisan) + Number(newInfo.q2Calisan) + Number(newInfo.q3Calisan) + Number(newInfo.q4Calisan) + Number(newInfo.q5Calisan) + Number(newInfo.q6Calisan)
 
       const davranissalYetkinlikPuani = Number(newInfo.q7Calisan) + Number(newInfo.q8Calisan) + Number(newInfo.q9Calisan) + Number(newInfo.q10Calisan)
 
+      const calisanPuani = Number(newInfo.q1Calisan) + Number(newInfo.q2Calisan) + Number(newInfo.q3Calisan) + Number(newInfo.q4Calisan) + Number(newInfo.q5Calisan) + Number(newInfo.q6Calisan) + Number(newInfo.q7Calisan) + Number(newInfo.q8Calisan) + Number(newInfo.q9Calisan) + Number(newInfo.q10Calisan)
+
       newInfo.oypCalisan = operayonelYetkinlikPuani;
       newInfo.dypCalisan = davranissalYetkinlikPuani;
       newInfo.tppCalisan = newInfo.oypCalisan + newInfo.dypCalisan;
+      newInfo.degerlendirmeSonucu = Number(Number(calisanPuani) * Number(newInfo.calisanDegerlendirmeYuzdesi)).toFixed(2)
 
       return newInfo
 
     })
-    
+
 
 
   }

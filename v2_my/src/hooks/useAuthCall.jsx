@@ -45,8 +45,6 @@ const useAuthCall = () => {
 
     const login = async (userdata) => {
 
-        console.log("usedata: ",userdata)
-
         dispatch(fetchStart())
 
         const options = {
@@ -70,7 +68,7 @@ const useAuthCall = () => {
                 const res = await axios(options)
                 
                 dispatch(loginSuccess(res?.data))
-
+                toastSuccessNotify('Login Successful.')
                 navigate('/data')
                 //! yonetici bilgisi
                 // const data = JSON.parse(res?.data[0].YONETICI)
@@ -81,35 +79,10 @@ const useAuthCall = () => {
             }
 
         } catch (error) {
-
+            dispatch(fetchFail())
+            toastErrorNotify("Login Error !")
         }
 
-        // try {
-
-        //     const options = {
-        //         method: 'POST',
-        //         url: `${import.meta.env.VITE_ERP_LOGIN_BASE_URL}`,
-        //         headers: {
-        //             'USERNM': userdata.username,
-        //             'PASS': userdata.password,
-        //             'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
-
-        //         }
-        //     }
-
-
-        //     const { data } = await axios(options)
-
-        //     dispatch(loginSuccess(data))
-        //     toastSuccessNotify('Login Successful.')
-        //     navigate('/data')
-
-        //     console.log(data)
-
-        // } catch (error) {
-        //     dispatch(fetchFail())
-        //     toastErrorNotify("'Something Went Wrong !'")
-        // }
     }
 
     const logout = async () => {

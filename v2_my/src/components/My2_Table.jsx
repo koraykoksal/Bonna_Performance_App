@@ -217,7 +217,7 @@ const My2_Table = ({ info, handleChange }) => {
   return (
 
 
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxHeight: '500px', overflow: 'auto' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
 
       {/* DEĞERLENDİRME */}
       <Box sx={{ display: 'flex', justifyContent: 'center', }}>
