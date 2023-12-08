@@ -27,7 +27,7 @@ export const toastWarnNotify = (msg) => {
   
   export const toastErrorNotify = (msg) => {
     toast.error(msg, {
-      autoClose: 1500,
+      autoClose: 7500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

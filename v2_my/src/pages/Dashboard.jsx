@@ -24,8 +24,7 @@ import { IoIosLogOut } from "react-icons/io";
 
 function Dashboard() {
 
-    // const { currentUser } = useSelector((state) => state.auth)
-    const currentUser = "koray"
+    const { currentUser } = useSelector((state) => state.auth)
 
     const { logout } = useAuthCall()
     const navi = useNavigate()

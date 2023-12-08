@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import Typography from '@mui/material/Typography';
 import { Box, Button, Grid } from '@mui/material';
 import NewRecord from '../components/NewRecord';
-
+import { my1Titles,my2Titles } from '../helper/data';
 
 
 export const Home = () => {
@@ -13,7 +13,8 @@ export const Home = () => {
   const thisYear = new Date().getFullYear()
   const nextYear = new Date().getFullYear() + 1
 
-
+  const {currentUser_Category,currentUser,currentUserTitle} = useSelector((state)=>state.auth)
+  const [userStatus, setuserStatus] = useState(null)
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -39,6 +40,12 @@ export const Home = () => {
 
   }
 
+  
+  useEffect(() => {
+    
+   
+
+  }, [currentUser_Category,currentUser])
   
 
   return (

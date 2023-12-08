@@ -84,13 +84,16 @@ export const Login = () => {
           <form>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} >
             <TextField
-              label="TC NO"
+              label="TC Kimlik No"
               name="tcno"
               id="tcno"
               type="text"
               variant="outlined"
               value={info.tcno}
               onChange={handleChange}
+              inputProps={{
+                maxLength: 12
+              }}
             />
             <Button variant="contained" type="submit" onClick={handleSubmit}>
               Submit

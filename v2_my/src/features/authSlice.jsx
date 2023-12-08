@@ -2,11 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
     currentUser:"",
+    currentUser_Category:"",
+    currentUserTitle:"",
     loading:false,
     error:false,
     securityKey:"",
     token:"",
-    userInfo:[]
+    userInfo:[],
+    userManagerInfo:[],
+    allBonnaPersonel:[]
 
 }
 
@@ -29,10 +33,12 @@ const authSlice=createSlice({
         },
         loginSuccess:(state,{payload})=>{
 
+            console.log("payload: ",payload)
+
             state.loading=false;
-            state.currentUser=payload[0]?.NAME+" "+payload[0]?.SURNAME
-            state.securityKey=payload[0]?.SECURITYKEY
-        
+            state.currentUser=payload[0]?.PERSONEL
+            state.currentUserTitle=payload[0].GOREV
+            state.userManagerInfo = JSON.parse(payload[0].YONETICI)
             
         },
         logoutSuccess:(state)=>{
@@ -41,6 +47,10 @@ const authSlice=createSlice({
             state.token="";
 
         },
+        fetchAllUsers:(state,{payload})=>{
+            state.loading=false
+            state.allBonnaPersonel = payload
+        }
 
     }
 
@@ -53,6 +63,7 @@ export const
     fetchFail,
     loginSuccess,
     logoutSuccess,
+    fetchAllUsers
 
 }=authSlice.actions
 

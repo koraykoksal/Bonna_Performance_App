@@ -7,15 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Container, FormControlLabel, FormGroup, TextField } from '@mui/material';
-import { rows, rows2 } from "../helper/my1"
+import { rows } from "../helper/data"
 import { useState, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import ReadUnderstood from './modals/ReadUnderstood';
