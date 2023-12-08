@@ -36,8 +36,6 @@ const My2 = () => {
 
   const handleChange = (e) => {
 
-    // setInfo({ ...info, [e.target.name]: e.target.value })
-
     setInfo(prevInfo => {
 
       const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
