@@ -39,7 +39,7 @@ const authSlice=createSlice({
             state.currentUser=payload[0]?.PERSONEL
             state.currentUserTitle=payload[0].GOREV
             state.userManagerInfo = JSON.parse(payload[0].YONETICI)
-            
+            state.userInfo = payload[0]
         },
         logoutSuccess:(state)=>{
             state.loading=false;

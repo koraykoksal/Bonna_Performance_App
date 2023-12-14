@@ -72,6 +72,7 @@ const useAuthCall = () => {
                 navigate('/data')
                 //! yonetici bilgisi
                 // const data = JSON.parse(res?.data[0].YONETICI)
+
                 
             }
             else{
