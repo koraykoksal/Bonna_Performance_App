@@ -33,7 +33,7 @@ const authSlice=createSlice({
         },
         loginSuccess:(state,{payload})=>{
 
-            console.log("payload: ",payload)
+            // console.log("payload: ",payload)
 
             state.loading=false;
             state.currentUser=payload[0]?.PERSONEL

@@ -73,7 +73,9 @@ const My2 = () => {
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
     calisanDegerlendirmeYuzdesi: 0.35,
-    datetime:new Date()
+    datetime:new Date(),
+    okudumAnladım:true
+
 
   })
 
@@ -111,7 +113,7 @@ const My2 = () => {
 
       <Box sx={{ display: 'flex', flexDirection: 'column', mt: 5 }}>
 
-        <My2_Table info={info} handleChange={handleChange} />
+        <My2_Table info={info} setInfo={setInfo} handleChange={handleChange} />
 
       </Box>
 

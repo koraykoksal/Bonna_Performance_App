@@ -40,7 +40,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-const My2_Table = ({ info, handleChange }) => {
+const My2_Table = ({ info, setInfo,handleChange }) => {
 
   const {post_new_performanceData,get_performanceData} = usePerformanceCall()
   const {all_performanceData} = useSelector((state)=>state.performance)
@@ -216,10 +216,12 @@ const My2_Table = ({ info, handleChange }) => {
     if (!okudumAnladim) {
       handleOpen()
       setokudumAnladim(true)
+
     }
     else {
       setokudumAnladim(false)
       setOpen(false)
+
     }
 
   }
@@ -231,7 +233,6 @@ const My2_Table = ({ info, handleChange }) => {
     post_new_performanceData('my-performance',info)
     // get_performanceData('my-performance',info)
   }
-
 
   return (
 

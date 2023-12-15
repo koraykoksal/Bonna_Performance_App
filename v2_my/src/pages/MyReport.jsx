@@ -15,21 +15,21 @@ const MyReport = () => {
   const { post_new_performanceData, get_performanceData } = usePerformanceCall()
   const { currentUser_Category, currentUser, currentUserTitle, userInfo, userManagerInfo } = useSelector((state) => state.auth)
 
-  
+
   const [info, setInfo] = useState({
-    personel:"",
-    sicilNo:"",
-    tcNo:"",
-    iseGirisTarih:"",
-    dogumTarih:"",
-    birim:"",
-    bolum:"",
-    ustBirim:"",
-    yonetici:"",
-    gorev:"",
-    currentSallary:"",
-    degerlendirmeYili:"",
-    degerlendirmeDonemiAciklama:"",
+    personel: "",
+    sicilNo: "",
+    tcNo: "",
+    iseGirisTarih: "",
+    dogumTarih: "",
+    birim: "",
+    bolum: "",
+    ustBirim: "",
+    yonetici: "",
+    gorev: "",
+    currentSallary: "",
+    degerlendirmeYili: "",
+    degerlendirmeDonemiAciklama: "",
     q1Calisan: 0,
     q2Calisan: 0,
     q3Calisan: 0,
@@ -42,12 +42,12 @@ const MyReport = () => {
     q10Calisan: 0,
     oypCalisan: 0,
     dypCalisan: 0,
-    yypCalisan:0,
+    yypCalisan: 0,
     tppCalisan: 0,
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
     calisanDegerlendirmeYuzdesi: 0.35,
-    datetime:new Date()
+    datetime: new Date()
   })
 
 
@@ -55,7 +55,7 @@ const MyReport = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
-    
+
   }
 
 
@@ -64,15 +64,43 @@ const MyReport = () => {
   }, [])
 
 
+  const handleChange = (e) => {
+
+    setInfo(prevInfo => {
+
+      const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
+
+      const operayonelYetkinlikPuani = Number(newInfo.q1Calisan) + Number(newInfo.q2Calisan) + Number(newInfo.q3Calisan) + Number(newInfo.q4Calisan)
+
+      const davranissalYetkinlikPuani = Number(newInfo.q5Calisan) + Number(newInfo.q6Calisan) + Number(newInfo.q7Calisan) + Number(newInfo.q8Calisan)
+
+      const yonetselYetkinlikPuani = Number(newInfo.q9Calisan) + Number(newInfo.q10Calisan)
+
+      const calisanPuani = Number(newInfo.q1Calisan) + Number(newInfo.q2Calisan) + Number(newInfo.q3Calisan) + Number(newInfo.q4Calisan) + Number(newInfo.q5Calisan) + Number(newInfo.q6Calisan) + Number(newInfo.q7Calisan) + Number(newInfo.q8Calisan) + Number(newInfo.q9Calisan) + Number(newInfo.q10Calisan)
+
+      newInfo.oypCalisan = operayonelYetkinlikPuani;
+      newInfo.dypCalisan = davranissalYetkinlikPuani;
+      newInfo.yypCalisan = yonetselYetkinlikPuani;
+      newInfo.tppCalisan = newInfo.oypCalisan + newInfo.dypCalisan + newInfo.yypCalisan
+      newInfo.degerlendirmeSonucu = Number(Number(calisanPuani) * Number(newInfo.calisanDegerlendirmeYuzdesi)).toFixed(2)
+
+      return newInfo
+
+    })
+
+
+
+  }
+
 
   return (
     <div>
 
-    {/* rapor sonuçlaırını gösteren COMPONENT */}
-    <PerformanceResult_Table setInfo={setInfo} handleOpen={handleOpen}/>  
+      {/* rapor sonuçlaırını gösteren COMPONENT */}
+      <PerformanceResult_Table setInfo={setInfo} handleOpen={handleOpen} />
 
-    {/* güncelleme yapılacağı zaman çalışacak MODAL */}
-    <PerformanceUpdate open={open} handleClose={handleClose} info={info}/>    
+      {/* güncelleme yapılacağı zaman çalışacak MODAL */}
+      <PerformanceUpdate open={open} handleClose={handleClose} info={info} handleChange={handleChange}/>
 
     </div>
   )
