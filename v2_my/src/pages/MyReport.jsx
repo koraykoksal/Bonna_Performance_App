@@ -15,9 +15,42 @@ const MyReport = () => {
   const { post_new_performanceData, get_performanceData } = usePerformanceCall()
   const { currentUser_Category, currentUser, currentUserTitle, userInfo, userManagerInfo } = useSelector((state) => state.auth)
 
+  
   const [info, setInfo] = useState({
-    personel:""
+    personel:"",
+    sicilNo:"",
+    tcNo:"",
+    iseGirisTarih:"",
+    dogumTarih:"",
+    birim:"",
+    bolum:"",
+    ustBirim:"",
+    yonetici:"",
+    gorev:"",
+    currentSallary:"",
+    degerlendirmeYili:"",
+    degerlendirmeDonemiAciklama:"",
+    q1Calisan: 0,
+    q2Calisan: 0,
+    q3Calisan: 0,
+    q4Calisan: 0,
+    q5Calisan: 0,
+    q6Calisan: 0,
+    q7Calisan: 0,
+    q8Calisan: 0,
+    q9Calisan: 0,
+    q10Calisan: 0,
+    oypCalisan: 0,
+    dypCalisan: 0,
+    yypCalisan:0,
+    tppCalisan: 0,
+    calisanAciklama: "",
+    degerlendirmeSonucu: 0,
+    calisanDegerlendirmeYuzdesi: 0.35,
+    datetime:new Date()
   })
+
+
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => {

@@ -235,8 +235,8 @@ const My2_Table = ({ info, handleChange }) => {
 
   return (
 
-    <>
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <div>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} component='form' onSubmit={handleSubmit}>
 
       {/* DEĞERLENDİRME */}
       <Box sx={{ display: 'flex', justifyContent: 'center', }}>
@@ -308,7 +308,7 @@ const My2_Table = ({ info, handleChange }) => {
         </FormGroup>
 
         <Box>
-          <Button fullWidth variant='contained' type='button' sx={{letterSpacing:10}} onClick={handleSubmit}>Kaydet</Button>
+          <Button fullWidth variant='contained' type='submit' sx={{letterSpacing:10}} >Kaydet</Button>
         </Box>
       </Box>
 
@@ -317,7 +317,7 @@ const My2_Table = ({ info, handleChange }) => {
     </Box>
 
 
-    </>
+    </div>
 
 
   )

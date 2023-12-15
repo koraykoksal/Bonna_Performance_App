@@ -20,6 +20,7 @@ const style = {
 
 const PerformanceUpdate = ({open,handleClose,info}) => {
 
+   console.log(info)
 
     return (
         <div>

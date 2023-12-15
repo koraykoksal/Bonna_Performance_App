@@ -7,7 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 
 
 
-const PerformanceResult_Table = ({handleOpen,setInfo}) => {
+const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
 
     const { all_performanceData } = useSelector((state) => state.performance)
     const [performanceData, setperformanceData] = useState([])
@@ -31,17 +31,50 @@ const PerformanceResult_Table = ({handleOpen,setInfo}) => {
             flex: 1,
             renderCell: ({ id,
                 row: {
-                    personel
+                    personel,
+                    q1Calisan,
+                    q2Calisan,
+                    q3Calisan,
+                    q4Calisan,
+                    q5Calisan,
+                    q6Calisan,
+                    q7Calisan,
+                    q8Calisan,
+                    q9Calisan,
+                    q10Calisan,
+                    oypCalisan,
+                    dypCalisan,
+                    yypCalisan,
+                    tppCalisan,
+                    calisanAciklama,
+                    degerlendirmeSonucu,
                 } }) => {
                 return [
                     <GridActionsCellItem
                         key={"edit"}
-                        icon={<AiFillEdit size={25} style={{ color: '#0802A3' }} cursor='pointer' />}
+                        icon={<AiFillEdit size={25} style={{ color: 'darkorange' }} cursor='pointer' />}
                         label="Edit"
                         onClick={() => {
                             handleOpen()
                             setInfo({
-                                personel
+                                id,
+                                personel,
+                                q1Calisan,
+                                q2Calisan,
+                                q3Calisan,
+                                q4Calisan,
+                                q5Calisan,
+                                q6Calisan,
+                                q7Calisan,
+                                q8Calisan,
+                                q9Calisan,
+                                q10Calisan,
+                                oypCalisan,
+                                dypCalisan,
+                                yypCalisan,
+                                tppCalisan,
+                                calisanAciklama,
+                                degerlendirmeSonucu,
                             })
                         }}
 
@@ -242,7 +275,7 @@ const PerformanceResult_Table = ({handleOpen,setInfo}) => {
             align: "center",
             flex: 1,
         },
-        
+
 
     ];
 
