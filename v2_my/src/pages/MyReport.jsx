@@ -15,21 +15,42 @@ const MyReport = () => {
   const { post_new_performanceData, get_performanceData } = usePerformanceCall()
   const { currentUser_Category, currentUser, currentUserTitle, userInfo, userManagerInfo } = useSelector((state) => state.auth)
 
+  const thisYear = new Date().getFullYear()
+  const nextYear = new Date().getFullYear() + 1
+  let performanceResult = ""
+
+  const evulationInfo = () => {
+
+    const currentDate = new Date();
+    const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
+    const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
+
+    if (currentDate > startLimit && currentDate < endLimit) {
+      performanceResult = 'Yıl Sonu Performans Değerlendirme'
+    }
+    else {
+      performanceResult = '6 Aylık Performans Değerlendirme'
+    }
+
+    return performanceResult
+
+  }
+
 
   const [info, setInfo] = useState({
-    personel: "",
-    sicilNo: "",
-    tcNo: "",
-    iseGirisTarih: "",
-    dogumTarih: "",
-    birim: "",
-    bolum: "",
-    ustBirim: "",
-    yonetici: "",
-    gorev: "",
-    currentSallary: "",
-    degerlendirmeYili: "",
-    degerlendirmeDonemiAciklama: "",
+    personel: userInfo.PERSONEL,
+    sicilNo: userInfo.SICILNO,
+    tcNo: userInfo.TC,
+    iseGirisTarih: userInfo.GIRISTARIHI,
+    dogumTarih: userInfo.DOGUMTARIHI,
+    birim: userInfo.BIRIM,
+    bolum: userInfo.BOLUM,
+    ustBirim: userInfo.USTBIRIM,
+    yonetici: userManagerInfo.PERSONEL,
+    gorev: userInfo.GOREV,
+    currentSallary: userInfo.MAAS,
+    degerlendirmeYili: new Date().getFullYear(),
+    degerlendirmeDonemiAciklama: evulationInfo(),
     q1Calisan: 0,
     q2Calisan: 0,
     q3Calisan: 0,
@@ -47,7 +68,8 @@ const MyReport = () => {
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
     calisanDegerlendirmeYuzdesi: 0.35,
-    datetime: new Date()
+    datetime: new Date(),
+    okudumAnladım: true
   })
 
 
@@ -100,7 +122,7 @@ const MyReport = () => {
       <PerformanceResult_Table setInfo={setInfo} handleOpen={handleOpen} />
 
       {/* güncelleme yapılacağı zaman çalışacak MODAL */}
-      <PerformanceUpdate open={open} handleClose={handleClose} info={info} handleChange={handleChange}/>
+      <PerformanceUpdate open={open} handleClose={handleClose} info={info} handleChange={handleChange} />
 
     </div>
   )

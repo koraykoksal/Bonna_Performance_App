@@ -138,12 +138,29 @@ const usePerformanceCall = () => {
     }
 
 
+    const put_PerformanceData = (url, info) => {
+
+        console.log("url: ",url)
+        console.log("info: ",info)
+
+        try {
+
+            const db = getDatabase()
+            update(ref(db, `${url}/${info.tcNo}/` + info.id), info)
+            toastSuccessNotify('Updated Data')
+
+        } catch (error) {
+            console.log("Update error :", error)
+            toastErrorNotify('Not OK Update ')
+        }
+    }
 
 
 
     return {
         post_new_performanceData,
-        get_performanceData
+        get_performanceData,
+        put_PerformanceData
     }
 }
 

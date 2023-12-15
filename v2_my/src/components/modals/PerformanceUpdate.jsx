@@ -14,6 +14,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Container, FormControlLabel, FormGroup, TextField } from '@mui/material';
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import usePerformanceCall from '../../hooks/usePerformanceCall';
 
 
 
@@ -55,6 +56,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
 
+    const {put_PerformanceData,get_performanceData} = usePerformanceCall()
 
     const topics = [
         {
@@ -214,7 +216,13 @@ const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
         }
     ]
 
+    const handleSubmit=(e)=>{
 
+        e.preventDefault()
+
+        put_PerformanceData('my-performance',info)
+        get_performanceData('my-performance',info.tcNo)
+    }
 
 
 
@@ -230,7 +238,7 @@ const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
             >
                
 
-                <Box sx={style}>
+                <Box sx={style} component='form' onSubmit={handleSubmit}>
 
                     <Box p={2}>
                     <IoMdCloseCircleOutline size={25} color='red' cursor='pointer' onClick={handleClose}/>
@@ -302,7 +310,7 @@ const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
 
                         <Box>
-                            <Button fullWidth variant='contained' type='submit' sx={{ letterSpacing: 10 }} >Kaydet</Button>
+                            <Button fullWidth variant='contained' type='submit' sx={{ letterSpacing: 10 }} >Güncelle</Button>
                         </Box>
                     </Box>
 
