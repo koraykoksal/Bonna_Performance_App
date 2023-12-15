@@ -6,8 +6,8 @@ import { Login } from '../pages/Login'
 import { NotFound } from '../pages/NotFound'
 import { BrowserRouter } from 'react-router-dom'
 import { PrivateRouter } from './PrivateRouter'
-import MyReport from '../pages/MyReport'
 import Dashboard from '../pages/Dashboard'
+import MyReport from '../pages/MyReport'
 
 
 

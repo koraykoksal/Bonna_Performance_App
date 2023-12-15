@@ -110,14 +110,14 @@ const usePerformanceCall = () => {
 
 
 
-    const get_performanceData =  (url, info) => {
+    const get_performanceData =  (url, tcNo) => {
 
         distpatch(fetchStart())
 
         try {
 
             const db = getDatabase()
-            const res = ref(db, `${url}/` + info.tcNo);
+            const res = ref(db, `${url}/` + tcNo);
 
             onValue(res, (snapshot => {
                 const data = snapshot.val()

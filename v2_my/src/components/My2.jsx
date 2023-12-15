@@ -111,12 +111,7 @@ const My2 = () => {
 
       <Box sx={{ display: 'flex', flexDirection: 'column', mt: 5 }}>
 
-
-
-
         <My2_Table info={info} handleChange={handleChange} />
-
-
 
       </Box>
 

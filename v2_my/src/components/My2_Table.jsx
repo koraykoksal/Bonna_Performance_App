@@ -229,11 +229,9 @@ const My2_Table = ({ info, handleChange }) => {
     e.preventDefault()
 
     post_new_performanceData('my-performance',info)
-    get_performanceData('my-performance',info)
+    // get_performanceData('my-performance',info)
   }
 
-
-  console.log(all_performanceData)
 
   return (
 

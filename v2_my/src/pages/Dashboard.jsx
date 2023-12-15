@@ -38,6 +38,10 @@ function Dashboard() {
             title: 'Ana Sayfa',
             url: '/data/'
         },
+        {
+            title: 'Rapor',
+            url: '/data/myreport/'
+        },
     ];
 
 
@@ -123,7 +127,7 @@ function Dashboard() {
                                 <Button
                                     key={index}
                                     onClick={() => navi(item.url)}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                    sx={{ my: 2, color: 'white', display: 'block',textTransform:'none' }}
                                 >
                                     {item.title}
                                 </Button>
@@ -137,7 +141,7 @@ function Dashboard() {
 
                             <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
                                 {
-                                    currentUser && (<Typography variant='subtitle2' align='center'>{currentUser}</Typography>)
+                                    currentUser && (<Typography variant='subtitle2' align='center' textTransform='none'>{currentUser}</Typography>)
                                 }
 
                                 <IoIosLogOut size={25} cursor='pointer' color='#C70039' onClick={()=>logout()}/>
