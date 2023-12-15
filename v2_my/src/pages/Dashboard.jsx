@@ -59,7 +59,7 @@ function Dashboard() {
         setAnchorElUser(null);
     };
 
-    console.log(currentUser)
+
 
     return (
 

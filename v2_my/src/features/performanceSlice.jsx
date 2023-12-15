@@ -24,9 +24,10 @@ const performanceSlice=createSlice({
             state.error=true;
 
         },
-        fetchPerformanceData:(state,action)=>{
+        fetchPerformanceData:(state,{payload})=>{
+         
             state.loading=false;
-            state.all_performanceData=action?.payload
+            state.all_performanceData=payload
 
 
         },

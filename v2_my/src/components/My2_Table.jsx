@@ -15,6 +15,8 @@ import { rows } from "../helper/data"
 import { useState, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import ReadUnderstood from './modals/ReadUnderstood';
+import usePerformanceCall from '../hooks/usePerformanceCall';
+import { useSelector } from 'react-redux';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,6 +42,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const My2_Table = ({ info, handleChange }) => {
 
+  const {post_new_performanceData,get_performanceData} = usePerformanceCall()
+  const {all_performanceData} = useSelector((state)=>state.performance)
+
   const [okudumAnladim, setokudumAnladim] = useState(false)
 
   const [open, setOpen] = useState(false)
@@ -55,7 +60,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -64,7 +69,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -73,7 +78,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -82,7 +87,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -91,7 +96,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -100,7 +105,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -109,7 +114,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -118,7 +123,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -127,7 +132,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Yönetsel Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -136,7 +141,7 @@ const My2_Table = ({ info, handleChange }) => {
       yetkinlik: 'Yönetsel Yetkinlik',
       referans: '10',
 
-      calisan: <input name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input required name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
   ];
@@ -144,19 +149,25 @@ const My2_Table = ({ info, handleChange }) => {
   const topics2 = [
     {
       konu: "Operasyonel Yetkinlik Puanı",
-      referans: '60',
+      referans: '40',
       yetkinlik: "",
       calisan: <Typography>{info?.oypCalisan}</Typography>,
     },
     {
       konu: "Davranışsal Yetkinlik Puanı",
-      referans: '40',
+      referans: '20',
       yetkinlik: "",
       calisan: <Typography>{info?.dypCalisan}</Typography>,
     },
     {
+      konu: "Yönetsel Yetkinlik Puanı",
+      referans: '20',
+      yetkinlik: "",
+      calisan: <Typography>{info?.yypCalisan}</Typography>,
+    },
+    {
       konu: "Toplam Performans Puanı",
-      referans: '40',
+      referans: '100',
       yetkinlik: "",
       calisan: <Typography>{info?.tppCalisan}</Typography>,
     }
@@ -214,9 +225,19 @@ const My2_Table = ({ info, handleChange }) => {
   }
 
 
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+
+    post_new_performanceData('my-performance',info)
+    get_performanceData('my-performance',info)
+  }
+
+
+  console.log(all_performanceData)
+
   return (
 
-
+    <>
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
 
       {/* DEĞERLENDİRME */}
@@ -273,7 +294,7 @@ const My2_Table = ({ info, handleChange }) => {
           id='calisanAciklama'
           type='text'
           variant='outlined'
-          inputProps={{ maxlength: 100 }}
+          // inputProps={{ maxlength: 100 }}
           value={info.calisanAciklama}
           onChange={handleChange}
         />
@@ -289,7 +310,7 @@ const My2_Table = ({ info, handleChange }) => {
         </FormGroup>
 
         <Box>
-          <Button fullWidth variant='contained'>Kaydet</Button>
+          <Button fullWidth variant='contained' type='button' sx={{letterSpacing:10}} onClick={handleSubmit}>Kaydet</Button>
         </Box>
       </Box>
 
@@ -298,7 +319,7 @@ const My2_Table = ({ info, handleChange }) => {
     </Box>
 
 
-
+    </>
 
 
   )
