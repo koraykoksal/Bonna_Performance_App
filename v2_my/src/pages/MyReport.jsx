@@ -15,6 +15,7 @@ const MyReport = () => {
   const { post_new_performanceData, get_performanceData } = usePerformanceCall()
   const { currentUser_Category, currentUser, currentUserTitle, userInfo, userManagerInfo } = useSelector((state) => state.auth)
 
+  const currentDate = new Date();
   const thisYear = new Date().getFullYear()
   const nextYear = new Date().getFullYear() + 1
   let performanceResult = ""
@@ -34,6 +35,23 @@ const MyReport = () => {
 
     return performanceResult
 
+  }
+
+
+  function formatDate(date) {
+    let day = date.getDate(); // Günü alır
+    let month = date.getMonth() + 1; // Ayı alır (0'dan başladığı için 1 eklenir)
+    let year = date.getFullYear(); // Yılı alır
+    let hours = date.getHours(); // Saati alır
+    let minutes = date.getMinutes(); // Dakikayı alır
+
+    // Gün, ay, saat veya dakika tek basamaklıysa, başına '0' ekler
+    day = day < 10 ? '0' + day : day;
+    month = month < 10 ? '0' + month : month;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    return `${day}-${month}-${year} ${hours}:${minutes}`;
   }
 
 
@@ -68,8 +86,9 @@ const MyReport = () => {
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
     calisanDegerlendirmeYuzdesi: 0.35,
-    datetime: new Date(),
-    okudumAnladım: true
+    createdDate: formatDate(currentDate),
+    okudumAnladım: true,
+    personelSonuc:""
   })
 
 
@@ -106,6 +125,12 @@ const MyReport = () => {
       newInfo.tppCalisan = newInfo.oypCalisan + newInfo.dypCalisan + newInfo.yypCalisan
       newInfo.degerlendirmeSonucu = Number(Number(calisanPuani) * Number(newInfo.calisanDegerlendirmeYuzdesi)).toFixed(2)
 
+      newInfo.personelSonuc = (calisanPuani >= 0 && calisanPuani <= 45 && "Beklentileri Karşılamıyor") || 
+        (calisanPuani >= 46 && calisanPuani <= 60 && "Beklentilerin Altında") || 
+        (calisanPuani >= 61 && calisanPuani <= 80 && "Ortalama Beklenti") || 
+        (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentileri Karşılıyor") || 
+        (calisanPuani >= 91 && calisanPuani <= 100 && "Üstün Performans")
+
       return newInfo
 
     })
@@ -113,6 +138,9 @@ const MyReport = () => {
 
 
   }
+
+
+  console.log("my report info: ",info)
 
 
   return (
