@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { PrivateRouter } from './PrivateRouter'
 import MyReport from '../pages/MyReport'
 import Dashboard from '../pages/Dashboard'
+import AdminReport from '../pages/AdminReport'
 
 
 
@@ -21,10 +22,11 @@ export const AppRouter = () => {
 
           <Route path='/' element={<Login />} />
 
-          <Route path='data' element={<PrivateRouter />}>
+          <Route path='byperformance' element={<PrivateRouter />}>
             <Route path='' element={<Dashboard />}>
               <Route index element={<Home />} />
               <Route path='myreport' element={<MyReport/>}/>
+              <Route path='adminreport' element={<AdminReport/>}/>
             </Route>
 
           </Route>

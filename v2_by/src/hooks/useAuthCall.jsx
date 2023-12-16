@@ -40,7 +40,7 @@ const useAuthCall = () => {
             if (res?.data[0].STATUS == "1") {
 
                 dispatch(fetchLoginSuccess(res?.data))
-                navigate('/data')
+                navigate('/byperformance')
                 toastSuccessNotify('Login Successful.')
 
             }

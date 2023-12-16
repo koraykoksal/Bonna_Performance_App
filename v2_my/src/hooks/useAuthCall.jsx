@@ -71,7 +71,7 @@ const useAuthCall = () => {
                 
                 dispatch(loginSuccess(res?.data))
                 toastSuccessNotify('Login Successful.')
-                navigate('/data')
+                navigate('/myperformance')
                 //! yonetici bilgisi
                 // const data = JSON.parse(res?.data[0].YONETICI)
 

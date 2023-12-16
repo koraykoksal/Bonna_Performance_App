@@ -24,7 +24,7 @@ import { IoIosLogOut } from "react-icons/io";
 
 function Dashboard() {
 
-    const { currentUser } = useSelector((state) => state.auth)
+    const { currentUser,userInfo } = useSelector((state) => state.auth)
     const { logout } = useAuthCall()
     const navi = useNavigate()
     const dispatch = useDispatch()
@@ -35,7 +35,11 @@ function Dashboard() {
     const pages = [
         {
             title: 'Ana Sayfa',
-            url: '/data/'
+            url: '/byperformance/'
+        },
+        {
+            title: 'Rapor',
+            url: '/byperformance/myreport'
         },
     ];
 
@@ -108,7 +112,7 @@ function Dashboard() {
                                         handleCloseNavMenu()
                                         navi(item.url)
                                     }}>
-                                        <Typography textAlign="center">{item.title}</Typography>
+                                        <Typography textAlign="center" sx={{ textTransform: 'none' }}>{item.title}</Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>
@@ -122,7 +126,7 @@ function Dashboard() {
                                 <Button
                                     key={index}
                                     onClick={() => navi(item.url)}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                    sx={{ my: 2, color: 'white', display: 'block', textTransform: 'none' }}
                                 >
                                     {item.title}
                                 </Button>
@@ -178,13 +182,15 @@ function Dashboard() {
 
 
 
-                                <Box onClick={handleCloseUserMenu} sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Button sx={{ color: '#000000' }} onClick={() => navi('/data/myreport')}>Rapor</Button>
-                                    <Button sx={{ color: '#C70039', fontWeight: '700' }} onClick={() => logout()}>Çıkış</Button>
+                                <Box onClick={handleCloseUserMenu}s sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    
+                                    {
+                                        userInfo.ADMIN === '1' ? (<Button sx={{ color: '#000000',textTransform:'none' }} onClick={() => navi('/byperformance/adminreport')}>Admin Rapor</Button>):("")
+                                    }
+                                    
 
-                                    <MenuItem>
+                                    <Button sx={{ color: '#C70039', fontWeight: '700',textTransform:'none' }} onClick={() => logout()}>Çıkış</Button>
 
-                                    </MenuItem>
                                 </Box>
 
                             </Menu>

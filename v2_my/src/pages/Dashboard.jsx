@@ -36,11 +36,11 @@ function Dashboard() {
     const pages = [
         {
             title: 'Ana Sayfa',
-            url: '/data/'
+            url: '/myperformance/'
         },
         {
             title: 'Rapor',
-            url: '/data/myreport/'
+            url: '/myperformance/myreport/'
         },
     ];
 

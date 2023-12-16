@@ -21,7 +21,7 @@ export const AppRouter = () => {
 
           <Route path='/' element={<Login />} />
 
-          <Route path='data' element={<PrivateRouter />}>
+          <Route path='myperformance' element={<PrivateRouter />}>
             <Route path='' element={<Dashboard />}>
               <Route index element={<Home />} />
               <Route path='myreport' element={<MyReport/>}/>

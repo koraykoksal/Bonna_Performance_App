@@ -33,7 +33,7 @@ const authSlice=createSlice({
             state.securityKey=payload[0]?.SECURITYKEY
             state.userInfo = payload[0]
         
-            
+            console.log("user info: ",state.userInfo)
         },
         fetchLogoutSuccess:(state)=>{
             state.loading=false;
