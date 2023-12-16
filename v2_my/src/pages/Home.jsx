@@ -82,11 +82,10 @@ export const Home = () => {
             Bonna {evulationInfo()} Dönemi
           </Typography>
 
-          <Box sx={{display:'flex',justifyContent:'center',gap:3}}>
+          <Box sx={{display:'flex',justifyContent:'center',py:3}}>
             
             <Grid>
-              <Paper sx={{display:'flex',flexDirection:'column',p:3}}>
-              
+              <Paper sx={{display:'flex',flexDirection:'column',p:3,border:'1px solid red',borderRadius:'5px'}}>
               
               <Typography sx={{textTransform:'none'}}>Tc No : {userInfo.TC}</Typography>
               <Typography sx={{textTransform:'none'}}>Personel : {userInfo.PERSONEL}</Typography>
@@ -98,6 +97,7 @@ export const Home = () => {
 
               </Paper>
             </Grid>
+            
           </Box>
 
         </Box>

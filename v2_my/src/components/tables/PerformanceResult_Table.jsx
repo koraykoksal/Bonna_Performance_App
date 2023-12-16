@@ -63,7 +63,8 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
                     degerlendirmeSonucu,
                     calisanDegerlendirmeYuzdesi,
                     createdDate,
-                    okudumAnladım
+                    okudumAnladım,
+                    personelSonuc
                 }
             }) => {
                 return [
@@ -106,7 +107,8 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
                                 degerlendirmeSonucu,
                                 calisanDegerlendirmeYuzdesi,
                                 createdDate,
-                                okudumAnladım
+                                okudumAnladım,
+                                personelSonuc
                             })
                         }}
 
@@ -118,7 +120,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "personel",
             headerName: "Personel",
-            minWidth: 150,
+            minWidth: 190,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -142,7 +144,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "iseGirisTarih",
             headerName: "İşe Giriş",
-            minWidth: 150,
+            minWidth: 190,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -150,7 +152,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "birim",
             headerName: "Birim",
-            minWidth: 150,
+            minWidth: 180,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -158,7 +160,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "bolum",
             headerName: "bölüm",
-            minWidth: 150,
+            minWidth: 180,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -166,7 +168,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "ustBirim",
             headerName: "Üst Birim",
-            minWidth: 150,
+            minWidth: 180,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -174,7 +176,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "yonetici",
             headerName: "Yönetici",
-            minWidth: 150,
+            minWidth: 190,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -198,7 +200,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "degerlendirmeDonemiAciklama",
             headerName: "Değerlendirme Dönemi Aciklama",
-            minWidth: 150,
+            minWidth: 250,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -292,9 +294,17 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
             flex: 1,
         },
         {
+            field: "personelSonuc",
+            headerName: "Sonuç",
+            minWidth: 200,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
             field: "calisanAciklama",
             headerName: "Çalışan Açıklama",
-            minWidth: 150,
+            minWidth: 250,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -302,7 +312,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
         {
             field: "createdDate",
             headerName: "Tarih",
-            minWidth: 150,
+            minWidth: 190,
             headerAlign: "center",
             align: "center",
             flex: 1,

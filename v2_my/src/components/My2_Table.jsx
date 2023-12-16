@@ -172,43 +172,7 @@ const My2_Table = ({ info, setInfo, handleChange }) => {
     }
   ]
 
-  const topics3 = [
-    {
-      konu: "Beklentileri Karşılamıyor",
-      skala: "0-45",
-      yd: <Typography>{info.yd}</Typography>,
-      pd: <Typography>{info.pd}</Typography>,
-      od: <Typography>{info.od}</Typography>
-    },
-    {
-      konu: "Beklentilerin Altında",
-      skala: "45-60",
-      yd: <Typography>{info.yd}</Typography>,
-      pd: <Typography>{info.pd}</Typography>,
-      od: <Typography>{info.od}</Typography>
-    },
-    {
-      konu: "Ortalama Beklenti",
-      skala: "61-80",
-      yd: <Typography>{info.yd}</Typography>,
-      pd: <Typography>{info.pd}</Typography>,
-      od: <Typography>{info.od}</Typography>
-    },
-    {
-      konu: "Beklentileri Karşılıyor",
-      skala: "81-90",
-      yd: <Typography>{info.yd}</Typography>,
-      pd: <Typography>{info.pd}</Typography>,
-      od: <Typography>{info.od}</Typography>
-    },
-    {
-      konu: "Üstün Performans",
-      skala: "91-100",
-      yd: <Typography>{info.yd}</Typography>,
-      pd: <Typography>{info.pd}</Typography>,
-      od: <Typography>{info.od}</Typography>
-    }
-  ]
+
 
 
   const handleOkudumAnladim = (e) => {
