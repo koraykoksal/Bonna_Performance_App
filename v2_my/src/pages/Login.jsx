@@ -20,6 +20,8 @@ import { toastWarnNotify } from '../helper/ToastNotify'
 export const Login = () => {
 
 
+  const { currentUser,userInfo } = useSelector((state) => state.auth)
+
   const [info, setInfo] = useState({
     tcno: "",
   })

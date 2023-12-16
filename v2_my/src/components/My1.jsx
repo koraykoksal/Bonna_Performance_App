@@ -58,7 +58,7 @@ const My1 = () => {
   }
 
 
-  console.log(info)
+
 
   return (
 

@@ -18,6 +18,7 @@ const performanceSlice=createSlice({
         fetchStart:(state)=>{
             state.loading=true;
             state.error = false;
+            state.all_performanceData=[]
         },
         fetchFail:(state)=>{
             state.loading=false;

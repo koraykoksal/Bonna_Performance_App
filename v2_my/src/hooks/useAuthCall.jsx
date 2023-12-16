@@ -13,6 +13,8 @@ const useAuthCall = () => {
     const navigate = useNavigate()
     const { allBonnaPersonel } = useSelector((state) => state.auth)
 
+
+    
     const get_bonnaPersonel = async () => {
 
         dispatch(fetchStart())
@@ -86,7 +88,8 @@ const useAuthCall = () => {
 
     }
 
-    const logout = async () => {
+
+    const logout = () => {
 
 
         dispatch(fetchStart())

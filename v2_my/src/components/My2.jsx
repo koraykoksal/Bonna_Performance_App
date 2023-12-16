@@ -136,7 +136,7 @@ const My2 = () => {
   }
 
 
-  console.log(info)
+
 
   return (
 

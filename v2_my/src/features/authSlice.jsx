@@ -1,54 +1,71 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState={
-    currentUser:"",
-    currentUser_Category:"",
-    currentUserTitle:"",
-    loading:false,
-    error:false,
-    securityKey:"",
-    token:"",
-    userInfo:[],
-    userManagerInfo:[],
-    allBonnaPersonel:[]
+const initialState = {
+    currentUser: "",
+    currentUser_Category: "",
+    currentUserTitle: "",
+    loading: false,
+    error: false,
+    securityKey: "",
+    token: "",
+    userInfo: [],
+    userManagerInfo: [],
+    allBonnaPersonel: []
 
 }
 
-const authSlice=createSlice({
+const authSlice = createSlice({
 
-    name:'auth',
+    name: 'auth',
 
     initialState,
 
-    reducers:{
+    reducers: {
 
-        fetchStart:(state)=>{
-            state.loading=true;
+        fetchStart: (state) => {
+            state.loading = true;
             state.error = false;
+
+            state.currentUser = "";
+
+            state.currentUser = ""
+            state.currentUser_Category = ""
+            state.currentUserTitle = ""
+            state.userInfo = []
+            state.userManagerInfo = []
+
+            state.token = ""
         },
-        fetchFail:(state)=>{
-            state.loading=false;
-            state.error=true;
+        fetchFail: (state) => {
+            state.loading = false;
+            state.error = true;
 
         },
-        loginSuccess:(state,{payload})=>{
+        loginSuccess: (state, { payload }) => {
 
-            // console.log("payload: ",payload)
-
-            state.loading=false;
-            state.currentUser=payload[0]?.PERSONEL
-            state.currentUserTitle=payload[0].GOREV
+            state.loading = false;
+            state.currentUser = payload[0]?.PERSONEL
+            state.currentUserTitle = payload[0].GOREV
             state.userManagerInfo = JSON.parse(payload[0].YONETICI)
             state.userInfo = payload[0]
+
+      
         },
-        logoutSuccess:(state)=>{
-            state.loading=false;
+        logoutSuccess: (state) => {
+            state.loading = false;
             state.currentUser = "";
-            state.token="";
+
+            state.currentUser = ""
+            state.currentUser_Category = ""
+            state.currentUserTitle = ""
+            state.userInfo = null
+            state.userManagerInfo = []
+
+            state.token = ""
 
         },
-        fetchAllUsers:(state,{payload})=>{
-            state.loading=false
+        fetchAllUsers: (state, { payload }) => {
+            state.loading = false
             state.allBonnaPersonel = payload
         }
 
@@ -58,14 +75,14 @@ const authSlice=createSlice({
 })
 
 export const
-{
-    fetchStart,
-    fetchFail,
-    loginSuccess,
-    logoutSuccess,
-    fetchAllUsers
+    {
+        fetchStart,
+        fetchFail,
+        loginSuccess,
+        logoutSuccess,
+        fetchAllUsers
 
-}=authSlice.actions
+    } = authSlice.actions
 
 export default authSlice.reducer;
 
