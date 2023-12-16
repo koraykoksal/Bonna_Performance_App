@@ -6,9 +6,11 @@ import { Login } from '../pages/Login'
 import { NotFound } from '../pages/NotFound'
 import { BrowserRouter } from 'react-router-dom'
 import { PrivateRouter } from './PrivateRouter'
-import MyReport from '../pages/MyReport'
 import Dashboard from '../pages/Dashboard'
 import AdminReport from '../pages/AdminReport'
+import Report from '../pages/Report'
+import MyReports from '../pages/myreports'
+import ByReports from '../pages/ByReports'
 
 
 
@@ -25,7 +27,9 @@ export const AppRouter = () => {
           <Route path='byperformance' element={<PrivateRouter />}>
             <Route path='' element={<Dashboard />}>
               <Route index element={<Home />} />
-              <Route path='myreport' element={<MyReport/>}/>
+              <Route path='report' element={<Report/>}/>
+              <Route path='myreports' element={<MyReports/>}/>
+              <Route path='byreports' element={<ByReports/>}/>
               <Route path='adminreport' element={<AdminReport/>}/>
             </Route>
 

@@ -9,6 +9,8 @@ import {
 } from '../features/performanceSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { get, getDatabase, onValue, ref, remove, set, update } from "firebase/database";
+import { uid } from "uid"
 
 
 const usePerformanceCall = () => {
@@ -48,8 +50,32 @@ const usePerformanceCall = () => {
     }
 
 
+
+    const get_myAll_PerformanceData=async(url)=>{
+
+        console.log("url: ",url)
+        distpatch(fetchStart())
+
+        try {
+
+            const db = getDatabase()
+            const res = ref(db,`${url}/`)
+            const snapshot = await get(res)
+
+            console.log(snapshot)
+            
+        } catch (error) {
+            distpatch(fetchFail())
+            console.log("get_myAll_PerformanceData function error: ",error)
+        }
+    }
+
+
+
+
     return {
-        get_managerPersonels
+        get_managerPersonels,
+        get_myAll_PerformanceData
 
     }
 }

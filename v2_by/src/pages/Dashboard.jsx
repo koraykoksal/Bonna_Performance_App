@@ -24,7 +24,7 @@ import { IoIosLogOut } from "react-icons/io";
 
 function Dashboard() {
 
-    const { currentUser,userInfo } = useSelector((state) => state.auth)
+    const { currentUser, userInfo } = useSelector((state) => state.auth)
     const { logout } = useAuthCall()
     const navi = useNavigate()
     const dispatch = useDispatch()
@@ -39,9 +39,24 @@ function Dashboard() {
         },
         {
             title: 'Rapor',
-            url: '/byperformance/myreport'
+            url: '/byperformance/report'
         },
     ];
+
+    const settings=[
+        {
+            title:'MY Sonuçlar',
+            url:'/byperformance/myreports'
+        },
+        {
+            title:'BY Sonuçlar',
+            url:'/byperformance/byreports'
+        },
+        {
+            title:'Tüm Sonuçlar',
+            url:'/byperformance/adminreport'
+        }
+    ]
 
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -182,14 +197,32 @@ function Dashboard() {
 
 
 
-                                <Box onClick={handleCloseUserMenu}s sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    
-                                    {
-                                        userInfo.ADMIN === '1' ? (<Button sx={{ color: '#000000',textTransform:'none' }} onClick={() => navi('/byperformance/adminreport')}>Admin Rapor</Button>):("")
-                                    }
-                                    
+                                <Box onClick={handleCloseUserMenu} s sx={{ display: 'flex', flexDirection: 'column' }}>
 
-                                    <Button sx={{ color: '#C70039', fontWeight: '700',textTransform:'none' }} onClick={() => logout()}>Çıkış</Button>
+                                    {
+                                        userInfo.ADMIN === '1' ? (
+
+
+                                            <Box sx={{display:'flex',flexDirection:'column'}}>
+
+                                                {
+                                                    settings.map((item,index)=>(
+                                                        <Button key={index} sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi(`${item.url}`)}>{item.title}</Button>
+                                                    ))
+                                                }
+                                                
+                                                {/* <Button sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi('/byperformance/myreport')}>Admin Rapor</Button>
+                                                <Button sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi('/byperformance/adminreport')}>Admin Rapor</Button> */}
+
+                                            </Box>
+                                        ) :
+                                            ("")
+                                    }
+
+                                   
+
+
+                                    <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Çıkış</Button>
 
                                 </Box>
 

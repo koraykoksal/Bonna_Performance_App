@@ -53,7 +53,6 @@ export const Home = () => {
   }
 
 
-  console.log(info)
 
   return (
 
