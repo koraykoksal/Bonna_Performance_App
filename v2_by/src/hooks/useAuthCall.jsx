@@ -2,7 +2,12 @@
 import React from 'react'
 import axios from "axios";
 import { toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
-import { fetchStart, fetchFail, loginSuccess, logoutSuccess } from '../features/authSlice'
+import {
+    fetchStart,
+    fetchFail,
+    fetchLoginSuccess,
+    fetchLogoutSuccess,
+} from '../features/authSlice'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,32 +17,36 @@ const useAuthCall = () => {
     const navigate = useNavigate()
 
 
-    const login = async (userdata) => {
 
+    const login = async ({ username, password }) => {
 
         dispatch(fetchStart())
 
+        const options = {
+            method: 'POST',
+            url: `${import.meta.env.VITE_ERP_LOGIN_BASE_URL}`,
+            headers: {
+                'USERNM': username,
+                'PASS': password,
+                'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+
+            }
+        }
+
         try {
 
-            const options = {
-                method: 'POST',
-                url: `${import.meta.env.VITE_ERP_LOGIN_BASE_URL}`,
-                headers: {
-                    'USERNM': userdata.username,
-                    'PASS': userdata.password,
-                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+            const res = await axios(options)
 
-                }
+            if (res?.data[0].STATUS == "1") {
+
+                dispatch(fetchLoginSuccess(res?.data))
+                navigate('/data')
+                toastSuccessNotify('Login Successful.')
+
             }
-
-
-            const { data } = await axios(options)
-
-            dispatch(loginSuccess(data))
-            toastSuccessNotify('Login Successful.')
-            navigate('/data')
-
-            console.log(data)
+            else {
+                toastErrorNotify("'Something Went Wrong !'")
+            }
 
         } catch (error) {
             dispatch(fetchFail())
@@ -45,15 +54,16 @@ const useAuthCall = () => {
         }
     }
 
-    const logout = async () => {
 
+    const logout = async () => {
 
         dispatch(fetchStart())
 
-        dispatch(logoutSuccess())
+        dispatch(fetchLogoutSuccess())
         toastSuccessNotify('Logout Successful.')
         navigate('/')
     }
+
 
 
 

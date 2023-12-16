@@ -4,7 +4,6 @@ const initialState={
     currentUser:"",
     loading:false,
     error:false,
-    securityKey:"",
     token:"",
     userInfo:[]
 
@@ -27,15 +26,16 @@ const authSlice=createSlice({
             state.error=true;
 
         },
-        loginSuccess:(state,{payload})=>{
+        fetchLoginSuccess:(state,{payload})=>{
 
             state.loading=false;
             state.currentUser=payload[0]?.NAME+" "+payload[0]?.SURNAME
             state.securityKey=payload[0]?.SECURITYKEY
+            state.userInfo = payload[0]
         
             
         },
-        logoutSuccess:(state)=>{
+        fetchLogoutSuccess:(state)=>{
             state.loading=false;
             state.currentUser = "";
             state.token="";
@@ -51,8 +51,8 @@ export const
 {
     fetchStart,
     fetchFail,
-    loginSuccess,
-    logoutSuccess,
+    fetchLoginSuccess,
+    fetchLogoutSuccess,
 
 }=authSlice.actions
 

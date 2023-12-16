@@ -1,50 +1,59 @@
 import React from 'react'
-import {toastSuccessNotify,toastErrorNotify} from '../helper/ToastNotify'
+import { toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
 import { useDispatch, useSelector } from 'react-redux'
-import { 
-    fetchFail, 
+import {
+    fetchFail,
     fetchStart,
-    fetchPerformanceData 
+    fetchPerformanceData
 
 } from '../features/performanceSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 
-const useBlogCall = () => {
-  
-    const distpatch=useDispatch()
-    const navi=useNavigate()
+const usePerformanceCall = () => {
+
+    const distpatch = useDispatch()
+    const navi = useNavigate()
 
 
 
-    const post_new_performanceData=async (url)=>{
+    const get_managerPersonels = async ({username,password}) => {
 
         distpatch(fetchStart())
 
         try {
-            
-            let data=""
 
-            distpatch(fetchPerformanceData())
+
+            const options = {
+                method: 'POST',
+                url: `${import.meta.env.VITE_ERP_PERSONELS_URL}`,
+                headers: {
+                    'USERNM': username,
+                    'PASS': password,
+                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+
+                }
+            }
+
+
+            const  data  = await axios(options)
+            console.log(data)
+
 
         } catch (error) {
             distpatch(fetchFail())
-            toastErrorNotify("Something Went Wrong !")
+            console.log("managerPersonels function error: ", error)
         }
-
-
     }
 
 
-
-
     return {
-        post_new_performanceData
-        
+        get_managerPersonels
+
     }
 }
 
 
 
-export default useBlogCall
+export default usePerformanceCall

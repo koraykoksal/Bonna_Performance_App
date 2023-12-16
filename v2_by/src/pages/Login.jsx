@@ -15,6 +15,7 @@ import { object, string } from "yup"
 import useAuthCall from '../hooks/useAuthCall'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import usePerformanceCall from '../hooks/usePerformanceCall'
 
 export const Login = () => {
 
@@ -25,6 +26,7 @@ export const Login = () => {
   })
 
   const { login } = useAuthCall()
+  const {get_managerPersonels}=usePerformanceCall()
 
   const handleChange=(e)=>{
     setInfo({ ...info, [e.target.name]: e.target.value })
@@ -34,7 +36,11 @@ export const Login = () => {
 
     e.preventDefault()
 
+    //login işlemi için çalıştırılan hook
     login(info)
+
+    //login sonrası yöneticiye bağlı personellerin litesini çekmek için çalıştırılan hook
+    get_managerPersonels(info)
 
     setInfo({
       username:"",
@@ -42,7 +48,7 @@ export const Login = () => {
     })
   }
 
-  console.log(info)
+
 
   return (
 
@@ -81,9 +87,10 @@ export const Login = () => {
             Login
           </Typography>
 
-          <form>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} >
+   
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} component='form' onSubmit={handleSubmit}>
             <TextField
+            required
               label="Username"
               name="username"
               id="username"
@@ -93,6 +100,7 @@ export const Login = () => {
               onChange={handleChange}
             />
             <TextField
+            required
               label="Password"
               name="password"
               id="password"
@@ -101,20 +109,13 @@ export const Login = () => {
               value={info.password}
               onChange={handleChange}
             />
-            <Button variant="contained" type="submit" onClick={handleSubmit}>
+            <Button variant="contained" type="submit" >
               Submit
             </Button>
 
           </Box>
-          </form>
 
 
-
-
-
-          {/* <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Link to="/register">Don't you have an account?</Link>
-          </Box> */}
 
         </Grid>
 
