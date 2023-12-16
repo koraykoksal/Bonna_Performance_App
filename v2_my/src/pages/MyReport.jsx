@@ -140,9 +140,6 @@ const MyReport = () => {
   }
 
 
-  console.log("my report info: ",info)
-
-
   return (
     <div>
 

@@ -316,7 +316,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
 
         const dizi = Object.keys(all_performanceData).map(key => { return { id: key, ...all_performanceData[key] } })
         setperformanceData(dizi)
-        console.log("dizi: ", dizi)
+
     }, [all_performanceData])
 
 

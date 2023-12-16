@@ -40,10 +40,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-const My2_Table = ({ info, setInfo,handleChange }) => {
+const My2_Table = ({ info, setInfo, handleChange }) => {
 
-  const {post_new_performanceData,get_performanceData} = usePerformanceCall()
-  const {all_performanceData} = useSelector((state)=>state.performance)
+  const { post_new_performanceData, get_performanceData } = usePerformanceCall()
 
   const [okudumAnladim, setokudumAnladim] = useState(false)
 
@@ -60,7 +59,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q1Calisan} required name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -69,7 +68,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q2Calisan} required name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -78,7 +77,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input  value={info.q3Calisan} required name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -87,7 +86,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Operasyonel Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q4Calisan} required name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -96,7 +95,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q5Calisan} required name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -105,7 +104,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q6Calisan} required name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -114,7 +113,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q7Calisan} required name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -123,7 +122,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Davranışsal Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q8Calisan} required name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -132,7 +131,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Yönetsel Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q9Calisan} required name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
     {
@@ -141,7 +140,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
       yetkinlik: 'Yönetsel Yetkinlik',
       referans: '10',
 
-      calisan: <input required name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      calisan: <input value={info.q10Calisan} required name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
       ,
     },
   ];
@@ -211,6 +210,7 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
     }
   ]
 
+
   const handleOkudumAnladim = (e) => {
 
     if (!okudumAnladim) {
@@ -227,95 +227,134 @@ const My2_Table = ({ info, setInfo,handleChange }) => {
   }
 
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault()
 
-    post_new_performanceData('my-performance',info)
-    // get_performanceData('my-performance',info)
+    post_new_performanceData('my-performance', info)
+
+    // setInfo({
+    //   personel:"",
+    //   sicilNo: "",
+    //   tcNo:"",
+    //   iseGirisTarih: "",
+    //   dogumTarih: "",
+    //   birim: "",
+    //   bolum:"",
+    //   ustBirim: "",
+    //   yonetici: "",
+    //   gorev: "",
+    //   currentSallary: "",
+    //   degerlendirmeYili: "",
+    //   degerlendirmeDonemiAciklama: "",
+    //   q1Calisan: "",
+    //   q2Calisan: "",
+    //   q3Calisan: "",
+    //   q4Calisan: "",
+    //   q5Calisan: "",
+    //   q6Calisan: "",
+    //   q7Calisan: "",
+    //   q8Calisan: "",
+    //   q9Calisan: "",
+    //   q10Calisan: "",
+    //   oypCalisan: "",
+    //   dypCalisan: "",
+    //   yypCalisan: "",
+    //   tppCalisan: "",
+    //   calisanAciklama: "",
+    //   degerlendirmeSonucu: 0,
+    //   calisanDegerlendirmeYuzdesi:0,
+    //   createdDate: "",
+    //   okudumAnladım: "",
+    //   personelSonuc: ""
+    // })
   }
+
+
+
 
   return (
 
     <div>
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} component='form' onSubmit={handleSubmit}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} component='form' onSubmit={handleSubmit}>
 
-      {/* DEĞERLENDİRME */}
-      <Box sx={{ display: 'flex', justifyContent: 'center', }}>
+        {/* DEĞERLENDİRME */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
 
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow sx={{ position: 'sticky', top: 0 }}>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow sx={{ position: 'sticky', top: 0 }}>
+                  {
+                    rows.map((item, index) => (
+                      <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
+                    ))
+                  }
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {
-                  rows.map((item, index) => (
-                    <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
+                  topics.map((item, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell align="center">{item.konu}</StyledTableCell>
+                      <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
+                      <StyledTableCell align="center">{item.referans}</StyledTableCell>
+                      <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                    </StyledTableRow>
                   ))
                 }
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {
-                topics.map((item, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell align="center">{item.konu}</StyledTableCell>
-                    <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
-                    <StyledTableCell align="center">{item.referans}</StyledTableCell>
-                    <StyledTableCell align="center">{item.calisan}</StyledTableCell>
-                  </StyledTableRow>
-                ))
-              }
-            </TableBody>
-            <TableBody sx={{ backgroundColor: '#9BB8CD' }}>
-              {
-                topics2.map((item, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell align="center">{item.konu}</StyledTableCell>
-                    <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
-                    <StyledTableCell align="center">{item.referans}</StyledTableCell>
-                    <StyledTableCell align="center">{item.calisan}</StyledTableCell>
-                  </StyledTableRow>
-                ))
-              }
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-
-
-      {/* YONETİCİ VE ÇALIŞAN AÇIKLAMA ALANI */}
-      <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
-
-        {/* CALISAN ACIKLAMA */}
-        <TextField
-          fullWidth
-          label='Çalışan Açıklama'
-          name='calisanAciklama'
-          id='calisanAciklama'
-          type='text'
-          variant='outlined'
-          // inputProps={{ maxlength: 100 }}
-          value={info.calisanAciklama}
-          onChange={handleChange}
-        />
-
-      </Container>
-
-
-      {/* ONAY VE KAYIT */}
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-
-        <FormGroup style={{ padding: 10 }}>
-          <FormControlLabel required control={<Checkbox onClick={handleOkudumAnladim} />} label="Okudum, Anladım, Onaylıyorum." />
-        </FormGroup>
-
-        <Box>
-          <Button fullWidth variant='contained' type='submit' sx={{letterSpacing:10}} >Kaydet</Button>
+              </TableBody>
+              <TableBody sx={{ backgroundColor: '#9BB8CD' }}>
+                {
+                  topics2.map((item, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell align="center">{item.konu}</StyledTableCell>
+                      <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
+                      <StyledTableCell align="center">{item.referans}</StyledTableCell>
+                      <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                    </StyledTableRow>
+                  ))
+                }
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Box>
+
+
+        {/* YONETİCİ VE ÇALIŞAN AÇIKLAMA ALANI */}
+        <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
+
+          {/* CALISAN ACIKLAMA */}
+          <TextField
+            fullWidth
+            label='Çalışan Açıklama'
+            name='calisanAciklama'
+            id='calisanAciklama'
+            type='text'
+            variant='outlined'
+            // inputProps={{ maxlength: 100 }}
+            value={info.calisanAciklama}
+            onChange={handleChange}
+          />
+
+        </Container>
+
+
+        {/* ONAY VE KAYIT */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+
+          <FormGroup style={{ padding: 10 }}>
+            <FormControlLabel required control={<Checkbox onClick={handleOkudumAnladim} />} label="Okudum, Anladım, Onaylıyorum." />
+          </FormGroup>
+
+          <Box>
+            <Button fullWidth variant='contained' type='submit' sx={{ letterSpacing: 10 }} >Kaydet</Button>
+          </Box>
+        </Box>
+
+        {/* okudum anladm modal */}
+        <ReadUnderstood open={open} handleClose={handleClose} />
+
       </Box>
-
-      <ReadUnderstood open={open} handleClose={handleClose} />
-
-    </Box>
 
 
     </div>

@@ -17,14 +17,15 @@ import { useSelector } from 'react-redux';
 const My2 = () => {
 
 
-  const { currentUser_Category, currentUser, currentUserTitle, userInfo, userManagerInfo } = useSelector((state) => state.auth)
+  const { userInfo, userManagerInfo } = useSelector((state) => state.auth)
 
   const currentDate = new Date();
-  const thisYear = new Date().getFullYear()
-  const nextYear = new Date().getFullYear() + 1
-  let performanceResult = ""
 
   const evulationInfo = () => {
+
+    let performanceResult = ""
+    const thisYear = new Date().getFullYear()
+    const nextYear = new Date().getFullYear() + 1
 
     const currentDate = new Date();
     const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
@@ -40,6 +41,7 @@ const My2 = () => {
     return performanceResult
 
   }
+
 
   function formatDate(date) {
     let day = date.getDate(); // Günü alır
@@ -73,20 +75,20 @@ const My2 = () => {
     currentSallary: userInfo.MAAS,
     degerlendirmeYili: new Date().getFullYear(),
     degerlendirmeDonemiAciklama: evulationInfo(),
-    q1Calisan: 0,
-    q2Calisan: 0,
-    q3Calisan: 0,
-    q4Calisan: 0,
-    q5Calisan: 0,
-    q6Calisan: 0,
-    q7Calisan: 0,
-    q8Calisan: 0,
-    q9Calisan: 0,
-    q10Calisan: 0,
-    oypCalisan: 0,
-    dypCalisan: 0,
-    yypCalisan: 0,
-    tppCalisan: 0,
+    q1Calisan: "",
+    q2Calisan: "",
+    q3Calisan: "",
+    q4Calisan: "",
+    q5Calisan: "",
+    q6Calisan: "",
+    q7Calisan: "",
+    q8Calisan: "",
+    q9Calisan: "",
+    q10Calisan: "",
+    oypCalisan: "",
+    dypCalisan: "",
+    yypCalisan: "",
+    tppCalisan: "",
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
     calisanDegerlendirmeYuzdesi: 0.35,
@@ -119,10 +121,10 @@ const My2 = () => {
       newInfo.tppCalisan = newInfo.oypCalisan + newInfo.dypCalisan + newInfo.yypCalisan
       newInfo.degerlendirmeSonucu = Number(Number(calisanPuani) * Number(newInfo.calisanDegerlendirmeYuzdesi)).toFixed(2)
 
-      newInfo.personelSonuc = (calisanPuani >= 0 && calisanPuani <= 45 && "Beklentileri Karşılamıyor") || 
-        (calisanPuani >= 46 && calisanPuani <= 60 && "Beklentilerin Altında") || 
-        (calisanPuani >= 61 && calisanPuani <= 80 && "Ortalama Beklenti") || 
-        (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentileri Karşılıyor") || 
+      newInfo.personelSonuc = (calisanPuani >= 0 && calisanPuani <= 45 && "Beklentileri Karşılamıyor") ||
+        (calisanPuani >= 46 && calisanPuani <= 60 && "Beklentilerin Altında") ||
+        (calisanPuani >= 61 && calisanPuani <= 80 && "Ortalama Beklenti") ||
+        (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentileri Karşılıyor") ||
         (calisanPuani >= 91 && calisanPuani <= 100 && "Üstün Performans")
 
       return newInfo

@@ -11,9 +11,10 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { doc, setDoc, Timestamp, collection, addDoc, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../db/firebase_db"
-import { getDatabase, onValue, ref, remove, set, update } from "firebase/database";
+import { get, getDatabase, onValue, ref, remove, set, update } from "firebase/database";
 import { uid } from "uid"
 import { useState } from 'react';
+import { async } from '@firebase/util'
 
 
 
@@ -21,15 +22,15 @@ const usePerformanceCall = () => {
 
     const distpatch = useDispatch()
     const navi = useNavigate()
-    const [kayitVar, setkayitVar] = useState(null)
-    const currentYear = new Date().getFullYear()
-    const thisYear = new Date().getFullYear()
-    const nextYear = new Date().getFullYear() + 1
-    let performanceResult = ""
+    const [kayitVar, setkayitVar] = useState(false)
 
 
     //! performans dönemini açıklamasını göster
     const evulationInfo = async () => {
+
+        const thisYear = new Date().getFullYear()
+        const nextYear = new Date().getFullYear() + 1
+        let performanceResult = ""
 
         const currentDate = new Date();
         const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
@@ -46,62 +47,57 @@ const usePerformanceCall = () => {
 
     }
 
-
-    const personelControl = (url, info) => {
-
-        const db = getDatabase()
-        const res = ref(db, `${url}/` + info.tcNo);
-
-        onValue(res, (snapshot => {
-            const data = snapshot.val()
-
-            if (data == undefined || data == null) {
-                setkayitVar(false)
-            }
-            else {
-
-                const result = Object.values(data).filter((item) => currentYear == item.degerlendirmeYili && evulationInfo() == item.degerlendirmeDonemiAciklama)
-
-            
-
-                if (result) {
-                    setkayitVar(true)
-                }
-                else {
-                    setkayitVar(false)
-                }
-
-            }
-        }))
-    }
-
-
-    const post_new_performanceData =  (url, info) => {
+    
+    const post_new_performanceData = async (url, info) => {
 
         distpatch(fetchStart())
 
         try {
 
-            //kayıt öncesi personel kaydını kontrol et
-            personelControl(url, info)
+            const db = getDatabase();
+            const res = ref(db, `${url}/${info.tcNo}`);
+            const snapshot = await get(res);
 
-            if (kayitVar) {
+            // kullanıcı veri tabanında var mı kontrol et
+            if (!snapshot.exists()) {
 
-                toastWarnNotify(`${info.tcNo} dönem kaydı var. Tekrar kayıt oluşturamazsınız !`)
+                // kullanıcı yoksa kayıt işlemini yap
+                const uID = uid();
+                const newDb = getDatabase();
+                await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                toastSuccessNotify('Kayıt yapılmıştır.');
+
+            } else {
+
+                // kullanıcı varsa aşağıdaki doğrulama işlemini yap
+
+                const currentYear = new Date().getFullYear();
+                const degerlendirmeDonemiAciklama = evulationInfo();
+
+                const data = snapshot.val();
+
+                const result = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+
+                const findElement = result.filter(item => (
+                    item.degerlendirmeYili === currentYear &&
+                    item.degerlendirmeDonemiAciklama === degerlendirmeDonemiAciklama
+                ));
+
+                // doğrula sonrası işlemleri yap
+                if (findElement) {
+                    toastWarnNotify(`${info.tcNo} dönem kaydı var. Tekrar kayıt oluşturamazsınız !`);
+                } else {
+                    const uID = uid();
+                    const newDb = getDatabase();
+                    await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                    toastSuccessNotify('Kayıt yapılmıştır.');
+                }
             }
-            else {
-                const uID = uid()
-                const db = getDatabase()
-                set(ref(db, `${url}/${info.tcNo}/` + uID), info)
-                toastSuccessNotify('Kayıt yapılmıştır.')
-            }
-
-
-
 
         } catch (error) {
-            distpatch(fetchFail())
-            toastErrorNotify("Something Went Wrong !")
+            distpatch(fetchFail());
+            // console.log(error)
+            toastErrorNotify("Something Went Wrong !");
         }
 
 
@@ -110,7 +106,7 @@ const usePerformanceCall = () => {
 
 
 
-    const get_performanceData =  (url, tcNo) => {
+    const get_performanceData = async (url, tcNo) => {
 
         distpatch(fetchStart())
 
@@ -118,17 +114,27 @@ const usePerformanceCall = () => {
 
             const db = getDatabase()
             const res = ref(db, `${url}/` + tcNo);
+            const snapshot = await get(res)
 
-            onValue(res, (snapshot => {
+
+            if(!snapshot.exists()){
+                console.log("Personel performans sonucu datası null veya undifend geliyor !")
+            }
+            else{
                 const data = snapshot.val()
+                distpatch(fetchPerformanceData(data))
+            }
 
-                if (data == undefined || data == null) {
-                    console.log("Personel performans sonucu datası null veya undifend geliyor !")
-                }
-                else {
-                    distpatch(fetchPerformanceData(data))
-                }
-            }))
+            // onValue(res, (snapshot => {
+            //     const data = snapshot.val()
+
+            //     if (data == undefined || data == null) {
+            //         console.log("Personel performans sonucu datası null veya undifend geliyor !")
+            //     }
+            //     else {
+            //         distpatch(fetchPerformanceData(data))
+            //     }
+            // }))
 
 
         } catch (error) {
@@ -138,15 +144,14 @@ const usePerformanceCall = () => {
     }
 
 
-    const put_PerformanceData = (url, info) => {
+    //! güncelleme
+    const put_PerformanceData = async (url, info) => {
 
-        console.log("url: ",url)
-        console.log("info: ",info)
 
         try {
 
             const db = getDatabase()
-            update(ref(db, `${url}/${info.tcNo}/` + info.id), info)
+            await update(ref(db, `${url}/${info.tcNo}/` + info.id), info)
             toastSuccessNotify('Updated Data')
 
         } catch (error) {
