@@ -25,8 +25,7 @@ export const Login = () => {
       password:""
   })
 
-  const { login } = useAuthCall()
-  const {get_managerPersonels}=usePerformanceCall()
+  const { login,get_managerPersonels } = useAuthCall()
 
   const handleChange=(e)=>{
     setInfo({ ...info, [e.target.name]: e.target.value })

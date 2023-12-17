@@ -1,16 +1,20 @@
 import React from 'react'
-import { toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
+import { toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     fetchFail,
     fetchStart,
-    fetchPerformanceData
+    fetchPerformanceData,
+    fetchManagerData
 
 } from '../features/performanceSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { doc, setDoc, Timestamp, collection, addDoc, getDocs, getDoc } from "firebase/firestore";
+import { db } from "../db/firebase_db"
 import { get, getDatabase, onValue, ref, remove, set, update } from "firebase/database";
 import { uid } from "uid"
+import { Children } from 'react'
 
 
 const usePerformanceCall = () => {
@@ -39,8 +43,8 @@ const usePerformanceCall = () => {
             }
 
 
-            const  data  = await axios(options)
-            console.log(data)
+            const  {data}  = await axios(options)
+            distpatch(fetchManagerData(data))
 
 
         } catch (error) {
@@ -53,7 +57,6 @@ const usePerformanceCall = () => {
 
     const get_myAll_PerformanceData=async(url)=>{
 
-        console.log("url: ",url)
         distpatch(fetchStart())
 
         try {
@@ -72,10 +75,36 @@ const usePerformanceCall = () => {
 
 
 
+    const get_personel_performanceData=async(url,tcNo)=>{
+
+        distpatch(fetchStart())
+
+        try {
+
+            const db = getDatabase()
+            const res = ref(db,`${url}/`+tcNo)
+            const snapshot = await get(res)
+
+            if(!snapshot.exists()){
+                toastWarnNotify('Personel Performans kaydı bulunmuyor !')
+            }
+            else{
+                const data = snapshot.val()
+
+                distpatch(fetchPerformanceData(data))
+            }
+            
+        } catch (error) {
+            distpatch(fetchFail())
+            console.log("personel performance data: ",error)
+        }   
+    }
+
 
     return {
         get_managerPersonels,
-        get_myAll_PerformanceData
+        get_myAll_PerformanceData,
+        get_personel_performanceData
 
     }
 }

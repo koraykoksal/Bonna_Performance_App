@@ -5,7 +5,8 @@ const initialState={
     loading:false,
     error:false,
     token:"",
-    userInfo:[]
+    userInfo:[],
+    managerPersonels:[]
 
 }
 
@@ -20,11 +21,12 @@ const authSlice=createSlice({
         fetchStart:(state)=>{
             state.loading=true;
             state.error = false;
+            state.userInfo =[]
+            state.managerPersonels=[]
         },
         fetchFail:(state)=>{
             state.loading=false;
             state.error=true;
-
         },
         fetchLoginSuccess:(state,{payload})=>{
 
@@ -33,7 +35,10 @@ const authSlice=createSlice({
             state.securityKey=payload[0]?.SECURITYKEY
             state.userInfo = payload[0]
         
-            console.log("user info: ",state.userInfo)
+        },
+        fetchLoginManagerPersonels:(state,{payload})=>{
+            state.loading=false
+            state.managerPersonels=JSON.parse(payload[0].EKIP) //yönetici altında yer alan ekip bilgisi
         },
         fetchLogoutSuccess:(state)=>{
             state.loading=false;
@@ -53,6 +58,7 @@ export const
     fetchFail,
     fetchLoginSuccess,
     fetchLogoutSuccess,
+    fetchLoginManagerPersonels,
 
 }=authSlice.actions
 

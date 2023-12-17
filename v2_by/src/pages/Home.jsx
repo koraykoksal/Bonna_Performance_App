@@ -14,21 +14,24 @@ import Select from '@mui/material/Select';
 
 export const Home = () => {
 
-  const { managersPersonels } = useSelector((state) => state.performance)
+  const { managerPersonels,userInfo } = useSelector((state) => state.auth)
+  const {get_personel_performanceData} = usePerformanceCall()
+  const [personelData, setpersonelData] = useState([])
 
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false)
-  }
+  // const [open, setOpen] = useState(false)
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => {
+  //   setOpen(false)
+  // }
 
   const [info, setInfo] = useState({
-    choice_personelName:""
+    choice_personel_tcno: ""
   })
 
-  
-  const handleChange=(e)=>{
-    setInfo({...info,[e.target.name]:e.target.value})
+
+  const handleChange = (e) => {
+    setInfo({ ...info, [e.target.name]: e.target.value })
+
   }
 
   const evulationInfo = () => {
@@ -53,6 +56,20 @@ export const Home = () => {
   }
 
 
+  useEffect(() => {
+
+    const dizi = [managerPersonels]
+    setpersonelData(dizi)
+
+  }, [managerPersonels])
+
+
+  // info state değiştiği zaman yeni gelen değer ile firebase tarafına istek atılacak
+  useEffect(() => {
+    get_personel_performanceData('my-performance',info.choice_personel_tcno)
+  }, [info])
+  
+
 
   return (
 
@@ -68,26 +85,28 @@ export const Home = () => {
 
           <Typography variant='subtitle2' align='center' color='#000000' >
             Yönetici performans değerlendirmesi yapılacak kişileri 'Personel' seçeneğine tıklayarak seçebilirsiniz.
-            <br/>
+            <br />
             Seçilen personelin değerlendirme tablosu hemen aşağıda görünecektir.
-            <br/>
-            <span style={{color:'red'}}>Personel kendi performans değerlendirmesini tamamlamış ise sonuçlar tabloda otomatik olarak görünecektir. 
-            <br/>Performans değerlendirmesini yapmayan personellerin sonuçları tabloya yansımayacaktır.</span>
+            <br />
+            <span style={{ color: 'red' }}>Personel kendi performans değerlendirmesini tamamlamış ise sonuçlar tabloda otomatik olarak görünecektir.
+              <br />Performans değerlendirmesini yapmayan personellerin sonuçları tabloya yansımayacaktır.</span>
           </Typography>
 
           <FormControl fullWidth>
-            <InputLabel id="choice_personelName">Personel</InputLabel>
+            <InputLabel id="choice_personel_tcno">Personel</InputLabel>
             <Select
-              labelId="choice_personelName"
-              id="choice_personelName"
-              name='choice_personelName'
-              label="choice_personelName"
-              value={info.choice_personelName}
+              labelId="choice_personel_tcno"
+              id="choice_personel_tcno"
+              name='choice_personel_tcno'
+              label="choice_personel_tcno"
+              value={info.choice_personel_tcno}
               onChange={handleChange}
             >
-              <MenuItem value="RED">RED</MenuItem>
-              <MenuItem value="KABUL">KABUL</MenuItem>
-              <MenuItem value="ŞARTLI KABUL">ŞARTLI KABUL</MenuItem>
+              {
+                personelData.map((item,index)=>(
+                  <MenuItem value={item.TC} key={index}>{item.PERSONEL}</MenuItem>
+                ))
+              }
             </Select>
           </FormControl>
 

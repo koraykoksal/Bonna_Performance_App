@@ -7,6 +7,8 @@ import {
     fetchFail,
     fetchLoginSuccess,
     fetchLogoutSuccess,
+    fetchLoginManagerPersonels,
+
 } from '../features/authSlice'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -65,9 +67,40 @@ const useAuthCall = () => {
     }
 
 
+    const get_managerPersonels = async ({username,password}) => {
+
+        dispatch(fetchStart())
+
+        try {
 
 
-    return { login, logout }
+            const options = {
+                method: 'POST',
+                url: `${import.meta.env.VITE_ERP_PERSONELS_URL}`,
+                headers: {
+                    'USERNM': username,
+                    'PASS': password,
+                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+
+                }
+            }
+
+
+            const  {data}  = await axios(options)
+            
+            dispatch(fetchLoginManagerPersonels(data))
+
+
+        } catch (error) {
+            dispatch(fetchFail())
+            console.log("managerPersonels function error: ", error)
+        }
+    }
+
+
+
+
+    return { login, logout,get_managerPersonels }
 }
 
 

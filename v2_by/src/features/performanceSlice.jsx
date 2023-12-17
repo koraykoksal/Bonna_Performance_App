@@ -5,7 +5,7 @@ const initialState={
     error:false,
     all_performanceData:[],
     managerInfo:[],
-    managersPersonels:[]
+    personelPerformanceData:[]
 }
 
 const performanceSlice=createSlice({
@@ -19,9 +19,8 @@ const performanceSlice=createSlice({
         fetchStart:(state)=>{
             state.loading=true;
             state.error = false;
-            state.all_performanceData=[],
-            state.managerInfo=[],
-            state.managersPersonels=[]
+            state.all_performanceData=[]
+            state.personelPerformanceData=[]
         },
         fetchFail:(state)=>{
             state.loading=false;
@@ -29,13 +28,13 @@ const performanceSlice=createSlice({
 
         },
         fetchPerformanceData:(state,{payload})=>{
-            console.log("payload: ",payload)
-
             state.loading=false;
-            // state.all_performanceData=action?.payload
-
-
+            state.personelPerformanceData=payload
         },
+        fetchManagerData:(state,{payload})=>{
+            state.loading=false
+            state.managersPersonels=JSON.parse(payload[0].EKIP)
+        }
         
     }
 
@@ -45,6 +44,7 @@ export const {
     fetchStart,
     fetchFail,
     fetchPerformanceData,
+    fetchManagerData
     
     } = performanceSlice.actions
 
