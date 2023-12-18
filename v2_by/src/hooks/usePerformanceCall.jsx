@@ -23,8 +23,30 @@ const usePerformanceCall = () => {
     const navi = useNavigate()
 
 
+    //! performans dönemini açıklamasını göster
+    const evulationInfo = async () => {
 
-    const get_managerPersonels = async ({username,password}) => {
+        const thisYear = new Date().getFullYear()
+        const nextYear = new Date().getFullYear() + 1
+        let performanceResult = ""
+
+        const currentDate = new Date();
+        const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
+        const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
+
+        if (currentDate > startLimit && currentDate < endLimit) {
+            performanceResult = 'Yıl Sonu Performans Değerlendirme'
+        }
+        else {
+            performanceResult = '6 Aylık Performans Değerlendirme'
+        }
+
+        return performanceResult
+
+    }
+
+
+    const get_managerPersonels = async ({ username, password }) => {
 
         distpatch(fetchStart())
 
@@ -43,7 +65,7 @@ const usePerformanceCall = () => {
             }
 
 
-            const  {data}  = await axios(options)
+            const { data } = await axios(options)
             distpatch(fetchManagerData(data))
 
 
@@ -55,56 +77,121 @@ const usePerformanceCall = () => {
 
 
 
-    const get_myAll_PerformanceData=async(url)=>{
+    const get_myAll_PerformanceData = async (url) => {
 
         distpatch(fetchStart())
 
         try {
 
             const db = getDatabase()
-            const res = ref(db,`${url}/`)
+            const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
             console.log(snapshot)
-            
+
         } catch (error) {
             distpatch(fetchFail())
-            console.log("get_myAll_PerformanceData function error: ",error)
+            console.log("get_myAll_PerformanceData function error: ", error)
+        }
+    }
+
+
+    //! personel performans datasını getir
+
+
+
+
+    const get_personel_performanceData = async (url, tcNo) => {
+
+        distpatch(fetchStart())
+
+        try {
+
+            const db = getDatabase()
+            const res = ref(db, `${url}/` + tcNo)
+            const snapshot = await get(res)
+
+            if (!snapshot.exists()) {
+                toastWarnNotify('Personel Performans kaydı bulunmuyor !')
+            }
+            else {
+                const data = snapshot.val()
+
+                distpatch(fetchPerformanceData(data))
+            }
+
+        } catch (error) {
+            distpatch(fetchFail())
+            console.log("personel performance data: ", error)
         }
     }
 
 
 
-    const get_personel_performanceData=async(url,tcNo)=>{
+    //! manager değerlendirmesi sonrası database kaydı yap
+    const post_manager_evaulationData = async (url, info) => {
 
         distpatch(fetchStart())
 
         try {
 
             const db = getDatabase()
-            const res = ref(db,`${url}/`+tcNo)
+            const res = ref(db, `${url}/${info.tcNo}`)
             const snapshot = await get(res)
 
-            if(!snapshot.exists()){
-                toastWarnNotify('Personel Performans kaydı bulunmuyor !')
-            }
-            else{
-                const data = snapshot.val()
 
-                distpatch(fetchPerformanceData(data))
+            if (!snapshot.exists()) {
+
+                // kullanıcı yoksa kayıt işlemini yap
+                const uID = uid();
+                const newDb = getDatabase();
+                await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                toastSuccessNotify('Kayıt yapılmıştır.');
             }
-            
+            else {
+
+                // kullanıcı varsa aşağıdaki doğrulama işlemini yap
+
+                const currentYear = new Date().getFullYear();
+                const degerlendirmeDonemiAciklama = evulationInfo();
+
+                const data = snapshot.val();
+
+                const result = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+                const lastRecord = result.sort()[result.length - 1]
+
+                const findElement = result.filter(item => (
+                    item.yoneticiDegerlendirmeYili === currentYear &&
+                    item.yoneticiDegerlendirmeDonemiAciklama === degerlendirmeDonemiAciklama
+                ));
+
+                // doğrula sonrası işlemleri yap
+                if (findElement) {
+                    toastWarnNotify(`${info.tcNo} dönem kaydı var. Tekrar kayıt oluşturamazsınız !`);
+                } else {
+                    const uID = uid();
+                    const newDb = getDatabase();
+                    await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                    toastSuccessNotify('Kayıt yapılmıştır.');
+                }
+
+            }
+
+
+
         } catch (error) {
             distpatch(fetchFail())
-            console.log("personel performance data: ",error)
-        }   
+            console.log("post_manager_evaulationData", error)
+        }
     }
+
 
 
     return {
         get_managerPersonels,
         get_myAll_PerformanceData,
-        get_personel_performanceData
+        get_personel_performanceData,
+        post_manager_evaulationData,
 
     }
 }

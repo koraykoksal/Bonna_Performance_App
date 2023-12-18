@@ -21,22 +21,15 @@ export const Home = () => {
   const { get_personel_performanceData } = usePerformanceCall()
   const { managerPersonels } = useSelector((state) => state.auth)
   const { personelPerformanceData } = useSelector((state) => state.performance)
-
-  const [personelGorev, setPersonelGorev] = useState("")
   const [personelData, setPersonelData] = useState([])
   const [managerpersonelData, setManagerPersonelData] = useState([])
 
   const [my1Status, setmy1Status] = useState(null)
   const [my2Status, setmy2Status] = useState(null)
 
-  const [info, setInfo] = useState({
-    choice_personel_tcno: ""
-  })
 
+  const [info, setInfo] = useState("")
 
-  const handleChange = (e) => {
-    setInfo({ ...info, [e.target.name]: e.target.value })
-  }
 
   //! performans dönem bilgisini çalıştır
   const evulationInfo = () => {
@@ -61,7 +54,8 @@ export const Home = () => {
   }
 
 
-  //! yöneticiye bağlı çalışanların listesini getir
+  //! user login işlemi sonrası kendisine bağlı çalışanlar slice içindeki state e aktarılır
+  //! yöneticiye bağlı çalışanların listesini array olarak çıkar
   useEffect(() => {
 
     const dizi = [managerPersonels]
@@ -70,52 +64,54 @@ export const Home = () => {
   }, [managerPersonels])
 
 
+
   //! handle change işlemi sonrası info içerisinde TC NO bilgisinde değişiklik olduğunda hook çalıştır
   useEffect(() => {
 
-    if (info.choice_personel_tcno) {
-
-      get_personel_performanceData('my-performance', info.choice_personel_tcno)
-
-    }
+    get_personel_performanceData('my-performance', info)
 
   }, [info])
 
 
-  //! hook dan gelen cevaba göre personel performans datasını çıkar
-  // useEffect(() => {
 
-  //   //personelin birden fazla performans kaydı olduğunu düşünürsek yönetici değerlendirmesi öncesinde personelin son yapılan performans kaydını getirmek gerekir
+  //! personel performans datasını çıkar ve son kayıt bilgisini getir
+  useEffect(() => {
 
-  //   const dizi = Object.keys(personelPerformanceData).map(key => { return { id: key, ...personelPerformanceData[key] } })
-  //   const lastKey = dizi.sort()[dizi.length - 1]
+    //personelin birden fazla performans kaydı olduğunu düşünürsek yönetici değerlendirmesi öncesinde personelin son yapılan performans kaydını getirmek gerekir
 
-  //   setPersonelData(lastKey)
-  //   setPersonelGorev(lastKey?.gorev)
+    const dizi = Object.keys(personelPerformanceData).map(key => { return { id: key, ...personelPerformanceData[key] } })
+    const lastKey = dizi.sort()[dizi.length - 1]
 
-  //   // const gorev = lastKey?.gorev
+    setPersonelData(lastKey)
 
-  //   // const my1data = my1Titles.find((item) => personelGorev == item.title)
+  }, [personelPerformanceData])
 
-  //   // if (my1data) {
-  //   //   setmy1Status(true)
-  //   // }
-  //   // else {
 
-  //   //   setmy1Status(false)
 
-  //   //   const my2data = my2Titles.find((item) => personelGorev == item.title)
 
-  //   //   if (my2data) {
-  //   //     setmy2Status(true)
-  //   //   }
-  //   //   else {
-  //   //     setmy2Status(false)
-  //   //   }
+  //! gelen performans datasına göre my status bilgisini çıkar
+  useEffect(() => {
+    const my1data = my1Titles.find((item) => personelData?.gorev == item.title)
 
-  //   // }
+    if (my1data) {
+      setmy1Status(true)
+    }
+    else {
 
-  // }, [personelPerformanceData])
+      setmy1Status(false)
+
+      const my2data = my2Titles.find((item) => personelData?.gorev == item.title)
+
+      if (my2data) {
+        setmy2Status(true)
+      }
+      else {
+        setmy2Status(false)
+      }
+
+    }
+
+  }, [personelData])
 
 
 
@@ -151,7 +147,7 @@ export const Home = () => {
               name='choice_personel_tcno'
               label="choice_personel_tcno"
               value={info.choice_personel_tcno}
-              onChange={handleChange}
+              onChange={(e) => setInfo(e.target.value)}
             >
               {/* {
                 managerpersonelData.map((item,index)=>(
@@ -166,17 +162,17 @@ export const Home = () => {
         </Container>
 
         <Box>
-          <MyTable personelPerformanceData={personelPerformanceData} info={info} />
+          {/* <MyTable personelPerformanceData={personelPerformanceData} info={info} /> */}
+
+          {
+            my1Status && <My1 personelData={personelData}/>
+          }
+
+          {
+            my2Status && <My2 personelData={personelData}/>
+          }
+
         </Box>
-
-        {/* {
-          my1Status && <My1 />
-        }
-
-        {
-          my2Status && <My2 />
-        } */}
-
 
       </Box>
 

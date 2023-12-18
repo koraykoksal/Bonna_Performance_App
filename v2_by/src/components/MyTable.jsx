@@ -24,7 +24,6 @@ const MyTable = ({ personelPerformanceData, info }) => {
     setPersonelData(lastKey)
 
 
-
   }, [personelPerformanceData])
 
 
@@ -52,8 +51,7 @@ const MyTable = ({ personelPerformanceData, info }) => {
     }
 
 
-  }, [personelData, info])
-
+  }, [personelData])
 
 
 
