@@ -86,7 +86,6 @@ const My1 = () => {
     q10Calisan: "",
     oypCalisan: "",
     dypCalisan: "",
-    // yypCalisan: "",
     tppCalisan: "",
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
@@ -106,24 +105,23 @@ const My1 = () => {
 
       const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
 
-      const operayonelYetkinlikPuani = Number(newInfo.q1Calisan) + Number(newInfo.q2Calisan) + Number(newInfo.q3Calisan) + Number(newInfo.q4Calisan)
+      const operayonelYetkinlikPuani = Number(newInfo.q1Calisan) + Number(newInfo.q2Calisan) + Number(newInfo.q3Calisan) + Number(newInfo.q4Calisan) + Number(newInfo.q5Calisan) + Number(newInfo.q6Calisan)
 
-      const davranissalYetkinlikPuani = Number(newInfo.q5Calisan) + Number(newInfo.q6Calisan) + Number(newInfo.q7Calisan) + Number(newInfo.q8Calisan)
+      const davranissalYetkinlikPuani = Number(newInfo.q7Calisan) + Number(newInfo.q8Calisan) + Number(newInfo.q9Calisan) + Number(newInfo.q10Calisan)
 
-      // const yonetselYetkinlikPuani = Number(newInfo.q9Calisan) + Number(newInfo.q10Calisan)
 
       const calisanPuani = Number(newInfo.q1Calisan) + Number(newInfo.q2Calisan) + Number(newInfo.q3Calisan) + Number(newInfo.q4Calisan) + Number(newInfo.q5Calisan) + Number(newInfo.q6Calisan) + Number(newInfo.q7Calisan) + Number(newInfo.q8Calisan) + Number(newInfo.q9Calisan) + Number(newInfo.q10Calisan)
 
       newInfo.oypCalisan = operayonelYetkinlikPuani;
       newInfo.dypCalisan = davranissalYetkinlikPuani;
-      // newInfo.yypCalisan = yonetselYetkinlikPuani;
       newInfo.tppCalisan = newInfo.oypCalisan + newInfo.dypCalisan
+
       newInfo.degerlendirmeSonucu = Number(Number(calisanPuani) * Number(newInfo.calisanDegerlendirmeYuzdesi)).toFixed(2)
 
       newInfo.personelSonuc = (calisanPuani >= 0 && calisanPuani <= 45 && "Beklentileri Karşılamıyor") ||
         (calisanPuani >= 46 && calisanPuani <= 60 && "Beklentilerin Altında") ||
-        (calisanPuani >= 61 && calisanPuani <= 80 && "Ortalama Beklenti") ||
-        (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentileri Karşılıyor") ||
+        (calisanPuani >= 61 && calisanPuani <= 80 && "Beklenen Performans") ||
+        (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentilerin Üzerinde") ||
         (calisanPuani >= 91 && calisanPuani <= 100 && "Üstün Performans")
 
       return newInfo

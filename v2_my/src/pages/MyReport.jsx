@@ -123,8 +123,8 @@ const MyReport = () => {
 
       newInfo.personelSonuc = (calisanPuani >= 0 && calisanPuani <= 45 && "Beklentileri Karşılamıyor") ||
         (calisanPuani >= 46 && calisanPuani <= 60 && "Beklentilerin Altında") ||
-        (calisanPuani >= 61 && calisanPuani <= 80 && "Ortalama Beklenti") ||
-        (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentileri Karşılıyor") ||
+        (calisanPuani >= 61 && calisanPuani <= 80 && "Beklenen Performans") ||
+        (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentilerin Üzerinde") ||
         (calisanPuani >= 91 && calisanPuani <= 100 && "Üstün Performans")
 
       return newInfo

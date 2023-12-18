@@ -4,6 +4,7 @@ export const rows = [
     {title:"Yetkinlik"},
     {title:"Referans"},
     {title:"Çalışan"},
+    {title:"Yönetici"},
 ]
 
 export const my1Titles=[

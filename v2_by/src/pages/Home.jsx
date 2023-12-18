@@ -83,38 +83,39 @@ export const Home = () => {
 
 
   //! hook dan gelen cevaba göre personel performans datasını çıkar
-  useEffect(() => {
+  // useEffect(() => {
 
-    //personelin birden fazla performans kaydı olduğunu düşünürsek yönetici değerlendirmesi öncesinde personelin son yapılan performans kaydını getirmek gerekir
+  //   //personelin birden fazla performans kaydı olduğunu düşünürsek yönetici değerlendirmesi öncesinde personelin son yapılan performans kaydını getirmek gerekir
 
-    const dizi = Object.keys(personelPerformanceData).map(key => { return { id: key, ...personelPerformanceData[key] } })
-    const lastKey = dizi.sort()[dizi.length - 1]
+  //   const dizi = Object.keys(personelPerformanceData).map(key => { return { id: key, ...personelPerformanceData[key] } })
+  //   const lastKey = dizi.sort()[dizi.length - 1]
 
-    setPersonelData(lastKey)
-    // setPersonelGorev(lastKey?.gorev)
-    const gorev = lastKey?.gorev
+  //   setPersonelData(lastKey)
+  //   setPersonelGorev(lastKey?.gorev)
 
-    const my1data = my1Titles.find((item) => gorev == item.title)
+  //   // const gorev = lastKey?.gorev
 
-    if (my1data) {
-      setmy1Status(true)
-    }
-    else {
+  //   // const my1data = my1Titles.find((item) => personelGorev == item.title)
 
-      setmy1Status(false)
+  //   // if (my1data) {
+  //   //   setmy1Status(true)
+  //   // }
+  //   // else {
 
-      const my2data = my2Titles.find((item) => gorev == item.title)
+  //   //   setmy1Status(false)
 
-      if (my2data) {
-        setmy2Status(true)
-      }
-      else {
-        setmy2Status(false)
-      }
+  //   //   const my2data = my2Titles.find((item) => personelGorev == item.title)
 
-    }
+  //   //   if (my2data) {
+  //   //     setmy2Status(true)
+  //   //   }
+  //   //   else {
+  //   //     setmy2Status(false)
+  //   //   }
 
-  }, [personelPerformanceData])
+  //   // }
+
+  // }, [personelPerformanceData])
 
 
 
@@ -134,9 +135,11 @@ export const Home = () => {
             Yönetici performans değerlendirmesi yapılacak kişileri 'Personel' seçeneğine tıklayarak seçebilirsiniz.
             <br />
             Seçilen personelin değerlendirme tablosu hemen aşağıda görünecektir.
+            <br /><br />
+            <span style={{ color: 'blue' }}>Personel kendi performans değerlendirmesini tamamlamış ise sonuçlar tabloda otomatik olarak görünecektir.
+            </span>
             <br />
-            <span style={{ color: 'red' }}>Personel kendi performans değerlendirmesini tamamlamış ise sonuçlar tabloda otomatik olarak görünecektir.
-              <br />Performans değerlendirmesini yapmayan personellerin sonuçları tabloya yansımayacaktır.</span>
+            <span style={{ color: 'red' }}>Performans değerlendirmesini yapmayan personellerin isimleri listede görünmeyecektir.</span>
           </Typography>
 
 
@@ -163,16 +166,16 @@ export const Home = () => {
         </Container>
 
         <Box>
-          <MyTable personelPerformanceData={personelPerformanceData} />
+          <MyTable personelPerformanceData={personelPerformanceData} info={info} />
         </Box>
 
-        {
+        {/* {
           my1Status && <My1 />
         }
 
         {
           my2Status && <My2 />
-        }
+        } */}
 
 
       </Box>
