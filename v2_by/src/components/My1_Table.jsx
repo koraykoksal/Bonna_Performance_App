@@ -78,6 +78,7 @@ const My1_Table = ({ personelData }) => {
 
     }
 
+
     function formatDate(date) {
         let day = date.getDate(); // Günü alır
         let month = date.getMonth() + 1; // Ayı alır (0'dan başladığı için 1 eklenir)
@@ -92,6 +93,63 @@ const My1_Table = ({ personelData }) => {
         minutes = minutes < 10 ? '0' + minutes : minutes;
 
         return `${day}-${month}-${year} ${hours}:${minutes}`;
+    }
+
+
+
+    const handleChange = (e) => {
+
+        setInfo(prevInfo => {
+
+            const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
+
+            //ilk 6 soru operasyonel yetkinlik için hesaplanır
+            const operayonelYetkinlikPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4) + Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6)
+
+            //son 4 soru davranışsal yetkinlik için hesaplanır
+            const davranissalYetkinlikPuani = Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8) + Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
+
+
+            const yoneticiPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4) + Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6) + Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8) + Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
+
+            newInfo.yoneticiOyp = operayonelYetkinlikPuani;
+            newInfo.yoneticiDyp = davranissalYetkinlikPuani;
+
+            newInfo.yoneticiTpp = newInfo.yoneticiOyp + newInfo.yoneticiDyp
+
+            newInfo.yoneticiDegerlendirmeSonucu = Number(Number(yoneticiPuani) * Number(newInfo.yoneticiDegerlendirmeYuzdesi)).toFixed(2)
+
+            newInfo.yoneticiSonuc = (yoneticiPuani >= 0 && yoneticiPuani <= 45 && "Beklentileri Karşılamıyor") ||
+                (yoneticiPuani >= 46 && yoneticiPuani <= 60 && "Beklentilerin Altında") ||
+                (yoneticiPuani >= 61 && yoneticiPuani <= 80 && "Beklenen Performans") ||
+                (yoneticiPuani >= 81 && yoneticiPuani <= 90 && "Beklentilerin Üzerinde") ||
+                (yoneticiPuani >= 91 && yoneticiPuani <= 100 && "Üstün Performans")
+
+            const toplamDegerlendirmeSonucu = Number(newInfo.degerlendirmeSonucu) + Number(newInfo.yoneticiDegerlendirmeSonucu)
+
+            newInfo.final_degerlendirmeSonucu = Number(toplamDegerlendirmeSonucu).toFixed(2)
+
+            newInfo.zamOrani_performans = (Number(toplamDegerlendirmeSonucu >= 81 && true))
+            newInfo.zamOrani_yonetici_ve_performans = Number(toplamDegerlendirmeSonucu >= 91) && Number(toplamDegerlendirmeSonucu <= 100) && true
+            
+            return newInfo
+
+        })
+
+    }
+
+
+    const handleOkudumAnladim = (e) => {
+
+        if (!okudumAnladim) {
+            handleOpen()
+            setokudumAnladim(true)
+        }
+        else {
+            setokudumAnladim(false)
+            setOpen(false)
+        }
+
     }
 
 
@@ -144,15 +202,19 @@ const My1_Table = ({ personelData }) => {
         yoneticiQ10: "",
         yoneticiAciklama: "",
         yoneticiDegerlendirmeSonucu: "",
-        yoneticiDegerlendirmeYuzdesi: "",
+        yoneticiDegerlendirmeYuzdesi: 0.65,
         yoneticiCreatedDate: formatDate(createdDate),
         yoneticiOkudumAnladım: true,
         yoneticiSonuc: "",
         yoneticiDegerlendirmeYili: new Date().getFullYear(),
         yoneticiDegerlendirmeDonemiAciklama: evulationInfo(),
-        yoneticiOyp:"",
-        yoneticiDyp:"",
-        yoneticiTpp:"",
+        yoneticiOyp: "",
+        yoneticiDyp: "",
+        yoneticiTpp: "",
+
+        zamOrani_performans:false,
+        zamOrani_yonetici_ve_performans:false,
+        final_degerlendirmeSonucu:""
 
     })
 
@@ -166,7 +228,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q1Calisan} disabled name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q1Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ1' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -177,7 +239,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q2Calisan} disabled name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q2Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ2' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -188,7 +250,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q3Calisan} disabled name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q3Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ3' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -199,7 +261,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q4Calisan} disabled name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q4Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ4' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -210,7 +272,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q5Calisan} disabled name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q5Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ5' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -221,7 +283,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q6Calisan} disabled name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q6Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ6' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -232,7 +294,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q7Calisan} disabled name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q7Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ7' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -243,7 +305,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q8Calisan} disabled name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q8Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ8' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -254,7 +316,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q9Calisan} disabled name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q9Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ9' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -265,7 +327,7 @@ const My1_Table = ({ personelData }) => {
 
             calisan: <input value={personelData?.q10Calisan} disabled name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
             ,
-            yonetici: <input required name='q10Yonetici' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} />
+            yonetici: <input required name='yoneticiQ10' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
     ];
@@ -276,70 +338,24 @@ const My1_Table = ({ personelData }) => {
             referans: '60',
             yetkinlik: "",
             calisan: <Typography>{personelData?.oypCalisan}</Typography>,
-            yonetici: <Typography></Typography>,
+            yonetici: <Typography>{info.yoneticiOyp}</Typography>,
         },
         {
             konu: "Davranışsal Yetkinlik Puanı",
             referans: '40',
             yetkinlik: "",
             calisan: <Typography>{personelData?.dypCalisan}</Typography>,
-            yonetici: <Typography></Typography>,
+            yonetici: <Typography>{info.yoneticiDyp}</Typography>,
         },
         {
             konu: "Toplam Performans Puanı",
             referans: '40',
             yetkinlik: "",
             calisan: <Typography>{personelData?.tppCalisan}</Typography>,
-            yonetici: <Typography></Typography>,
+            yonetici: <Typography>{info.yoneticiTpp}</Typography>,
         }
     ]
 
-
-    const handleChange = (e) => {
-
-        setInfo(prevInfo => {
-
-            const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
-
-            //ilk 6 soru operasyonel yetkinlik için hesaplanır
-            const operayonelYetkinlikPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4) + Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6)
-
-            //son 4 soru davranışsal yetkinlik için hesaplanır
-            const davranissalYetkinlikPuani = Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8) + Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
-
-
-            const yoneticiPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4) + Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6) + Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8) + Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
-
-            newInfo.yoneticiOyp = operayonelYetkinlikPuani;
-            newInfo.yoneticiDyp = davranissalYetkinlikPuani;
-           
-            newInfo.yoneticiTpp = newInfo.oypCalisan + newInfo.dypCalisan
-            newInfo.yoneticiDegerlendirmeSonucu = Number(Number(yoneticiPuani) * Number(newInfo.yoneticiDegerlendirmeYuzdesi)).toFixed(2)
-
-            newInfo.yoneticiSonuc = (calisanPuani >= 0 && calisanPuani <= 45 && "Beklentileri Karşılamıyor") ||
-                (calisanPuani >= 46 && calisanPuani <= 60 && "Beklentilerin Altında") ||
-                (calisanPuani >= 61 && calisanPuani <= 80 && "Beklenen Performans") ||
-                (calisanPuani >= 81 && calisanPuani <= 90 && "Beklentilerin Üzerinde") ||
-                (calisanPuani >= 91 && calisanPuani <= 100 && "Üstün Performans")
-
-            return newInfo
-
-        })
-
-    }
-
-    const handleOkudumAnladim = (e) => {
-
-        if (!okudumAnladim) {
-            handleOpen()
-            setokudumAnladim(true)
-        }
-        else {
-            setokudumAnladim(false)
-            setOpen(false)
-        }
-
-    }
 
 
 
@@ -350,6 +366,7 @@ const My1_Table = ({ personelData }) => {
     }
 
 
+    console.log(info)
 
 
     return (
@@ -418,19 +435,18 @@ const My1_Table = ({ personelData }) => {
                         variant='outlined'
                         inputProps={{ maxlength: 100 }}
                         value={personelData?.calisanAciklama}
-                    // onChange={handleChange}
+             
                     />
 
                     <TextField
                         fullWidth
                         label='Yönetici Açıklama'
-                        name='calisanAciklama'
-                        id='calisanAciklama'
+                        name='yoneticiAciklama'
+                        id='yoneticiAciklama'
                         type='text'
                         variant='outlined'
                         inputProps={{ maxlength: 100 }}
-                        value={info?.yoneticiAciklama}
-                    // onChange={handleChange}
+                        onChange={handleChange}
                     />
 
                 </Container>
