@@ -3,26 +3,31 @@ import useBlogCall from '../hooks/usePerformanceCall'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Typography from '@mui/material/Typography';
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid, Container } from '@mui/material';
 import NewRecord from '../components/NewRecord';
 import usePerformanceCall from '../hooks/usePerformanceCall';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import MyTable from '../components/MyTable';
+import { my1Titles, my2Titles } from '../helper/data';
+import My1 from '../components/My1';
+import My2 from '../components/My2';
 
 
 export const Home = () => {
 
-  const { managerPersonels,userInfo } = useSelector((state) => state.auth)
-  const {get_personel_performanceData} = usePerformanceCall()
-  const [personelData, setpersonelData] = useState([])
+  const { get_personel_performanceData } = usePerformanceCall()
+  const { managerPersonels } = useSelector((state) => state.auth)
+  const { personelPerformanceData } = useSelector((state) => state.performance)
 
-  // const [open, setOpen] = useState(false)
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => {
-  //   setOpen(false)
-  // }
+  const [personelGorev, setPersonelGorev] = useState("")
+  const [personelData, setPersonelData] = useState([])
+  const [managerpersonelData, setManagerPersonelData] = useState([])
+
+  const [my1Status, setmy1Status] = useState(null)
+  const [my2Status, setmy2Status] = useState(null)
 
   const [info, setInfo] = useState({
     choice_personel_tcno: ""
@@ -31,9 +36,9 @@ export const Home = () => {
 
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value })
-
   }
 
+  //! performans dönem bilgisini çalıştır
   const evulationInfo = () => {
 
     const thisYear = new Date().getFullYear()
@@ -56,28 +61,70 @@ export const Home = () => {
   }
 
 
+  //! yöneticiye bağlı çalışanların listesini getir
   useEffect(() => {
 
     const dizi = [managerPersonels]
-    setpersonelData(dizi)
+    setManagerPersonelData(dizi)
 
   }, [managerPersonels])
 
 
-  // info state değiştiği zaman yeni gelen değer ile firebase tarafına istek atılacak
+  //! handle change işlemi sonrası info içerisinde TC NO bilgisinde değişiklik olduğunda hook çalıştır
   useEffect(() => {
-    get_personel_performanceData('my-performance',info.choice_personel_tcno)
+
+    if (info.choice_personel_tcno) {
+
+      get_personel_performanceData('my-performance', info.choice_personel_tcno)
+
+    }
+
   }, [info])
-  
+
+
+  //! hook dan gelen cevaba göre personel performans datasını çıkar
+  useEffect(() => {
+
+    //personelin birden fazla performans kaydı olduğunu düşünürsek yönetici değerlendirmesi öncesinde personelin son yapılan performans kaydını getirmek gerekir
+
+    const dizi = Object.keys(personelPerformanceData).map(key => { return { id: key, ...personelPerformanceData[key] } })
+    const lastKey = dizi.sort()[dizi.length - 1]
+
+    setPersonelData(lastKey)
+    // setPersonelGorev(lastKey?.gorev)
+    const gorev = lastKey?.gorev
+
+    const my1data = my1Titles.find((item) => gorev == item.title)
+
+    if (my1data) {
+      setmy1Status(true)
+    }
+    else {
+
+      setmy1Status(false)
+
+      const my2data = my2Titles.find((item) => gorev == item.title)
+
+      if (my2data) {
+        setmy2Status(true)
+      }
+      else {
+        setmy2Status(false)
+      }
+
+    }
+
+  }, [personelPerformanceData])
+
 
 
   return (
 
     <>
 
-      <Grid container justifyContent={"center"} spacing={2} mt={10} mb={10}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', mt: 10, gap: 5 }}>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', gap: 3 }}>
 
           <Typography variant='h5' p={2} color='#000000' align='center' fontWeight={700}>
             Bonna {evulationInfo()} Dönemi
@@ -92,7 +139,8 @@ export const Home = () => {
               <br />Performans değerlendirmesini yapmayan personellerin sonuçları tabloya yansımayacaktır.</span>
           </Typography>
 
-          <FormControl fullWidth>
+
+          <FormControl sx={{ width: '350px', margin: 'auto' }}>
             <InputLabel id="choice_personel_tcno">Personel</InputLabel>
             <Select
               labelId="choice_personel_tcno"
@@ -102,23 +150,32 @@ export const Home = () => {
               value={info.choice_personel_tcno}
               onChange={handleChange}
             >
-              {
-                personelData.map((item,index)=>(
+              {/* {
+                managerpersonelData.map((item,index)=>(
                   <MenuItem value={item.TC} key={index}>{item.PERSONEL}</MenuItem>
                 ))
-              }
+              } */}
+              <MenuItem value='27932382950' key={1}>koray</MenuItem>
+              <MenuItem value='35552119696' key={2}>betül</MenuItem>
             </Select>
           </FormControl>
 
+        </Container>
 
-          {/* <Button onClick={handleOpen} variant='contained'>+ Yeni</Button> */}
-
+        <Box>
+          <MyTable personelPerformanceData={personelPerformanceData} />
         </Box>
 
+        {
+          my1Status && <My1 />
+        }
 
-        {/* <NewRecord open={open} handleClose={handleClose} /> */}
+        {
+          my2Status && <My2 />
+        }
 
-      </Grid>
+
+      </Box>
 
     </>
 

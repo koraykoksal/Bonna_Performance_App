@@ -71,16 +71,7 @@ const My2 = () => {
 
     <div>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', mt: 5 }}>
-
-
-
-
-        <My2_Table info={info} handleChange={handleChange} />
-
-
-
-      </Box>
+      <My2_Table info={info} handleChange={handleChange} />
 
 
     </div>

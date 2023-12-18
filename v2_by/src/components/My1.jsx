@@ -69,11 +69,11 @@ const My1 = () => {
   }
 
 
-  console.log(info)
 
   return (
 
     <div>
+
 
       <My1_Table info={info} handleChange={handleChange} />
 

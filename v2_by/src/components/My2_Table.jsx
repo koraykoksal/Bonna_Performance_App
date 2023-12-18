@@ -11,11 +11,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-import { rows } from '../helper/my2';
+import { rows } from '../helper/data';
+import { Box, Button, Grid, Container } from '@mui/material';
+import {  FormControlLabel, FormGroup } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
+import { useState,useEffect } from 'react';
+import ReadUnderstood from './modals/ReadUnderstood';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -44,6 +47,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const My2_Table = ({ info, handleChange }) => {
 
+
+  const [okudumAnladim, setokudumAnladim] = useState(false)
+
+
+
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+      setOpen(false)
+  }
+  
 
   const topics = [
     {
@@ -244,86 +258,110 @@ const My2_Table = ({ info, handleChange }) => {
   ]
 
 
+  const handleOkudumAnladim = (e) => {
+
+    if (!okudumAnladim) {
+        handleOpen()
+        setokudumAnladim(true)
+    }
+    else {
+        setokudumAnladim(false)
+        setOpen(false)
+    }
+
+}
+
+
+  const handleSubmit=()=>{
+
+  }
+
   return (
 
 
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxHeight: '500px', overflow: 'auto' }}>
+    <div>
+      <Container sx={{ display: 'flex', flexDirection: 'column', gap: 2,mb:10 }} component='form' onSubmit={handleSubmit}>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 5 }}>
+        {/* DEĞERLENDİRME */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
 
-        {/* LOKASYON */}
-        <FormControl
-          sx={{ width: '300px' }}
-        >
-          <InputLabel id="lokasyon">Lokasyon</InputLabel>
-          <Select
-            labelId="lokasyon"
-            id="lokasyon"
-            name='lokasyon'
-            label="lokasyon"
-            value={info.lokasyon}
-            onChange={handleChange}
-          >
-            <MenuItem value="Çayırova">Çayırova</MenuItem>
-            <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
-          </Select>
-        </FormControl>
-
-
-        {/* PERSONEL */}
-        <FormControl
-          sx={{ width: '300px' }}
-        >
-          <InputLabel id="personel">Personel</InputLabel>
-          <Select
-            labelId="personel"
-            id="personel"
-            name='personel'
-            label="personel"
-            value={info.personel}
-            onChange={handleChange}
-          >
-            <MenuItem value="Çayırova">Çayırova</MenuItem>
-            <MenuItem value="Pazaryeri">Pazaryeri</MenuItem>
-          </Select>
-        </FormControl>
-
-      </Box>
-
-      <Box sx={{ display: 'flex', justifyContent: 'center', }}>
-
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow sx={{ position: 'sticky', top: 0 }}>
+                  {
+                    rows.map((item, index) => (
+                      <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
+                    ))
+                  }
+                </TableRow>
+              </TableHead>
+              <TableBody>
                 {
-                  rows.map((item, index) => (
-                    <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
+                  topics.map((item, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell align="center">{item.konu}</StyledTableCell>
+                      <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
+                      <StyledTableCell align="center">{item.referans}</StyledTableCell>
+                      <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                    </StyledTableRow>
                   ))
                 }
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {
-                topics.map((item, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell align="center">{item.konu}</StyledTableCell>
-                    <StyledTableCell align="center">{item.yetkimlik}</StyledTableCell>
-                    <StyledTableCell align="center">{item.referans}</StyledTableCell>
-                    <StyledTableCell align="center">{item.calisan}</StyledTableCell>
-                    <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
-                    <StyledTableCell align="center">{item.ortak}</StyledTableCell>
-                  </StyledTableRow>
-                ))
-              }
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableBody>
+              <TableBody sx={{ backgroundColor: '#9BB8CD' }}>
+                {
+                  topics2.map((item, index) => (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell align="center">{item.konu}</StyledTableCell>
+                      <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
+                      <StyledTableCell align="center">{item.referans}</StyledTableCell>
+                      <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                    </StyledTableRow>
+                  ))
+                }
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
 
 
-      </Box>
+        {/* YONETİCİ VE ÇALIŞAN AÇIKLAMA ALANI */}
+        <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
 
-    </Box>
+          {/* CALISAN ACIKLAMA */}
+          <TextField
+            fullWidth
+            label='Çalışan Açıklama'
+            name='calisanAciklama'
+            id='calisanAciklama'
+            type='text'
+            variant='outlined'
+            // inputProps={{ maxlength: 100 }}
+            value={info.calisanAciklama}
+            onChange={handleChange}
+          />
+
+        </Container>
+
+
+        {/* ONAY VE KAYIT */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+
+          <FormGroup style={{ padding: 10 }}>
+            <FormControlLabel required control={<Checkbox onClick={handleOkudumAnladim} />} label="Okudum, Anladım, Onaylıyorum." />
+          </FormGroup>
+
+          <Box>
+            <Button fullWidth variant='contained' type='submit' sx={{ letterSpacing: 10 }} >Kaydet</Button>
+          </Box>
+        </Box>
+
+        {/* okudum anladm modal */}
+        <ReadUnderstood open={open} handleClose={handleClose} />
+
+      </Container>
+
+    </div>
 
 
 
