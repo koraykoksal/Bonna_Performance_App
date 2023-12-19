@@ -56,8 +56,17 @@ export const Home = () => {
   //! yöneticiye bağlı çalışanların listesini array olarak çıkar
   useEffect(() => {
 
-    const dizi = [managerPersonels]
-    setManagerPersonelData(dizi)
+    // const dizi = [managerPersonels]
+
+    let sonuc=[]
+    for(let i=0;i<managerPersonels.PERSONEL.length;i++){
+      sonuc.push({
+        personel:managerPersonels.PERSONEL[i],
+        tc:managerPersonels.TC[i]
+      })
+    }
+
+    setManagerPersonelData(sonuc)
 
   }, [managerPersonels])
 
@@ -112,6 +121,7 @@ export const Home = () => {
   }, [personelData])
 
 
+  console.log(managerpersonelData)
 
   return (
 
@@ -149,7 +159,7 @@ export const Home = () => {
             >
               {
                 managerpersonelData.map((item,index)=>(
-                  <MenuItem value={item.TC} key={index}>{item.PERSONEL}</MenuItem>
+                  <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
                 ))
               }
             </Select>

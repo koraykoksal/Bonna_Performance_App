@@ -61,6 +61,7 @@ const My1 = () => {
 
   const [info, setInfo] = useState({
 
+    type:"my1",
     personel: userInfo.PERSONEL,
     sicilNo: userInfo.SICILNO,
     tcNo: userInfo.TC,

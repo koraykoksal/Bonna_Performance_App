@@ -77,6 +77,7 @@ const usePerformanceCall = () => {
 
 
 
+    //! tüm personel performans datasının getir
     const get_myAll_PerformanceData = async (url) => {
 
         distpatch(fetchStart())
@@ -96,11 +97,11 @@ const usePerformanceCall = () => {
     }
 
 
+    
+
+
+
     //! personel performans datasını getir
-
-
-
-
     const get_personel_performanceData = async (url, tcNo) => {
 
         distpatch(fetchStart())

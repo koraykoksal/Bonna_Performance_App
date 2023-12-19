@@ -19,7 +19,8 @@ import { FormControlLabel, FormGroup } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import { useState, useEffect } from 'react';
 import ReadUnderstood from './modals/ReadUnderstood';
-
+import { useSelector } from "react-redux"
+import usePerformanceCall from '../hooks/usePerformanceCall';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -286,6 +287,7 @@ const My2_Table = ({ personelData, handleChange, info }) => {
         <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
 
           <TextField
+          disabled
             fullWidth
             label='Çalışan Açıklama'
             name='calisanAciklama'

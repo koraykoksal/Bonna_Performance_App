@@ -109,6 +109,7 @@ const My2 = ({ personelData }) => {
   //! girilen dataların verilerini tut
   const [info, setInfo] = useState({
 
+    type:"my2",
     //çalışan değerlendirme sonuçları
     personel: personelData?.personel,
     sicilNo: personelData?.sicilNo,
