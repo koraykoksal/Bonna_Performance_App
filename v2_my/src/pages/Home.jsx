@@ -91,7 +91,7 @@ export const Home = () => {
               <Typography sx={{textTransform:'none'}}>Görev : {userInfo.GOREV}</Typography>
               <Typography sx={{textTransform:'none'}}>Lokasyon : {userInfo.LOKASYON}</Typography>
               <Typography sx={{textTransform:'none'}}>Sicil No : {userInfo.SICILNO}</Typography>
-              <Typography sx={{textTransform:'none'}}>Bölüm / Birim / Üst Birim : {userInfo.BOLUM} / {userInfo.BIRIM} / {userInfo.USTBIRIM}</Typography>
+              <Typography sx={{textTransform:'none'}}>Üst Birim / Birim / Bölüm : {userInfo.USTBIRIM} / {userInfo.BIRIM} / {userInfo.BOLUM}</Typography>
               <Typography sx={{textTransform:'none'}}>Yönetici : {userManagerInfo.PERSONEL}</Typography>
 
               </Paper>

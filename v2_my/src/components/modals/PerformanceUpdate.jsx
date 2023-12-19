@@ -311,19 +311,20 @@ const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
     return (
         <div>
 
+
+
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+
             >
 
 
                 <Box sx={style} component='form' onSubmit={handleSubmit}>
 
-                    <Box p={2}>
-                        <IoMdCloseCircleOutline size={25} color='red' cursor='pointer' onClick={handleClose} />
-                    </Box>
+
 
                     {/* DEĞERLENDİRME */}
                     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -430,6 +431,9 @@ const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
 
                 </Box>
             </Modal>
+
+
+
 
 
         </div>
