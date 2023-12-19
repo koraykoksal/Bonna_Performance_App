@@ -12,6 +12,8 @@ import Select from '@mui/material/Select';
 import { my1Titles, my2Titles } from '../helper/data';
 import My1 from '../components/My1';
 import My2 from '../components/My2';
+import { object } from 'prop-types';
+import { array } from 'prop-types';
 
 
 export const Home = () => {
@@ -56,17 +58,34 @@ export const Home = () => {
   //! yöneticiye bağlı çalışanların listesini array olarak çıkar
   useEffect(() => {
 
-    // const dizi = [managerPersonels]
+    if (Array.isArray(managerPersonels.PERSONEL)) {
 
-    let sonuc=[]
-    for(let i=0;i<managerPersonels.PERSONEL.length;i++){
-      sonuc.push({
-        personel:managerPersonels.PERSONEL[i],
-        tc:managerPersonels.TC[i]
-      })
+
+      let multiSonuc = []
+      for (let i = 0; i < managerPersonels.PERSONEL.length; i++) {
+        multiSonuc.push({
+          personel: managerPersonels.PERSONEL[i],
+          tc: managerPersonels.TC[i]
+        })
+      }
+
+      setManagerPersonelData(multiSonuc)
+
+    }
+    else {
+
+      let singleSonuc = []
+      const dizi = [managerPersonels]
+   
+      for(let i=0;i<dizi.length;i++){
+        singleSonuc.push({
+          personel: dizi[0].PERSONEL,
+          tc: dizi[0].TC
+        })
+      }
+      setManagerPersonelData(singleSonuc)
     }
 
-    setManagerPersonelData(sonuc)
 
   }, [managerPersonels])
 
@@ -121,7 +140,7 @@ export const Home = () => {
   }, [personelData])
 
 
-  console.log(managerpersonelData)
+
 
   return (
 
@@ -158,7 +177,7 @@ export const Home = () => {
               onChange={(e) => setInfo(e.target.value)}
             >
               {
-                managerpersonelData.map((item,index)=>(
+                managerpersonelData.map((item, index) => (
                   <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
                 ))
               }
@@ -171,11 +190,11 @@ export const Home = () => {
 
 
           {
-            my1Status && <My1 personelData={personelData}/>
+            my1Status && <My1 personelData={personelData} />
           }
 
           {
-            my2Status && <My2 personelData={personelData}/>
+            my2Status && <My2 personelData={personelData} />
           }
 
         </Box>
