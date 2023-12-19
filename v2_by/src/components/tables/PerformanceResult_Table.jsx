@@ -7,7 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 import { object } from 'prop-types';
 
-const PerformanceResult_Table = ({ all_performanceData ,handleOpen,data}) => {
+const PerformanceResult_Table = ({ all_performanceData, handleOpen, data ,setInfo}) => {
 
 
   const [performanceData, setperformanceData] = useState([])
@@ -32,6 +32,7 @@ const PerformanceResult_Table = ({ all_performanceData ,handleOpen,data}) => {
       renderCell: ({
         id,
         row: {
+          type,
           personel,
           sicilNo,
           tcNo,
@@ -64,7 +65,34 @@ const PerformanceResult_Table = ({ all_performanceData ,handleOpen,data}) => {
           calisanDegerlendirmeYuzdesi,
           createdDate,
           okudumAnladım,
-          personelSonuc
+          personelSonuc,
+          yoneticiQ1,
+          yoneticiQ2,
+          yoneticiQ3,
+          yoneticiQ4,
+          yoneticiQ5,
+          yoneticiQ6,
+          yoneticiQ7,
+          yoneticiQ8,
+          yoneticiQ9,
+          yoneticiQ10,
+          yoneticiAciklama,
+          yoneticiDegerlendirmeSonucu,
+          yoneticiDegerlendirmeYuzdesi,
+          yoneticiCreatedDate,
+          yoneticiOkudumAnladım,
+          yoneticiSonuc,
+          yoneticiDegerlendirmeYili,
+          yoneticiDegerlendirmeDonemiAciklama,
+          yoneticiOyp,
+          yoneticiDyp,
+          yoneticiYyp,
+          yoneticiTpp,
+          zamOrani_performans,
+          zamOrani_yonetici_ve_performans,
+          final_degerlendirmeSonucu,
+
+
         }
       }) => {
         return [
@@ -76,6 +104,7 @@ const PerformanceResult_Table = ({ all_performanceData ,handleOpen,data}) => {
               handleOpen()
               setInfo({
                 id,
+                type,
                 personel,
                 sicilNo,
                 tcNo,
@@ -108,7 +137,32 @@ const PerformanceResult_Table = ({ all_performanceData ,handleOpen,data}) => {
                 calisanDegerlendirmeYuzdesi,
                 createdDate,
                 okudumAnladım,
-                personelSonuc
+                personelSonuc,
+                yoneticiQ1,
+                yoneticiQ2,
+                yoneticiQ3,
+                yoneticiQ4,
+                yoneticiQ5,
+                yoneticiQ6,
+                yoneticiQ7,
+                yoneticiQ8,
+                yoneticiQ9,
+                yoneticiQ10,
+                yoneticiAciklama,
+                yoneticiDegerlendirmeSonucu,
+                yoneticiDegerlendirmeYuzdesi,
+                yoneticiCreatedDate,
+                yoneticiOkudumAnladım,
+                yoneticiSonuc,
+                yoneticiDegerlendirmeYili,
+                yoneticiDegerlendirmeDonemiAciklama,
+                yoneticiOyp,
+                yoneticiDyp,
+                yoneticiYyp,
+                yoneticiTpp,
+                zamOrani_performans,
+                zamOrani_yonetici_ve_performans,
+                final_degerlendirmeSonucu,
               })
             }}
 
@@ -117,8 +171,8 @@ const PerformanceResult_Table = ({ all_performanceData ,handleOpen,data}) => {
           <GridActionsCellItem
             key={'show'}
             label='Show'
-            icon={<FaEye size={23} style={{ cursor: 'pointer' ,color:'darkblue'}} />}
-            onClick={()=>{
+            icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+            onClick={() => {
               handleOpen()
 
             }}

@@ -29,10 +29,12 @@ const Report = () => {
   }, [])
 
 
+
+  // yöenticiye bağlı çalışanların bilgisini çek
+  // performans değerlendirmesi yapılan çalışanları çek ve tc no bilgileri ile eşleşenleri göster
   useEffect(() => {
 
     let dizi = []
-
 
     if (Array.isArray(managerPersonels.PERSONEL)) {
 
@@ -62,25 +64,21 @@ const Report = () => {
       setManagerPersonelData(singleSonuc)
     }
 
-
     Object.values(all_performanceData).forEach(item => {
 
       if (typeof item == 'object' && item != null) {
 
-
         const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
-
 
         const detayliEslesenler2 = managerpersonelData.filter(obj1 => result.some(obj2 => obj2.tcNo === obj1.tc))
           .map(obj1 => {
             const eslesen = result.find(obj2 => obj2.tcNo === obj1.tc);
 
+            // eşleşen datası array içine gönder
             dizi.push(eslesen)
 
             return { ...obj1, eslesen };
           });
-
-      
 
         setData(dizi)
       }
@@ -92,15 +90,88 @@ const Report = () => {
 
 
 
+  //! girilen dataların verilerini tut
+  const [info, setInfo] = useState({
+
+    id:"",
+    type:"",
+    //çalışan değerlendirme sonuçları
+    personel: "",
+    sicilNo: "",
+    tcNo: "",
+    iseGirisTarih: "",
+    dogumTarih: "",
+    birim:"",
+    bolum:"",
+    ustBirim:"",
+    yonetici:"",
+    gorev: "",
+    currentSallary:"",
+    degerlendirmeYili:"",
+    degerlendirmeDonemiAciklama: "",
+    q1Calisan: "",
+    q2Calisan: "",
+    q3Calisan: "",
+    q4Calisan: "",
+    q5Calisan: "",
+    q6Calisan: "",
+    q7Calisan: "",
+    q8Calisan: "",
+    q9Calisan: "",
+    q10Calisan: "",
+    oypCalisan: "",
+    dypCalisan: "",
+    yypCalisan: "",
+    tppCalisan: "",
+    calisanAciklama: "",
+    degerlendirmeSonucu: "",
+    calisanDegerlendirmeYuzdesi:"",
+    createdDate: "",
+    okudumAnladım:"",
+    personelSonuc: "",
+
+    //yönetici değerlendirme sonuçları
+    yoneticiQ1: "",
+    yoneticiQ2: "",
+    yoneticiQ3: "",
+    yoneticiQ4: "",
+    yoneticiQ5: "",
+    yoneticiQ6: "",
+    yoneticiQ7: "",
+    yoneticiQ8: "",
+    yoneticiQ9: "",
+    yoneticiQ10: "",
+    yoneticiAciklama: "",
+    yoneticiDegerlendirmeSonucu: "",
+    yoneticiDegerlendirmeYuzdesi: "",
+    yoneticiCreatedDate:"",
+    yoneticiOkudumAnladım: true,
+    yoneticiSonuc: "",
+    yoneticiDegerlendirmeYili:"",
+    yoneticiDegerlendirmeDonemiAciklama:"",
+    yoneticiOyp: "",
+    yoneticiDyp: "",
+    yoneticiYyp: "",
+    yoneticiTpp: "",
+
+    zamOrani_performans: "",
+    zamOrani_yonetici_ve_performans: "",
+    final_degerlendirmeSonucu: ""
+
+  })
+
+
+
+
 
   return (
     <div>
 
-      <PerformanceResult_Table all_performanceData={all_performanceData} handleOpen={handleOpen} data={data} />
+      <PerformanceResult_Table all_performanceData={all_performanceData} handleOpen={handleOpen} data={data} setInfo={setInfo}/>
 
-      <PerformanceUpdate open={open} handleClose={handleClose} />
+      <PerformanceUpdate open={open} handleClose={handleClose} info={info}/>
 
-      <PerformanceResultView open={open} handleClose={handleClose} />
+      <PerformanceResultView open={open} handleClose={handleClose} info={info}/>
 
     </div>
   )
