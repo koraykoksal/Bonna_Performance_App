@@ -52,10 +52,6 @@ const PerformanceResultView = ({ open, handleClose, info }) => {
     }
 
 
-    console.log(info)
-
-
-
     return (
 
 
@@ -71,7 +67,7 @@ const PerformanceResultView = ({ open, handleClose, info }) => {
             >
                 <Box sx={style}>
 
-                    <img src={bonnaLogo} style={{ width: '50px', margin: 'auto' }} />
+                    <img src={bonnaLogo} style={{ width: '35px', margin: 'auto' }} />
 
                     <Box display={'flex'} flexDirection={'column'} alignItems={'center'} gap={2} py={3}>
 
@@ -83,52 +79,6 @@ const PerformanceResultView = ({ open, handleClose, info }) => {
 
                     <Box sx={{ display: 'flex', justifyContent: 'center', gap: 10, mt: 5 }}>
 
-                        {/* <Box display={'flex'} flexDirection={'column'} gap={3}>
-
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Personel : {info?.personel}</Typography>
-
-                      
-                            <Typography variant='subtitle2' align='center'>Bölüm talimatlarını ve çalışma parametrelerini uygulayabilir: {info?.q1Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Operasyon için İşgüvenliği kurallarını uygular: {info?.q2Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 3: {info?.q3Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 4: {info?.q4Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 5: {info?.q5Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 6: {info?.q6Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 7: {info?.q7Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 8: {info?.q8Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 9: {info?.q9Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 10: {info?.q10Calisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Toplam Puan: {info?.tppCalisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Operasyonel Yetklinlik Puan: {info?.oypCalisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.dypCalisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yypCalisan} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.calisanDegerlendirmeYuzdesi * 100}% </Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.personelSonuc} </Typography>
-
-                        </Box>
-
-                        <Box display={'flex'} flexDirection={'column'} gap={3}>
-
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici : {info?.yonetici}</Typography>
-
-                            <Typography variant='subtitle2' align='center'>Bölüm talimatlarını ve çalışma parametrelerini uygulayabilir: {info?.yoneticiQ1} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 2: {info?.yoneticiQ2} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 3: {info?.yoneticiQ3} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 4: {info?.yoneticiQ4} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 5: {info?.yoneticiQ5} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 6: {info?.yoneticiQ6} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 7: {info?.yoneticiQ7} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 8: {info?.yoneticiQ8} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 9: {info?.yoneticiQ9} puan</Typography>
-                            <Typography variant='subtitle2' align='center'>Soru 10: {info?.yoneticiQ10} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Toplam Puan: {info?.yoneticiTpp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Operasyonel Yetklinlik Puan: {info?.yoneticiOyp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.yoneticiDyp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yoneticiYyp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.yoneticiDegerlendirmeYuzdesi * 100}% </Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.yoneticiSonuc} </Typography>
-
-                        </Box> */}
 
                         <Box display={'flex'} flexDirection={'column'} gap={3}>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Personel : {info?.personel}</Typography>
