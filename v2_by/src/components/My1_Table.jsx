@@ -202,7 +202,7 @@ const My1_Table = ({ personelData ,handleChange,info}) => {
         },
         {
             konu: "Toplam Performans Puanı",
-            referans: '40',
+            referans: '100',
             yetkinlik: "",
             calisan: <Typography>{personelData?.tppCalisan}</Typography>,
             yonetici: <Typography>{info.yoneticiTpp}</Typography>,

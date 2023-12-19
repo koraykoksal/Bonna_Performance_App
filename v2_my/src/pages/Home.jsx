@@ -3,7 +3,6 @@ import useBlogCall from '../hooks/usePerformanceCall'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Typography from '@mui/material/Typography';
-import NewRecord from '../components/NewRecord';
 import { my1Titles, my2Titles } from '../helper/data';
 import My1 from '../components/My1';
 import My2 from '../components/My2';

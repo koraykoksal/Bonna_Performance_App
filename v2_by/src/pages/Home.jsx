@@ -4,13 +4,11 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Typography from '@mui/material/Typography';
 import { Box, Button, Grid, Container } from '@mui/material';
-import NewRecord from '../components/NewRecord';
 import usePerformanceCall from '../hooks/usePerformanceCall';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import MyTable from '../components/MyTable';
 import { my1Titles, my2Titles } from '../helper/data';
 import My1 from '../components/My1';
 import My2 from '../components/My2';
@@ -149,20 +147,18 @@ export const Home = () => {
               value={info.choice_personel_tcno}
               onChange={(e) => setInfo(e.target.value)}
             >
-              {/* {
+              {
                 managerpersonelData.map((item,index)=>(
                   <MenuItem value={item.TC} key={index}>{item.PERSONEL}</MenuItem>
                 ))
-              } */}
-              <MenuItem value='27932382950' key={1}>koray</MenuItem>
-              <MenuItem value='35552119696' key={2}>betül</MenuItem>
+              }
             </Select>
           </FormControl>
 
         </Container>
 
         <Box>
-          {/* <MyTable personelPerformanceData={personelPerformanceData} info={info} /> */}
+
 
           {
             my1Status && <My1 personelData={personelData}/>

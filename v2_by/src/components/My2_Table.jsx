@@ -45,13 +45,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-const My2_Table = ({ personelData}) => {
+const My2_Table = ({ personelData, handleChange, info }) => {
 
 
   const [okudumAnladim, setokudumAnladim] = useState(false)
-
-
-
+  const { userInfo } = useSelector((state) => state.auth)
+  const { post_manager_evaulationData } = usePerformanceCall()
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -59,7 +58,7 @@ const My2_Table = ({ personelData}) => {
   }
 
 
-
+  //!okudum anladım bilgisini kontrol et
   const handleOkudumAnladim = (e) => {
 
     if (!okudumAnladim) {
@@ -74,12 +73,160 @@ const My2_Table = ({ personelData}) => {
   }
 
 
+  const topics = [
+    {
+      id: 1,
+      konu: 'Bölüm talimatlarını ve çalışma parametrelerini uygulayabilir.',
+      yetkinlik: 'Operasyonel Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q1Calisan} disabled name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ1' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 2,
+      konu: 'Operasyon için İşgüvenliği  kurallarını uygular.',
+      yetkinlik: 'Operasyonel Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q2Calisan} disabled name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ2' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 3,
+      konu: 'İş takibi ve Raporlama yapabilir.',
+      yetkinlik: 'Operasyonel Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q3Calisan} disabled name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ3' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 4,
+      konu: 'Kalite standartlarını uygulayabilir. Hatalı parçaları tanıyabilir ve seçebilir. ',
+      yetkinlik: 'Operasyonel Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q4Calisan} disabled name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ4' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 5,
+      konu: 'İşe devamlılığı iyidir.',
+      yetkinlik: 'Davranışsal Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q5Calisan} disabled name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ5' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 6,
+      konu: 'İş yeri disiplin kurallarına uygun davranır.',
+      yetkinlik: 'Davranışsal Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q6Calisan} disabled name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ6' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 7,
+      konu: 'Ekip çalışmasına uygun davranır, iletişimi iyidir. ',
+      yetkinlik: 'Davranışsal Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q7Calisan} disabled name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ7' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 8,
+      konu: 'Farkındalığı yüksektir ve katma değer sağlayacak önerilerde bulanabilir. ',
+      yetkinlik: 'Davranışsal Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q8Calisan} disabled name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ8' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 9,
+      konu: 'Ekip yönetebilir ve ekibini yönlendirebilir.',
+      yetkinlik: 'Yönetsel Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q9Calisan} disabled name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ9' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+    {
+      id: 10,
+      konu: 'Operasyon ile ilgili diğer çalışanlara teorik ve uygulamalı olarak eğitim verebilir.',
+      yetkinlik: 'Yönetsel Yetkinlik',
+      referans: '10',
+
+      calisan: <input value={personelData?.q10Calisan} disabled name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} />
+      ,
+      yonetici: <input required name='yoneticiQ10' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+      ,
+    },
+  ];
+
+
+  const topics_result = [
+    {
+      konu: "Operasyonel Yetkinlik Puanı",
+      referans: '40',
+      yetkinlik: "",
+      calisan: <Typography>{personelData?.oypCalisan}</Typography>,
+      yonetici: <Typography>{info.yoneticiOyp}</Typography>,
+    },
+    {
+      konu: "Davranışsal Yetkinlik Puanı",
+      referans: '40',
+      yetkinlik: "",
+      calisan: <Typography>{personelData?.dypCalisan}</Typography>,
+      yonetici: <Typography>{info.yoneticiDyp}</Typography>,
+    },
+    {
+      konu: "Yönetsel Yetkinlik Puanı",
+      referans: '20',
+      yetkinlik: "",
+      calisan: <Typography>{personelData?.dypCalisan}</Typography>,
+      yonetici: <Typography>{info.yoneticiDyp}</Typography>,
+    },
+    {
+      konu: "Toplam Performans Puanı",
+      referans: '100',
+      yetkinlik: "",
+      calisan: <Typography>{personelData?.tppCalisan}</Typography>,
+      yonetici: <Typography>{info.yoneticiTpp}</Typography>,
+    }
+  ]
+
+
   const handleSubmit = (e) => {
 
     e.preventDefault()
+    post_manager_evaulationData('manager-evaluation', info)
+
   }
 
-
+  
 
   return (
 
@@ -87,8 +234,11 @@ const My2_Table = ({ personelData}) => {
     <div>
       <Container sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 10 }} component='form' onSubmit={handleSubmit}>
 
+
+        <Typography align='center' fontWeight={700} color={'darkred'}>{personelData?.personel} - {personelData?.gorev}</Typography>
+
         {/* DEĞERLENDİRME */}
-        {/* <Box sx={{ display: 'flex', justifyContent: 'center', }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
 
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -109,29 +259,31 @@ const My2_Table = ({ personelData}) => {
                       <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
                       <StyledTableCell align="center">{item.referans}</StyledTableCell>
                       <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                      <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
                     </StyledTableRow>
                   ))
                 }
               </TableBody>
               <TableBody sx={{ backgroundColor: '#9BB8CD' }}>
                 {
-                  topics2.map((item, index) => (
+                  topics_result.map((item, index) => (
                     <StyledTableRow key={index}>
                       <StyledTableCell align="center">{item.konu}</StyledTableCell>
                       <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
                       <StyledTableCell align="center">{item.referans}</StyledTableCell>
                       <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                      <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
                     </StyledTableRow>
                   ))
                 }
               </TableBody>
             </Table>
           </TableContainer>
-        </Box> */}
+        </Box>
 
 
         {/* ÇALIŞAN AÇIKLAMA ALANI */}
-        {/* <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
+        <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
 
           <TextField
             fullWidth
@@ -144,11 +296,22 @@ const My2_Table = ({ personelData}) => {
             onChange={handleChange}
           />
 
-        </Container> */}
+          <TextField
+            fullWidth
+            label='Yönetici Açıklama'
+            name='yoneticiAciklama'
+            id='yoneticiAciklama'
+            type='text'
+            variant='outlined'
+            inputProps={{ maxlength: 100 }}
+            onChange={handleChange}
+          />
+
+        </Container>
 
 
         {/* ONAY VE KAYIT */}
-        {/* <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
 
           <FormGroup style={{ padding: 10 }}>
             <FormControlLabel required control={<Checkbox onClick={handleOkudumAnladim} />} label="Okudum, Anladım, Onaylıyorum." />
@@ -157,7 +320,7 @@ const My2_Table = ({ personelData}) => {
           <Box>
             <Button fullWidth variant='contained' type='submit' sx={{ letterSpacing: 10 }} >Kaydet</Button>
           </Box>
-        </Box> */}
+        </Box>
 
         <ReadUnderstood open={open} handleClose={handleClose} />
 
