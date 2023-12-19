@@ -5,7 +5,8 @@ import {
     fetchFail,
     fetchStart,
     fetchPerformanceData,
-    fetchManagerData
+    fetchManagerData,
+    fetchAllPerformanceData
 
 } from '../features/performanceSlice'
 import axios from 'axios'
@@ -78,7 +79,7 @@ const usePerformanceCall = () => {
 
 
     //! tüm personel performans datasının getir
-    const get_myAll_PerformanceData = async (url) => {
+    const get_All_PerformanceData = async (url) => {
 
         distpatch(fetchStart())
 
@@ -88,7 +89,13 @@ const usePerformanceCall = () => {
             const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
-            console.log(snapshot)
+            if(!snapshot.exists()){
+
+                toastWarnNotify('Personel Performans Sonucu bulunmuyor !')
+            }
+            else{
+                distpatch(fetchAllPerformanceData(snapshot.val()))
+            }
 
         } catch (error) {
             distpatch(fetchFail())
@@ -98,8 +105,6 @@ const usePerformanceCall = () => {
 
 
     
-
-
 
     //! personel performans datasını getir
     const get_personel_performanceData = async (url, tcNo) => {
@@ -190,7 +195,7 @@ const usePerformanceCall = () => {
 
     return {
         get_managerPersonels,
-        get_myAll_PerformanceData,
+        get_All_PerformanceData,
         get_personel_performanceData,
         post_manager_evaulationData,
 

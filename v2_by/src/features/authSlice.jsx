@@ -44,6 +44,8 @@ const authSlice=createSlice({
             state.loading=false;
             state.currentUser = "";
             state.token="";
+            state.userInfo =[]
+            state.managerPersonels=[]
 
         },
 

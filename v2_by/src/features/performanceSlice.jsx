@@ -34,6 +34,10 @@ const performanceSlice=createSlice({
         fetchManagerData:(state,{payload})=>{
             state.loading=false
             state.managersPersonels=JSON.parse(payload[0].EKIP)
+        },
+        fetchAllPerformanceData:(state,{payload})=>{
+            state.loading=false
+            state.all_performanceData = payload
         }
         
     }
@@ -44,7 +48,8 @@ export const {
     fetchStart,
     fetchFail,
     fetchPerformanceData,
-    fetchManagerData
+    fetchManagerData,
+    fetchAllPerformanceData
     
     } = performanceSlice.actions
 
