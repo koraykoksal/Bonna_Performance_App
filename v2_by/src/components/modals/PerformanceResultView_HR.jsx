@@ -23,21 +23,14 @@ const style = {
 };
 
 
-
-
-const PerformanceResultView = ({ open_viewPage, handleClose_viewPage, info }) => {
-
+const PerformanceResultView_HR = ({open,handleClose,info}) => {
 
 
     return (
-
-
         <div>
-
-
             <Modal
-                open={open_viewPage}
-                onClose={handleClose_viewPage}
+                open={open}
+                onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
 
@@ -155,9 +148,8 @@ const PerformanceResultView = ({ open_viewPage, handleClose_viewPage, info }) =>
 
             </Modal>
 
-
         </div>
     )
 }
 
-export default PerformanceResultView
+export default PerformanceResultView_HR

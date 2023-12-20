@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { useSelector } from "react-redux"
 import PerformanceResult_Table from '../components/tables/PerformanceResult_Table'
 import PerformanceUpdate from '../components/modals/PerformanceUpdate'
-import PerformanceResultView from '../components/modals/PerformanceResultView'
 import { Box, Typography } from "@mui/material"
+import PerformanceResultView_Manager from '../components/modals/PerformanceResultView_Manager'
 
 
 const Report = () => {
@@ -292,7 +292,7 @@ const Report = () => {
 
       <PerformanceUpdate open_editPage={open_editPage} handleClose_editPage={handleClose_editPage} info={info} handleChange={handleChange} />
 
-      <PerformanceResultView open_viewPage={open_viewPage} handleClose_viewPage={handleClose_viewPage} info={info} />
+      <PerformanceResultView_Manager open_viewPage={open_viewPage} handleClose_viewPage={handleClose_viewPage} info={info} />
 
     </div>
   )

@@ -45,11 +45,11 @@ function Dashboard() {
 
     const settings=[
         {
-            title:'MY Sonuçlar',
+            title:'Mavi Yaka Sonuçlar',
             url:'/byperformance/myreports'
         },
         {
-            title:'BY Sonuçlar',
+            title:'Yönetici Sonuçlar',
             url:'/byperformance/byreports'
         },
         {

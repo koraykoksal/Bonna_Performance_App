@@ -11,6 +11,7 @@ import { MdBlock } from "react-icons/md";
 const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, data, setInfo, info }) => {
 
   const currentYear = new Date().getFullYear()
+  const {userInfo}=useSelector((state)=>state.auth)
 
   const dataGrid_Columns = [
     // {
@@ -457,7 +458,7 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, dat
 
   ];
 
-
+ 
 
   return (
 

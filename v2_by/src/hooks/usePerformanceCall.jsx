@@ -104,8 +104,6 @@ const usePerformanceCall = () => {
     }
 
 
-    
-
     //! personel performans datasını getir
     const get_personel_performanceData = async (url, tcNo) => {
 
@@ -190,6 +188,7 @@ const usePerformanceCall = () => {
             console.log("post_manager_evaulationData", error)
         }
     }
+
 
 
     const  put_performanceData=async(url,info)=>{
