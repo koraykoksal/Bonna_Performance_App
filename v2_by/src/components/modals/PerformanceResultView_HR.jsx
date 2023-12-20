@@ -2,7 +2,7 @@ import React from 'react'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { Typography, Grid } from "@mui/material"
-import bonnaLogo from "../../assets/img/logoB.png"
+import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { my1_questions, my2_questions } from "../../helper/data"
 
 
@@ -18,7 +18,7 @@ const style = {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 5,
 
 };
 
@@ -37,7 +37,7 @@ const PerformanceResultView_HR = ({open,handleClose,info}) => {
             >
                 <Box sx={style}>
 
-                    <img src={bonnaLogo} style={{ width: '35px', margin: 'auto' }} />
+                    <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 
                     <Box display={'flex'} flexDirection={'column'} alignItems={'center'} gap={2} py={3}>
 

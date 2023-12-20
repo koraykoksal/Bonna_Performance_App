@@ -23,21 +23,15 @@ const style = {
 };
 
 
-
-
-const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, info }) => {
-
-
+const PerformanceResultView_Personel = ({ open, handleClose, info }) => {
 
     return (
 
-
         <div>
 
-
             <Modal
-                open={open_viewPage}
-                onClose={handleClose_viewPage}
+                open={open}
+                onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
 
@@ -86,52 +80,9 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
                         </Box>
 
 
-
-
-                        <Box display={'flex'} flexDirection={'column'} gap={3}>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici : {info?.yonetici}</Typography>
-
-                            <Box display={'flex'} justifyContent={'center'} gap={1}>
-                                <Box>
-                                    {
-                                        my2_questions.map((item) => (
-                                            <Typography key={item.id} variant='subtitle2' align='left'>{item.id}-{item?.ask}</Typography>
-                                        ))
-                                    }
-                                </Box>
-                                <Box>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ1} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ2} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ3} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ4} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ5} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ6} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ7} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ8} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ9} puan</Typography>
-                                    <Typography variant='subtitle2' align='center'>{info?.yoneticiQ10} puan</Typography>
-                                </Box>
-                            </Box>
-
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Toplam Puan: {info?.yoneticiTpp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Operasyonel Yetklinlik Puan: {info?.yoneticiOyp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.yoneticiDyp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yoneticiYyp} puan</Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.yoneticiDegerlendirmeYuzdesi * 100}% </Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.yoneticiSonuc} </Typography>
-
-                        </Box>
-
-
-
                     </Box>
 
 
-
-                    <Box mt={5}>
-                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonu: {info?.final_degerlendirmeSonucu} </Typography>
-
-                    </Box>
 
 
                 </Box>
@@ -139,9 +90,8 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
 
             </Modal>
 
-
         </div>
     )
 }
 
-export default PerformanceResultView_Manager
+export default PerformanceResultView_Personel

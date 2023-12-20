@@ -3,8 +3,7 @@ import usePerformanceCall from '../hooks/usePerformanceCall'
 import { useEffect, useState } from 'react'
 import { Box, Typography, Container, Grid } from "@mui/material"
 import { useSelector } from "react-redux"
-import PerformanceResult_Table from '../components/tables/PerformanceResult_Table'
-import PerformanceResault_Table_By1 from '../components/tables/PerformanceResault_Table_By1'
+import PerformanceResult_Table_BY from '../components/tables/PerformanceResult_Table_BY'
 import PerformanceResultView_HR from '../components/modals/PerformanceResultView_HR'
 
 
@@ -133,7 +132,7 @@ const ByReports = () => {
     <div>
       <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Yönetici Değerlendirme Sonuçları</Typography>
 
-      <PerformanceResault_Table_By1 data={data} handleOpen={handleOpen} setInfo={setInfo} info={info}/>
+      <PerformanceResult_Table_BY data={data} handleOpen={handleOpen} setInfo={setInfo} info={info}/>
 
 
       <PerformanceResultView_HR handleClose={handleClose} info={info} open={open}/>

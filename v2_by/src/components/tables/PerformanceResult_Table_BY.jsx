@@ -7,7 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 
 
-const PerformanceResault_Table_By1 = ({ data,handleOpen,info,setInfo }) => {
+const PerformanceResult_Table_BY = ({ data,handleOpen,info,setInfo }) => {
 
 
     const dataGrid_Columns = [
@@ -403,4 +403,4 @@ const PerformanceResault_Table_By1 = ({ data,handleOpen,info,setInfo }) => {
     )
 }
 
-export default PerformanceResault_Table_By1
+export default PerformanceResult_Table_BY
