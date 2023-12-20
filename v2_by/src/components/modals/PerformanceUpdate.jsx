@@ -57,7 +57,26 @@ const style = {
 
 const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, info }) => {
 
-  const {put_performanceData,get_All_PerformanceData} = usePerformanceCall()
+  const { put_performanceData, get_All_PerformanceData } = usePerformanceCall()
+
+  const createdDate = new Date()
+
+  //! createddate bilgisini çıkar
+  function formatDate(date) {
+    let day = date.getDate(); // Günü alır
+    let month = date.getMonth() + 1; // Ayı alır (0'dan başladığı için 1 eklenir)
+    let year = date.getFullYear(); // Yılı alır
+    let hours = date.getHours(); // Saati alır
+    let minutes = date.getMinutes(); // Dakikayı alır
+
+    // Gün, ay, saat veya dakika tek basamaklıysa, başına '0' ekler
+    day = day < 10 ? '0' + day : day;
+    month = month < 10 ? '0' + month : month;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    return `${day}-${month}-${year} ${hours}:${minutes}`;
+  }
 
   const my1_topics = [
     {
@@ -345,7 +364,8 @@ const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, 
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    put_performanceData('manager-evaluation',info)
+    info.yoneticiCreatedDate = formatDate(createdDate)
+    put_performanceData('manager-evaluation', info)
     get_All_PerformanceData('manager-evaluation')
   }
 
@@ -458,11 +478,96 @@ const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, 
               )
               :
               (
-                <Box>
+                <Container sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 10 }} component='form' onSubmit={handleSubmit}>
 
 
 
-                </Box>
+                  <Typography align='center' fontWeight={700} color={'darkred'}>{info?.personel} - {info?.gorev}</Typography>
+
+                  {/* DEĞERLENDİRME */}
+                  <Box sx={{ display: 'flex', justifyContent: 'center', }}>
+
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead>
+                          <TableRow sx={{ position: 'sticky', top: 0 }}>
+                            {
+                              rows.map((item, index) => (
+                                <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
+                              ))
+                            }
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {
+                            my2_topics.map((item, index) => (
+                              <StyledTableRow key={index}>
+                                <StyledTableCell align="center">{item.konu}</StyledTableCell>
+                                <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
+                                <StyledTableCell align="center">{item.referans}</StyledTableCell>
+                                <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                                <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
+                              </StyledTableRow>
+                            ))
+                          }
+                        </TableBody>
+                        <TableBody sx={{ backgroundColor: '#9BB8CD' }}>
+                          {
+                            my2_topics_result.map((item, index) => (
+                              <StyledTableRow key={index}>
+                                <StyledTableCell align="center">{item.konu}</StyledTableCell>
+                                <StyledTableCell align="center">{item.yetkinlik}</StyledTableCell>
+                                <StyledTableCell align="center">{item.referans}</StyledTableCell>
+                                <StyledTableCell align="center">{item.calisan}</StyledTableCell>
+                                <StyledTableCell align="center">{item.yonetici}</StyledTableCell>
+                              </StyledTableRow>
+                            ))
+                          }
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </Box>
+
+
+                  {/* ÇALIŞAN AÇIKLAMA ALANI */}
+                  <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
+
+
+                    <TextField
+                      disabled
+                      fullWidth
+                      label='Çalışan Açıklama'
+                      name='calisanAciklama'
+                      id='calisanAciklama'
+                      type='text'
+                      variant='outlined'
+                      inputProps={{ maxlength: 100 }}
+                      value={info?.calisanAciklama}
+
+                    />
+
+                    <TextField
+                      fullWidth
+                      label='Yönetici Açıklama'
+                      name='yoneticiAciklama'
+                      id='yoneticiAciklama'
+                      type='text'
+                      variant='outlined'
+                      inputProps={{ maxlength: 100 }}
+                      onChange={handleChange}
+                      value={info?.yoneticiAciklama}
+                    />
+
+                  </Container>
+
+
+                  {/* ONAY VE KAYIT */}
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+
+                    <Button fullWidth variant='contained' type='submit' sx={{ letterSpacing: 10 }}>Güncelle</Button>
+                  </Box>
+
+                </Container>
               )
           }
 

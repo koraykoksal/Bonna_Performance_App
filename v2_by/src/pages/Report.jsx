@@ -15,8 +15,9 @@ const Report = () => {
   const { all_performanceData } = useSelector((state) => state.performance)
   const [data, setData] = useState([])
   const [managerpersonelData, setManagerPersonelData] = useState([])
+  const createdDate = new Date()
 
-
+  // update modal handle state bilgisi
   const [open_editPage, setOpen_editPage] = useState(false)
   const handleOpen_editPage = () => setOpen_editPage(true);
   const handleClose_editPage = () => {
@@ -24,6 +25,7 @@ const Report = () => {
 
   }
 
+  // viewer modal handle state bilgisi
   const [open_viewPage, setOpen_viewPage] = useState(false)
   const handleOpen_viewPage = () => setOpen_viewPage(true);
   const handleClose_viewPage = () => {
@@ -32,7 +34,7 @@ const Report = () => {
   }
 
 
-
+  // tüm performans verilerini db den getir
   useEffect(() => {
     get_All_PerformanceData('manager-evaluation')
   }, [])
@@ -97,78 +99,6 @@ const Report = () => {
 
   }, [all_performanceData])
 
-
-
-
-  //! girilen dataların verilerini tut
-  const [info, setInfo] = useState({
-
-    id: "",
-    type: "",
-    //çalışan değerlendirme sonuçları
-    personel: "",
-    sicilNo: "",
-    tcNo: "",
-    iseGirisTarih: "",
-    dogumTarih: "",
-    birim: "",
-    bolum: "",
-    ustBirim: "",
-    yonetici: "",
-    gorev: "",
-    currentSallary: "",
-    degerlendirmeYili: "",
-    degerlendirmeDonemiAciklama: "",
-    q1Calisan: "",
-    q2Calisan: "",
-    q3Calisan: "",
-    q4Calisan: "",
-    q5Calisan: "",
-    q6Calisan: "",
-    q7Calisan: "",
-    q8Calisan: "",
-    q9Calisan: "",
-    q10Calisan: "",
-    oypCalisan: "",
-    dypCalisan: "",
-    yypCalisan: "",
-    tppCalisan: "",
-    calisanAciklama: "",
-    degerlendirmeSonucu: "",
-    calisanDegerlendirmeYuzdesi: "",
-    createdDate: "",
-    okudumAnladım: "",
-    personelSonuc: "",
-
-    //yönetici değerlendirme sonuçları
-    yoneticiQ1: "",
-    yoneticiQ2: "",
-    yoneticiQ3: "",
-    yoneticiQ4: "",
-    yoneticiQ5: "",
-    yoneticiQ6: "",
-    yoneticiQ7: "",
-    yoneticiQ8: "",
-    yoneticiQ9: "",
-    yoneticiQ10: "",
-    yoneticiAciklama: "",
-    yoneticiDegerlendirmeSonucu: "",
-    yoneticiDegerlendirmeYuzdesi: "",
-    yoneticiCreatedDate: "",
-    yoneticiOkudumAnladım: true,
-    yoneticiSonuc: "",
-    yoneticiDegerlendirmeYili: "",
-    yoneticiDegerlendirmeDonemiAciklama: "",
-    yoneticiOyp: "",
-    yoneticiDyp: "",
-    yoneticiYyp: "",
-    yoneticiTpp: "",
-
-    zamOrani_performans: "",
-    zamOrani_yonetici_ve_performans: "",
-    final_degerlendirmeSonucu: ""
-
-  })
 
 
   //! inputlara veri girişi olduğu zaman otomatik işlem yap
@@ -262,14 +192,103 @@ const Report = () => {
   }
 
 
-console.log(info)
+  //! girilen dataların verilerini tut
+  const [info, setInfo] = useState({
+
+    id: "",
+    type: "",
+    //çalışan değerlendirme sonuçları
+    personel: "",
+    sicilNo: "",
+    tcNo: "",
+    iseGirisTarih: "",
+    dogumTarih: "",
+    birim: "",
+    bolum: "",
+    ustBirim: "",
+    yonetici: "",
+    gorev: "",
+    currentSallary: "",
+    degerlendirmeYili: "",
+    degerlendirmeDonemiAciklama: "",
+    q1Calisan: "",
+    q2Calisan: "",
+    q3Calisan: "",
+    q4Calisan: "",
+    q5Calisan: "",
+    q6Calisan: "",
+    q7Calisan: "",
+    q8Calisan: "",
+    q9Calisan: "",
+    q10Calisan: "",
+    oypCalisan: "",
+    dypCalisan: "",
+    yypCalisan: "",
+    tppCalisan: "",
+    calisanAciklama: "",
+    degerlendirmeSonucu: "",
+    calisanDegerlendirmeYuzdesi: "",
+    createdDate: "",
+    okudumAnladım: "",
+    personelSonuc: "",
+
+    //yönetici değerlendirme sonuçları
+    yoneticiQ1: "",
+    yoneticiQ2: "",
+    yoneticiQ3: "",
+    yoneticiQ4: "",
+    yoneticiQ5: "",
+    yoneticiQ6: "",
+    yoneticiQ7: "",
+    yoneticiQ8: "",
+    yoneticiQ9: "",
+    yoneticiQ10: "",
+    yoneticiAciklama: "",
+    yoneticiDegerlendirmeSonucu: "",
+    yoneticiDegerlendirmeYuzdesi: "",
+    yoneticiCreatedDate: "",
+    yoneticiOkudumAnladım: true,
+    yoneticiSonuc: "",
+    yoneticiDegerlendirmeYili: "",
+    yoneticiDegerlendirmeDonemiAciklama: "",
+    yoneticiOyp: "",
+    yoneticiDyp: "",
+    yoneticiYyp: "",
+    yoneticiTpp: "",
+
+    zamOrani_performans: "",
+    zamOrani_yonetici_ve_performans: "",
+    final_degerlendirmeSonucu: ""
+
+  })
+
+
+
+  //! createddate bilgisini çıkar
+  function formatDate(date) {
+    let day = date.getDate(); // Günü alır
+    let month = date.getMonth() + 1; // Ayı alır (0'dan başladığı için 1 eklenir)
+    let year = date.getFullYear(); // Yılı alır
+    let hours = date.getHours(); // Saati alır
+    let minutes = date.getMinutes(); // Dakikayı alır
+
+    // Gün, ay, saat veya dakika tek basamaklıysa, başına '0' ekler
+    day = day < 10 ? '0' + day : day;
+    month = month < 10 ? '0' + month : month;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    return `${day}-${month}-${year} ${hours}:${minutes}`;
+  }
+
+
 
   return (
     <div>
 
       <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
-      <PerformanceResult_Table all_performanceData={all_performanceData} handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} data={data} setInfo={setInfo} />
+      <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} data={data} setInfo={setInfo} info={info}/>
 
       <PerformanceUpdate open_editPage={open_editPage} handleClose_editPage={handleClose_editPage} info={info} handleChange={handleChange} />
 

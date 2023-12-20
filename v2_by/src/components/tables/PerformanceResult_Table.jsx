@@ -5,10 +5,12 @@ import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
-import { object } from 'prop-types';
+import { MdBlock } from "react-icons/md";
 
-const PerformanceResult_Table = ({ all_performanceData, handleOpen_editPage,handleOpen_viewPage, data ,setInfo}) => {
 
+const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, data, setInfo, info }) => {
+
+  const currentYear = new Date().getFullYear()
 
   const dataGrid_Columns = [
     // {
@@ -93,13 +95,14 @@ const PerformanceResult_Table = ({ all_performanceData, handleOpen_editPage,hand
         }
       }) => {
         return [
+
+
           <GridActionsCellItem
             key={"edit"}
             icon={<AiFillEdit size={25} style={{ color: 'darkorange', marginRight: 5 }} cursor='pointer' />}
             label="Edit"
             onClick={() => {
               handleOpen_editPage()
-              
               setInfo({
                 id,
                 type,
