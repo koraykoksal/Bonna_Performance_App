@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 import { AiFillEdit } from "react-icons/ai";
 import PerformanceUpdate from '../components/modals/PerformanceUpdate';
 import PerformanceResult_Table from '../components/tables/PerformanceResult_Table';
-
+import { Typography, Grid } from "@mui/material"
 
 const MyReport = () => {
 
@@ -45,7 +45,7 @@ const MyReport = () => {
 
   }
 
-  
+
   const [info, setInfo] = useState({
     personel: userInfo.PERSONEL,
     sicilNo: userInfo.SICILNO,
@@ -79,7 +79,8 @@ const MyReport = () => {
     calisanDegerlendirmeYuzdesi: 0.35,
     createdDate: formatDate(currentDate),
     okudumAnladım: true,
-    personelSonuc: ""
+    personelSonuc: "",
+    type:"",
   })
 
 
@@ -141,11 +142,13 @@ const MyReport = () => {
   }, [])
 
 
-  
+
 
 
   return (
     <div>
+
+      <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
       {/* rapor sonuçlaırını gösteren COMPONENT */}
       <PerformanceResult_Table setInfo={setInfo} handleOpen={handleOpen} />

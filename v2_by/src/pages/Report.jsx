@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import PerformanceResult_Table from '../components/tables/PerformanceResult_Table'
 import PerformanceUpdate from '../components/modals/PerformanceUpdate'
 import PerformanceResultView from '../components/modals/PerformanceResultView'
-
+import { Box, Typography } from "@mui/material"
 
 
 const Report = () => {
@@ -17,12 +17,21 @@ const Report = () => {
   const [managerpersonelData, setManagerPersonelData] = useState([])
 
 
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false)
+  const [open_editPage, setOpen_editPage] = useState(false)
+  const handleOpen_editPage = () => setOpen_editPage(true);
+  const handleClose_editPage = () => {
+    setOpen_editPage(false)
 
   }
+
+  const [open_viewPage, setOpen_viewPage] = useState(false)
+  const handleOpen_viewPage = () => setOpen_viewPage(true);
+  const handleClose_viewPage = () => {
+    setOpen_viewPage(false)
+
+  }
+
+
 
   useEffect(() => {
     get_All_PerformanceData('manager-evaluation')
@@ -90,24 +99,25 @@ const Report = () => {
 
 
 
+
   //! girilen dataların verilerini tut
   const [info, setInfo] = useState({
 
-    id:"",
-    type:"",
+    id: "",
+    type: "",
     //çalışan değerlendirme sonuçları
     personel: "",
     sicilNo: "",
     tcNo: "",
     iseGirisTarih: "",
     dogumTarih: "",
-    birim:"",
-    bolum:"",
-    ustBirim:"",
-    yonetici:"",
+    birim: "",
+    bolum: "",
+    ustBirim: "",
+    yonetici: "",
     gorev: "",
-    currentSallary:"",
-    degerlendirmeYili:"",
+    currentSallary: "",
+    degerlendirmeYili: "",
     degerlendirmeDonemiAciklama: "",
     q1Calisan: "",
     q2Calisan: "",
@@ -125,9 +135,9 @@ const Report = () => {
     tppCalisan: "",
     calisanAciklama: "",
     degerlendirmeSonucu: "",
-    calisanDegerlendirmeYuzdesi:"",
+    calisanDegerlendirmeYuzdesi: "",
     createdDate: "",
-    okudumAnladım:"",
+    okudumAnladım: "",
     personelSonuc: "",
 
     //yönetici değerlendirme sonuçları
@@ -144,11 +154,11 @@ const Report = () => {
     yoneticiAciklama: "",
     yoneticiDegerlendirmeSonucu: "",
     yoneticiDegerlendirmeYuzdesi: "",
-    yoneticiCreatedDate:"",
+    yoneticiCreatedDate: "",
     yoneticiOkudumAnladım: true,
     yoneticiSonuc: "",
-    yoneticiDegerlendirmeYili:"",
-    yoneticiDegerlendirmeDonemiAciklama:"",
+    yoneticiDegerlendirmeYili: "",
+    yoneticiDegerlendirmeDonemiAciklama: "",
     yoneticiOyp: "",
     yoneticiDyp: "",
     yoneticiYyp: "",
@@ -161,15 +171,109 @@ const Report = () => {
   })
 
 
+  //! inputlara veri girişi olduğu zaman otomatik işlem yap
+  const handleChange = (e) => {
+
+    if (info?.type == 'my1') {
+      setInfo(prevInfo => {
+
+        const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
+
+        //ilk 6 soru operasyonel yetkinlik için hesaplanır
+        const operayonelYetkinlikPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4) + Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6)
+
+        //son 4 soru davranışsal yetkinlik için hesaplanır
+        const davranissalYetkinlikPuani = Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8) + Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
+
+
+        const yoneticiPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4) + Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6) + Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8) + Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
+
+        newInfo.yoneticiOyp = operayonelYetkinlikPuani;
+        newInfo.yoneticiDyp = davranissalYetkinlikPuani;
+
+        //! type bilgisi my1 olduğu için 'newInfo.yoneticiYyp' ve 'newInfo.yypCalisan' bilgisi 0 atanır. Aksi durumda undifined olacaktır.
+        newInfo.yoneticiYyp = 0;
+        newInfo.yypCalisan = 0;
+
+        newInfo.yoneticiTpp = newInfo.yoneticiOyp + newInfo.yoneticiDyp
+
+        newInfo.yoneticiDegerlendirmeSonucu = Number(Number(yoneticiPuani) * Number(newInfo.yoneticiDegerlendirmeYuzdesi)).toFixed(2)
+
+        newInfo.yoneticiSonuc = (yoneticiPuani >= 0 && yoneticiPuani <= 45 && "Beklentileri Karşılamıyor") ||
+          (yoneticiPuani >= 46 && yoneticiPuani <= 60 && "Beklentilerin Altında") ||
+          (yoneticiPuani >= 61 && yoneticiPuani <= 80 && "Beklenen Performans") ||
+          (yoneticiPuani >= 81 && yoneticiPuani <= 90 && "Beklentilerin Üzerinde") ||
+          (yoneticiPuani >= 91 && yoneticiPuani <= 100 && "Üstün Performans")
+
+        const toplamDegerlendirmeSonucu = Number(newInfo.degerlendirmeSonucu) + Number(newInfo.yoneticiDegerlendirmeSonucu)
+
+        newInfo.final_degerlendirmeSonucu = Number(toplamDegerlendirmeSonucu).toFixed(2)
+
+        newInfo.zamOrani_performans = (Number(toplamDegerlendirmeSonucu >= 81 && true))
+        newInfo.zamOrani_yonetici_ve_performans = Number(toplamDegerlendirmeSonucu >= 91) && Number(toplamDegerlendirmeSonucu <= 100) && true
+
+        return newInfo
+
+      })
+    }
+    else {
+      setInfo(prevInfo => {
+
+        const newInfo = { ...prevInfo, [e.target.name]: e.target.value }
+
+        //ilk 4 soru operasyonel yetkinlik için hesaplanır
+        const operayonelYetkinlikPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4)
+
+        // 5-8 arası sorular davranışsal yetkinlik için hesaplanır
+        const davranissalYetkinlikPuani = Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6) + Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8)
+
+        // son iki soru yönetsel yetkinlil için hesaplanır
+        const yonetselYetkinlikPuani = Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
+
+
+        const yoneticiPuani = Number(newInfo.yoneticiQ1) + Number(newInfo.yoneticiQ2) + Number(newInfo.yoneticiQ3) + Number(newInfo.yoneticiQ4) + Number(newInfo.yoneticiQ5) + Number(newInfo.yoneticiQ6) + Number(newInfo.yoneticiQ7) + Number(newInfo.yoneticiQ8) + Number(newInfo.yoneticiQ9) + Number(newInfo.yoneticiQ10)
+
+        newInfo.yoneticiOyp = operayonelYetkinlikPuani;
+        newInfo.yoneticiDyp = davranissalYetkinlikPuani;
+        newInfo.yoneticiYyp = yonetselYetkinlikPuani;
+
+        newInfo.yoneticiTpp = newInfo.yoneticiOyp + newInfo.yoneticiDyp + newInfo.yoneticiYyp
+
+        newInfo.yoneticiDegerlendirmeSonucu = Number(Number(yoneticiPuani) * Number(newInfo.yoneticiDegerlendirmeYuzdesi)).toFixed(2)
+
+        newInfo.yoneticiSonuc = (yoneticiPuani >= 0 && yoneticiPuani <= 45 && "Beklentileri Karşılamıyor") ||
+          (yoneticiPuani >= 46 && yoneticiPuani <= 60 && "Beklentilerin Altında") ||
+          (yoneticiPuani >= 61 && yoneticiPuani <= 80 && "Beklenen Performans") ||
+          (yoneticiPuani >= 81 && yoneticiPuani <= 90 && "Beklentilerin Üzerinde") ||
+          (yoneticiPuani >= 91 && yoneticiPuani <= 100 && "Üstün Performans")
+
+        const toplamDegerlendirmeSonucu = Number(newInfo.degerlendirmeSonucu) + Number(newInfo.yoneticiDegerlendirmeSonucu)
+
+        newInfo.final_degerlendirmeSonucu = Number(toplamDegerlendirmeSonucu).toFixed(2)
+
+        newInfo.zamOrani_performans = (Number(toplamDegerlendirmeSonucu >= 81 && true))
+        newInfo.zamOrani_yonetici_ve_performans = Number(toplamDegerlendirmeSonucu >= 91) && Number(toplamDegerlendirmeSonucu <= 100) && true
+
+        return newInfo
+
+      })
+    }
+
+  }
+
+
+console.log(info)
 
   return (
     <div>
 
-      <PerformanceResult_Table all_performanceData={all_performanceData} handleOpen={handleOpen} data={data} setInfo={setInfo}/>
+      <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
-      <PerformanceUpdate open={open} handleClose={handleClose} info={info}/>
+      <PerformanceResult_Table all_performanceData={all_performanceData} handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} data={data} setInfo={setInfo} />
 
-      <PerformanceResultView open={open} handleClose={handleClose} info={info}/>
+      <PerformanceUpdate open_editPage={open_editPage} handleClose_editPage={handleClose_editPage} info={info} handleChange={handleChange} />
+
+      <PerformanceResultView open_viewPage={open_viewPage} handleClose_viewPage={handleClose_viewPage} info={info} />
 
     </div>
   )

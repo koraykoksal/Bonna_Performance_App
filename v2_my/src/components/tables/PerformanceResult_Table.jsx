@@ -64,7 +64,8 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
                     calisanDegerlendirmeYuzdesi,
                     createdDate,
                     okudumAnladım,
-                    personelSonuc
+                    personelSonuc,
+                    type
                 }
             }) => {
                 return [
@@ -108,7 +109,8 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
                                 calisanDegerlendirmeYuzdesi,
                                 createdDate,
                                 okudumAnladım,
-                                personelSonuc
+                                personelSonuc,
+                                type
                             })
                         }}
 
@@ -333,7 +335,7 @@ const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
     return (
         <div>
 
-            <Box px={5} py={15}>
+            <Box p={5}>
                 <DataGrid
                     columns={dataGrid_Columns}
                     rows={performanceData}

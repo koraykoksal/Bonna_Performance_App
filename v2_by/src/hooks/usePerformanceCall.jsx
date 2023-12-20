@@ -192,12 +192,29 @@ const usePerformanceCall = () => {
     }
 
 
+    const  put_performanceData=async(url,info)=>{
+
+        distpatch(fetchStart())
+
+        try {
+            
+            const db=getDatabase()
+            await update(ref(db,`${url}/${info.tcNo}/`+info.id),info)
+            toastSuccessNotify('Updated Data')
+
+        } catch (error) {
+            console.log("put_performanceData error: ",error)
+            toastErrorNotify('Not OK Update ')
+        }
+    }
+
 
     return {
         get_managerPersonels,
         get_All_PerformanceData,
         get_personel_performanceData,
         post_manager_evaulationData,
+        put_performanceData
 
     }
 }

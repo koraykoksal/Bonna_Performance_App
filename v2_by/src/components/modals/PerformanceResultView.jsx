@@ -25,31 +25,8 @@ const style = {
 
 
 
-const PerformanceResultView = ({ open, handleClose, info }) => {
+const PerformanceResultView = ({ open_viewPage, handleClose_viewPage, info }) => {
 
-
-
-    //! performans dönemi bilgisini çalıştır
-    const evulationInfo = () => {
-
-        let performanceResult = ""
-        const thisYear = new Date().getFullYear()
-        const nextYear = new Date().getFullYear() + 1
-
-        const currentDate = new Date();
-        const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
-        const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
-
-        if (currentDate > startLimit && currentDate < endLimit) {
-            performanceResult = 'Yıl Sonu Performans Değerlendirme'
-        }
-        else {
-            performanceResult = '6 Aylık Performans Değerlendirme'
-        }
-
-        return performanceResult
-
-    }
 
 
     return (
@@ -59,8 +36,8 @@ const PerformanceResultView = ({ open, handleClose, info }) => {
 
 
             <Modal
-                open={open}
-                onClose={handleClose}
+                open={open_viewPage}
+                onClose={handleClose_viewPage}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
 

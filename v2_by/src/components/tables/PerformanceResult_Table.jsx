@@ -7,10 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 import { object } from 'prop-types';
 
-const PerformanceResult_Table = ({ all_performanceData, handleOpen, data ,setInfo}) => {
-
-
-  const [performanceData, setperformanceData] = useState([])
+const PerformanceResult_Table = ({ all_performanceData, handleOpen_editPage,handleOpen_viewPage, data ,setInfo}) => {
 
 
   const dataGrid_Columns = [
@@ -101,7 +98,8 @@ const PerformanceResult_Table = ({ all_performanceData, handleOpen, data ,setInf
             icon={<AiFillEdit size={25} style={{ color: 'darkorange', marginRight: 5 }} cursor='pointer' />}
             label="Edit"
             onClick={() => {
-              handleOpen()
+              handleOpen_editPage()
+              
               setInfo({
                 id,
                 type,
@@ -173,7 +171,7 @@ const PerformanceResult_Table = ({ all_performanceData, handleOpen, data ,setInf
             label='Show'
             icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
             onClick={() => {
-              handleOpen()
+              handleOpen_viewPage()
               setInfo({
                 id,
                 type,
@@ -457,29 +455,11 @@ const PerformanceResult_Table = ({ all_performanceData, handleOpen, data ,setInf
   ];
 
 
-  // useEffect(() => {
-
-  //   let dizi = []
-  //   Object.values(all_performanceData).forEach(item => {
-
-  //     if (typeof item == 'object' && item != null) {
-  //       const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
-
-  //       dizi.push(result)
-  //       setperformanceData(result)
-  //     }
-
-  //   })
-
-  // }, [all_performanceData])
-
-
-
 
   return (
 
     <div>
-      <Box px={5} py={15}>
+      <Box p={5}>
         <DataGrid
           columns={dataGrid_Columns}
           rows={data}
