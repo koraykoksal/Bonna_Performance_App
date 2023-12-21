@@ -68,7 +68,6 @@ const Settings = () => {
         createdDate: formatDate(createdDate),
         standartRaise: "",
         performanceRaise: "",
-        managerRaise: "",
         raiseYear: new Date().getFullYear(),
         raiseDetail:evulationInfo()
     })
@@ -95,7 +94,7 @@ const Settings = () => {
 
             <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
 
-            <Settings_Table raiseData={raiseData}/>
+            <Settings_Table raiseData={raiseData} info={info} setInfo={setInfo} handleOpen={handleOpen}/>
 
             <Raise_GraphicData raiseData={raiseData}/>
 

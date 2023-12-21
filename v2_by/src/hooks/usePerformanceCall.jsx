@@ -171,7 +171,7 @@ const usePerformanceCall = () => {
                 ));
 
                 // doğrula sonrası işlemleri yap
-                if (findElement.length>0) {
+                if (findElement.length > 0) {
                     toastWarnNotify(`${info.tcNo} dönem kaydı var. Tekrar kayıt oluşturamazsınız !`);
                 } else {
                     const uID = uid();
@@ -219,6 +219,7 @@ const usePerformanceCall = () => {
 
         try {
 
+
             if (!snapshot.exists()) {
 
                 const db = getDatabase()
@@ -228,7 +229,7 @@ const usePerformanceCall = () => {
 
             }
             else {
-               
+
                 const currentYear = new Date().getFullYear();
                 const data = snapshot.val();
 
@@ -237,7 +238,7 @@ const usePerformanceCall = () => {
                 const findElement = result.filter(item => item.raiseYear == currentYear);
 
                 // doğrula sonrası işlemleri yap
-                if (findElement.length>0) {
+                if (findElement.length > 0) {
                     toastWarnNotify(`${currentYear} için zam oranı bulunmaktadır !`);
                 } else {
                     const uID = uid();
@@ -256,6 +257,7 @@ const usePerformanceCall = () => {
         }
     }
 
+    
 
     const get_raiseData = async (url) => {
 
@@ -263,22 +265,38 @@ const usePerformanceCall = () => {
         const res = ref(db, `${url}`)
         const snapshot = await get(res)
 
-    
+
 
         try {
 
 
-           if(!snapshot.exists()){
-            toastWarnNotify('Zam bilgisi bulunmuyor')
-           }
-           else{
-            const data = snapshot.val()
-            distpatch(fetchRaiseData(data))
-           }
+            if (!snapshot.exists()) {
+                toastWarnNotify('Zam bilgisi bulunmuyor')
+            }
+            else {
+                const data = snapshot.val()
+                distpatch(fetchRaiseData(data))
+            }
 
         } catch (error) {
             console.log("post_raiseData: ", error)
             toastErrorNotify('Not OK Raise Data ')
+        }
+    }
+
+
+
+    const put_raiseData = async (url, info) => {
+
+        try {
+
+            const db = getDatabase()
+            await update(ref(db, `${url}/${info.id}`), info)
+            toastSuccessNotify('Updated Data')
+
+        } catch (error) {
+            console.log("put_raiseData error: ", error)
+            toastErrorNotify('Not OK Update ')
         }
     }
 
@@ -291,7 +309,8 @@ const usePerformanceCall = () => {
         post_manager_evaulationData,
         put_performanceData,
         post_raiseData,
-        get_raiseData
+        get_raiseData,
+        put_raiseData
 
     }
 }

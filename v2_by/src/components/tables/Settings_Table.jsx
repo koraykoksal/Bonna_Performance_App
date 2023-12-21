@@ -1,12 +1,12 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 
 
-const Settings_Table = ({raiseData}) => {
+const Settings_Table = ({ raiseData, setInfo, info,handleOpen }) => {
 
   const dataGrid_Columns = [
     // {
@@ -17,7 +17,50 @@ const Settings_Table = ({raiseData}) => {
     //     align: "center",
     //     flex: 1,
     // },
- 
+
+    {
+      field: "actions",
+      headerName: "Düzenle",
+      minWidth: 120,
+      headerAlign: "center",
+      align: "center",
+      flex: 1,
+      renderCell: ({
+        id,
+        row: {
+          createdDate,
+          standartRaise,
+          performanceRaise,
+          raiseYear,
+          raiseDetail,
+
+        }
+      }) => {
+        return [
+
+
+          <GridActionsCellItem
+            key={"edit"}
+            icon={<AiFillEdit size={25} style={{ color: 'darkorange', marginRight: 5 }} cursor='pointer' />}
+            label="Edit"
+            onClick={() => {
+              handleOpen()
+              setInfo({
+                id,
+                createdDate,
+                standartRaise,
+                performanceRaise,
+                raiseYear,
+                raiseDetail,
+              })
+            }}
+
+          />,
+
+        ]
+      },
+    },
+
     {
       field: "standartRaise",
       headerName: "Standart Zam Oranı",
@@ -29,14 +72,6 @@ const Settings_Table = ({raiseData}) => {
     {
       field: "performanceRaise",
       headerName: "Performans Zam Oranı",
-      minWidth: 150,
-      headerAlign: "center",
-      align: "center",
-      flex: 1,
-    },
-    {
-      field: "managerRaise",
-      headerName: "Yönetici Zam Oranı",
       minWidth: 150,
       headerAlign: "center",
       align: "center",
@@ -58,7 +93,7 @@ const Settings_Table = ({raiseData}) => {
       align: "center",
       flex: 1,
     },
-   
+
 
   ];
 
@@ -66,12 +101,12 @@ const Settings_Table = ({raiseData}) => {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    
-    const res = Object.keys(raiseData).map(key=>({id:key,...raiseData[key]}))
+
+    const res = Object.keys(raiseData).map(key => ({ id: key, ...raiseData[key] }))
     setData(res)
 
   }, [raiseData])
-  
+
 
 
 
@@ -89,7 +124,7 @@ const Settings_Table = ({raiseData}) => {
           }}
         />
       </Box>
-      
+
     </div>
   )
 }
