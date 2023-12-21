@@ -88,7 +88,7 @@ const PerformanceResult_Table_BY = ({ data,handleOpen,info,setInfo }) => {
                     zamOrani_performans,
                     zamOrani_yonetici_ve_performans,
                     final_degerlendirmeSonucu,
-
+                    final_degerlendirmeAciklamasi,
 
                 }
             }) => {
@@ -161,6 +161,7 @@ const PerformanceResult_Table_BY = ({ data,handleOpen,info,setInfo }) => {
                                 zamOrani_performans,
                                 zamOrani_yonetici_ve_performans,
                                 final_degerlendirmeSonucu,
+                                final_degerlendirmeAciklamasi,
                             })
 
                         }}
@@ -170,6 +171,7 @@ const PerformanceResult_Table_BY = ({ data,handleOpen,info,setInfo }) => {
                 ]
             },
         },
+ 
         {
             field: "type",
             headerName: "Tip",
@@ -355,7 +357,7 @@ const PerformanceResult_Table_BY = ({ data,handleOpen,info,setInfo }) => {
             flex: 1,
         },
         {
-            field: "yoneticiSonuc",
+            field: "final_degerlendirmeAciklamasi",
             headerName: "Sonuç",
             minWidth: 200,
             headerAlign: "center",

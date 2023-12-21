@@ -88,6 +88,7 @@ const PerformanceResult_Table_MY = ({data,handleOpen,info,setInfo }) => {
                     zamOrani_performans,
                     zamOrani_yonetici_ve_performans,
                     final_degerlendirmeSonucu,
+                    final_degerlendirmeAciklamasi
 
 
                 }
@@ -161,6 +162,7 @@ const PerformanceResult_Table_MY = ({data,handleOpen,info,setInfo }) => {
                                 zamOrani_performans,
                                 zamOrani_yonetici_ve_performans,
                                 final_degerlendirmeSonucu,
+                                final_degerlendirmeAciklamasi,
                             })
 
                         }}
@@ -355,7 +357,7 @@ const PerformanceResult_Table_MY = ({data,handleOpen,info,setInfo }) => {
             flex: 1,
         },
         {
-            field: "personelSonuc",
+            field: "final_degerlendirmeAciklamasi",
             headerName: "Sonuç",
             minWidth: 200,
             headerAlign: "center",

@@ -91,7 +91,7 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, dat
           zamOrani_performans,
           zamOrani_yonetici_ve_performans,
           final_degerlendirmeSonucu,
-
+          final_degerlendirmeAciklamasi
 
         }
       }) => {
@@ -165,6 +165,7 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, dat
                 zamOrani_performans,
                 zamOrani_yonetici_ve_performans,
                 final_degerlendirmeSonucu,
+                final_degerlendirmeAciklamasi
               })
             }}
 
@@ -237,6 +238,7 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, dat
                 zamOrani_performans,
                 zamOrani_yonetici_ve_performans,
                 final_degerlendirmeSonucu,
+                final_degerlendirmeAciklamasi
               })
 
             }}
@@ -431,7 +433,7 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, dat
       flex: 1,
     },
     {
-      field: "yoneticiSonuc",
+      field: "final_degerlendirmeAciklamasi",
       headerName: "Sonuç",
       minWidth: 200,
       headerAlign: "center",

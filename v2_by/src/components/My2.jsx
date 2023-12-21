@@ -95,6 +95,12 @@ const My2 = ({ personelData }) => {
 
       newInfo.final_degerlendirmeSonucu = Number(toplamDegerlendirmeSonucu).toFixed(2)
 
+      newInfo.final_degerlendirmeAciklamasi =(newInfo.final_degerlendirmeSonucu >= 0 && newInfo.final_degerlendirmeSonucu <= 45 && "Beklentileri Karşılamıyor 😫") ||
+      (newInfo.final_degerlendirmeSonucu >= 46 && newInfo.final_degerlendirmeSonucu <= 60 && "Beklentilerin Altında 🙁") ||
+      (newInfo.final_degerlendirmeSonucu >= 61 && newInfo.final_degerlendirmeSonucu  <= 80 && "Beklenen Performans 😐") ||
+      (newInfo.final_degerlendirmeSonucu >= 81 && newInfo.final_degerlendirmeSonucu  <= 90 && "Beklentilerin Üzerinde 😬") ||
+      (newInfo.final_degerlendirmeSonucu >= 91 && newInfo.final_degerlendirmeSonucu  <= 100 && "Üstün Performans 😎")
+
       newInfo.zamOrani_performans = (Number(toplamDegerlendirmeSonucu >= 81 && true))
       newInfo.zamOrani_yonetici_ve_performans = Number(toplamDegerlendirmeSonucu >= 91) && Number(toplamDegerlendirmeSonucu <= 100) && true
 
@@ -171,7 +177,8 @@ const My2 = ({ personelData }) => {
 
     zamOrani_performans: false,
     zamOrani_yonetici_ve_performans: false,
-    final_degerlendirmeSonucu: ""
+    final_degerlendirmeSonucu: "",
+    final_degerlendirmeAciklamasi:""
 
   })
 

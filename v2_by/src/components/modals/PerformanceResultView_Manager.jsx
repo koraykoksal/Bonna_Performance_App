@@ -81,7 +81,6 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.dypCalisan} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yypCalisan} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.calisanDegerlendirmeYuzdesi * 100}% </Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.personelSonuc} </Typography>
 
                         </Box>
 
@@ -118,7 +117,6 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.yoneticiDyp} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yoneticiYyp} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.yoneticiDegerlendirmeYuzdesi * 100}% </Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.yoneticiSonuc} </Typography>
 
                         </Box>
 
@@ -128,8 +126,9 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
 
 
 
-                    <Box mt={5}>
-                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonu: {info?.final_degerlendirmeSonucu} </Typography>
+                    <Box mt={5} display={'flex'} flexDirection={'column'} gap={3}>
+                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonuç: {info?.final_degerlendirmeSonucu} </Typography>
+                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Açıklama: {info?.final_degerlendirmeAciklamasi} </Typography>
 
                     </Box>
 

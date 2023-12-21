@@ -139,6 +139,13 @@ const Report = () => {
 
         newInfo.final_degerlendirmeSonucu = Number(toplamDegerlendirmeSonucu).toFixed(2)
 
+        newInfo.final_degerlendirmeAciklamasi = (newInfo.final_degerlendirmeSonucu >= 0 && newInfo.final_degerlendirmeSonucu <= 45 && "Beklentileri Karşılamıyor 😫") ||
+          (newInfo.final_degerlendirmeSonucu >= 46 && newInfo.final_degerlendirmeSonucu <= 60 && "Beklentilerin Altında 🙁") ||
+          (newInfo.final_degerlendirmeSonucu >= 61 && newInfo.final_degerlendirmeSonucu <= 80 && "Beklenen Performans 😐") ||
+          (newInfo.final_degerlendirmeSonucu >= 81 && newInfo.final_degerlendirmeSonucu <= 90 && "Beklentilerin Üzerinde 😬") ||
+          (newInfo.final_degerlendirmeSonucu >= 91 && newInfo.final_degerlendirmeSonucu <= 100 && "Üstün Performans 😎")
+
+
         newInfo.zamOrani_performans = (Number(toplamDegerlendirmeSonucu >= 81 && true))
         newInfo.zamOrani_yonetici_ve_performans = Number(toplamDegerlendirmeSonucu >= 91) && Number(toplamDegerlendirmeSonucu <= 100) && true
 
@@ -180,6 +187,13 @@ const Report = () => {
         const toplamDegerlendirmeSonucu = Number(newInfo.degerlendirmeSonucu) + Number(newInfo.yoneticiDegerlendirmeSonucu)
 
         newInfo.final_degerlendirmeSonucu = Number(toplamDegerlendirmeSonucu).toFixed(2)
+
+        newInfo.final_degerlendirmeAciklamasi = (newInfo.final_degerlendirmeSonucu >= 0 && newInfo.final_degerlendirmeSonucu <= 45 && "Beklentileri Karşılamıyor 😫") ||
+          (newInfo.final_degerlendirmeSonucu >= 46 && newInfo.final_degerlendirmeSonucu <= 60 && "Beklentilerin Altında 🙁") ||
+          (newInfo.final_degerlendirmeSonucu >= 61 && newInfo.final_degerlendirmeSonucu <= 80 && "Beklenen Performans 😐") ||
+          (newInfo.final_degerlendirmeSonucu >= 81 && newInfo.final_degerlendirmeSonucu <= 90 && "Beklentilerin Üzerinde 😬") ||
+          (newInfo.final_degerlendirmeSonucu >= 91 && newInfo.final_degerlendirmeSonucu <= 100 && "Üstün Performans 😎")
+
 
         newInfo.zamOrani_performans = (Number(toplamDegerlendirmeSonucu >= 81 && true))
         newInfo.zamOrani_yonetici_ve_performans = Number(toplamDegerlendirmeSonucu >= 91) && Number(toplamDegerlendirmeSonucu <= 100) && true
@@ -258,7 +272,8 @@ const Report = () => {
 
     zamOrani_performans: "",
     zamOrani_yonetici_ve_performans: "",
-    final_degerlendirmeSonucu: ""
+    final_degerlendirmeSonucu: "",
+    final_degerlendirmeAciklamasi: "",
 
   })
 
@@ -282,13 +297,15 @@ const Report = () => {
   }
 
 
+  console.log(info)
+
 
   return (
     <div>
 
       <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
-      <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} data={data} setInfo={setInfo} info={info}/>
+      <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} data={data} setInfo={setInfo} info={info} />
 
       <PerformanceUpdate open_editPage={open_editPage} handleClose_editPage={handleClose_editPage} info={info} handleChange={handleChange} />
 
