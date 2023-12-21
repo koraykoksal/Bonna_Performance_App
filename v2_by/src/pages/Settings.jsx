@@ -3,11 +3,16 @@ import { useState, useEffect } from 'react'
 import { Button, Box, Container, Grid, Typography } from "@mui/material"
 import Settings_Modal from '../components/modals/Settings_Modal'
 import { settingsModalBg } from '../styles/globalStyle'
+import usePerformanceCall from '../hooks/usePerformanceCall'
+import {useSelector} from "react-redux"
+import Settings_Table from '../components/tables/Settings_Table'
+
 
 const Settings = () => {
 
     const createdDate = new Date()
-
+    const {get_raiseData}=usePerformanceCall()
+    const {raiseData} = useSelector((state)=>state.performance)
 
     // viewer modal handle state bilgisi
     const [open, setOpen] = useState(false)
@@ -34,22 +39,50 @@ const Settings = () => {
         return `${day}-${month}-${year} ${hours}:${minutes}`;
     }
 
+    //! performans dönemi bilgisini çalıştır
+    const evulationInfo = () => {
+
+        let performanceResult = ""
+        const thisYear = new Date().getFullYear()
+        const nextYear = new Date().getFullYear() + 1
+
+        const currentDate = new Date();
+        const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
+        const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
+
+        if (currentDate > startLimit && currentDate < endLimit) {
+            performanceResult = 'Yıl Sonu Değerlendirme'
+        }
+        else {
+            performanceResult = '6 Aylık Değerlendirme'
+        }
+
+        return performanceResult
+
+    }
+
+
     const [info, setInfo] = useState({
 
         createdDate: formatDate(createdDate),
         standartRaise: "",
         performanceRaise: "",
         managerRaise: "",
-        raiseYear: new Date().getFullYear()
+        raiseYear: new Date().getFullYear(),
+        raiseDetail:evulationInfo()
     })
 
 
-    const handleChange=(e)=>{
+    const handleChange = (e) => {
 
-        setInfo({...info,[e.target.name]:e.target.value})
+        setInfo({ ...info, [e.target.name]: e.target.value })
     }
 
 
+    useEffect(() => {
+      get_raiseData('raise-data')
+    }, [])
+    
 
 
     return (
@@ -57,11 +90,11 @@ const Settings = () => {
 
             <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center'>Ayarlar</Typography>
 
-            <Container>
-                <Button variant='contained' onClick={()=>handleOpen()}>Yeni</Button>
-            </Container>
+            <Button variant='contained' sx={{ml:5}} onClick={() => handleOpen()}>Yeni</Button>
 
-           <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange}/>
+            <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
+
+            <Settings_Table raiseData={raiseData}/>
 
         </div>
     )

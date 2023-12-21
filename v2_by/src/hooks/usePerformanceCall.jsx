@@ -6,7 +6,8 @@ import {
     fetchStart,
     fetchPerformanceData,
     fetchManagerData,
-    fetchAllPerformanceData
+    fetchAllPerformanceData,
+    fetchRaiseData
 
 } from '../features/performanceSlice'
 import axios from 'axios'
@@ -89,11 +90,11 @@ const usePerformanceCall = () => {
             const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
-            if(!snapshot.exists()){
+            if (!snapshot.exists()) {
 
                 toastWarnNotify('Personel Performans Sonucu bulunmuyor !')
             }
-            else{
+            else {
                 distpatch(fetchAllPerformanceData(snapshot.val()))
             }
 
@@ -191,21 +192,98 @@ const usePerformanceCall = () => {
 
 
 
-    const  put_performanceData=async(url,info)=>{
+    const put_performanceData = async (url, info) => {
 
         distpatch(fetchStart())
 
         try {
-            
-            const db=getDatabase()
-            await update(ref(db,`${url}/${info.tcNo}/`+info.id),info)
+
+            const db = getDatabase()
+            await update(ref(db, `${url}/${info.tcNo}/` + info.id), info)
             toastSuccessNotify('Updated Data')
 
         } catch (error) {
-            console.log("put_performanceData error: ",error)
+            console.log("put_performanceData error: ", error)
             toastErrorNotify('Not OK Update ')
         }
     }
+
+
+
+    const post_raiseData = async (url, info) => {
+
+        const db = getDatabase()
+        const res = ref(db, `${url}`)
+        const snapshot = await get(res)
+
+
+        try {
+
+            if (!snapshot.exists()) {
+
+                const db = getDatabase()
+                const uID = uid()
+                await set(ref(db, `${url}/${uID}`), info)
+                toastSuccessNotify('Kayıt yapılmıştır.');
+
+            }
+            else {
+               
+                const currentYear = new Date().getFullYear();
+                const data = snapshot.val();
+
+                const result = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+
+                const findElement = result.filter(item => (
+                    item.raiseYear === currentYear
+                ));
+
+                // doğrula sonrası işlemleri yap
+                if (findElement) {
+                    toastWarnNotify(`${currentYear} için zam oranı bulunmaktadır !`);
+                } else {
+                    const uID = uid();
+                    const newDb = getDatabase();
+                    await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                    toastSuccessNotify('Kayıt yapılmıştır.');
+                }
+
+            }
+
+
+
+        } catch (error) {
+            console.log("post_raiseData: ", error)
+            toastErrorNotify('Not OK Raise Data ')
+        }
+    }
+
+
+    const get_raiseData = async (url) => {
+
+        const db = getDatabase()
+        const res = ref(db, `${url}`)
+        const snapshot = await get(res)
+
+    
+
+        try {
+
+
+           if(!snapshot.exists()){
+            toastWarnNotify('Zam bilgisi bulunmuyor')
+           }
+           else{
+            const data = snapshot.val()
+            distpatch(fetchRaiseData(data))
+           }
+
+        } catch (error) {
+            console.log("post_raiseData: ", error)
+            toastErrorNotify('Not OK Raise Data ')
+        }
+    }
+
 
 
     return {
@@ -213,7 +291,9 @@ const usePerformanceCall = () => {
         get_All_PerformanceData,
         get_personel_performanceData,
         post_manager_evaulationData,
-        put_performanceData
+        put_performanceData,
+        post_raiseData,
+        get_raiseData
 
     }
 }

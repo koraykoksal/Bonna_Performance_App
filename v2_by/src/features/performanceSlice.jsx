@@ -5,7 +5,8 @@ const initialState={
     error:false,
     all_performanceData:[],
     managerInfo:[],
-    personelPerformanceData:[]
+    personelPerformanceData:[],
+    raiseData:[]
 }
 
 const performanceSlice=createSlice({
@@ -38,8 +39,11 @@ const performanceSlice=createSlice({
         fetchAllPerformanceData:(state,{payload})=>{
             state.loading=false
             state.all_performanceData = payload
-        }
-        
+        },
+        fetchRaiseData:(state,{payload})=>{
+            state.loading=false
+            state.raiseData = payload
+        },
     }
 
 })
@@ -49,7 +53,8 @@ export const {
     fetchFail,
     fetchPerformanceData,
     fetchManagerData,
-    fetchAllPerformanceData
+    fetchAllPerformanceData,
+    fetchRaiseData
     
     } = performanceSlice.actions
 

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { Typography, Grid, TextField,Button } from "@mui/material"
 import { IoIosCloseCircle } from "react-icons/io";
 import { settingsModalBg } from '../../styles/globalStyle';
+import usePerformanceCall from '../../hooks/usePerformanceCall';
 
 
 const style = {
@@ -21,14 +22,20 @@ const style = {
 
 };
 
-const handleSubmit=(e)=>{
 
-    e.preventDefault()
-
-}
 
 
 const Settings_Modal = ({ open, handleClose, info, handleChange }) => {
+
+    const {post_raiseData,get_raiseData}=usePerformanceCall()
+
+    const handleSubmit=(e)=>{
+
+        e.preventDefault()
+        post_raiseData('raise-data',info)
+        get_raiseData('raise-data')
+    }
+
     return (
         <div>
 
@@ -43,13 +50,13 @@ const Settings_Modal = ({ open, handleClose, info, handleChange }) => {
 
                     <IoIosCloseCircle size={25} color='red' cursor={'pointer'} onClick={handleClose}/>
 
-                    <Box display={'flex'} flexDirection={'column'} gap={5}>
+                    <Box display={'flex'} flexDirection={'column'} gap={5} component={'form'} onSubmit={handleSubmit}>
 
                         <Box p={3}>
                             <Typography variant='subtitle2' color={'red'} fontWeight={700} align='center'>Zam Oranları Giriş</Typography>
                         </Box>
 
-                        <Box sx={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap', gap: 3,p:3}} component={'form'} onSubmit={handleSubmit}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap', gap: 3,p:3}} >
 
                             <TextField
                                 label='Standart Zam'
@@ -59,6 +66,7 @@ const Settings_Modal = ({ open, handleClose, info, handleChange }) => {
                                 variant='outlined'
                                 onChange={handleChange}
                                 value={info.standartRaise}
+                                inputProps={{maxLength:3}}
                             />
 
                             <TextField
@@ -69,6 +77,7 @@ const Settings_Modal = ({ open, handleClose, info, handleChange }) => {
                                 variant='outlined'
                                 onChange={handleChange}
                                 value={info.performanceRaise}
+                                inputProps={{maxLength:3}}
                             />
 
 
@@ -80,6 +89,7 @@ const Settings_Modal = ({ open, handleClose, info, handleChange }) => {
                                 variant='outlined'
                                 onChange={handleChange}
                                 value={info.managerRaise}
+                                inputProps={{maxLength:3}}
                             />
                         </Box>
 
