@@ -55,6 +55,10 @@ function Dashboard() {
         {
             title:'Tüm Sonuçlar',
             url:'/byperformance/adminreport'
+        },
+        {
+            title:'Ayarlar',
+            url:'/byperformance/settings'
         }
     ]
 
