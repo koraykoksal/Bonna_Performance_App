@@ -6,6 +6,7 @@ import { settingsModalBg } from '../styles/globalStyle'
 import usePerformanceCall from '../hooks/usePerformanceCall'
 import {useSelector} from "react-redux"
 import Settings_Table from '../components/tables/Settings_Table'
+import Raise_GraphicData from '../components/tables/Raise_GraphicData'
 
 
 const Settings = () => {
@@ -95,6 +96,8 @@ const Settings = () => {
             <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
 
             <Settings_Table raiseData={raiseData}/>
+
+            <Raise_GraphicData raiseData={raiseData}/>
 
         </div>
     )

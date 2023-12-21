@@ -171,7 +171,7 @@ const usePerformanceCall = () => {
                 ));
 
                 // doğrula sonrası işlemleri yap
-                if (findElement) {
+                if (findElement.length>0) {
                     toastWarnNotify(`${info.tcNo} dönem kaydı var. Tekrar kayıt oluşturamazsınız !`);
                 } else {
                     const uID = uid();
@@ -234,17 +234,15 @@ const usePerformanceCall = () => {
 
                 const result = Object.keys(data).map(key => ({ id: key, ...data[key] }));
 
-                const findElement = result.filter(item => (
-                    item.raiseYear === currentYear
-                ));
+                const findElement = result.filter(item => item.raiseYear == currentYear);
 
                 // doğrula sonrası işlemleri yap
-                if (findElement) {
+                if (findElement.length>0) {
                     toastWarnNotify(`${currentYear} için zam oranı bulunmaktadır !`);
                 } else {
                     const uID = uid();
                     const newDb = getDatabase();
-                    await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                    await set(ref(newDb, `${url}/${uID}`), info);
                     toastSuccessNotify('Kayıt yapılmıştır.');
                 }
 

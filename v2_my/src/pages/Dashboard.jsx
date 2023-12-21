@@ -18,7 +18,7 @@ import { PiUserListDuotone } from 'react-icons/pi'
 import useAuthCall from '../hooks/useAuthCall';
 import { Navigate } from 'react-router-dom';
 import { ListItem, ListItemText } from '@mui/material';
-import logo from '../assets/img/logobonna.png'
+import logo from '../assets/img/logobonna_w.png'
 import { IoIosLogOut } from "react-icons/io";
 
 
