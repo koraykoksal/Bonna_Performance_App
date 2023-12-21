@@ -4,7 +4,7 @@ import { Button, Box, Container, Grid, Typography } from "@mui/material"
 import Settings_Modal from '../components/modals/Settings_Modal'
 import { settingsModalBg } from '../styles/globalStyle'
 import usePerformanceCall from '../hooks/usePerformanceCall'
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 import Settings_Table from '../components/tables/Settings_Table'
 import Raise_GraphicData from '../components/tables/Raise_GraphicData'
 
@@ -12,14 +12,23 @@ import Raise_GraphicData from '../components/tables/Raise_GraphicData'
 const Settings = () => {
 
     const createdDate = new Date()
-    const {get_raiseData}=usePerformanceCall()
-    const {raiseData} = useSelector((state)=>state.performance)
+    const { get_raiseData } = usePerformanceCall()
+    const { raiseData } = useSelector((state) => state.performance)
+    const [data, setData] = useState([])
+
 
     // viewer modal handle state bilgisi
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false)
+        setInfo({
+            createdDate: formatDate(createdDate),
+            standartRaise: "",
+            performanceRaise: "",
+            raiseYear: new Date().getFullYear(),
+            raiseDetail: evulationInfo()
+        })
 
     }
 
@@ -39,6 +48,7 @@ const Settings = () => {
 
         return `${day}-${month}-${year} ${hours}:${minutes}`;
     }
+
 
     //! performans dönemi bilgisini çalıştır
     const evulationInfo = () => {
@@ -69,20 +79,28 @@ const Settings = () => {
         standartRaise: "",
         performanceRaise: "",
         raiseYear: new Date().getFullYear(),
-        raiseDetail:evulationInfo()
+        raiseDetail: evulationInfo()
     })
 
 
     const handleChange = (e) => {
-
         setInfo({ ...info, [e.target.name]: e.target.value })
     }
 
 
     useEffect(() => {
-      get_raiseData('raise-data')
+        get_raiseData('raise-data')
     }, [])
-    
+
+
+
+    useEffect(() => {
+
+        const res = Object.keys(raiseData).map(key => ({ id: key, ...raiseData[key] }))
+        setData(res)
+
+    }, [raiseData])
+
 
 
     return (
@@ -90,13 +108,15 @@ const Settings = () => {
 
             <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center'>Ayarlar</Typography>
 
-            <Button variant='contained' sx={{ml:5}} onClick={() => handleOpen()}>Yeni</Button>
+            <Button variant='contained' sx={{ ml: 5 }} onClick={() => handleOpen()}>Yeni</Button>
 
             <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
 
-            <Settings_Table raiseData={raiseData} info={info} setInfo={setInfo} handleOpen={handleOpen}/>
+            <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} />
 
-            <Raise_GraphicData raiseData={raiseData}/>
+            <Raise_GraphicData raiseData={raiseData} />
+
+
 
         </div>
     )

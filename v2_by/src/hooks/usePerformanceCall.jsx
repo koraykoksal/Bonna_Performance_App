@@ -212,12 +212,11 @@ const usePerformanceCall = () => {
 
     const post_raiseData = async (url, info) => {
 
-        const db = getDatabase()
-        const res = ref(db, `${url}`)
-        const snapshot = await get(res)
-
-
         try {
+
+            const db = getDatabase()
+            const res = ref(db, `${url}`)
+            const snapshot = await get(res)
 
 
             if (!snapshot.exists()) {
@@ -257,17 +256,15 @@ const usePerformanceCall = () => {
         }
     }
 
-    
+
 
     const get_raiseData = async (url) => {
 
-        const db = getDatabase()
-        const res = ref(db, `${url}`)
-        const snapshot = await get(res)
-
-
-
         try {
+
+            const db = getDatabase()
+            const res = ref(db, `${url}`)
+            const snapshot = await get(res)
 
 
             if (!snapshot.exists()) {

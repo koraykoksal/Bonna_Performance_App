@@ -31,35 +31,17 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
         e.preventDefault()
 
         if (info?.id) {
-
             put_raiseData('raise-data', info)
             get_raiseData('raise-data')
-            setInfo({
-                createdDate: "",
-                standartRaise: "",
-                performanceRaise: "",
-                raiseYear: "",
-                raiseDetail: ""
-            })
-            handleClose()
         }
         else {
             post_raiseData('raise-data', info)
             get_raiseData('raise-data')
-            setInfo({
-                createdDate: "",
-                standartRaise: "",
-                performanceRaise: "",
-                raiseYear: "",
-                raiseDetail: ""
-            })
-            handleClose()
         }
 
+        handleClose()
+
     }
-
-
-    console.log(info)
 
 
     return (
@@ -69,13 +51,6 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
                 open={open}
                 onClose={()=>{
                     handleClose()
-                    setInfo({
-                        createdDate: "",
-                        standartRaise: "",
-                        performanceRaise: "",
-                        raiseYear: "",
-                        raiseDetail: ""
-                    })
                 }}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
@@ -94,6 +69,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3, p: 3 }} >
 
                             <TextField
+                            required
                                 label='Standart Zam'
                                 id='standartRaise'
                                 name='standartRaise'
@@ -105,6 +81,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
                             />
 
                             <TextField
+                            required
                                 label='Performans Zam'
                                 id='performanceRaise'
                                 name='performanceRaise'

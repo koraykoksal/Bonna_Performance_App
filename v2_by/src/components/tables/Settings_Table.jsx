@@ -6,7 +6,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 
 
-const Settings_Table = ({ raiseData, setInfo, info,handleOpen }) => {
+const Settings_Table = ({ data, setInfo, info,handleOpen }) => {
 
   const dataGrid_Columns = [
     // {
@@ -98,14 +98,6 @@ const Settings_Table = ({ raiseData, setInfo, info,handleOpen }) => {
   ];
 
 
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-
-    const res = Object.keys(raiseData).map(key => ({ id: key, ...raiseData[key] }))
-    setData(res)
-
-  }, [raiseData])
 
 
 

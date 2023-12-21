@@ -33,9 +33,9 @@ const Raise_GraphicData = ({ raiseData }) => {
 
 
             <AreaChart
-                width={500}
-                height={400}
-                data={chartdata || ""}
+                width={700}
+                height={280}
+                data={chartdata}
                 margin={{
                     top: 10,
                     right: 30,
@@ -51,6 +51,8 @@ const Raise_GraphicData = ({ raiseData }) => {
                 <Area type="monotone" dataKey="performance_raise" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
                 <Area type="monotone" dataKey="standart_raise" stackId="1" stroke="#ffc658" fill="#ffc658" />
             </AreaChart>
+   
+            
 
 
         </div >

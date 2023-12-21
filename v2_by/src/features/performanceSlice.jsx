@@ -22,6 +22,7 @@ const performanceSlice=createSlice({
             state.error = false;
             state.all_performanceData=[]
             state.personelPerformanceData=[]
+            state.raiseData=[]
         },
         fetchFail:(state)=>{
             state.loading=false;
