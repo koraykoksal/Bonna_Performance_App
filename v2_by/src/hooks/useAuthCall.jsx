@@ -55,6 +55,7 @@ const useAuthCall = () => {
         } catch (error) {
             dispatch(fetchFail())
             toastErrorNotify("'Something Went Wrong !'")
+            console.log("login error: ",error)
         }
     }
 
