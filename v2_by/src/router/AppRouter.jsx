@@ -7,10 +7,10 @@ import { NotFound } from '../pages/NotFound'
 import { BrowserRouter } from 'react-router-dom'
 import { PrivateRouter } from './PrivateRouter'
 import Dashboard from '../pages/Dashboard'
-import AdminReport from '../pages/AdminReport'
+import ByReports from '../pages/ByReports'
 import Report from '../pages/Report'
 import MyReports from '../pages/myreports'
-import ByReports from '../pages/ByReports'
+import ManagerReports from '../pages/ManagerReports'
 import Settings from '../pages/Settings'
 
 
@@ -30,8 +30,8 @@ export const AppRouter = () => {
               <Route index element={<Home />} />
               <Route path='report' element={<Report/>}/>
               <Route path='myreports' element={<MyReports/>}/>
+              <Route path='managerreports' element={<ManagerReports/>}/>
               <Route path='byreports' element={<ByReports/>}/>
-              <Route path='adminreport' element={<AdminReport/>}/>
               <Route path='settings' element={<Settings/>}/>
             </Route>
 

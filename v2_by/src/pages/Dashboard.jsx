@@ -45,16 +45,16 @@ function Dashboard() {
 
     const settings=[
         {
-            title:'Mavi Yaka Sonuçlar',
+            title:'Mavi Yaka Değerlendirme',
             url:'/byperformance/myreports'
         },
         {
-            title:'Yönetici Sonuçlar',
-            url:'/byperformance/byreports'
+            title:'Yönetici Değerlendirme',
+            url:'/byperformance/managerreports'
         },
         {
-            title:'Tüm Sonuçlar',
-            url:'/byperformance/adminreport'
+            title:'Beyaz Yaka OKR',
+            url:'/byperformance/byreports'
         },
         {
             title:'Ayarlar',
@@ -220,7 +220,7 @@ function Dashboard() {
 
                                             </Box>
                                         ) :
-                                            ("")
+                                        ("")
                                     }
 
                                    

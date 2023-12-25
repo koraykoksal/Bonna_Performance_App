@@ -1,13 +1,15 @@
 
 import React from 'react'
 import axios from "axios";
-import { toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
+import { toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import {
     fetchStart,
     fetchFail,
     fetchLoginSuccess,
     fetchLogoutSuccess,
     fetchLoginManagerPersonels,
+    fetchTwiserStart,
+    fetchTwiserLoginSuccess,
 
 } from '../features/authSlice'
 import { useDispatch } from 'react-redux';
@@ -104,18 +106,23 @@ const useAuthCall = () => {
         // TWISER sistmeine istek atıldığınzaman farklı veri kaynaklarından veri aldığı için CORS (cross-origin-resource-sharing) işlemi yapılıyor. bundan dolayı proxy ayarı yapılması gerekir
         //? Vite config dosyası içerisine yazılan proxy ayarı ile işlem yapılır
 
-        fetch('/identity/api/auth/login', {
+
+        dispatch(fetchTwiserStart())
+
+        fetch(`${import.meta.env.VITE_PROXY_BASE_ADDRESS}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                Email: 'entegraion@karporselen.com',
-                Password: 'Karporselen23++'
+                Email: `${import.meta.env.VITE_TWISER_LOGIN_EMAIL}`,
+                Password: `${import.meta.env.VITE_TWISER_LOGIN_PASSWORD}`
             })
         })
-            .then(response => response.json())
-            .then(data => console.log(data))
+            .then(res => res.json())
+            .then(data => {
+                dispatch(fetchTwiserLoginSuccess(data))
+            })
             .catch(error => console.error('Error:', error));
 
 

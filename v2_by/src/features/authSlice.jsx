@@ -6,7 +6,10 @@ const initialState={
     error:false,
     token:"",
     userInfo:[],
-    managerPersonels:[]
+    managerPersonels:[],
+    twiserAccesToken:"",
+    twiserRefreshToken:"",
+    twiserUserId:"",
 
 }
 
@@ -48,6 +51,20 @@ const authSlice=createSlice({
             state.managerPersonels=[]
 
         },
+        fetchTwiserStart:(state)=>{
+            state.loading=true;
+            state.error = false;
+            state.twiserAccesToken=""
+            state.twiserRefreshToken=""
+            state.twiserUserId=""
+        },
+        fetchTwiserLoginSuccess:(state,{payload})=>{
+            state.loading=false;
+            state.twiserAccesToken=payload?.AccessToken
+            state.twiserRefreshToken=payload?.RefreshToken
+            state.twiserUserId=payload?.UserId
+        
+        },
 
     }
 
@@ -61,6 +78,8 @@ export const
     fetchLoginSuccess,
     fetchLogoutSuccess,
     fetchLoginManagerPersonels,
+    fetchTwiserStart,
+    fetchTwiserLoginSuccess
 
 }=authSlice.actions
 
