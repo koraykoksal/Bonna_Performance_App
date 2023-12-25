@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Button, Box, Container, Grid, Typography } from "@mui/material"
 import Settings_Modal from '../components/modals/Settings_Modal'
-import { settingsModalBg } from '../styles/globalStyle'
 import usePerformanceCall from '../hooks/usePerformanceCall'
 import { useSelector } from "react-redux"
 import Settings_Table from '../components/tables/Settings_Table'

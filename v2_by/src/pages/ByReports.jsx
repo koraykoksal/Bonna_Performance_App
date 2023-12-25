@@ -5,6 +5,7 @@ import { Box, Typography, Container, Grid } from "@mui/material"
 import { useSelector } from "react-redux"
 import PerformanceResult_Table_BY from '../components/tables/PerformanceResult_Table_BY'
 import PerformanceResultView_HR from '../components/modals/PerformanceResultView_HR'
+import PdfViewer from '../components/PdfViewer'
 
 
 const ByReports = () => {
@@ -136,6 +137,8 @@ const ByReports = () => {
 
 
       <PerformanceResultView_HR handleClose={handleClose} info={info} open={open}/>
+
+      {/* <PdfViewer handleClose={handleClose} info={info} open={open}/> */}
 
 
     </div>

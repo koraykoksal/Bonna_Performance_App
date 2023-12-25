@@ -4,7 +4,10 @@ import Box from '@mui/material/Box';
 import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { my1_questions, my2_questions } from "../../helper/data"
-
+import { BsFiletypePdf } from "react-icons/bs";
+import { RiDownload2Fill } from "react-icons/ri";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 
 const style = {
@@ -23,11 +26,13 @@ const style = {
 };
 
 
-const PerformanceResultView_HR = ({open,handleClose,info}) => {
+const PerformanceResultView_HR = ({ open, handleClose, info }) => {
 
+
+    console.log(info)
 
     return (
-        <div>
+        <div id='modalContent'>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -81,7 +86,6 @@ const PerformanceResultView_HR = ({open,handleClose,info}) => {
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.dypCalisan} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yypCalisan} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.calisanDegerlendirmeYuzdesi * 100}% </Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.personelSonuc} </Typography>
 
                         </Box>
 
@@ -118,7 +122,6 @@ const PerformanceResultView_HR = ({open,handleClose,info}) => {
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.yoneticiDyp} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yoneticiYyp} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.yoneticiDegerlendirmeYuzdesi * 100}% </Typography>
-                            <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.yoneticiSonuc} </Typography>
 
                         </Box>
 
@@ -128,8 +131,9 @@ const PerformanceResultView_HR = ({open,handleClose,info}) => {
 
 
 
-                    <Box mt={5}>
-                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonu: {info?.final_degerlendirmeSonucu} </Typography>
+                    <Box mt={5} display={'flex'} flexDirection={'column'} gap={3}>
+                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Puanı: {info?.final_degerlendirmeSonucu} </Typography>
+                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonuç: {info?.final_degerlendirmeAciklamasi} </Typography>
 
                     </Box>
 
@@ -144,6 +148,7 @@ const PerformanceResultView_HR = ({open,handleClose,info}) => {
                     </Box>
 
                 </Box>
+
 
 
             </Modal>

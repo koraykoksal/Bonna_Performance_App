@@ -14,11 +14,13 @@ import My1 from '../components/My1';
 import My2 from '../components/My2';
 import { object } from 'prop-types';
 import { array } from 'prop-types';
+import useAuthCall from '../hooks/useAuthCall';
 
 
 export const Home = () => {
 
   const { get_personel_performanceData } = usePerformanceCall()
+  const {twiserLogin} = useAuthCall()
   const { managerPersonels } = useSelector((state) => state.auth)
   const { personelPerformanceData } = useSelector((state) => state.performance)
   const [personelData, setPersonelData] = useState([])
@@ -149,6 +151,9 @@ export const Home = () => {
       <Box sx={{ display: 'flex', flexDirection: 'column', mt: 10, gap: 5 }}>
 
         <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', gap: 3 }}>
+
+
+          <Button onClick={()=>twiserLogin()}>calistır</Button>
 
           <Typography variant='h5' p={2} color='#000000' align='center' fontWeight={700}>
             Bonna {evulationInfo()} Dönemi

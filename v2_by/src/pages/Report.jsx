@@ -297,8 +297,6 @@ const Report = () => {
   }
 
 
-  console.log(info)
-
 
   return (
     <div>

@@ -3,7 +3,6 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { Typography, Grid, TextField, Button } from "@mui/material"
 import { IoIosCloseCircle } from "react-icons/io";
-import { settingsModalBg } from '../../styles/globalStyle';
 import usePerformanceCall from '../../hooks/usePerformanceCall';
 
 

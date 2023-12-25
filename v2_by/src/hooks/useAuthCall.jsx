@@ -67,7 +67,7 @@ const useAuthCall = () => {
     }
 
 
-    const get_managerPersonels = async ({username,password}) => {
+    const get_managerPersonels = async ({ username, password }) => {
 
         dispatch(fetchStart())
 
@@ -86,8 +86,8 @@ const useAuthCall = () => {
             }
 
 
-            const  {data}  = await axios(options)
-            
+            const { data } = await axios(options)
+
             dispatch(fetchLoginManagerPersonels(data))
 
 
@@ -98,9 +98,34 @@ const useAuthCall = () => {
     }
 
 
+    const twiserLogin = async () => {
 
 
-    return { login, logout,get_managerPersonels }
+        // TWISER sistmeine istek atıldığınzaman farklı veri kaynaklarından veri aldığı için CORS (cross-origin-resource-sharing) işlemi yapılıyor. bundan dolayı proxy ayarı yapılması gerekir
+        //? Vite config dosyası içerisine yazılan proxy ayarı ile işlem yapılır
+
+        fetch('/identity/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Email: 'entegraion@karporselen.com',
+                Password: 'Karporselen23++'
+            })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+
+
+
+    }
+
+
+
+
+    return { login, logout, get_managerPersonels, twiserLogin }
 }
 
 

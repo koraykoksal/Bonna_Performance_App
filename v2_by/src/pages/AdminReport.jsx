@@ -9,11 +9,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { NotFound } from './NotFound';
+import { useEffect } from 'react';
+import useAuthCall from '../hooks/useAuthCall';
+import { Button } from '@mui/material';
+
 
 const AdminReport = () => {
 
     const { currentUser, userInfo } = useSelector((state) => state.auth)
+    const {twiserLogin} = useAuthCall()
     const navigate = useNavigate()
+
+    
+
 
     return (
 
@@ -22,8 +30,14 @@ const AdminReport = () => {
             {
                 userInfo.ADMIN == '1' ? (
 
-                    <Box>
+                    <Box py={15}>
                         <Typography>Admin page</Typography>
+
+
+                        <Button onClick={()=>twiserLogin()}>
+                            Click Me
+                        </Button>
+
                     </Box>
                 )
                 :

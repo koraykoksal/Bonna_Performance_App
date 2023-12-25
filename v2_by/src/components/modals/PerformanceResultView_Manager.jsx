@@ -23,8 +23,6 @@ const style = {
 };
 
 
-
-
 const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, info }) => {
 
 
@@ -127,8 +125,8 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
 
 
                     <Box mt={5} display={'flex'} flexDirection={'column'} gap={3}>
-                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonuç: {info?.final_degerlendirmeSonucu} </Typography>
-                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Açıklama: {info?.final_degerlendirmeAciklamasi} </Typography>
+                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Puanı: {info?.final_degerlendirmeSonucu} </Typography>
+                        <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonuç: {info?.final_degerlendirmeAciklamasi} </Typography>
 
                     </Box>
 
