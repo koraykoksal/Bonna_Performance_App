@@ -3,9 +3,7 @@ import usePerformanceCall from '../hooks/usePerformanceCall'
 import { useEffect, useState } from 'react'
 import { Box, Typography, Container, Grid } from "@mui/material"
 import { useSelector } from "react-redux"
-import PerformanceResult_Table from '../components/tables/PerformanceResult_Table'
 import PerformanceResult_Table_MY from '../components/tables/PerformanceResult_Table_MY'
-import PerformanceResultView_HR from '../components/modals/PerformanceResultView_HR'
 import PerformanceResultView_Personel from '../components/modals/PerformanceResultView_Personel'
 
 const MyReports = () => {
@@ -54,7 +52,7 @@ const MyReports = () => {
     })
 
     setData(dizi)
-    console.log(dizi)
+   
 
   }, [all_performanceData])
 
@@ -131,7 +129,7 @@ const MyReports = () => {
   })
 
 
-  console.log(info)
+
 
   return (
 
