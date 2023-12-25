@@ -357,7 +357,7 @@ const PerformanceResult_Table_MY = ({data,handleOpen,info,setInfo }) => {
             flex: 1,
         },
         {
-            field: "final_degerlendirmeAciklamasi",
+            field: "personelSonuc",
             headerName: "Sonuç",
             minWidth: 200,
             headerAlign: "center",

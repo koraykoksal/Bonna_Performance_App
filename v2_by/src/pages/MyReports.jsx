@@ -131,7 +131,7 @@ const MyReports = () => {
   })
 
 
-
+  console.log(info)
 
   return (
 

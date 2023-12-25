@@ -9,9 +9,9 @@ import { PrivateRouter } from './PrivateRouter'
 import Dashboard from '../pages/Dashboard'
 import ByReports from '../pages/ByReports'
 import Report from '../pages/Report'
-import MyReports from '../pages/myreports'
 import ManagerReports from '../pages/ManagerReports'
 import Settings from '../pages/Settings'
+import MyReports from '../pages/myreports'
 
 
 
