@@ -15,6 +15,16 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/wokr': {
+        target: 'https://api.twiser.com',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/butunbiApi': {
+        target: 'http://176.236.227.82:3019',
+        changeOrigin: true,
+        secure: false,
+      },
     }
   }
 })

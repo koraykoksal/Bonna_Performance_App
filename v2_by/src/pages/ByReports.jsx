@@ -12,20 +12,25 @@ import { NotFound } from './NotFound';
 import { useEffect } from 'react';
 import useAuthCall from '../hooks/useAuthCall';
 import { Button } from '@mui/material';
+import usePerformanceCall from '../hooks/usePerformanceCall';
 
 
 const ByReports = () => {
 
     const { currentUser, userInfo ,twiserAccesToken} = useSelector((state) => state.auth)
     const { twiserLogin } = useAuthCall()
+    const {get_beyazYaka_performanceData} = usePerformanceCall()
     const navigate = useNavigate()
 
     useEffect(() => {
         twiserLogin()
     }, [])
-    
 
-    console.log(twiserAccesToken)
+    useEffect(() => {
+        get_beyazYaka_performanceData()
+    }, [twiserAccesToken])
+    
+    
 
     return (
 

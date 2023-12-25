@@ -23,6 +23,7 @@ const usePerformanceCall = () => {
 
     const distpatch = useDispatch()
     const navi = useNavigate()
+    const {twiserAccesToken} = useSelector((state)=>state.auth)
 
 
     //! performans dönemini açıklamasını göster
@@ -298,6 +299,34 @@ const usePerformanceCall = () => {
     }
 
 
+    const get_beyazYaka_performanceData = () => {
+
+
+        fetch(`${import.meta.env.VITE_TWISER_BYDATA_BASEADDRESS}`, {
+            method: 'post',
+            headers: {
+                'Accept': 'text/plain',
+                'Content-Type': 'application/json-patch+json',
+                'Authorization': `Bearer ${twiserAccesToken}`
+            },
+            body: JSON.stringify({
+                "CompanyIds": [
+                    1056
+                ],
+                "PeriodSettingIds": [
+                    "64c1361bb93717671ededea5"
+                ],
+                "DimensionIds": [],
+                "UserIdList": [],
+                "DepartmentIds": [],
+                "OrderDirection": "0",
+                "OrderBy": "UserFullName"
+            })
+        })
+        .then(res=>res.json())
+        .then(data=>console.log(data))
+        .catch(err=>console.log(err))
+    }
 
     return {
         get_managerPersonels,
@@ -307,7 +336,8 @@ const usePerformanceCall = () => {
         put_performanceData,
         post_raiseData,
         get_raiseData,
-        put_raiseData
+        put_raiseData,
+        get_beyazYaka_performanceData
 
     }
 }
