@@ -7,7 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 
 
-const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance }) => {
+const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo }) => {
 
 
     const dataGrid_Columns = [
@@ -29,6 +29,36 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance }) => {
             renderCell: ({
                 id,
                 row: {
+                    UserEmployeeNo,
+                    CompanyName,
+                    CompetencePeriodList,
+                    CompetencePeriods,
+                    CompetencePeriodsAvg,
+                    CompetenceWeight,
+                    Department,
+                    DimensionName,
+                    ExternalNote,
+                    ExternalNoteName,
+                    ExternalNoteWeight,
+                    FinalScore,
+                    FinalScoreScale,
+                    IncludeModules,
+                    ManagerComment,
+                    ManagerScore,
+                    ManagerScoreIsSend,
+                    ManagerScoreScale,
+                    ObjectivePeriodList,
+                    ObjectivePeriods,
+                    ObjectivePeriodsAvg,
+                    ObjectiveWeight,
+                    ParentEmail,
+                    ParentFullName,
+                    PerformancePeriodName,
+                    SystemNote,
+                    SystemNoteScale,
+                    UserEmail,
+                    UserFullName,
+                    UserPosition
                 }
             }) => {
                 return [
@@ -40,7 +70,37 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance }) => {
                         onClick={() => {
                             handleOpen()
                             setInfo({
-                                id
+                                id,
+                                CompanyName,
+                                CompetencePeriodList,
+                                CompetencePeriods,
+                                CompetencePeriodsAvg,
+                                CompetenceWeight,
+                                Department,
+                                DimensionName,
+                                ExternalNote,
+                                ExternalNoteName,
+                                ExternalNoteWeight,
+                                FinalScore,
+                                FinalScoreScale,
+                                IncludeModules,
+                                ManagerComment,
+                                ManagerScore,
+                                ManagerScoreIsSend,
+                                ManagerScoreScale,
+                                ObjectivePeriodList,
+                                ObjectivePeriods,
+                                ObjectivePeriodsAvg,
+                                ObjectiveWeight,
+                                ParentEmail,
+                                ParentFullName,
+                                PerformancePeriodName,
+                                SystemNote,
+                                SystemNoteScale,
+                                UserEmail,
+                                UserEmployeeNo,
+                                UserFullName,
+                                UserPosition
                             })
 
                         }}
@@ -170,8 +230,8 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance }) => {
             align: "center",
             flex: 1,
         },
-        
-        
+
+
     ];
 
 
@@ -183,15 +243,15 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance }) => {
                     columns={dataGrid_Columns}
                     rows={byOkrPerformance}
                     //byOkrPerformance datası içerisinde bir id değeri olmadığı için getRowId={(row)=>row.UserEmployeeNo} işlemi yaparak UserEmployeeNo bilgisi id olarak kullanıldı
-                    getRowId={(row)=>row.UserEmployeeNo}
+                    getRowId={(row) => row.UserEmployeeNo}
                     initialState={{
                         pagination: {
-                          paginationModel: {
-                            pageSize: 10,
-                          },
+                            paginationModel: {
+                                pageSize: 10,
+                            },
                         },
-                      }}
-                    pageSizeOptions={[10, 25,50,75,100]}
+                    }}
+                    pageSizeOptions={[10, 25, 50, 75, 100]}
                     slots={{ toolbar: GridToolbar }}
                     disableRowSelectionOnClick
                     sx={{

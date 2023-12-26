@@ -100,8 +100,7 @@ const Settings = () => {
 
     }, [raiseData])
 
-    const d = JSON.stringify(data)
-    console.log(d)
+
 
     return (
         <div>

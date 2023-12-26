@@ -15,6 +15,7 @@ import { Button } from '@mui/material';
 import usePerformanceCall from '../hooks/usePerformanceCall';
 import PerformanceResult_Table_BY_OKR from '../components/tables/PerformanceResult_Table_BY_OKR';
 import { useState } from 'react';
+import PerformanceResultView_OKR from '../components/modals/PerformanceResultView_OKR';
 
 const ByReports = () => {
 
@@ -22,18 +23,22 @@ const ByReports = () => {
     const { byOkrPerformance } = useSelector((state) => state.performance)
     const { twiserLogin } = useAuthCall()
     const { get_beyazYaka_performanceData } = usePerformanceCall()
-    // İlk state, verilerinizi saklamak için
-    const [myData, setMyData] = useState([]);
-
-    // İkinci state, yeni state'inizi saklamak için
-    const [newState, setNewState] = useState([]);
 
 
+    // viewer modal handle state bilgisi
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false)
+
+    }
 
 
     // sayfa render olduğu zaman twiser sistemine login ol
     useEffect(() => {
-        twiserLogin()
+        if (!twiserAccesToken) {
+            twiserLogin()
+        }
     }, [])
 
     // twiser sistemine login olduktan sonra performans verilerini çek
@@ -42,7 +47,46 @@ const ByReports = () => {
     }, [twiserAccesToken])
 
 
-  
+
+    //! girilen dataların verilerini tut
+    const [info, setInfo] = useState({
+
+        CompanyName: "",
+        CompetencePeriodList: "",
+        CompetencePeriods: "",
+        CompetencePeriodsAvg: "",
+        CompetenceWeight: "",
+        Department: "",
+        DimensionName: "",
+        ExternalNote: "",
+        ExternalNoteName: "",
+        ExternalNoteWeight: "",
+        FinalScore: "",
+        FinalScoreScale: "",
+        IncludeModules: "",
+        ManagerComment: "",
+        ManagerScore: "",
+        ManagerScoreIsSend: "",
+        ManagerScoreScale: "",
+        ObjectivePeriodList: "",
+        ObjectivePeriods: "",
+        ObjectivePeriodsAvg: "",
+        ObjectiveWeight: "",
+        ParentEmail: "",
+        ParentFullName: "",
+        PerformancePeriodName: "",
+        SystemNote: "",
+        SystemNoteScale: "",
+        UserEmail: "",
+        UserEmployeeNo: "",
+        UserFullName: "",
+        UserPosition: ""
+
+
+
+
+    })
+
 
 
     return (
@@ -51,7 +95,9 @@ const ByReports = () => {
 
             <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Beyaz Yaka OKR Sonuçlar</Typography>
 
-            <PerformanceResult_Table_BY_OKR byOkrPerformance={byOkrPerformance} />
+            <PerformanceResult_Table_BY_OKR byOkrPerformance={byOkrPerformance} setInfo={setInfo} handleOpen={handleOpen}/>
+
+            <PerformanceResultView_OKR info={info} open={open} handleClose={handleClose}/>
 
         </div>
     )
