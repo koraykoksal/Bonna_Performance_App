@@ -172,7 +172,7 @@ function Dashboard() {
 
                             <Box>
 
-                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer' }} >{avatarNick()}</Avatar>
+                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer',backgroundColor:'green' }} >{avatarNick()}</Avatar>
 
                                 <Menu
                                     sx={{ mt: '45px' }}
