@@ -100,7 +100,8 @@ const Settings = () => {
 
     }, [raiseData])
 
-
+    const d = JSON.stringify(data)
+    console.log(d)
 
     return (
         <div>
@@ -111,9 +112,13 @@ const Settings = () => {
 
             <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
 
-            <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} />
 
-            <Raise_GraphicData raiseData={raiseData} />
+
+            <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
+                <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} />
+
+                <Raise_GraphicData raiseData={raiseData} data={data} />
+            </Box>
 
 
 

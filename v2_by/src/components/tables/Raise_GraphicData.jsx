@@ -4,55 +4,37 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { AreaChart, Area } from 'recharts';
 
 
-const Raise_GraphicData = ({ raiseData }) => {
+const Raise_GraphicData = ({ data }) => {
 
 
-    const [chartdata, setChartdata] = useState([])
-
-
-    useEffect(() => {
-        // raiseData'nın bir dizi olduğundan ve doğru verilere sahip olduğundan emin olun
-        if (Array.isArray(raiseData)) {
-            const result = raiseData.map(item => ({
-                "year": item?.raiseYear,
-                "standart_raise": item?.standartRaise,
-                "performance_raise": item?.performanceRaise,
-                "manager_raise": item?.managerRaise,
-            }));
-
-            setChartdata(result);
-        }
-    }, [raiseData]);
-
-
-
-
+    console.log(data)
     return (
 
         <div>
 
 
-            <AreaChart
-                width={700}
-                height={280}
-                data={chartdata}
-                margin={{
-                    top: 10,
-                    right: 30,
-                    left: 0,
-                    bottom: 0,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
+            <AreaChart width={730} height={250} data={data}
+                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                <defs>
+                    <linearGradient id="colorPerformance" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                        <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                    </linearGradient>
+                    <linearGradient id="colorStandard" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                        <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                    </linearGradient>
+                </defs>
+                <XAxis dataKey="raiseYear" />
                 <YAxis />
+                <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip />
-                <Area type="monotone" dataKey="manager_raise" stackId="1" stroke="#8884d8" fill="#8884d8" />
-                <Area type="monotone" dataKey="performance_raise" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-                <Area type="monotone" dataKey="standart_raise" stackId="1" stroke="#ffc658" fill="#ffc658" />
+                <Legend />
+                <Area type="monotone" dataKey="performanceRaise" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPerformance)" />
+                <Area type="monotone" dataKey="standartRaise" stroke="#8884d8" fillOpacity={1} fill="url(#colorStandard)" />
             </AreaChart>
-   
-            
+
+
 
 
         </div >

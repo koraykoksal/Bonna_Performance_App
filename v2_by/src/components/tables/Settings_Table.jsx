@@ -98,16 +98,19 @@ const Settings_Table = ({ data, setInfo, info,handleOpen }) => {
   ];
 
 
-
-
-
-
   return (
     <div>
       <Box p={5}>
         <DataGrid
           columns={dataGrid_Columns}
           rows={data}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 10,
+              },
+            },
+          }}
           pageSizeOptions={[10, 25, 50, 75, 100]}
           slots={{ toolbar: GridToolbar }}
           disableRowSelectionOnClick

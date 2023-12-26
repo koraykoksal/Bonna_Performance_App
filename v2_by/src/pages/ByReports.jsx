@@ -43,8 +43,6 @@ const ByReports = () => {
 
 
   
-    
- console.log(byOkrPerformance)
 
 
     return (
