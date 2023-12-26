@@ -24,10 +24,6 @@ const style = {
 
 const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
-
-  console.log(info)
-
-
   return (
     <div>
 

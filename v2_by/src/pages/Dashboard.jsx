@@ -28,6 +28,8 @@ function Dashboard() {
     const { logout } = useAuthCall()
     const navi = useNavigate()
     const dispatch = useDispatch()
+    let avatarName = ""
+
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -43,22 +45,22 @@ function Dashboard() {
         },
     ];
 
-    const settings=[
+    const settings = [
         {
-            title:'Mavi Yaka Değerlendirme',
-            url:'/byperformance/myreports'
+            title: 'Mavi Yaka Değerlendirme',
+            url: '/byperformance/myreports'
         },
         {
-            title:'Yönetici Değerlendirme',
-            url:'/byperformance/managerreports'
+            title: 'Yönetici Değerlendirme',
+            url: '/byperformance/managerreports'
         },
         {
-            title:'Beyaz Yaka OKR',
-            url:'/byperformance/byreports'
+            title: 'Beyaz Yaka OKR',
+            url: '/byperformance/byreports'
         },
         {
-            title:'Ayarlar',
-            url:'/byperformance/settings'
+            title: 'Ayarlar',
+            url: '/byperformance/settings'
         }
     ]
 
@@ -80,6 +82,16 @@ function Dashboard() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const avatarNick = () => {
+        const name = currentUser[0]
+        const boslukIndex = currentUser.indexOf(" ")
+        const surname = currentUser[boslukIndex + 1]
+
+        avatarName = name + surname
+
+        return avatarName
+    }
 
 
 
@@ -154,11 +166,57 @@ function Dashboard() {
 
 
 
-                        <Box sx={{ flexGrow: 0 }}>
+                        <Box sx={{ flexGrow: 0, display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center' }}>
+
+                            <Typography>{currentUser && currentUser}</Typography>
+
+                            <Box>
+
+                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer' }} >{avatarNick()}</Avatar>
+
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <Box onClick={handleCloseUserMenu} s sx={{ display: 'flex', flexDirection: 'column' }}>
+
+                                        {
+                                            userInfo.ADMIN === '1' ? (
+
+
+                                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+
+                                                    {
+                                                        settings.map((item, index) => (
+                                                            <Button key={index} sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi(`${item.url}`)}>{item.title}</Button>
+                                                        ))
+                                                    }
+                                                </Box>
+                                            ) :
+                                                ("")
+                                        }
+
+                                        <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Çıkış</Button>
+
+                                    </Box>
+                                </Menu>
+                            </Box>
 
 
 
-                            {
+                            {/* {
                                 currentUser ? (
                                     <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }} >
 
@@ -168,8 +226,6 @@ function Dashboard() {
                                             <PiUserListDuotone onClick={handleOpenUserMenu} size={'35px'} color='#ffffff' style={{ padding: 3 }} />
                                         </IconButton>
 
-                                        {/* <IoIosLogOut size={25} cursor='pointer' color='#C70039' /> */}
-
                                     </Box>
                                 ) : (
                                     ""
@@ -178,62 +234,51 @@ function Dashboard() {
                             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
 
 
-                            </Box>
+                            </Box> */}
 
 
 
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
+                            {/* <Box>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <Box onClick={handleCloseUserMenu} s sx={{ display: 'flex', flexDirection: 'column' }}>
+
+                                        {
+                                            userInfo.ADMIN === '1' ? (
 
 
+                                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
-                                <Box onClick={handleCloseUserMenu} s sx={{ display: 'flex', flexDirection: 'column' }}>
+                                                    {
+                                                        settings.map((item, index) => (
+                                                            <Button key={index} sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi(`${item.url}`)}>{item.title}</Button>
+                                                        ))
+                                                    }
+                                                </Box>
+                                            ) :
+                                                ("")
+                                        }
 
-                                    {
-                                        userInfo.ADMIN === '1' ? (
+                                        <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Çıkış</Button>
 
+                                    </Box>
 
-                                            <Box sx={{display:'flex',flexDirection:'column'}}>
-
-                                                {
-                                                    settings.map((item,index)=>(
-                                                        <Button key={index} sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi(`${item.url}`)}>{item.title}</Button>
-                                                    ))
-                                                }
-                                                
-                                                {/* <Button sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi('/byperformance/myreport')}>Admin Rapor</Button>
-                                                <Button sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navi('/byperformance/adminreport')}>Admin Rapor</Button> */}
-
-                                            </Box>
-                                        ) :
-                                        ("")
-                                    }
-
-                                   
-
-
-                                    <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Çıkış</Button>
-
-                                </Box>
-
-                            </Menu>
-
-
-
+                                </Menu>
+                            </Box> */}
                         </Box>
 
 

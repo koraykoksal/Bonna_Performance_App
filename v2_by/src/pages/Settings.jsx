@@ -105,20 +105,21 @@ const Settings = () => {
     return (
         <div>
 
+
+
             <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center' variant='h6'>Ayarlar</Typography>
 
-            <Button variant='contained' sx={{ ml: 5 }} onClick={() => handleOpen()}>Yeni</Button>
+            <Button variant='contained' sx={{ ml: 15,textTransform:'none' }} onClick={() => handleOpen()}>Yeni</Button>
 
             <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
 
 
 
-            <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
+            <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'} gap={3} alignItems={'center'}>
                 <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} />
 
                 <Raise_GraphicData raiseData={raiseData} data={data} />
             </Box>
-
 
 
         </div>
