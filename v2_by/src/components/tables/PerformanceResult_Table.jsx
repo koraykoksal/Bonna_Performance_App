@@ -469,6 +469,13 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, dat
         <DataGrid
           columns={dataGrid_Columns}
           rows={data}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 10,
+              },
+            },
+          }}
           pageSizeOptions={[10, 25, 50, 75, 100]}
           slots={{ toolbar: GridToolbar }}
           disableRowSelectionOnClick

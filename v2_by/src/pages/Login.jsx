@@ -52,16 +52,16 @@ export const Login = () => {
   return (
 
 
-    <Container maxWidth="lg" sx={{ mt: 10 }}>
+    <Container sx={{ mt:15 }}>
 
       <Grid
         container
         justifyContent="center"
         direction="row-reverse"
         sx={{
-          
+          alignItems:'center',
           p: 2,
-          gap:5
+          gap:5,
         }}
       >
 

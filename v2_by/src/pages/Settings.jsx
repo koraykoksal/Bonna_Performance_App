@@ -105,7 +105,7 @@ const Settings = () => {
     return (
         <div>
 
-            <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center'>Ayarlar</Typography>
+            <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center' variant='h6'>Ayarlar</Typography>
 
             <Button variant='contained' sx={{ ml: 5 }} onClick={() => handleOpen()}>Yeni</Button>
 

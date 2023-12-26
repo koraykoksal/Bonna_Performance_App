@@ -1,0 +1,207 @@
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
+import { Box } from '@mui/material';
+import { AiFillEdit } from "react-icons/ai";
+import { FaEye } from "react-icons/fa";
+
+
+const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance }) => {
+
+
+    const dataGrid_Columns = [
+        // {
+        //     field: "id",
+        //     headerName: "ID",
+        //     minWidth: 150,
+        //     headerAlign: "center",
+        //     align: "center",
+        //     flex: 1,
+        // },
+        {
+            field: "actions",
+            headerName: "Düzenle",
+            minWidth: 120,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+            renderCell: ({
+                id,
+                row: {
+                }
+            }) => {
+                return [
+
+                    <GridActionsCellItem
+                        key={'show'}
+                        label='Show'
+                        icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+                        onClick={() => {
+                            handleOpen()
+                            setInfo({
+                                id
+                            })
+
+                        }}
+                    />
+
+
+                ]
+            },
+        },
+        {
+            field: "UserEmployeeNo",
+            headerName: "User No",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "UserFullName",
+            headerName: "Personel",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "UserPosition",
+            headerName: "Pozisyon",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "Department",
+            headerName: "Departman",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ParentFullName",
+            headerName: "Yönetici",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "PerformancePeriodName",
+            headerName: "Performans Dönemi",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "SystemNote",
+            headerName: "OKR Puan",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "SystemNoteScale",
+            headerName: "Değerlendirme",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ManagerScoreScale",
+            headerName: "Yönetici Değerlendirme",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ManagerComment",
+            headerName: "Yönetici Açıklama",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ManagerScore",
+            headerName: "Yönetici Oranı",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ObjectivePeriodsAvg",
+            headerName: "OKR Oranı",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ObjectivePeriods",
+            headerName: "OKR Yılı",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "CompetencePeriods",
+            headerName: "Değerlendirme Dönemi",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "CompetencePeriodsAvg",
+            headerName: "CompetencePeriodsAvg",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        
+        
+    ];
+
+
+    return (
+        <div>
+
+            <Box p={5}>
+                <DataGrid
+                    columns={dataGrid_Columns}
+                    rows={byOkrPerformance}
+                    //byOkrPerformance datası içerisinde bir id değeri olmadığı için getRowId={(row)=>row.UserEmployeeNo} işlemi yaparak UserEmployeeNo bilgisi id olarak kullanıldı
+                    getRowId={(row)=>row.UserEmployeeNo}
+                    initialState={{
+                        pagination: {
+                          paginationModel: {
+                            pageSize: 10,
+                          },
+                        },
+                      }}
+                    pageSizeOptions={[10, 25,50,75,100]}
+                    slots={{ toolbar: GridToolbar }}
+                    disableRowSelectionOnClick
+                    sx={{
+                        boxShadow: 4,
+                    }}
+                />
+            </Box>
+
+        </div>
+    )
+}
+
+export default PerformanceResult_Table_BY_OKR

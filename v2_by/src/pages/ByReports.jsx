@@ -13,30 +13,47 @@ import { useEffect } from 'react';
 import useAuthCall from '../hooks/useAuthCall';
 import { Button } from '@mui/material';
 import usePerformanceCall from '../hooks/usePerformanceCall';
-
+import PerformanceResult_Table_BY_OKR from '../components/tables/PerformanceResult_Table_BY_OKR';
+import { useState } from 'react';
 
 const ByReports = () => {
 
-    const { currentUser, userInfo ,twiserAccesToken} = useSelector((state) => state.auth)
+    const { twiserAccesToken } = useSelector((state) => state.auth)
+    const { byOkrPerformance } = useSelector((state) => state.performance)
     const { twiserLogin } = useAuthCall()
-    const {get_beyazYaka_performanceData} = usePerformanceCall()
-    const navigate = useNavigate()
+    const { get_beyazYaka_performanceData } = usePerformanceCall()
+    // İlk state, verilerinizi saklamak için
+    const [myData, setMyData] = useState([]);
 
+    // İkinci state, yeni state'inizi saklamak için
+    const [newState, setNewState] = useState([]);
+
+
+
+
+    // sayfa render olduğu zaman twiser sistemine login ol
     useEffect(() => {
         twiserLogin()
     }, [])
 
+    // twiser sistemine login olduktan sonra performans verilerini çek
     useEffect(() => {
         get_beyazYaka_performanceData()
     }, [twiserAccesToken])
+
+
+  
     
-    
+ console.log(byOkrPerformance)
+
 
     return (
 
         <div>
 
             <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Beyaz Yaka OKR Sonuçlar</Typography>
+
+            <PerformanceResult_Table_BY_OKR byOkrPerformance={byOkrPerformance} />
 
         </div>
     )

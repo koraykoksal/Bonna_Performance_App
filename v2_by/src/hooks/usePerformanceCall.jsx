@@ -7,7 +7,8 @@ import {
     fetchPerformanceData,
     fetchManagerData,
     fetchAllPerformanceData,
-    fetchRaiseData
+    fetchRaiseData,
+    fetchByOKRPerformanceData
 
 } from '../features/performanceSlice'
 import axios from 'axios'
@@ -23,7 +24,7 @@ const usePerformanceCall = () => {
 
     const distpatch = useDispatch()
     const navi = useNavigate()
-    const {twiserAccesToken} = useSelector((state)=>state.auth)
+    const { twiserAccesToken } = useSelector((state) => state.auth)
 
 
     //! performans dönemini açıklamasını göster
@@ -299,6 +300,7 @@ const usePerformanceCall = () => {
     }
 
 
+
     const get_beyazYaka_performanceData = () => {
 
 
@@ -320,13 +322,39 @@ const usePerformanceCall = () => {
                 "UserIdList": [],
                 "DepartmentIds": [],
                 "OrderDirection": "0",
-                "OrderBy": "UserFullName"
+                "OrderBy": "UserFullName",
+                "Page": 0,
+                "PageSize": 10000
+                // "take": 500
             })
         })
-        .then(res=>res.json())
-        .then(data=>console.log(data))
-        .catch(err=>console.log(err))
+            .then(res => res.json())
+            .then(data => {
+
+                    const dizi=[]
+
+                    Object.values(data).forEach(element=>{
+
+                        if(Array.isArray(element)){
+
+                            const result = element.map(item=>{
+                                dizi.push(item)
+                                return{...item,item}
+                            })
+
+                  
+                           distpatch(fetchByOKRPerformanceData(dizi))
+                        }
+                    })
+
+                
+
+            })
+            .catch(err => console.log(err))
     }
+
+
+
 
     return {
         get_managerPersonels,

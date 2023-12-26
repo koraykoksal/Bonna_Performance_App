@@ -11,7 +11,7 @@ import ByReports from '../pages/ByReports'
 import Report from '../pages/Report'
 import ManagerReports from '../pages/ManagerReports'
 import Settings from '../pages/Settings'
-// import MyReports from '../pages/myreports'
+import MyReports from '../pages/myreports'
 
 
 
@@ -29,7 +29,7 @@ export const AppRouter = () => {
             <Route path='' element={<Dashboard />}>
               <Route index element={<Home />} />
               <Route path='report' element={<Report/>}/>
-              {/* <Route path='myreports' element={<MyReports/>}/> */}
+              <Route path='myreports' element={<MyReports/>}/>
               <Route path='managerreports' element={<ManagerReports/>}/>
               <Route path='byreports' element={<ByReports/>}/>
               <Route path='settings' element={<Settings/>}/>

@@ -384,6 +384,7 @@ const PerformanceResult_Table_MY = ({data,handleOpen,info,setInfo }) => {
 
     ];
 
+    console.log("data: ",data)
 
     return (
         <div>
@@ -392,6 +393,13 @@ const PerformanceResult_Table_MY = ({data,handleOpen,info,setInfo }) => {
                 <DataGrid
                     columns={dataGrid_Columns}
                     rows={data}
+                    initialState={{
+                        pagination: {
+                          paginationModel: {
+                            pageSize: 10,
+                          },
+                        },
+                      }}
                     pageSizeOptions={[10, 25, 50, 75, 100]}
                     slots={{ toolbar: GridToolbar }}
                     disableRowSelectionOnClick

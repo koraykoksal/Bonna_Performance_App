@@ -62,7 +62,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
                     <Box display={'flex'} flexDirection={'column'} gap={5} component={'form'} onSubmit={handleSubmit}>
 
                         <Box p={3}>
-                            <Typography variant='subtitle2' color={'red'} fontWeight={700} align='center'>Zam Oranları Giriş</Typography>
+                            <Typography variant='h6' color={'red'} fontWeight={700} align='center'>{info?.id ? 'Zam Oranları Güncelle':'Zam Oranları Giriş'}</Typography>
                         </Box>
 
                         <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3, p: 3 }} >
