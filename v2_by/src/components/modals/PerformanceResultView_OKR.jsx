@@ -55,6 +55,7 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
 
               <Typography variant='subtitle2' align='center' fontWeight={700}>OKR Ortalaması : {info?.ObjectivePeriodsAvg} puan</Typography>
+              <Typography variant='subtitle2' align='center' fontWeight={700}>Yetkinlik Puanı: {info?.CompetencePeriodsAvg} </Typography>
 
             </Box>
 
@@ -75,8 +76,14 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
 
 
-          <Box mt={5} display={'flex'} flexDirection={'column'} gap={3}>
-            <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Puanı: {info?.SystemNote} </Typography>
+          <Box mt={10} display={'flex'} flexDirection={'column'} gap={3}>
+
+
+
+            
+
+            <Typography variant='subtitle2' align='center' fontWeight={700}>Performans Notu: {info?.SystemNote} </Typography>
+
             <Typography variant='subtitle2' align='center' fontWeight={700}>
               Değerlendirme Sonuç:
               {info?.SystemNote >= 0 && info?.SystemNote <= 45 && " Beklentileri Karşılamıyor 😫"}

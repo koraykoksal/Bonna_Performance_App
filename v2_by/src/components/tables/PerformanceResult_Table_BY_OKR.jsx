@@ -224,7 +224,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         },
         {
             field: "CompetencePeriodsAvg",
-            headerName: "CompetencePeriodsAvg",
+            headerName: "Yetkinlik Değerlendirme Notu",
             minWidth: 180,
             headerAlign: "center",
             align: "center",

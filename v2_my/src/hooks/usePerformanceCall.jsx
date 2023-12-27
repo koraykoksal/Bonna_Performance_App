@@ -47,7 +47,7 @@ const usePerformanceCall = () => {
 
     }
 
-    
+
 
     const post_new_performanceData = async (url, info) => {
 
@@ -62,11 +62,16 @@ const usePerformanceCall = () => {
             // kullanıcı veri tabanında var mı kontrol et
             if (!snapshot.exists()) {
 
-                // kullanıcı yoksa kayıt işlemini yap
-                const uID = uid();
-                const newDb = getDatabase();
-                await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
-                toastSuccessNotify('Kayıt yapılmıştır.');
+                try {
+                    // kullanıcı yoksa kayıt işlemini yap
+                    const uID = uid();
+                    const newDb = getDatabase();
+                    await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                    toastSuccessNotify('Kayıt yapılmıştır.');
+                } catch (error) {
+                    console.log("post_new_performanceData", error)
+                }
+
 
             } else {
 
@@ -79,19 +84,28 @@ const usePerformanceCall = () => {
 
                 const result = Object.keys(data).map(key => ({ id: key, ...data[key] }));
 
+
+
                 const findElement = result.filter(item => (
-                    item.degerlendirmeYili === currentYear &&
-                    item.degerlendirmeDonemiAciklama === degerlendirmeDonemiAciklama
+                    item.degerlendirmeYili == currentYear &&
+                    item.degerlendirmeDonemiAciklama == degerlendirmeDonemiAciklama
                 ));
+
+
 
                 // doğrula sonrası işlemleri yap
                 if (findElement) {
                     toastWarnNotify(`${info.tcNo} dönem kaydı var. Tekrar kayıt oluşturamazsınız !`);
                 } else {
-                    const uID = uid();
-                    const newDb = getDatabase();
-                    await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
-                    toastSuccessNotify('Kayıt yapılmıştır.');
+                    try {
+                        const uID = uid();
+                        const newDb = getDatabase();
+                        await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
+                        toastSuccessNotify('Kayıt yapılmıştır.');
+                    } catch (error) {
+                        console.log("post_new_performanceData", error)
+                    }
+
                 }
             }
 
@@ -118,10 +132,10 @@ const usePerformanceCall = () => {
             const snapshot = await get(res)
 
 
-            if(!snapshot.exists()){
+            if (!snapshot.exists()) {
                 console.log("Personel performans sonucu datası null veya undifend geliyor !")
             }
-            else{
+            else {
                 const data = snapshot.val()
                 distpatch(fetchPerformanceData(data))
             }
