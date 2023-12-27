@@ -59,9 +59,14 @@ function Dashboard() {
             url: '/byperformance/byreports'
         },
         {
+            title: 'Sonuçlar',
+            url: '/byperformance/allresults'
+        },
+        {
             title: 'Ayarlar',
             url: '/byperformance/settings'
-        }
+        },
+        
     ]
 
 
@@ -83,6 +88,7 @@ function Dashboard() {
         setAnchorElUser(null);
     };
 
+    //avatarın name bilgisi
     const avatarNick = () => {
         const name = currentUser[0]
         const boslukIndex = currentUser.indexOf(" ")

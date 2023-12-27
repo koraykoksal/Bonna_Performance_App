@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { AreaChart, Area } from 'recharts';
-
+import {Box,Typography,Container} from "@mui/material"
 
 const Raise_GraphicData = ({ data }) => {
 
@@ -12,6 +12,9 @@ const Raise_GraphicData = ({ data }) => {
 
         <div>
 
+            <Box>
+
+<Typography variant='h6' align='center' p={2}>Maaş Grafiği</Typography>
 
             <AreaChart width={730} height={250} data={data}
                 margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
@@ -33,6 +36,10 @@ const Raise_GraphicData = ({ data }) => {
                 <Area type="monotone" dataKey="performanceRaise" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPerformance)" />
                 <Area type="monotone" dataKey="standartRaise" stroke="#8884d8" fillOpacity={1} fill="url(#colorStandard)" />
             </AreaChart>
+
+            </Box>
+
+            
 
 
 
