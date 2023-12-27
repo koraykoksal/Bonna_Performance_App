@@ -1,7 +1,7 @@
 
 import React from 'react'
 import axios from "axios";
-import { toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
+import { toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { fetchStart, fetchFail, loginSuccess, logoutSuccess, fetchAllUsers } from '../features/authSlice'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -32,10 +32,11 @@ const useAuthCall = () => {
 
             const res = await axios(options)
 
-            if (res.status == 200) {
+            if (res?.data.length > 0) {
                 dispatch(fetchAllUsers(res?.data))
             }
             else {
+                toastWarnNotify('Entegrasyondan cevap alınamadı !')
                 console.log(" ** login öncesi bonna personelleri bilgisini alamıyor. get_bonnaPersonel fonksiyonu çalışmadı session problemi olabilir ! ** ")
             }
 
@@ -64,6 +65,8 @@ const useAuthCall = () => {
             await get_bonnaPersonel()
 
             const findPersonel = allBonnaPersonel.find((item) => item.TCKIMLIKNO == userdata.tcno)
+
+            console.log(findPersonel)
 
             if (findPersonel) {
 

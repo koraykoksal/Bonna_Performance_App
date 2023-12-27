@@ -142,7 +142,6 @@ export const Home = () => {
 
 
 
-
   return (
 
     <>
@@ -175,7 +174,7 @@ export const Home = () => {
               name='choice_personel_tcno'
               label="choice_personel_tcno"
               value={info.choice_personel_tcno}
-              onChange={(e) => setInfo(e.target.value)}
+              onChange={(e)=>setInfo(e.target.value)}
             >
               {
                 managerpersonelData.map((item, index) => (

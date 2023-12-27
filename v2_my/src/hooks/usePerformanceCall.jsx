@@ -26,7 +26,7 @@ const usePerformanceCall = () => {
 
 
     //! performans dönemini açıklamasını göster
-    const evulationInfo = async () => {
+    const evulationInfo = () => {
 
         const thisYear = new Date().getFullYear()
         const nextYear = new Date().getFullYear() + 1
@@ -84,7 +84,7 @@ const usePerformanceCall = () => {
 
                 const result = Object.keys(data).map(key => ({ id: key, ...data[key] }));
 
-
+               
 
                 const findElement = result.filter(item => (
                     item.degerlendirmeYili == currentYear &&
@@ -94,7 +94,7 @@ const usePerformanceCall = () => {
 
 
                 // doğrula sonrası işlemleri yap
-                if (findElement) {
+                if (findElement.length > 0) {
                     toastWarnNotify(`${info.tcNo} dönem kaydı var. Tekrar kayıt oluşturamazsınız !`);
                 } else {
                     try {

@@ -28,7 +28,7 @@ const usePerformanceCall = () => {
 
 
     //! performans dönemini açıklamasını göster
-    const evulationInfo = async () => {
+    const evulationInfo = () => {
 
         const thisYear = new Date().getFullYear()
         const nextYear = new Date().getFullYear() + 1
