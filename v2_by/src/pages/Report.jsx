@@ -127,6 +127,7 @@ const Report = () => {
       if (typeof item === 'object' && item !== null) {
         const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
 
+        //! filter fonksiyonu ilk bulduğu değeri döndürür
         // const detayliEslesenler2 = managerpersonelData.filter(obj1 =>
         //   result.some(obj2 => obj2.tcNo === obj1.tc))
         //   .map(obj1 => {
@@ -136,7 +137,7 @@ const Report = () => {
         //     return { ...obj1, eslesen };
         //   });
 
-        // Eşleşen tüm öğeleri toplayan reduce fonksiyonu
+        //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
         const eslesenler = result.reduce((acc, obj2) => {
           const eslesen = managerpersonelData.find(obj1 => obj2.tcNo === obj1.tc);
           if (eslesen) {

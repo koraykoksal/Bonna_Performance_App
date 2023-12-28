@@ -57,14 +57,11 @@ export const Home = () => {
 
     if (Array.isArray(managerPersonels.PERSONEL)) {
 
+      let multiSonuc = managerPersonels.PERSONEL.map((personel,index)=>({
+        personel,
+        tc:managerPersonels.TC[index]
+      }))
 
-      let multiSonuc = []
-      for (let i = 0; i < managerPersonels.PERSONEL.length; i++) {
-        multiSonuc.push({
-          personel: managerPersonels.PERSONEL[i],
-          tc: managerPersonels.TC[i]
-        })
-      }
 
       setManagerPersonelData(multiSonuc)
 
@@ -80,6 +77,8 @@ export const Home = () => {
           tc: dizi[0].TC
         })
       }
+
+
       setManagerPersonelData(singleSonuc)
     }
 
@@ -141,22 +140,7 @@ export const Home = () => {
   // }, [])
 
 
-  //! manager personel değerlendirmesi yapılan kişilerin verisini çek ve array olarak tut
-  // useEffect(() => {
-    
-  //   Object.values(all_performanceData).forEach(element=>{
-  //     if(typeof element == 'object' && element != null){
-
-  //       const result = Object.keys(element).map(key => { return { id: key, ...element[key] } })
-
-        
-  //     }
-  //   })
-
-  // }, [all_performanceData])
-  
-
-
+  console.log(managerPersonels)
 
   return (
 
