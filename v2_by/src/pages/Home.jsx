@@ -19,18 +19,14 @@ import useAuthCall from '../hooks/useAuthCall';
 
 export const Home = () => {
 
-  const { get_personel_performanceData } = usePerformanceCall()
+  const { get_personel_performanceData, get_All_PerformanceData } = usePerformanceCall()
   const { managerPersonels } = useSelector((state) => state.auth)
-  const { personelPerformanceData } = useSelector((state) => state.performance)
+  const { personelPerformanceData, all_performanceData } = useSelector((state) => state.performance)
   const [personelData, setPersonelData] = useState([])
   const [managerpersonelData, setManagerPersonelData] = useState([])
-
   const [my1Status, setmy1Status] = useState(null)
   const [my2Status, setmy2Status] = useState(null)
-
-
   const [info, setInfo] = useState("")
-
 
   //! performans dönem bilgisini çalıştır
   const evulationInfo = () => {
@@ -77,8 +73,8 @@ export const Home = () => {
 
       let singleSonuc = []
       const dizi = [managerPersonels]
-   
-      for(let i=0;i<dizi.length;i++){
+
+      for (let i = 0; i < dizi.length; i++) {
         singleSonuc.push({
           personel: dizi[0].PERSONEL,
           tc: dizi[0].TC
@@ -114,8 +110,6 @@ export const Home = () => {
   }, [personelPerformanceData])
 
 
-
-
   //! gelen performans datasına göre my status bilgisini çıkar
   useEffect(() => {
     const my1data = my1Titles.find((item) => personelData?.gorev == item.title)
@@ -139,6 +133,28 @@ export const Home = () => {
     }
 
   }, [personelData])
+
+
+  //! tüm performans verilerini db den getir
+  // useEffect(() => {
+  //   get_All_PerformanceData('manager-evaluation')
+  // }, [])
+
+
+  //! manager personel değerlendirmesi yapılan kişilerin verisini çek ve array olarak tut
+  // useEffect(() => {
+    
+  //   Object.values(all_performanceData).forEach(element=>{
+  //     if(typeof element == 'object' && element != null){
+
+  //       const result = Object.keys(element).map(key => { return { id: key, ...element[key] } })
+
+        
+  //     }
+  //   })
+
+  // }, [all_performanceData])
+  
 
 
 
@@ -174,13 +190,15 @@ export const Home = () => {
               name='choice_personel_tcno'
               label="choice_personel_tcno"
               value={info.choice_personel_tcno}
-              onChange={(e)=>setInfo(e.target.value)}
+              onChange={(e) => setInfo(e.target.value)}
             >
               {
                 managerpersonelData.map((item, index) => (
                   <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
                 ))
               }
+
+
             </Select>
           </FormControl>
 

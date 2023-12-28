@@ -41,63 +41,119 @@ const Report = () => {
 
 
 
-  // yöenticiye bağlı çalışanların bilgisini çek
-  // performans değerlendirmesi yapılan çalışanları çek ve tc no bilgileri ile eşleşenleri göster
+  //? yöenticiye bağlı çalışanların bilgisini çek
+  //? performans değerlendirmesi yapılan çalışanları çek ve tc no bilgileri ile eşleşenleri göster
+  // useEffect(() => {
+
+  //   let dizi = []
+
+  //   if (Array.isArray(managerPersonels.PERSONEL)) {
+
+
+  //     let multiSonuc = []
+  //     for (let i = 0; i < managerPersonels.PERSONEL.length; i++) {
+  //       multiSonuc.push({
+  //         personel: managerPersonels.PERSONEL[i],
+  //         tc: managerPersonels.TC[i]
+  //       })
+  //     }
+
+  //     setManagerPersonelData(multiSonuc)
+
+  //   }
+  //   else {
+
+  //     let singleSonuc = []
+  //     const dizi = [managerPersonels]
+
+  //     for (let i = 0; i < dizi.length; i++) {
+  //       singleSonuc.push({
+  //         personel: dizi[0].PERSONEL,
+  //         tc: dizi[0].TC
+  //       })
+  //     }
+  //     setManagerPersonelData(singleSonuc)
+  //   }
+
+  //   Object.values(all_performanceData).forEach(item => {
+
+  //     if (typeof item == 'object' && item != null) {
+
+  //       const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
+
+  //       const detayliEslesenler2 = managerpersonelData.filter(obj1 => result.some(obj2 => obj2.tcNo === obj1.tc))
+  //         .map(obj1 => {
+  //           const eslesen = result.find(obj2 => obj2.tcNo === obj1.tc);
+
+  //           dizi.push(eslesen)
+
+  //           return { ...obj1, eslesen };
+  //         });
+
+  //       setData(dizi)
+  //     }
+
+  //   })
+
+
+  // }, [all_performanceData])
+
+
   useEffect(() => {
 
-    let dizi = []
+    let dizi = [];
 
+    // 'managerPersonels.PERSONEL' bir dizi mi diye kontrol et
     if (Array.isArray(managerPersonels.PERSONEL)) {
+      let multiSonuc = managerPersonels.PERSONEL.map((personel, index) => ({
+        personel,
+        tc: managerPersonels.TC[index]
+      }));
 
-
-      let multiSonuc = []
-      for (let i = 0; i < managerPersonels.PERSONEL.length; i++) {
-        multiSonuc.push({
-          personel: managerPersonels.PERSONEL[i],
-          tc: managerPersonels.TC[i]
-        })
-      }
-
-      setManagerPersonelData(multiSonuc)
+      setManagerPersonelData(multiSonuc);
 
     }
     else {
+      // 'managerPersonels' tek bir obje ise
+      let singleSonuc = [{
+        personel: managerPersonels.PERSONEL,
+        tc: managerPersonels.TC
+      }];
 
-      let singleSonuc = []
-      const dizi = [managerPersonels]
-
-      for (let i = 0; i < dizi.length; i++) {
-        singleSonuc.push({
-          personel: dizi[0].PERSONEL,
-          tc: dizi[0].TC
-        })
-      }
-      setManagerPersonelData(singleSonuc)
+      setManagerPersonelData(singleSonuc);
     }
 
     Object.values(all_performanceData).forEach(item => {
+      if (typeof item === 'object' && item !== null) {
+        const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
 
-      if (typeof item == 'object' && item != null) {
+        // const detayliEslesenler2 = managerpersonelData.filter(obj1 =>
+        //   result.some(obj2 => obj2.tcNo === obj1.tc))
+        //   .map(obj1 => {
+        //     const eslesen = result.find(obj2 => obj2.tcNo === obj1.tc);
+        //     console.log(eslesen)
+        //     dizi.push(eslesen);
+        //     return { ...obj1, eslesen };
+        //   });
 
-        const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
+        // Eşleşen tüm öğeleri toplayan reduce fonksiyonu
+        const eslesenler = result.reduce((acc, obj2) => {
+          const eslesen = managerpersonelData.find(obj1 => obj2.tcNo === obj1.tc);
+          if (eslesen) {
+            acc.push({ ...eslesen, eslesen: obj2 });
+            dizi.push(obj2); // Diziye eşleşen her öğeyi ekleyin
+          }
+          return acc;
+        }, []);
 
-        const detayliEslesenler2 = managerpersonelData.filter(obj1 => result.some(obj2 => obj2.tcNo === obj1.tc))
-          .map(obj1 => {
-            const eslesen = result.find(obj2 => obj2.tcNo === obj1.tc);
-
-            // eşleşen datası array içine gönder
-            dizi.push(eslesen)
-
-            return { ...obj1, eslesen };
-          });
-
-        setData(dizi)
+        setData(dizi);
       }
-
-    })
+    });
 
 
   }, [all_performanceData])
+
+
 
 
 

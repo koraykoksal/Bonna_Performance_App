@@ -92,6 +92,8 @@ const usePerformanceCall = () => {
             const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
+            
+            
             if (!snapshot.exists()) {
 
                 toastWarnNotify('Personel Performans Sonucu bulunmuyor !')
@@ -102,12 +104,13 @@ const usePerformanceCall = () => {
 
         } catch (error) {
             distpatch(fetchFail())
-            console.log("get_myAll_PerformanceData function error: ", error)
+            console.log("get_All_PerformanceData error: ", error)
         }
     }
 
 
     //! personel performans datasını getir
+    //! home sayfasında select den personel seçildiğinde db den en son kayıt bilgisi çekilir
     const get_personel_performanceData = async (url, tcNo) => {
 
         distpatch(fetchStart())
