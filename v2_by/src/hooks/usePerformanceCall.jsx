@@ -130,13 +130,15 @@ const usePerformanceCall = () => {
                 const dataArray = Object.values(data)
 
                 // birden fazla kayıt olduğu için personelin son kayıt bilgisini çek
-                dataArray.forEach(element=>{
+                const result = dataArray.filter(element=>element.degerlendirmeYili == currentYear && element.degerlendirmeDonemiAciklama == degerlendirmeDonemiAciklama)
 
-                    if(element.degerlendirmeYili == currentYear && element.degerlendirmeDonemiAciklama == degerlendirmeDonemiAciklama){
-
-                        distpatch(fetchPerformanceData(data))
-                    }
-                })
+                // result datası true ise veriyi gönden değilse boş değer döndür
+                if(result.length>0){
+                    distpatch(fetchPerformanceData(result))
+                }
+                else{
+                    distpatch(fetchPerformanceData([]))
+                }
 
             }
 
