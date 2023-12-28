@@ -88,7 +88,7 @@ const ByReports = () => {
     })
 
 
-    console.log(info)
+ 
 
     return (
 

@@ -122,9 +122,22 @@ const usePerformanceCall = () => {
                 toastWarnNotify('Personel Performans kaydı bulunmuyor !')
             }
             else {
-                const data = snapshot.val()
 
-                distpatch(fetchPerformanceData(data))
+                const currentYear = new Date().getFullYear();
+                const degerlendirmeDonemiAciklama = evulationInfo();
+
+                const data = snapshot.val()
+                const dataArray = Object.values(data)
+
+                // birden fazla kayıt olduğu için personelin son kayıt bilgisini çek
+                dataArray.forEach(element=>{
+
+                    if(element.degerlendirmeYili == currentYear && element.degerlendirmeDonemiAciklama == degerlendirmeDonemiAciklama){
+
+                        distpatch(fetchPerformanceData(data))
+                    }
+                })
+
             }
 
         } catch (error) {
@@ -331,23 +344,23 @@ const usePerformanceCall = () => {
             .then(res => res.json())
             .then(data => {
 
-                    const dizi=[]
+                const dizi = []
 
-                    Object.values(data).forEach(element=>{
+                Object.values(data).forEach(element => {
 
-                        if(Array.isArray(element)){
+                    if (Array.isArray(element)) {
 
-                            const result = element.map(item=>{
-                                dizi.push(item)
-                                return{...item,item}
-                            })
+                        const result = element.map(item => {
+                            dizi.push(item)
+                            return { ...item, item }
+                        })
 
-                  
-                           distpatch(fetchByOKRPerformanceData(dizi))
-                        }
-                    })
 
-                
+                        distpatch(fetchByOKRPerformanceData(dizi))
+                    }
+                })
+
+
 
             })
             .catch(err => console.log(err))

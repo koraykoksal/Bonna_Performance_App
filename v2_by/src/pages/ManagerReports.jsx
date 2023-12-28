@@ -138,7 +138,6 @@ const ManagerReports = () => {
 
       <PerformanceResultView_HR handleClose={handleClose} info={info} open={open}/>
 
-      {/* <PdfViewer handleClose={handleClose} info={info} open={open}/> */}
 
 
     </div>
