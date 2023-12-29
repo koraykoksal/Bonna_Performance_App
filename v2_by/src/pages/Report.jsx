@@ -6,6 +6,7 @@ import PerformanceResult_Table from '../components/tables/PerformanceResult_Tabl
 import PerformanceUpdate from '../components/modals/PerformanceUpdate'
 import { Box, Typography } from "@mui/material"
 import PerformanceResultView_Manager from '../components/modals/PerformanceResultView_Manager'
+import Test from '../components/Test'
 
 
 const Report = () => {
@@ -15,7 +16,8 @@ const Report = () => {
   const { all_performanceData } = useSelector((state) => state.performance)
   const [data, setData] = useState([])
   const [managerpersonelData, setManagerPersonelData] = useState([])
-  const createdDate = new Date()
+
+
 
   // update modal handle state bilgisi
   const [open_editPage, setOpen_editPage] = useState(false)
@@ -38,65 +40,6 @@ const Report = () => {
   useEffect(() => {
     get_All_PerformanceData('manager-evaluation')
   }, [])
-
-
-
-  //? yöenticiye bağlı çalışanların bilgisini çek
-  //? performans değerlendirmesi yapılan çalışanları çek ve tc no bilgileri ile eşleşenleri göster
-  // useEffect(() => {
-
-  //   let dizi = []
-
-  //   if (Array.isArray(managerPersonels.PERSONEL)) {
-
-
-  //     let multiSonuc = []
-  //     for (let i = 0; i < managerPersonels.PERSONEL.length; i++) {
-  //       multiSonuc.push({
-  //         personel: managerPersonels.PERSONEL[i],
-  //         tc: managerPersonels.TC[i]
-  //       })
-  //     }
-
-  //     setManagerPersonelData(multiSonuc)
-
-  //   }
-  //   else {
-
-  //     let singleSonuc = []
-  //     const dizi = [managerPersonels]
-
-  //     for (let i = 0; i < dizi.length; i++) {
-  //       singleSonuc.push({
-  //         personel: dizi[0].PERSONEL,
-  //         tc: dizi[0].TC
-  //       })
-  //     }
-  //     setManagerPersonelData(singleSonuc)
-  //   }
-
-  //   Object.values(all_performanceData).forEach(item => {
-
-  //     if (typeof item == 'object' && item != null) {
-
-  //       const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
-
-  //       const detayliEslesenler2 = managerpersonelData.filter(obj1 => result.some(obj2 => obj2.tcNo === obj1.tc))
-  //         .map(obj1 => {
-  //           const eslesen = result.find(obj2 => obj2.tcNo === obj1.tc);
-
-  //           dizi.push(eslesen)
-
-  //           return { ...obj1, eslesen };
-  //         });
-
-  //       setData(dizi)
-  //     }
-
-  //   })
-
-
-  // }, [all_performanceData])
 
 
   useEffect(() => {
@@ -127,16 +70,6 @@ const Report = () => {
       if (typeof item === 'object' && item !== null) {
         const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
 
-        //! filter fonksiyonu ilk bulduğu değeri döndürür
-        // const detayliEslesenler2 = managerpersonelData.filter(obj1 =>
-        //   result.some(obj2 => obj2.tcNo === obj1.tc))
-        //   .map(obj1 => {
-        //     const eslesen = result.find(obj2 => obj2.tcNo === obj1.tc);
-        //     console.log(eslesen)
-        //     dizi.push(eslesen);
-        //     return { ...obj1, eslesen };
-        //   });
-
         //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
         const eslesenler = result.reduce((acc, obj2) => {
           const eslesen = managerpersonelData.find(obj1 => obj2.tcNo === obj1.tc);
@@ -153,8 +86,6 @@ const Report = () => {
 
 
   }, [all_performanceData])
-
-
 
 
 
@@ -355,6 +286,9 @@ const Report = () => {
 
 
 
+
+
+
   return (
     <div>
 
@@ -365,6 +299,8 @@ const Report = () => {
       <PerformanceUpdate open_editPage={open_editPage} handleClose_editPage={handleClose_editPage} info={info} handleChange={handleChange} />
 
       <PerformanceResultView_Manager open_viewPage={open_viewPage} handleClose_viewPage={handleClose_viewPage} info={info} />
+
+      <Test managerpersonelData={managerpersonelData} data={data}/>
 
     </div>
   )

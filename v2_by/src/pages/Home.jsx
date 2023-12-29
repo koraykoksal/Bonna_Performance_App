@@ -27,8 +27,11 @@ export const Home = () => {
   const [my1Status, setmy1Status] = useState(null)
   const [my2Status, setmy2Status] = useState(null)
   const [info, setInfo] = useState("")
+  const [data, setData] = useState([])
+  const [filteredPersonnel, setFilteredPersonnel] = useState([]);
+  const [nonMatchingPersonnel, setNonMatchingPersonnel] = useState([]);
 
-  //! performans dönem bilgisini çalıştır
+  //!* performans dönem bilgisini çalıştır
   const evulationInfo = () => {
 
     const thisYear = new Date().getFullYear()
@@ -51,17 +54,16 @@ export const Home = () => {
   }
 
 
-  //! user login işlemi sonrası kendisine bağlı çalışanlar slice içindeki state e aktarılır
+  //! manager login işlemi sonrası kendisine bağlı çalışanlar slice içindeki state e aktarılır
   //! yöneticiye bağlı çalışanların listesini array olarak çıkar
   useEffect(() => {
 
     if (Array.isArray(managerPersonels.PERSONEL)) {
 
-      let multiSonuc = managerPersonels.PERSONEL.map((personel,index)=>({
+      let multiSonuc = managerPersonels.PERSONEL.map((personel, index) => ({
         personel,
-        tc:managerPersonels.TC[index]
+        tc: managerPersonels.TC[index]
       }))
-
 
       setManagerPersonelData(multiSonuc)
 
@@ -87,16 +89,19 @@ export const Home = () => {
 
 
 
-  //! handle change işlemi sonrası info içerisinde TC NO bilgisinde değişiklik olduğunda hook çalıştır
+  //!* handle change işlemi sonrası info içerisinde TC NO bilgisinde değişiklik olduğunda hook çalıştır
   useEffect(() => {
-
     get_personel_performanceData('my-performance', info)
-
   }, [info])
 
 
+  //!* tüm performans verilerini db den getir
+  useEffect(() => {
+    get_All_PerformanceData('manager-evaluation')
+  }, [])
 
-  //! personel performans datasını çıkar ve son kayıt bilgisini getir
+
+  //!* personel performans datasını çıkar ve son kayıt bilgisini getir
   useEffect(() => {
 
     //personelin birden fazla performans kaydı olduğunu düşünürsek yönetici değerlendirmesi öncesinde personelin son yapılan performans kaydını getirmek gerekir
@@ -109,7 +114,7 @@ export const Home = () => {
   }, [personelPerformanceData])
 
 
-  //! gelen performans datasına göre my status bilgisini çıkar
+  //!* gelen performans datasına göre my status bilgisini çıkar
   useEffect(() => {
     const my1data = my1Titles.find((item) => personelData?.gorev == item.title)
 
@@ -134,13 +139,36 @@ export const Home = () => {
   }, [personelData])
 
 
-  //! tüm performans verilerini db den getir
-  // useEffect(() => {
-  //   get_All_PerformanceData('manager-evaluation')
-  // }, [])
 
 
-  console.log(managerPersonels)
+  //! all_performance datasını arraye çevir
+  useEffect(() => {
+
+    let dizi = []
+
+    Object.values(all_performanceData).forEach(item => {
+      if (typeof item === 'object' && item !== null) {
+        const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
+
+        //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
+        const eslesenler = result.reduce((acc, obj2) => {
+          const eslesen = managerpersonelData.find(obj1 => obj2.tcNo === obj1.tc);
+          if (eslesen) {
+            acc.push({ ...eslesen, eslesen: obj2 });
+            dizi.push(obj2); // Diziye eşleşen her öğeyi ekleyin
+          }
+          return acc;
+        }, []);
+
+        setData(dizi);
+      }
+    });
+
+
+  }, [all_performanceData])
+
+
+
 
   return (
 
