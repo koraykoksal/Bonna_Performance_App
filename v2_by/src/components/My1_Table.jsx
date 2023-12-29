@@ -49,7 +49,7 @@ const My1_Table = ({ personelData ,handleChange,info}) => {
 
     const [okudumAnladim, setokudumAnladim] = useState(false)
     const { userInfo } = useSelector((state) => state.auth)
-    const {post_manager_evaulationData} = usePerformanceCall()
+    const {post_manager_evaulationData,get_All_PerformanceData} = usePerformanceCall()
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -210,12 +210,18 @@ const My1_Table = ({ personelData ,handleChange,info}) => {
     ]
 
 
+
     const handleSubmit = (e) => {
 
         e.preventDefault()
         post_manager_evaulationData('manager-evaluation',info)
-
+        // get_All_PerformanceData('manager-evaluation')
     }
+
+
+
+
+
 
 
    

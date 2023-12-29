@@ -8,7 +8,8 @@ import {
     fetchManagerData,
     fetchAllPerformanceData,
     fetchRaiseData,
-    fetchByOKRPerformanceData
+    fetchByOKRPerformanceData,
+    fetchUnSelectedPersonelData
 
 } from '../features/performanceSlice'
 import axios from 'axios'
@@ -18,13 +19,17 @@ import { db } from "../db/firebase_db"
 import { get, getDatabase, onValue, ref, remove, set, update } from "firebase/database";
 import { uid } from "uid"
 import { Children } from 'react'
-
+import { useState } from 'react'
 
 const usePerformanceCall = () => {
 
     const distpatch = useDispatch()
     const navi = useNavigate()
-    const { twiserAccesToken } = useSelector((state) => state.auth)
+    const [managerpersonelData, setmanagerpersonelData] = useState([])
+    const { twiserAccesToken, managerPersonels } = useSelector((state) => state.auth)
+    const { all_performanceData } = useSelector((state) => state.performance)
+    const [data, setData] = useState([])
+
 
 
     //! performans dönemini açıklamasını göster
@@ -92,8 +97,8 @@ const usePerformanceCall = () => {
             const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
-            
-            
+
+
             if (!snapshot.exists()) {
 
                 toastWarnNotify('Personel Performans Sonucu bulunmuyor !')
@@ -133,13 +138,13 @@ const usePerformanceCall = () => {
                 const dataArray = Object.values(data)
 
                 // birden fazla kayıt olduğu için personelin son kayıt bilgisini çek
-                const result = dataArray.filter(element=>element.degerlendirmeYili == currentYear && element.degerlendirmeDonemiAciklama == degerlendirmeDonemiAciklama)
+                const result = dataArray.filter(element => element.degerlendirmeYili == currentYear && element.degerlendirmeDonemiAciklama == degerlendirmeDonemiAciklama)
 
                 // result datası true ise veriyi gönden değilse boş değer döndür
-                if(result.length>0){
+                if (result.length > 0) {
                     distpatch(fetchPerformanceData(result))
                 }
-                else{
+                else {
                     distpatch(fetchPerformanceData([]))
                 }
 
@@ -373,7 +378,6 @@ const usePerformanceCall = () => {
 
 
 
-
     return {
         get_managerPersonels,
         get_All_PerformanceData,
@@ -383,7 +387,7 @@ const usePerformanceCall = () => {
         post_raiseData,
         get_raiseData,
         put_raiseData,
-        get_beyazYaka_performanceData
+        get_beyazYaka_performanceData,
 
     }
 }

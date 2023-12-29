@@ -15,6 +15,7 @@ import My2 from '../components/My2';
 import { object } from 'prop-types';
 import { array } from 'prop-types';
 import useAuthCall from '../hooks/useAuthCall';
+import Test from '../components/Test';
 
 
 export const Home = () => {
@@ -28,8 +29,6 @@ export const Home = () => {
   const [my2Status, setmy2Status] = useState(null)
   const [info, setInfo] = useState("")
   const [data, setData] = useState([])
-  const [filteredPersonnel, setFilteredPersonnel] = useState([]);
-  const [nonMatchingPersonnel, setNonMatchingPersonnel] = useState([]);
 
   //!* performans dönem bilgisini çalıştır
   const evulationInfo = () => {
@@ -139,12 +138,10 @@ export const Home = () => {
   }, [personelData])
 
 
-
-
-  //! all_performance datasını arraye çevir
+  //!
   useEffect(() => {
 
-    let dizi = []
+    let dizi = [];
 
     Object.values(all_performanceData).forEach(item => {
       if (typeof item === 'object' && item !== null) {
@@ -166,7 +163,6 @@ export const Home = () => {
 
 
   }, [all_performanceData])
-
 
 
 
@@ -193,26 +189,32 @@ export const Home = () => {
             <span style={{ color: 'red' }}>Performans değerlendirmesini yapmayan personellerin isimleri listede görünmeyecektir.</span>
           </Typography>
 
+          <Box display={'flex'} justifyContent={'space-evenly'} gap={3}>
 
-          <FormControl sx={{ width: '350px', margin: 'auto' }}>
-            <InputLabel id="choice_personel_tcno">Personel</InputLabel>
-            <Select
-              labelId="choice_personel_tcno"
-              id="choice_personel_tcno"
-              name='choice_personel_tcno'
-              label="choice_personel_tcno"
-              value={info.choice_personel_tcno}
-              onChange={(e) => setInfo(e.target.value)}
-            >
-              {
-                managerpersonelData.map((item, index) => (
-                  <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
-                ))
-              }
+            {/* değerlendirmesi yapılmayan personellerin componenti */}
+            <Test managerpersonelData={managerpersonelData} data={data}/>
+
+            <FormControl sx={{ width: '350px', margin: 'auto' }}>
+              <InputLabel id="choice_personel_tcno">Personel</InputLabel>
+              <Select
+                labelId="choice_personel_tcno"
+                id="choice_personel_tcno"
+                name='choice_personel_tcno'
+                label="choice_personel_tcno"
+                value={info.choice_personel_tcno}
+                onChange={(e) => setInfo(e.target.value)}
+              >
+                {
+                  managerpersonelData.map((item, index) => (
+                    <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
+                  ))
+                }
 
 
-            </Select>
-          </FormControl>
+              </Select>
+            </FormControl>
+
+          </Box>
 
         </Container>
 
@@ -228,6 +230,8 @@ export const Home = () => {
           }
 
         </Box>
+
+
 
       </Box>
 

@@ -8,33 +8,37 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box, Container, Typography } from "@mui/material"
+import { useSelector } from 'react-redux';
 
-const Test = ({ managerpersonelData, data }) => {
+const Test = ({ managerpersonelData,data }) => {
 
     const now = new Date().getFullYear()
     const [nonMatchingPersonnel, setNonMatchingPersonnel] = useState([]);
+    const { all_performanceData } = useSelector((state) => state.performance)
+    const { unSelectedData } = useSelector((state) => state.performance)
+ 
 
     //!* performans dönem bilgisini çalıştır
-  const evulationInfo = () => {
+    const evulationInfo = () => {
 
-    const thisYear = new Date().getFullYear()
-    const nextYear = new Date().getFullYear() + 1
-    let performanceResult = ""
+        const thisYear = new Date().getFullYear()
+        const nextYear = new Date().getFullYear() + 1
+        let performanceResult = ""
 
-    const currentDate = new Date();
-    const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
-    const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
+        const currentDate = new Date();
+        const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
+        const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
 
-    if (currentDate > startLimit && currentDate < endLimit) {
-      performanceResult = 'Yıl Sonu Performans Değerlendirme'
+        if (currentDate > startLimit && currentDate < endLimit) {
+            performanceResult = 'Yıl Sonu Performans Değerlendirme'
+        }
+        else {
+            performanceResult = '6 Aylık Performans Değerlendirme'
+        }
+
+        return performanceResult
+
     }
-    else {
-      performanceResult = '6 Aylık Performans Değerlendirme'
-    }
-
-    return performanceResult
-
-  }
 
 
     useEffect(() => {
@@ -48,12 +52,14 @@ const Test = ({ managerpersonelData, data }) => {
         setNonMatchingPersonnel(newNonMatchingPersonnel);
 
 
-    }, [managerpersonelData, data])
+    }, [managerpersonelData,data ])
 
 
-  const tableCellStyle={
-    align:"center",
-  }
+
+
+
+
+
 
     return (
         <div>
@@ -62,11 +68,11 @@ const Test = ({ managerpersonelData, data }) => {
 
                 <Typography align='center' fontWeight={500} color={'red'} p={1}>{now} Değerlendirmesi Yapılmayan Personeller</Typography>
 
-                <TableContainer component={Paper} sx={{maxWidth:300,margin:'auto'}}>
-                    <Table  size="small" aria-label="a dense table">
+                <TableContainer component={Paper} sx={{ maxWidth: 300, margin: 'auto' }}>
+                    <Table size="small" aria-label="a dense table">
                         <TableHead>
-                            <TableRow style={tableCellStyle}>
-                                <TableCell align='center' style={{fontWeight:700,backgroundColor:'#000000',color:'#ffffff'}}>Ad Soyad</TableCell>
+                            <TableRow>
+                                <TableCell align='center' style={{ fontWeight: 700, backgroundColor: '#000000', color: '#ffffff' }}>Ad Soyad</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

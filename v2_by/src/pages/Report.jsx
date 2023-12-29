@@ -300,8 +300,6 @@ const Report = () => {
 
       <PerformanceResultView_Manager open_viewPage={open_viewPage} handleClose_viewPage={handleClose_viewPage} info={info} />
 
-      <Test managerpersonelData={managerpersonelData} data={data}/>
-
     </div>
   )
 }

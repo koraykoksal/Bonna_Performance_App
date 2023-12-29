@@ -16,8 +16,9 @@ import { useSelector } from "react-redux"
 const My1 = ({ personelData }) => {
 
 
-  const { userInfo } = useSelector((state) => state.auth)
+  const { userInfo,managerPersonels } = useSelector((state) => state.auth)
   const createdDate = new Date()
+  const { all_performanceData } = useSelector((state) => state.performance)
 
 
   //! performans dönemi bilgisini çalıştır
@@ -104,7 +105,6 @@ const My1 = ({ personelData }) => {
   }
 
 
-
   //! girilen dataların verilerini tut
   const [info, setInfo] = useState({
 
@@ -173,6 +173,7 @@ const My1 = ({ personelData }) => {
   })
 
 
+  
 
 
   return (
