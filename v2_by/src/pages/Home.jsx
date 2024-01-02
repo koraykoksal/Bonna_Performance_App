@@ -1,5 +1,4 @@
 import React from 'react'
-import useBlogCall from '../hooks/usePerformanceCall'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Typography from '@mui/material/Typography';
@@ -12,23 +11,23 @@ import Select from '@mui/material/Select';
 import { my1Titles, my2Titles } from '../helper/data';
 import My1 from '../components/My1';
 import My2 from '../components/My2';
-import { object } from 'prop-types';
-import { array } from 'prop-types';
-import useAuthCall from '../hooks/useAuthCall';
 import Test from '../components/Test';
 
 
 export const Home = () => {
 
-  const { get_personel_performanceData, get_All_PerformanceData } = usePerformanceCall()
+  const { get_personel_performanceData, get_All_PerformanceData,unselectedPersonel } = usePerformanceCall()
   const { managerPersonels } = useSelector((state) => state.auth)
   const { personelPerformanceData, all_performanceData } = useSelector((state) => state.performance)
   const [personelData, setPersonelData] = useState([])
   const [managerpersonelData, setManagerPersonelData] = useState([])
   const [my1Status, setmy1Status] = useState(null)
   const [my2Status, setmy2Status] = useState(null)
-  const [info, setInfo] = useState("")
   const [data, setData] = useState([])
+
+  const [info, setInfo] = useState({
+    choice_personel_tcno: ""
+  })
 
   //!* performans dönem bilgisini çalıştır
   const evulationInfo = () => {
@@ -41,7 +40,7 @@ export const Home = () => {
     const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
     const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
 
-    if (currentDate > startLimit && currentDate < endLimit) {
+    if (currentDate > startLimit || currentDate < endLimit) {
       performanceResult = 'Yıl Sonu Performans Değerlendirme'
     }
     else {
@@ -53,8 +52,8 @@ export const Home = () => {
   }
 
 
-  //! manager login işlemi sonrası kendisine bağlı çalışanlar slice içindeki state e aktarılır
-  //! yöneticiye bağlı çalışanların listesini array olarak çıkar
+  //!* manager login işlemi sonrası kendisine bağlı çalışanlar slice içindeki state e aktarılır
+  //!* yöneticiye bağlı çalışanların listesini array olarak çıkar
   useEffect(() => {
 
     if (Array.isArray(managerPersonels.PERSONEL)) {
@@ -87,17 +86,12 @@ export const Home = () => {
   }, [managerPersonels])
 
 
-
   //!* handle change işlemi sonrası info içerisinde TC NO bilgisinde değişiklik olduğunda hook çalıştır
   useEffect(() => {
-    get_personel_performanceData('my-performance', info)
+    if (info.choice_personel_tcno) {
+      get_personel_performanceData('my-performance', info)
+    }
   }, [info])
-
-
-  //!* tüm performans verilerini db den getir
-  useEffect(() => {
-    get_All_PerformanceData('manager-evaluation')
-  }, [])
 
 
   //!* personel performans datasını çıkar ve son kayıt bilgisini getir
@@ -138,7 +132,21 @@ export const Home = () => {
   }, [personelData])
 
 
-  //!
+
+  //! tüm performans verilerini db den getir
+  useEffect(() => {
+    get_All_PerformanceData('manager-evaluation')
+  }, [])
+
+
+  //! değerlendirmesi yapılmayan personellerin listesini çıkar
+  useEffect(() => {
+    unselectedPersonel(managerpersonelData,data)
+  }, [managerpersonelData,data])
+  
+
+
+  //! değerlendirmnesi yapılmayan personelleri getir
   useEffect(() => {
 
     let dizi = [];
@@ -166,6 +174,9 @@ export const Home = () => {
 
 
 
+
+
+
   return (
 
     <>
@@ -175,7 +186,7 @@ export const Home = () => {
         <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', gap: 3 }}>
 
           <Typography variant='h5' p={2} color='#000000' align='center' fontWeight={700}>
-            Bonna {evulationInfo()} Dönemi
+            {evulationInfo()} Dönemi
           </Typography>
 
           <Typography variant='subtitle2' align='center' color='#000000' >
@@ -189,10 +200,10 @@ export const Home = () => {
             <span style={{ color: 'red' }}>Performans değerlendirmesini yapmayan personellerin isimleri listede görünmeyecektir.</span>
           </Typography>
 
-          <Box display={'flex'} justifyContent={'space-evenly'} gap={3}>
+          <Box display={'flex'} justifyContent={'center'} gap={1}>
 
             {/* değerlendirmesi yapılmayan personellerin componenti */}
-            <Test managerpersonelData={managerpersonelData} data={data}/>
+            <Test managerpersonelData={managerpersonelData} data={data} />
 
             <FormControl sx={{ width: '350px', margin: 'auto' }}>
               <InputLabel id="choice_personel_tcno">Personel</InputLabel>
@@ -202,14 +213,13 @@ export const Home = () => {
                 name='choice_personel_tcno'
                 label="choice_personel_tcno"
                 value={info.choice_personel_tcno}
-                onChange={(e) => setInfo(e.target.value)}
+                onChange={(e) => setInfo({ ...info, [e.target.name]: e.target.value })}
               >
                 {
                   managerpersonelData.map((item, index) => (
                     <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
                   ))
                 }
-
 
               </Select>
             </FormControl>

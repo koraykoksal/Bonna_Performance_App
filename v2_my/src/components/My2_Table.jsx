@@ -234,7 +234,7 @@ const My2_Table = ({ info, setInfo, handleChange }) => {
   }
 
 
-
+  
 
   return (
 

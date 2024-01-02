@@ -12,6 +12,8 @@ export const Home = () => {
 
   const thisYear = new Date().getFullYear()
   const nextYear = new Date().getFullYear() + 1
+  const thisMonth = new Date().getMonth()+1
+
 
   const { currentUser_Category, currentUser, currentUserTitle,userInfo,userManagerInfo } = useSelector((state) => state.auth)
   const [my1Status, setmy1Status] = useState(null)
@@ -22,20 +24,28 @@ export const Home = () => {
     setOpen(false)
   }
 
-  let performanceResult = ""
+  
 
   const evulationInfo = () => {
 
+    let performanceResult = ""
     const currentDate = new Date();
     const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
     const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
 
-    if (currentDate > startLimit && currentDate < endLimit) {
+    if (currentDate > startLimit || currentDate <= endLimit) {
       performanceResult = 'Yıl Sonu Performans Değerlendirme'
     }
     else {
       performanceResult = '6 Aylık Performans Değerlendirme'
     }
+
+    // if (thisMonth > 11 || thisMonth < 12) {
+    //   performanceResult = 'Yıl Sonu Performans Değerlendirme'
+    // }
+    // else {
+    //   performanceResult = '6 Aylık Performans Değerlendirme'
+    // }
 
     return performanceResult
 
@@ -78,7 +88,7 @@ export const Home = () => {
         <Box sx={{display:'flex',mt:5,flexDirection:'column',gap:3}}>
 
           <Typography align='center' variant='h5' color='#000000' fontWeight={700}>
-            Bonna {evulationInfo()} Dönemi
+           {evulationInfo()} Dönemi
           </Typography>
 
           <Box sx={{display:'flex',justifyContent:'center',py:3}}>

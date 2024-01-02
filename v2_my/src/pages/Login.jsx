@@ -34,18 +34,13 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
 
-    if (!info.tcno) {
-      toastWarnNotify('Lütfen kimlik numaranızı giriniz !')
-    }
-    else {
-      e.preventDefault()
+    e.preventDefault()
 
-      login(info)
+    login(info)
 
-      setInfo({
-        tcno: "",
-      })
-    }
+    setInfo({
+      tcno: "",
+    })
 
   }
 
@@ -89,8 +84,8 @@ export const Login = () => {
             Login
           </Typography>
 
-          <form>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} >
+        
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} component='form' onSubmit={handleSubmit}>
               <TextField
                 required
                 label="TC Kimlik No"
@@ -104,12 +99,12 @@ export const Login = () => {
                   maxLength: 12
                 }}
               />
-              <Button variant="contained" type="submit" onClick={handleSubmit}>
-                Submit
+              <Button variant="contained" type="submit" sx={{letterSpacing:5,textTransform:'none'}}>
+                Giriş
               </Button>
 
             </Box>
-          </form>
+
 
 
         </Grid>

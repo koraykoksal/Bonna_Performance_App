@@ -29,7 +29,7 @@ const Test = ({ managerpersonelData,data }) => {
         const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
         const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
 
-        if (currentDate > startLimit && currentDate < endLimit) {
+        if (currentDate > startLimit || currentDate < endLimit) {
             performanceResult = 'Yıl Sonu Performans Değerlendirme'
         }
         else {
@@ -41,18 +41,18 @@ const Test = ({ managerpersonelData,data }) => {
     }
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const degerlendirmeDonemAciklamasi = evulationInfo()
+    //     const degerlendirmeDonemAciklamasi = evulationInfo()
 
-        const newNonMatchingPersonnel = managerpersonelData.filter(personel =>
-            !data.some(record => (record.tcNo == personel.tc) && (record.degerlendirmeYili === now && record.degerlendirmeDonemiAciklama === degerlendirmeDonemAciklamasi))
-        );
+    //     const newNonMatchingPersonnel = managerpersonelData.filter(personel =>
+    //         !data.some(record => (record.tcNo == personel.tc) && (record.degerlendirmeYili === now && record.degerlendirmeDonemiAciklama === degerlendirmeDonemAciklamasi))
+    //     );
 
-        setNonMatchingPersonnel(newNonMatchingPersonnel);
+    //     setNonMatchingPersonnel(newNonMatchingPersonnel);
 
 
-    }, [managerpersonelData,data ])
+    // }, [managerpersonelData,data ])
 
 
 
@@ -76,7 +76,7 @@ const Test = ({ managerpersonelData,data }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {nonMatchingPersonnel.map((row, index) => (
+                            {unSelectedData.map((row, index) => (
                                 <TableRow
                                     key={index}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

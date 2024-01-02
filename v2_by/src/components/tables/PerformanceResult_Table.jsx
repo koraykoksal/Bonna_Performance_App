@@ -426,8 +426,8 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, dat
     },
     {
       field: "yoneticiTpp",
-      headerName: "Performans Puanı",
-      minWidth: 150,
+      headerName: "Yönetici Performans Puanı",
+      minWidth: 200,
       headerAlign: "center",
       align: "center",
       flex: 1,

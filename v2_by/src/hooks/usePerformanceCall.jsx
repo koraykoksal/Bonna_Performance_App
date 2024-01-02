@@ -31,7 +31,6 @@ const usePerformanceCall = () => {
     const [data, setData] = useState([])
 
 
-
     //! performans dönemini açıklamasını göster
     const evulationInfo = () => {
 
@@ -43,7 +42,7 @@ const usePerformanceCall = () => {
         const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
         const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
 
-        if (currentDate > startLimit && currentDate < endLimit) {
+        if (currentDate > startLimit || currentDate < endLimit) {
             performanceResult = 'Yıl Sonu Performans Değerlendirme'
         }
         else {
@@ -116,14 +115,14 @@ const usePerformanceCall = () => {
 
     //! personel performans datasını getir
     //! home sayfasında select den personel seçildiğinde db den en son kayıt bilgisi çekilir
-    const get_personel_performanceData = async (url, tcNo) => {
+    const get_personel_performanceData = async (url, info) => {
 
         distpatch(fetchStart())
 
         try {
 
             const db = getDatabase()
-            const res = ref(db, `${url}/` + tcNo)
+            const res = ref(db, `${url}/` + info.choice_personel_tcno)
             const snapshot = await get(res)
 
             if (!snapshot.exists()) {
@@ -145,6 +144,7 @@ const usePerformanceCall = () => {
                     distpatch(fetchPerformanceData(result))
                 }
                 else {
+                    toastWarnNotify(`${currentYear} yılına ait Personel Performans kaydı bulunmuyor !`)
                     distpatch(fetchPerformanceData([]))
                 }
 
@@ -378,6 +378,26 @@ const usePerformanceCall = () => {
 
 
 
+    //değerlendirmesi yapılmayan personelleri listele
+    const unselectedPersonel = async (managerpersonelData, data) => {
+        let dizi = [];
+        const degerlendirmeDonemAciklamasi = evulationInfo()
+        const now = new Date().getFullYear()
+
+        try {
+
+
+            const newNonMatchingPersonnel = managerpersonelData.filter(personel =>
+                !data.some(record => (record.tcNo == personel.tc) && (record.degerlendirmeYili === now && record.degerlendirmeDonemiAciklama === degerlendirmeDonemAciklamasi))
+            );
+
+            distpatch(fetchUnSelectedPersonelData(newNonMatchingPersonnel))
+
+        } catch (error) {
+            console.log("unselectedPersonel: ", error)
+        }
+    }
+
     return {
         get_managerPersonels,
         get_All_PerformanceData,
@@ -388,6 +408,7 @@ const usePerformanceCall = () => {
         get_raiseData,
         put_raiseData,
         get_beyazYaka_performanceData,
+        unselectedPersonel
 
     }
 }

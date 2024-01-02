@@ -54,7 +54,7 @@ const performanceSlice=createSlice({
         fetchUnSelectedPersonelData:(state,{payload})=>{
             state.loading=false
             state.unSelectedData=payload
-        }
+        },
     }
 
 })

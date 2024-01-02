@@ -90,7 +90,7 @@ export const Login = () => {
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} component='form' onSubmit={handleSubmit}>
             <TextField
             required
-              label="Username"
+              label="Kullanıcı Adı"
               name="username"
               id="username"
               type="text"
@@ -100,7 +100,7 @@ export const Login = () => {
             />
             <TextField
             required
-              label="Password"
+              label="Parola"
               name="password"
               id="password"
               type="password"
@@ -108,8 +108,8 @@ export const Login = () => {
               value={info.password}
               onChange={handleChange}
             />
-            <Button variant="contained" type="submit" >
-              Submit
+            <Button variant="contained" type="submit" sx={{letterSpacing:5,textTransform:'none'}}>
+              Giriş
             </Button>
 
           </Box>
