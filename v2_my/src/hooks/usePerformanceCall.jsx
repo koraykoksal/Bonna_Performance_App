@@ -7,14 +7,12 @@ import {
     fetchPerformanceData
 
 } from '../features/performanceSlice'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { doc, setDoc, Timestamp, collection, addDoc, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../db/firebase_db"
 import { get, getDatabase, onValue, ref, remove, set, update } from "firebase/database";
 import { uid } from "uid"
 import { useState } from 'react';
-import { async } from '@firebase/util'
 
 
 
