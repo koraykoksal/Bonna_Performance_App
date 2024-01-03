@@ -7,15 +7,19 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import My2_Table from './My2_Table';
 import { useSelector } from "react-redux"
 
-
 const My2 = ({ personelData }) => {
 
-  const { userInfo } = useSelector((state) => state.auth)
+  const { userInfo, managerPersonels } = useSelector((state) => state.auth)
   const createdDate = new Date()
+
+  const [managerpersonelData, setManagerPersonelData] = useState([])
+
+
+
 
   //! performans dönemi bilgisini çalıştır
   const evulationInfo = () => {
@@ -95,11 +99,11 @@ const My2 = ({ personelData }) => {
 
       newInfo.final_degerlendirmeSonucu = Number(toplamDegerlendirmeSonucu).toFixed(2)
 
-      newInfo.final_degerlendirmeAciklamasi =(newInfo.final_degerlendirmeSonucu >= 0 && newInfo.final_degerlendirmeSonucu <= 45 && "Beklentileri Karşılamıyor 😫") ||
-      (newInfo.final_degerlendirmeSonucu >= 46 && newInfo.final_degerlendirmeSonucu <= 60 && "Beklentilerin Altında 🙁") ||
-      (newInfo.final_degerlendirmeSonucu >= 61 && newInfo.final_degerlendirmeSonucu  <= 80 && "Beklenen Performans 😐") ||
-      (newInfo.final_degerlendirmeSonucu >= 81 && newInfo.final_degerlendirmeSonucu  <= 90 && "Beklentilerin Üzerinde 😬") ||
-      (newInfo.final_degerlendirmeSonucu >= 91 && newInfo.final_degerlendirmeSonucu  <= 100 && "Üstün Performans 😎")
+      newInfo.final_degerlendirmeAciklamasi = (newInfo.final_degerlendirmeSonucu >= 0 && newInfo.final_degerlendirmeSonucu <= 45 && "Beklentileri Karşılamıyor 😫") ||
+        (newInfo.final_degerlendirmeSonucu >= 46 && newInfo.final_degerlendirmeSonucu <= 60 && "Beklentilerin Altında 🙁") ||
+        (newInfo.final_degerlendirmeSonucu >= 61 && newInfo.final_degerlendirmeSonucu <= 80 && "Beklenen Performans 😐") ||
+        (newInfo.final_degerlendirmeSonucu >= 81 && newInfo.final_degerlendirmeSonucu <= 90 && "Beklentilerin Üzerinde 😬") ||
+        (newInfo.final_degerlendirmeSonucu >= 91 && newInfo.final_degerlendirmeSonucu <= 100 && "Üstün Performans 😎")
 
       newInfo.zamOrani_performans = (Number(toplamDegerlendirmeSonucu >= 81 && true))
       newInfo.zamOrani_yonetici_ve_performans = Number(toplamDegerlendirmeSonucu >= 91) && Number(toplamDegerlendirmeSonucu <= 100) && true
@@ -115,7 +119,7 @@ const My2 = ({ personelData }) => {
   //! girilen dataların verilerini tut
   const [info, setInfo] = useState({
 
-    type:"my2",
+    type: "my2",
     //çalışan değerlendirme sonuçları
     personel: personelData?.personel,
     sicilNo: personelData?.sicilNo,
@@ -178,16 +182,17 @@ const My2 = ({ personelData }) => {
     zamOrani_performans: false,
     zamOrani_yonetici_ve_performans: false,
     final_degerlendirmeSonucu: "",
-    final_degerlendirmeAciklamasi:""
+    final_degerlendirmeAciklamasi: ""
 
   })
+
 
 
   return (
 
     <div>
 
-      <My2_Table  info={info} handleChange={handleChange} personelData={personelData} />
+      <My2_Table info={info} handleChange={handleChange} personelData={personelData} managerpersonelData={managerpersonelData}/>
 
 
     </div>

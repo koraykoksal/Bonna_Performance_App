@@ -48,10 +48,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const My2_Table = ({ personelData, handleChange, info }) => {
 
-  const { unselectedPersonel } = usePerformanceCall()
   const [okudumAnladim, setokudumAnladim] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
-  const { post_manager_evaulationData,get_All_PerformanceData } = usePerformanceCall()
+  const { post_manager_evaulationData, get_All_PerformanceData } = usePerformanceCall()
+
+  const [data, setData] = useState([])
+
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -223,12 +225,10 @@ const My2_Table = ({ personelData, handleChange, info }) => {
   const handleSubmit = (e) => {
 
     e.preventDefault()
-    post_manager_evaulationData('manager-evaluation', info)
-    // get_All_PerformanceData('manager-evaluation')
-    unselectedPersonel()
+    post_manager_evaulationData('manager-evaluation', info)    
   }
 
-  
+
 
   return (
 
@@ -288,7 +288,7 @@ const My2_Table = ({ personelData, handleChange, info }) => {
         <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
 
           <TextField
-          disabled
+            disabled
             fullWidth
             label='Çalışan Açıklama'
             name='calisanAciklama'

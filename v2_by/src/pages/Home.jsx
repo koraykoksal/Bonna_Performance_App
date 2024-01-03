@@ -12,11 +12,12 @@ import { my1Titles, my2Titles } from '../helper/data';
 import My1 from '../components/My1';
 import My2 from '../components/My2';
 import Test from '../components/Test';
+import UnSelectedPersonels from '../components/modals/UnSelectedPersonels';
 
 
 export const Home = () => {
 
-  const { get_personel_performanceData, get_All_PerformanceData,unselectedPersonel } = usePerformanceCall()
+  const { get_personel_performanceData, get_All_PerformanceData, unselectedPersonel } = usePerformanceCall()
   const { managerPersonels } = useSelector((state) => state.auth)
   const { personelPerformanceData, all_performanceData } = useSelector((state) => state.performance)
   const [personelData, setPersonelData] = useState([])
@@ -24,6 +25,14 @@ export const Home = () => {
   const [my1Status, setmy1Status] = useState(null)
   const [my2Status, setmy2Status] = useState(null)
   const [data, setData] = useState([])
+
+
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false)
+  }
+
 
   const [info, setInfo] = useState({
     choice_personel_tcno: ""
@@ -77,12 +86,8 @@ export const Home = () => {
           tc: dizi[0].TC
         })
       }
-
-
       setManagerPersonelData(singleSonuc)
     }
-
-
   }, [managerPersonels])
 
 
@@ -141,9 +146,9 @@ export const Home = () => {
 
   //! değerlendirmesi yapılmayan personellerin listesini çıkar
   useEffect(() => {
-    unselectedPersonel(managerpersonelData,data)
-  }, [managerpersonelData,data])
-  
+    unselectedPersonel(managerpersonelData, data)
+  }, [managerpersonelData, data])
+
 
 
   //! değerlendirmnesi yapılmayan personelleri getir
@@ -179,7 +184,7 @@ export const Home = () => {
 
   return (
 
-    <>
+    <div>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', mt: 10, gap: 5 }}>
 
@@ -200,29 +205,35 @@ export const Home = () => {
             <span style={{ color: 'red' }}>Performans değerlendirmesini yapmayan personellerin isimleri listede görünmeyecektir.</span>
           </Typography>
 
-          <Box display={'flex'} justifyContent={'center'} gap={1}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
 
-            {/* değerlendirmesi yapılmayan personellerin componenti */}
-            <Test managerpersonelData={managerpersonelData} data={data} />
+            <Box>
+              <Button variant='outlined' sx={{ textTransform: 'none' }} onClick={handleOpen}>Değerlendirilmeyen Personelleri Listele</Button>
+            </Box>
 
-            <FormControl sx={{ width: '350px', margin: 'auto' }}>
-              <InputLabel id="choice_personel_tcno">Personel</InputLabel>
-              <Select
-                labelId="choice_personel_tcno"
-                id="choice_personel_tcno"
-                name='choice_personel_tcno'
-                label="choice_personel_tcno"
-                value={info.choice_personel_tcno}
-                onChange={(e) => setInfo({ ...info, [e.target.name]: e.target.value })}
-              >
-                {
-                  managerpersonelData.map((item, index) => (
-                    <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
-                  ))
-                }
+            <Box>
+              <FormControl sx={{ width: '350px', margin: 'auto' }}>
+                <InputLabel id="choice_personel_tcno">Personel</InputLabel>
+                <Select
+                  labelId="choice_personel_tcno"
+                  id="choice_personel_tcno"
+                  name='choice_personel_tcno'
+                  label="choice_personel_tcno"
+                  value={info.choice_personel_tcno}
+                  onChange={(e) => setInfo({ ...info, [e.target.name]: e.target.value })}
+                >
+                  {
+                    managerpersonelData.map((item, index) => (
+                      <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
+                    ))
+                  }
 
-              </Select>
-            </FormControl>
+                </Select>
+              </FormControl>
+
+            </Box>
+
+
 
           </Box>
 
@@ -242,10 +253,12 @@ export const Home = () => {
         </Box>
 
 
+          {/* değerlendirilmeyen personelleri listeleyen modal */}
+          <UnSelectedPersonels open={open} handleClose={handleClose}/>
 
       </Box>
 
-    </>
+    </div>
 
 
   )
