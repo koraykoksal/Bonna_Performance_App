@@ -10,3 +10,11 @@ RUN pnpm i
 
 CMD ["npm", "start"]
 EXPOSE 5173
+
+# --------------------------------
+# $ cd /v2_my
+# $ docker build -t myperformans .
+# $ docker run -p 5173:5173 --name myperformans myperformans
+# $ docker run -d -p 5173:5173 --name myperformans myperformans
+# $ docker run -d -p 80:5173 --name myperformans bonnadijital/myperformans
+# Browser: http://localhost:5173
