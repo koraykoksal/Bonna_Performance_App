@@ -50,6 +50,10 @@ const authSlice=createSlice({
             state.token="";
             state.userInfo =[]
             state.managerPersonels=[]
+            //logout olduğun zaman twiser token bilgilerini temizle
+            state.twiserAccesToken=""
+            state.twiserRefreshToken=""
+            state.twiserUserId=""
 
         },
         fetchTwiserStart:(state)=>{

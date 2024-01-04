@@ -7,7 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 
 
-const PerformanceResult_Table_BY = ({ data,handleOpen,info,setInfo }) => {
+const PerformanceResult_Table_BY = ({ all_performanceData,handleOpen,info,setInfo }) => {
 
 
     const dataGrid_Columns = [
@@ -392,7 +392,7 @@ const PerformanceResult_Table_BY = ({ data,handleOpen,info,setInfo }) => {
             <Box p={5}>
                 <DataGrid
                     columns={dataGrid_Columns}
-                    rows={data}
+                    rows={all_performanceData}
                     initialState={{
                         pagination: {
                           paginationModel: {

@@ -103,7 +103,25 @@ const usePerformanceCall = () => {
                 toastWarnNotify('Personel Performans Sonucu bulunmuyor !')
             }
             else {
-                distpatch(fetchAllPerformanceData(snapshot.val()))
+                let dizi = []
+
+                Object.values(snapshot.val()).forEach(item => {
+
+                    if (typeof item == 'object' && item != null) {
+
+                        const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
+
+                        result.map(item => {
+                            dizi.push(item)
+                            return { ...item, item }
+                        })
+
+                    }
+
+                })
+
+                distpatch(fetchAllPerformanceData(dizi))
+                // distpatch(fetchAllPerformanceData(snapshot.val()))
             }
 
         } catch (error) {
@@ -179,7 +197,7 @@ const usePerformanceCall = () => {
                 toastSuccessNotify('Kayıt yapılmıştır.');
 
                 // kayıt işlemi sonrası tüm performans datası bilgisini çekerek unselected personel verisi güncellenmiş olur
-                get_All_PerformanceData('manager-evaluation') 
+                get_All_PerformanceData('manager-evaluation')
 
             }
             else {
@@ -209,7 +227,7 @@ const usePerformanceCall = () => {
                     toastSuccessNotify('Kayıt yapılmıştır.');
 
                     // kayıt işlemi sonrası tüm performans datası bilgisini çekerek unselected personel verisi güncellenmiş olur
-                    get_All_PerformanceData('manager-evaluation') 
+                    get_All_PerformanceData('manager-evaluation')
 
                 }
 
@@ -362,7 +380,7 @@ const usePerformanceCall = () => {
             .then(data => {
 
                 console.log(data)
-                
+
                 const dizi = []
 
                 Object.values(data).forEach(element => {
@@ -385,7 +403,7 @@ const usePerformanceCall = () => {
             .catch(err => console.log(err))
     }
 
-    
+
     return {
         get_managerPersonels,
         get_All_PerformanceData,

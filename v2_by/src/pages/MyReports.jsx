@@ -9,10 +9,8 @@ import PerformanceResultView_Personel from '../components/modals/PerformanceResu
 const MyReports = () => {
 
 
-
   const { get_All_PerformanceData } = usePerformanceCall()
   const { all_performanceData } = useSelector((state) => state.performance)
-  const [data, setData] = useState([])
 
 
   // viewer modal handle state bilgisi
@@ -28,34 +26,6 @@ const MyReports = () => {
   useEffect(() => {
     get_All_PerformanceData('my-performance')
   }, [])
-
-
-  // yöenticiye bağlı çalışanların bilgisini çek
-  // performans değerlendirmesi yapılan çalışanları çek ve tc no bilgileri ile eşleşenleri göster
-  useEffect(() => {
-
-    let dizi = []
-
-    Object.values(all_performanceData).forEach(item => {
-
-      if (typeof item == 'object' && item != null) {
-
-        const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
-
-        result.map(item => {
-          dizi.push(item)
-          return { ...item, item }
-        })
-
-      }
-
-    })
-
-    setData(dizi)
-   
-
-  }, [all_performanceData])
-
 
 
   //! girilen dataların verilerini tut
@@ -137,7 +107,7 @@ const MyReports = () => {
 
       <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Mavi Yaka Değerlendirme Sonuçları</Typography>
 
-      <PerformanceResult_Table_MY data={data} handleOpen={handleOpen} setInfo={setInfo} info={info}/>
+      <PerformanceResult_Table_MY all_performanceData={all_performanceData} handleOpen={handleOpen} setInfo={setInfo} info={info}/>
 
       <PerformanceResultView_Personel handleClose={handleClose} info={info} open={open}/>
 

@@ -37,10 +37,8 @@ const UnSelectedPersonels = ({ open, handleClose }) => {
     const { get_All_PerformanceData, unselectedPersonel } = usePerformanceCall()
     const { managerPersonels } = useSelector((state) => state.auth)
     const { all_performanceData } = useSelector((state) => state.performance)
-    const [data, setData] = useState([])
     const [nonMatchingPersonnel, setNonMatchingPersonnel] = useState([]);
-
-
+    
     const now = new Date().getFullYear()
 
 
@@ -74,44 +72,18 @@ const UnSelectedPersonels = ({ open, handleClose }) => {
 
 
 
-    //! değerlendirmnesi yapılmayan personelleri getir
-    useEffect(() => {
-
-        let dizi = [];
-
-        Object.values(all_performanceData).forEach(item => {
-            if (typeof item === 'object' && item !== null) {
-                const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
-
-                //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
-                const eslesenler = result.reduce((acc, obj2) => {
-                    const eslesen = managerPersonels.find(obj1 => obj2.tcNo === obj1.tc);
-                    if (eslesen) {
-                        acc.push({ ...eslesen, eslesen: obj2 });
-                        dizi.push(obj2); // Diziye eşleşen her öğeyi ekleyin
-                    }
-                    return acc;
-                }, []);
-
-                setData(dizi);
-            }
-        });
-
-    }, [all_performanceData])
-
-
 
     useEffect(() => {
         
         const degerlendirmeDonemAciklamasi = evulationInfo()
 
         const newNonMatchingPersonnel = managerPersonels.filter(personel =>
-            !data.some(record => (record.tcNo == personel.tc) && (record.degerlendirmeYili === now && record.degerlendirmeDonemiAciklama === degerlendirmeDonemAciklamasi))
+            !all_performanceData.some(record => (record.tcNo == personel.tc) && (record.degerlendirmeYili === now && record.degerlendirmeDonemiAciklama === degerlendirmeDonemAciklamasi))
         );
 
         setNonMatchingPersonnel(newNonMatchingPersonnel);
 
-    }, [data])
+    }, [all_performanceData])
 
 
 

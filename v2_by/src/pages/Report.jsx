@@ -13,7 +13,6 @@ const Report = () => {
   const { userInfo, managerPersonels } = useSelector((state) => state.auth)
   const { get_All_PerformanceData } = usePerformanceCall()
   const { all_performanceData } = useSelector((state) => state.performance)
-  const [data, setData] = useState([])
 
 
 
@@ -38,32 +37,6 @@ const Report = () => {
   useEffect(() => {
     get_All_PerformanceData('manager-evaluation')
   }, [])
-
-
-  useEffect(() => {
-
-    let dizi = [];
-
-    Object.values(all_performanceData).forEach(item => {
-      if (typeof item === 'object' && item !== null) {
-        const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
-
-        //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
-        const eslesenler = result.reduce((acc, obj2) => {
-          const eslesen = managerPersonels.find(obj1 => obj2.tcNo === obj1.tc);
-          if (eslesen) {
-            acc.push({ ...eslesen, eslesen: obj2 });
-            dizi.push(obj2); // Diziye eşleşen her öğeyi ekleyin
-          }
-          return acc;
-        }, []);
-
-        setData(dizi);
-      }
-    });
-
-  }, [all_performanceData])
-
 
 
   //! inputlara veri girişi olduğu zaman otomatik işlem yap
@@ -249,7 +222,7 @@ const Report = () => {
 
       <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
-      <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} data={data} setInfo={setInfo} info={info} />
+      <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} all_performanceData={all_performanceData} setInfo={setInfo} info={info} />
 
       <PerformanceUpdate open_editPage={open_editPage} handleClose_editPage={handleClose_editPage} info={info} handleChange={handleChange} />
 

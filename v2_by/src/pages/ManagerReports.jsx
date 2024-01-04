@@ -11,19 +11,18 @@ import PdfViewer from '../components/PdfViewer'
 const ManagerReports = () => {
 
 
- // viewer modal handle state bilgisi
- const [open, setOpen] = useState(false)
- const handleOpen = () => setOpen(true);
- const handleClose = () => {
-   setOpen(false)
+  // viewer modal handle state bilgisi
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false)
 
- }
+  }
 
 
 
   const { get_All_PerformanceData } = usePerformanceCall()
   const { all_performanceData } = useSelector((state) => state.performance)
-  const [data, setData] = useState([])
 
 
   useEffect(() => {
@@ -31,34 +30,9 @@ const ManagerReports = () => {
   }, [])
 
 
-  // yöenticiye bağlı çalışanların bilgisini çek
-  // performans değerlendirmesi yapılan çalışanları çek ve tc no bilgileri ile eşleşenleri göster
-  useEffect(() => {
 
-    let dizi = []
-
-    Object.values(all_performanceData).forEach(item => {
-
-      if (typeof item == 'object' && item != null) {
-
-        const result = Object.keys(item).map(key => { return { id: key, ...item[key] } })
-
-        result.filter(obj1 => obj1.type == 'my1' || obj1.type == 'my2').map(item => {
-          dizi.push(item)
-          return { ...item, item }
-        })
-
-      }
-
-    })
-
-    setData(dizi)
-
-  }, [all_performanceData])
-
-
-   //! girilen dataların verilerini tut
-   const [info, setInfo] = useState({
+  //! girilen dataların verilerini tut
+  const [info, setInfo] = useState({
 
     id: "",
     type: "",
@@ -128,15 +102,15 @@ const ManagerReports = () => {
   })
 
 
-  
+
   return (
     <div>
       <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Yönetici Değerlendirme Sonuçları</Typography>
 
-      <PerformanceResult_Table_BY data={data} handleOpen={handleOpen} setInfo={setInfo} info={info}/>
+      <PerformanceResult_Table_BY all_performanceData={all_performanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} />
 
 
-      <PerformanceResultView_HR handleClose={handleClose} info={info} open={open}/>
+      <PerformanceResultView_HR handleClose={handleClose} info={info} open={open} />
 
 
 
