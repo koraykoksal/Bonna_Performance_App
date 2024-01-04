@@ -90,7 +90,7 @@ const My1 = () => {
     tppCalisan: "",
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
-    calisanDegerlendirmeYuzdesi: 0.35,
+    calisanDegerlendirmeYuzdesi: 0.25,
     createdDate: formatDate(currentDate),
     okudumAnladım: true,
     personelSonuc: ""

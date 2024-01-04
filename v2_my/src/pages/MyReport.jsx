@@ -76,7 +76,7 @@ const MyReport = () => {
     tppCalisan: 0,
     calisanAciklama: "",
     degerlendirmeSonucu: 0,
-    calisanDegerlendirmeYuzdesi: 0.35,
+    calisanDegerlendirmeYuzdesi: 0.25,
     createdDate: formatDate(currentDate),
     okudumAnladım: true,
     personelSonuc: "",

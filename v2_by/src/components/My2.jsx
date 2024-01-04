@@ -168,7 +168,7 @@ const My2 = ({ personelData }) => {
     yoneticiQ10: "",
     yoneticiAciklama: "",
     yoneticiDegerlendirmeSonucu: "",
-    yoneticiDegerlendirmeYuzdesi: 0.65,
+    yoneticiDegerlendirmeYuzdesi: 0.75,
     yoneticiCreatedDate: formatDate(createdDate),
     yoneticiOkudumAnladım: true,
     yoneticiSonuc: "",
