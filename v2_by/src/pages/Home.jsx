@@ -11,7 +11,6 @@ import Select from '@mui/material/Select';
 import { my1Titles, my2Titles } from '../helper/data';
 import My1 from '../components/My1';
 import My2 from '../components/My2';
-import Test from '../components/Test';
 import UnSelectedPersonels from '../components/modals/UnSelectedPersonels';
 
 
@@ -21,7 +20,6 @@ export const Home = () => {
   const { managerPersonels } = useSelector((state) => state.auth)
   const { personelPerformanceData, all_performanceData } = useSelector((state) => state.performance)
   const [personelData, setPersonelData] = useState([])
-  const [managerpersonelData, setManagerPersonelData] = useState([])
   const [my1Status, setmy1Status] = useState(null)
   const [my2Status, setmy2Status] = useState(null)
   const [data, setData] = useState([])
@@ -59,36 +57,6 @@ export const Home = () => {
     return performanceResult
 
   }
-
-
-  //!* manager login işlemi sonrası kendisine bağlı çalışanlar slice içindeki state e aktarılır
-  //!* yöneticiye bağlı çalışanların listesini array olarak çıkar
-  useEffect(() => {
-
-    if (Array.isArray(managerPersonels.PERSONEL)) {
-
-      let multiSonuc = managerPersonels.PERSONEL.map((personel, index) => ({
-        personel,
-        tc: managerPersonels.TC[index]
-      }))
-
-      setManagerPersonelData(multiSonuc)
-
-    }
-    else {
-
-      let singleSonuc = []
-      const dizi = [managerPersonels]
-
-      for (let i = 0; i < dizi.length; i++) {
-        singleSonuc.push({
-          personel: dizi[0].PERSONEL,
-          tc: dizi[0].TC
-        })
-      }
-      setManagerPersonelData(singleSonuc)
-    }
-  }, [managerPersonels])
 
 
   //!* handle change işlemi sonrası info içerisinde TC NO bilgisinde değişiklik olduğunda hook çalıştır
@@ -138,50 +106,6 @@ export const Home = () => {
 
 
 
-  //! tüm performans verilerini db den getir
-  useEffect(() => {
-    get_All_PerformanceData('manager-evaluation')
-  }, [])
-
-
-  //! değerlendirmesi yapılmayan personellerin listesini çıkar
-  useEffect(() => {
-    unselectedPersonel(managerpersonelData, data)
-  }, [managerpersonelData, data])
-
-
-
-  //! değerlendirmnesi yapılmayan personelleri getir
-  useEffect(() => {
-
-    let dizi = [];
-
-    Object.values(all_performanceData).forEach(item => {
-      if (typeof item === 'object' && item !== null) {
-        const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
-
-        //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
-        const eslesenler = result.reduce((acc, obj2) => {
-          const eslesen = managerpersonelData.find(obj1 => obj2.tcNo === obj1.tc);
-          if (eslesen) {
-            acc.push({ ...eslesen, eslesen: obj2 });
-            dizi.push(obj2); // Diziye eşleşen her öğeyi ekleyin
-          }
-          return acc;
-        }, []);
-
-        setData(dizi);
-      }
-    });
-
-
-  }, [all_performanceData])
-
-
-
-
-
-
   return (
 
     <div>
@@ -223,7 +147,7 @@ export const Home = () => {
                   onChange={(e) => setInfo({ ...info, [e.target.name]: e.target.value })}
                 >
                   {
-                    managerpersonelData.map((item, index) => (
+                    managerPersonels.map((item, index) => (
                       <MenuItem value={item.tc} key={index}>{item.personel}</MenuItem>
                     ))
                   }

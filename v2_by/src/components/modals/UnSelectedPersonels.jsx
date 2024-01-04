@@ -37,7 +37,6 @@ const UnSelectedPersonels = ({ open, handleClose }) => {
     const { get_All_PerformanceData, unselectedPersonel } = usePerformanceCall()
     const { managerPersonels } = useSelector((state) => state.auth)
     const { all_performanceData } = useSelector((state) => state.performance)
-    const [managerpersonelData, setManagerPersonelData] = useState([])
     const [data, setData] = useState([])
     const [nonMatchingPersonnel, setNonMatchingPersonnel] = useState([]);
 
@@ -86,7 +85,7 @@ const UnSelectedPersonels = ({ open, handleClose }) => {
 
                 //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
                 const eslesenler = result.reduce((acc, obj2) => {
-                    const eslesen = managerpersonelData.find(obj1 => obj2.tcNo === obj1.tc);
+                    const eslesen = managerPersonels.find(obj1 => obj2.tcNo === obj1.tc);
                     if (eslesen) {
                         acc.push({ ...eslesen, eslesen: obj2 });
                         dizi.push(obj2); // Diziye eşleşen her öğeyi ekleyin
@@ -98,55 +97,21 @@ const UnSelectedPersonels = ({ open, handleClose }) => {
             }
         });
 
-
     }, [all_performanceData])
 
 
 
-    //!* manager login işlemi sonrası kendisine bağlı çalışanlar slice içindeki state e aktarılır
-    //!* yöneticiye bağlı çalışanların listesini array olarak çıkar
     useEffect(() => {
-
-        if (Array.isArray(managerPersonels.PERSONEL)) {
-
-            let multiSonuc = managerPersonels.PERSONEL.map((personel, index) => ({
-                personel,
-                tc: managerPersonels.TC[index]
-            }))
-
-            setManagerPersonelData(multiSonuc)
-
-        }
-        else {
-
-            let singleSonuc = []
-            const dizi = [managerPersonels]
-
-            for (let i = 0; i < dizi.length; i++) {
-                singleSonuc.push({
-                    personel: dizi[0].PERSONEL,
-                    tc: dizi[0].TC
-                })
-            }
-            setManagerPersonelData(singleSonuc)
-        }
-    }, [managerPersonels])
-
-
-
-    useEffect(() => {
-
         
         const degerlendirmeDonemAciklamasi = evulationInfo()
 
-        const newNonMatchingPersonnel = managerpersonelData.filter(personel =>
+        const newNonMatchingPersonnel = managerPersonels.filter(personel =>
             !data.some(record => (record.tcNo == personel.tc) && (record.degerlendirmeYili === now && record.degerlendirmeDonemiAciklama === degerlendirmeDonemAciklamasi))
         );
 
         setNonMatchingPersonnel(newNonMatchingPersonnel);
 
-
-    }, [managerpersonelData, data])
+    }, [data])
 
 
 

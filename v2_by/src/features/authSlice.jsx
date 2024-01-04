@@ -41,7 +41,8 @@ const authSlice=createSlice({
         },
         fetchLoginManagerPersonels:(state,{payload})=>{
             state.loading=false
-            state.managerPersonels=JSON.parse(payload[0].EKIP) //yönetici altında yer alan ekip bilgisi
+            state.managerPersonels = payload
+            // state.managerPersonels=JSON.parse(payload[0].EKIP) //yönetici altında yer alan ekip bilgisi
         },
         fetchLogoutSuccess:(state)=>{
             state.loading=false;

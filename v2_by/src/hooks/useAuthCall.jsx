@@ -55,7 +55,7 @@ const useAuthCall = () => {
         } catch (error) {
             dispatch(fetchFail())
             toastErrorNotify("'Something Went Wrong !'")
-            console.log("login error: ",error)
+            console.log("login error: ", error)
         }
     }
 
@@ -90,8 +90,37 @@ const useAuthCall = () => {
 
 
             const { data } = await axios(options)
+            const ekip = JSON.parse(data[0].EKIP)
+           
+            if (Array.isArray(ekip.PERSONEL)) {
 
-            dispatch(fetchLoginManagerPersonels(data))
+                let multiSonuc = ekip.PERSONEL.map((personel, index) => ({
+                    personel,
+                    tc: ekip.TC[index]
+                }))
+
+                // setManagerPersonelData(multiSonuc)
+                dispatch(fetchLoginManagerPersonels(multiSonuc))
+            }
+            else {
+
+                let singleSonuc = []
+                const dizi = [ekip]
+
+                for (let i = 0; i < dizi.length; i++) {
+                    singleSonuc.push({
+                        personel: dizi[0].PERSONEL,
+                        tc: dizi[0].TC
+                    })
+                }
+                // setManagerPersonelData(singleSonuc)
+                dispatch(fetchLoginManagerPersonels(singleSonuc))
+            }
+
+
+            
+            // dispatch(fetchLoginManagerPersonels(data))
+            
 
 
         } catch (error) {

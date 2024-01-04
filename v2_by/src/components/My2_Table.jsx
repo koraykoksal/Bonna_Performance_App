@@ -225,7 +225,8 @@ const My2_Table = ({ personelData, handleChange, info }) => {
   const handleSubmit = (e) => {
 
     e.preventDefault()
-    post_manager_evaulationData('manager-evaluation', info)    
+    post_manager_evaulationData('manager-evaluation', info)   
+    get_All_PerformanceData('manager-evaluation') 
   }
 
 

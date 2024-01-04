@@ -6,7 +6,6 @@ import PerformanceResult_Table from '../components/tables/PerformanceResult_Tabl
 import PerformanceUpdate from '../components/modals/PerformanceUpdate'
 import { Box, Typography } from "@mui/material"
 import PerformanceResultView_Manager from '../components/modals/PerformanceResultView_Manager'
-import Test from '../components/Test'
 
 
 const Report = () => {
@@ -15,7 +14,6 @@ const Report = () => {
   const { get_All_PerformanceData } = usePerformanceCall()
   const { all_performanceData } = useSelector((state) => state.performance)
   const [data, setData] = useState([])
-  const [managerpersonelData, setManagerPersonelData] = useState([])
 
 
 
@@ -46,33 +44,13 @@ const Report = () => {
 
     let dizi = [];
 
-    // 'managerPersonels.PERSONEL' bir dizi mi diye kontrol et
-    if (Array.isArray(managerPersonels.PERSONEL)) {
-      let multiSonuc = managerPersonels.PERSONEL.map((personel, index) => ({
-        personel,
-        tc: managerPersonels.TC[index]
-      }));
-
-      setManagerPersonelData(multiSonuc);
-
-    }
-    else {
-      // 'managerPersonels' tek bir obje ise
-      let singleSonuc = [{
-        personel: managerPersonels.PERSONEL,
-        tc: managerPersonels.TC
-      }];
-
-      setManagerPersonelData(singleSonuc);
-    }
-
     Object.values(all_performanceData).forEach(item => {
       if (typeof item === 'object' && item !== null) {
         const result = Object.keys(item).map(key => ({ id: key, ...item[key] }));
 
         //! Eşleşen tüm öğeleri toplayan reduce fonksiyonu
         const eslesenler = result.reduce((acc, obj2) => {
-          const eslesen = managerpersonelData.find(obj1 => obj2.tcNo === obj1.tc);
+          const eslesen = managerPersonels.find(obj1 => obj2.tcNo === obj1.tc);
           if (eslesen) {
             acc.push({ ...eslesen, eslesen: obj2 });
             dizi.push(obj2); // Diziye eşleşen her öğeyi ekleyin
@@ -83,7 +61,6 @@ const Report = () => {
         setData(dizi);
       }
     });
-
 
   }, [all_performanceData])
 

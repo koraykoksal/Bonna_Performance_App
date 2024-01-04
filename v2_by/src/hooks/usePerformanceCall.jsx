@@ -376,32 +376,6 @@ const usePerformanceCall = () => {
             .catch(err => console.log(err))
     }
 
-
-
-    //değerlendirmesi yapılmayan personelleri listele
-    const unselectedPersonel = async (managerpersonelData, data) => {
-        let dizi = [];
-        const degerlendirmeDonemAciklamasi = evulationInfo()
-        const now = new Date().getFullYear()
-
-        try {
-
-
-            const newNonMatchingPersonnel = managerpersonelData.filter(personel =>
-                !data.some(record => (record.tcNo == personel.tc) && (record.degerlendirmeYili === now && record.degerlendirmeDonemiAciklama === degerlendirmeDonemAciklamasi))
-            );
-
-            distpatch(fetchUnSelectedPersonelData(newNonMatchingPersonnel))
-
-        } catch (error) {
-            console.log("unselectedPersonel: ", error)
-        }
-    }
-
-
-
-
-
     
     return {
         get_managerPersonels,
@@ -413,7 +387,6 @@ const usePerformanceCall = () => {
         get_raiseData,
         put_raiseData,
         get_beyazYaka_performanceData,
-        unselectedPersonel
 
     }
 }
