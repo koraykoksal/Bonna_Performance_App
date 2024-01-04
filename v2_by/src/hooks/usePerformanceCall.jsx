@@ -379,8 +379,6 @@ const usePerformanceCall = () => {
             .then(res => res.json())
             .then(data => {
 
-                console.log(data)
-
                 const dizi = []
 
                 Object.values(data).forEach(element => {
@@ -404,6 +402,20 @@ const usePerformanceCall = () => {
     }
 
 
+    //! firebase data silme
+    const removeRaiseData = async (address, id) => {
+
+        try {
+            const db = getDatabase();
+            await remove(ref(db, `${address}/${id}`))
+            toastSuccessNotify('Data Deleted ✅')
+
+        } catch (error) {
+            toastErrorNotify('No Delete Data ❌')
+        }
+    }
+
+
     return {
         get_managerPersonels,
         get_All_PerformanceData,
@@ -414,6 +426,7 @@ const usePerformanceCall = () => {
         get_raiseData,
         put_raiseData,
         get_beyazYaka_performanceData,
+        removeRaiseData
 
     }
 }

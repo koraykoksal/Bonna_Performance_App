@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 import { AiFillEdit } from "react-icons/ai";
+import { MdDeleteForever } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
 
-const Settings_Table = ({ data, setInfo, info,handleOpen }) => {
+const Settings_Table = ({ data, setInfo, info,handleOpen,HandleOpen_delete }) => {
 
   const dataGrid_Columns = [
     // {
@@ -56,6 +57,23 @@ const Settings_Table = ({ data, setInfo, info,handleOpen }) => {
             }}
 
           />,
+          <GridActionsCellItem
+          key={"delete"}
+          icon={<MdDeleteForever size={25} style={{ color: 'darkred', marginRight: 5 }} cursor='pointer' />}
+          label="Del"
+          onClick={() => {
+            HandleOpen_delete()
+            setInfo({
+              id,
+              createdDate,
+              standartRaise,
+              performanceRaise,
+              raiseYear,
+              raiseDetail,
+            })
+          }}
+
+        />,
 
         ]
       },

@@ -15,8 +15,8 @@ const AllResults = () => {
   const [zamData, setZamData] = useState([])
 
   
+  //
   useEffect(() => {
-
     get_raiseData('raise-data')
     get_All_PerformanceData('manager-evaluation')
     if(!twiserAccesToken){
@@ -25,11 +25,13 @@ const AllResults = () => {
   }, [])
 
 
+  // beyaz yaka okr sonuçlarını al
   useEffect(() => {
     get_beyazYaka_performanceData()
   }, [twiserAccesToken])
   
 
+  // zam oranı bilgisininde son kayıt edilen zam oranı bilgisini çek
   useEffect(() => {
 
     const data = Object.values(raiseData)

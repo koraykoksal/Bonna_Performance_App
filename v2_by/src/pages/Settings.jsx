@@ -6,6 +6,7 @@ import usePerformanceCall from '../hooks/usePerformanceCall'
 import { useSelector } from "react-redux"
 import Settings_Table from '../components/tables/Settings_Table'
 import Raise_GraphicData from '../components/tables/Raise_GraphicData'
+import SettingsDeleteModal from '../components/modals/SettingsDeleteModal'
 
 
 const Settings = () => {
@@ -16,7 +17,6 @@ const Settings = () => {
     const [data, setData] = useState([])
 
 
-    // viewer modal handle state bilgisi
     const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -30,6 +30,15 @@ const Settings = () => {
         })
 
     }
+
+
+    const [Open_delete, setOpen_delete] = useState(false)
+    const HandleOpen_delete = () => setOpen_delete(true);
+    const HandleClose_delete = () => {
+        setOpen_delete(false)
+
+    }
+
 
     //! createddate bilgisini çıkar
     function formatDate(date) {
@@ -113,10 +122,11 @@ const Settings = () => {
 
             <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
 
-
+            <SettingsDeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo}/>
 
             <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'} gap={3} alignItems={'center'}>
-                <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} />
+
+                <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} HandleOpen_delete={HandleOpen_delete}/>
 
                 <Raise_GraphicData raiseData={raiseData} data={data} />
             </Box>
