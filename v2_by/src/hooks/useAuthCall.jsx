@@ -91,7 +91,7 @@ const useAuthCall = () => {
 
             const { data } = await axios(options)
             const ekip = JSON.parse(data[0].EKIP)
-           
+
             if (Array.isArray(ekip.PERSONEL)) {
 
                 let multiSonuc = ekip.PERSONEL.map((personel, index) => ({
@@ -118,9 +118,9 @@ const useAuthCall = () => {
             }
 
 
-            
+
             // dispatch(fetchLoginManagerPersonels(data))
-            
+
 
 
         } catch (error) {
@@ -151,6 +151,7 @@ const useAuthCall = () => {
         })
             .then(res => res.json())
             .then(data => {
+              
                 dispatch(fetchTwiserLoginSuccess(data))
             })
             .catch(error => console.error('Error:', error));

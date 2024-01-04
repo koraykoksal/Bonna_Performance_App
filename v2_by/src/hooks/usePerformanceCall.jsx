@@ -334,7 +334,6 @@ const usePerformanceCall = () => {
 
     const get_beyazYaka_performanceData = () => {
 
-
         fetch(`${import.meta.env.VITE_TWISER_BYDATA_BASEADDRESS}`, {
             method: 'post',
             headers: {
@@ -362,6 +361,8 @@ const usePerformanceCall = () => {
             .then(res => res.json())
             .then(data => {
 
+                console.log(data)
+                
                 const dizi = []
 
                 Object.values(data).forEach(element => {
