@@ -14,24 +14,24 @@ const AllResults = () => {
   const { get_raiseData, get_All_PerformanceData , get_beyazYaka_performanceData} = usePerformanceCall()
   const [zamData, setZamData] = useState([])
 
-  
-  //
+  //* zam oranı ve yönetici performans değerlendirme sonuçlarını çek
   useEffect(() => {
     get_raiseData('raise-data')
     get_All_PerformanceData('manager-evaluation')
+
     if(!twiserAccesToken){
       twiserLogin()
     }
   }, [])
 
 
-  // beyaz yaka okr sonuçlarını al
+  //* beyaz yaka okr sonuçlarını al
   useEffect(() => {
     get_beyazYaka_performanceData()
   }, [twiserAccesToken])
   
 
-  // zam oranı bilgisininde son kayıt edilen zam oranı bilgisini çek
+  //* zam oranı bilgisininde son kayıt edilen zam oranı bilgisini çek
   useEffect(() => {
 
     const data = Object.values(raiseData)

@@ -22,9 +22,6 @@ const style = {
 
 const SettingsDeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo }) => {
 
-
-    console.log(info)
-
     const {removeRaiseData,get_raiseData}=usePerformanceCall()
 
     const handleSubmit = (e) => {
