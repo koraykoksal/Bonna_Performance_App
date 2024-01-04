@@ -244,28 +244,6 @@ const Report = () => {
 
 
 
-  //! createddate bilgisini çıkar
-  function formatDate(date) {
-    let day = date.getDate(); // Günü alır
-    let month = date.getMonth() + 1; // Ayı alır (0'dan başladığı için 1 eklenir)
-    let year = date.getFullYear(); // Yılı alır
-    let hours = date.getHours(); // Saati alır
-    let minutes = date.getMinutes(); // Dakikayı alır
-
-    // Gün, ay, saat veya dakika tek basamaklıysa, başına '0' ekler
-    day = day < 10 ? '0' + day : day;
-    month = month < 10 ? '0' + month : month;
-    hours = hours < 10 ? '0' + hours : hours;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-
-    return `${day}-${month}-${year} ${hours}:${minutes}`;
-  }
-
-
-
-
-
-
   return (
     <div>
 

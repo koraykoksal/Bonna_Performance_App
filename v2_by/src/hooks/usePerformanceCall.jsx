@@ -177,6 +177,10 @@ const usePerformanceCall = () => {
                 const newDb = getDatabase();
                 await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
                 toastSuccessNotify('Kayıt yapılmıştır.');
+
+                // kayıt işlemi sonrası tüm performans datası bilgisini çekerek unselected personel verisi güncellenmiş olur
+                get_All_PerformanceData('manager-evaluation') 
+
             }
             else {
 
@@ -203,6 +207,10 @@ const usePerformanceCall = () => {
                     const newDb = getDatabase();
                     await set(ref(newDb, `${url}/${info.tcNo}/${uID}`), info);
                     toastSuccessNotify('Kayıt yapılmıştır.');
+
+                    // kayıt işlemi sonrası tüm performans datası bilgisini çekerek unselected personel verisi güncellenmiş olur
+                    get_All_PerformanceData('manager-evaluation') 
+
                 }
 
             }
