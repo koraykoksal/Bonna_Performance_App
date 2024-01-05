@@ -415,8 +415,10 @@ const usePerformanceCall = () => {
         }
     }
 
+
+
     //! firebase maviyaka performans data silme
-    const removeMyPerformanceData = async (address,info) => {
+    const removeMyPerformanceData = async (address, info) => {
 
         try {
             const db = getDatabase();
@@ -428,8 +430,10 @@ const usePerformanceCall = () => {
         }
     }
 
-     //! firebase manager performans data silme
-     const removeManagerEvaluationData = async (address,info) => {
+
+
+    //! firebase manager performans data silme
+    const removeManagerEvaluationData = async (address, info) => {
 
         try {
             const db = getDatabase();

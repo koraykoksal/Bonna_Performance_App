@@ -1,5 +1,5 @@
 {
-  "name": "blogapp-redux",
+  "name": "bonna-performance",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -36,6 +36,7 @@
     "react-toastify": "^9.1.3",
     "react-uuid": "^2.0.0",
     "redux-persist": "^6.0.0",
+    "serve": "^14.2.1",
     "uid": "^2.0.2",
     "uuid": "^9.0.1",
     "yup": "^1.2.0"
