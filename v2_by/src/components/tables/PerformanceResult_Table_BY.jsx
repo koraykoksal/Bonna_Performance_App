@@ -5,9 +5,9 @@ import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 
-
-const PerformanceResult_Table_BY = ({ all_performanceData,handleOpen,info,setInfo }) => {
+const PerformanceResult_Table_BY = ({ all_performanceData, handleOpen, info, setInfo, HandleOpen_delete }) => {
 
 
     const dataGrid_Columns = [
@@ -165,13 +165,85 @@ const PerformanceResult_Table_BY = ({ all_performanceData,handleOpen,info,setInf
                             })
 
                         }}
-                    />
+                    />,
+                    <GridActionsCellItem
+                        key={"delete"}
+                        icon={<MdDeleteForever size={25} style={{ color: 'darkred', marginRight: 5 }} cursor='pointer' />}
+                        label="Del"
+                        onClick={() => {
+                            HandleOpen_delete()
+                            setInfo({
+                                id,
+                                type:"manager-evaluation",
+                                personel,
+                                sicilNo,
+                                tcNo,
+                                iseGirisTarih,
+                                dogumTarih,
+                                birim,
+                                bolum,
+                                ustBirim,
+                                yonetici,
+                                gorev,
+                                currentSallary,
+                                degerlendirmeYili,
+                                degerlendirmeDonemiAciklama,
+                                q1Calisan,
+                                q2Calisan,
+                                q3Calisan,
+                                q4Calisan,
+                                q5Calisan,
+                                q6Calisan,
+                                q7Calisan,
+                                q8Calisan,
+                                q9Calisan,
+                                q10Calisan,
+                                oypCalisan,
+                                dypCalisan,
+                                yypCalisan,
+                                tppCalisan,
+                                calisanAciklama,
+                                degerlendirmeSonucu,
+                                calisanDegerlendirmeYuzdesi,
+                                createdDate,
+                                okudumAnladım,
+                                personelSonuc,
+                                yoneticiQ1,
+                                yoneticiQ2,
+                                yoneticiQ3,
+                                yoneticiQ4,
+                                yoneticiQ5,
+                                yoneticiQ6,
+                                yoneticiQ7,
+                                yoneticiQ8,
+                                yoneticiQ9,
+                                yoneticiQ10,
+                                yoneticiAciklama,
+                                yoneticiDegerlendirmeSonucu,
+                                yoneticiDegerlendirmeYuzdesi,
+                                yoneticiCreatedDate,
+                                yoneticiOkudumAnladım,
+                                yoneticiSonuc,
+                                yoneticiDegerlendirmeYili,
+                                yoneticiDegerlendirmeDonemiAciklama,
+                                yoneticiOyp,
+                                yoneticiDyp,
+                                yoneticiYyp,
+                                yoneticiTpp,
+                                zamOrani_performans,
+                                zamOrani_yonetici_ve_performans,
+                                final_degerlendirmeSonucu,
+                                final_degerlendirmeAciklamasi,
+                            })
+                        }}
+
+                    />,
 
 
                 ]
             },
         },
- 
+
         {
             field: "type",
             headerName: "Tip",
@@ -395,11 +467,11 @@ const PerformanceResult_Table_BY = ({ all_performanceData,handleOpen,info,setInf
                     rows={all_performanceData}
                     initialState={{
                         pagination: {
-                          paginationModel: {
-                            pageSize: 10,
-                          },
+                            paginationModel: {
+                                pageSize: 10,
+                            },
                         },
-                      }}
+                    }}
                     pageSizeOptions={[10, 25, 50, 75, 100]}
                     slots={{ toolbar: GridToolbar }}
                     disableRowSelectionOnClick

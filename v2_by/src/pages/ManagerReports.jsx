@@ -5,10 +5,13 @@ import { Box, Typography, Container, Grid } from "@mui/material"
 import { useSelector } from "react-redux"
 import PerformanceResult_Table_BY from '../components/tables/PerformanceResult_Table_BY'
 import PerformanceResultView_HR from '../components/modals/PerformanceResultView_HR'
-import PdfViewer from '../components/PdfViewer'
-
+import DeleteModal from '../components/delete/DeleteModal'
 
 const ManagerReports = () => {
+
+
+  const { get_All_PerformanceData } = usePerformanceCall()
+  const { all_performanceData } = useSelector((state) => state.performance)
 
 
   // viewer modal handle state bilgisi
@@ -19,10 +22,13 @@ const ManagerReports = () => {
 
   }
 
+  const [Open_delete, setOpen_delete] = useState(false)
+  const HandleOpen_delete = () => setOpen_delete(true);
+  const HandleClose_delete = () => {
+      setOpen_delete(false)
 
+  }
 
-  const { get_All_PerformanceData } = usePerformanceCall()
-  const { all_performanceData } = useSelector((state) => state.performance)
 
 
   useEffect(() => {
@@ -107,12 +113,12 @@ const ManagerReports = () => {
     <div>
       <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Yönetici Değerlendirme Sonuçları</Typography>
 
-      <PerformanceResult_Table_BY all_performanceData={all_performanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} />
+      <PerformanceResult_Table_BY all_performanceData={all_performanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} HandleOpen_delete={HandleOpen_delete}/>
 
 
       <PerformanceResultView_HR handleClose={handleClose} info={info} open={open} />
 
-
+      <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} />
 
     </div>
   )

@@ -5,6 +5,7 @@ import { Box, Typography, Container, Grid } from "@mui/material"
 import { useSelector } from "react-redux"
 import PerformanceResult_Table_MY from '../components/tables/PerformanceResult_Table_MY'
 import PerformanceResultView_Personel from '../components/modals/PerformanceResultView_Personel'
+import DeleteModal from '../components/delete/DeleteModal'
 
 const MyReports = () => {
 
@@ -18,6 +19,13 @@ const MyReports = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
+
+  }
+
+  const [Open_delete, setOpen_delete] = useState(false)
+  const HandleOpen_delete = () => setOpen_delete(true);
+  const HandleClose_delete = () => {
+    setOpen_delete(false)
 
   }
 
@@ -107,9 +115,11 @@ const MyReports = () => {
 
       <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Mavi Yaka Değerlendirme Sonuçları</Typography>
 
-      <PerformanceResult_Table_MY all_performanceData={all_performanceData} handleOpen={handleOpen} setInfo={setInfo} info={info}/>
+      <PerformanceResult_Table_MY all_performanceData={all_performanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} HandleOpen_delete={HandleOpen_delete}/>
 
-      <PerformanceResultView_Personel handleClose={handleClose} info={info} open={open}/>
+      <PerformanceResultView_Personel handleClose={handleClose} info={info} open={open} />
+
+      <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} />
 
     </div>
   )

@@ -17,6 +17,8 @@ import PerformanceResult_Table_BY_OKR from '../components/tables/PerformanceResu
 import { useState } from 'react';
 import PerformanceResultView_OKR from '../components/modals/PerformanceResultView_OKR';
 
+
+
 const ByReports = () => {
 
     const { twiserAccesToken } = useSelector((state) => state.auth)
@@ -32,6 +34,8 @@ const ByReports = () => {
         setOpen(false)
 
     }
+
+   
 
 
     // sayfa render olduğu zaman twiser sistemine login ol
@@ -94,9 +98,11 @@ const ByReports = () => {
 
             <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Beyaz Yaka OKR Sonuçlar</Typography>
 
-            <PerformanceResult_Table_BY_OKR byOkrPerformance={byOkrPerformance} setInfo={setInfo} handleOpen={handleOpen}/>
+            <PerformanceResult_Table_BY_OKR byOkrPerformance={byOkrPerformance} setInfo={setInfo} handleOpen={handleOpen} />
 
-            <PerformanceResultView_OKR info={info} open={open} handleClose={handleClose}/>
+            <PerformanceResultView_OKR info={info} open={open} handleClose={handleClose} />
+
+            <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} />
 
         </div>
     )

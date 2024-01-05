@@ -7,7 +7,8 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 
 
-const Settings_Table = ({ data, setInfo, info,handleOpen,HandleOpen_delete }) => {
+const Settings_Table = ({ data, setInfo, info, handleOpen, HandleOpen_delete }) => {
+
 
   const dataGrid_Columns = [
     // {
@@ -58,22 +59,23 @@ const Settings_Table = ({ data, setInfo, info,handleOpen,HandleOpen_delete }) =>
 
           />,
           <GridActionsCellItem
-          key={"delete"}
-          icon={<MdDeleteForever size={25} style={{ color: 'darkred', marginRight: 5 }} cursor='pointer' />}
-          label="Del"
-          onClick={() => {
-            HandleOpen_delete()
-            setInfo({
-              id,
-              createdDate,
-              standartRaise,
-              performanceRaise,
-              raiseYear,
-              raiseDetail,
-            })
-          }}
+            key={"delete"}
+            icon={<MdDeleteForever size={25} style={{ color: 'darkred', marginRight: 5 }} cursor='pointer' />}
+            label="Del"
+            onClick={() => {
+              HandleOpen_delete()
+              setInfo({
+                id,
+                createdDate,
+                standartRaise,
+                performanceRaise,
+                raiseYear,
+                raiseDetail,
+                type: "raise" //delete modal da type bilgisine göre kontrol et ve silme işlemini öyle yap
+              })
+            }}
 
-        />,
+          />,
 
         ]
       },

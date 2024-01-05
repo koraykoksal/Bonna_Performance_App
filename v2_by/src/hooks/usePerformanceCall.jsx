@@ -402,12 +402,38 @@ const usePerformanceCall = () => {
     }
 
 
-    //! firebase data silme
+    //! firebase zam oranı data silme
     const removeRaiseData = async (address, id) => {
 
         try {
             const db = getDatabase();
             await remove(ref(db, `${address}/${id}`))
+            toastSuccessNotify('Data Deleted ✅')
+
+        } catch (error) {
+            toastErrorNotify('No Delete Data ❌')
+        }
+    }
+
+    //! firebase maviyaka performans data silme
+    const removeMyPerformanceData = async (address,info) => {
+
+        try {
+            const db = getDatabase();
+            await remove(ref(db, `${address}/${info.tcNo}/${info.id}`))
+            toastSuccessNotify('Data Deleted ✅')
+
+        } catch (error) {
+            toastErrorNotify('No Delete Data ❌')
+        }
+    }
+
+     //! firebase manager performans data silme
+     const removeManagerEvaluationData = async (address,info) => {
+
+        try {
+            const db = getDatabase();
+            await remove(ref(db, `${address}/${info.tcNo}/${info.id}`))
             toastSuccessNotify('Data Deleted ✅')
 
         } catch (error) {
@@ -426,7 +452,9 @@ const usePerformanceCall = () => {
         get_raiseData,
         put_raiseData,
         get_beyazYaka_performanceData,
-        removeRaiseData
+        removeRaiseData,
+        removeMyPerformanceData,
+        removeManagerEvaluationData
 
     }
 }

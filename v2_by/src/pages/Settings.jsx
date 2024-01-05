@@ -6,7 +6,7 @@ import usePerformanceCall from '../hooks/usePerformanceCall'
 import { useSelector } from "react-redux"
 import Settings_Table from '../components/tables/Settings_Table'
 import Raise_GraphicData from '../components/tables/Raise_GraphicData'
-import SettingsDeleteModal from '../components/modals/SettingsDeleteModal'
+import DeleteModal from '../components/delete/DeleteModal'
 
 
 const Settings = () => {
@@ -122,7 +122,7 @@ const Settings = () => {
 
             <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
 
-            <SettingsDeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo}/>
+            <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo}/>
 
             <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'} gap={3} alignItems={'center'}>
 

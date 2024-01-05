@@ -20,14 +20,35 @@ const style = {
 };
 
 
-const SettingsDeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo }) => {
+const DeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo }) => {
 
-    const {removeRaiseData,get_raiseData}=usePerformanceCall()
+    console.log(info)
+
+    const {
+        removeRaiseData,
+        get_raiseData,
+        get_All_PerformanceData,
+        removeMyPerformanceData,
+        removeManagerEvaluationData
+    
+    }=usePerformanceCall()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        removeRaiseData('raise-data',info.id)
-        get_raiseData('raise-data')
+
+        if(info.type == "raise"){
+            removeRaiseData('raise-data',info.id)
+            get_raiseData('raise-data')
+        }
+        else if(info.type == "my-performance"){
+            removeMyPerformanceData('my-performance',info)
+            get_All_PerformanceData('my-performance')
+        }
+        else if(info.type == "manager-evaluation"){
+            removeManagerEvaluationData('manager-evaluation',info)
+            get_All_PerformanceData('manager-evaluation')
+        }
+        
         HandleClose_delete()
         
     }
@@ -67,4 +88,4 @@ const SettingsDeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo })
     )
 }
 
-export default SettingsDeleteModal
+export default DeleteModal
