@@ -7,7 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 
 
 
-const PerformanceResult_Table = ({ handleOpen, setInfo }) => {
+const PerformanceResult_Table = ({ handleOpen, setInfo ,info}) => {
 
     const { all_performanceData } = useSelector((state) => state.performance)
     const [performanceData, setperformanceData] = useState([])

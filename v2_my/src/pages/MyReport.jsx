@@ -151,7 +151,7 @@ const MyReport = () => {
       <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
       {/* rapor sonuçlaırını gösteren COMPONENT */}
-      <PerformanceResult_Table setInfo={setInfo} handleOpen={handleOpen} />
+      <PerformanceResult_Table setInfo={setInfo} handleOpen={handleOpen} info={info}/>
 
       {/* güncelleme yapılacağı zaman çalışacak MODAL */}
       <PerformanceUpdate open={open} handleClose={handleClose} info={info} handleChange={handleChange} />

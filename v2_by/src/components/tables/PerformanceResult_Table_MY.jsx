@@ -366,7 +366,7 @@ const PerformanceResult_Table_MY = ({all_performanceData,handleOpen,info,setInfo
         },
         {
             field: "calisanAciklama",
-            headerName: "Yönetici Açıklama",
+            headerName: "Çalışan Açıklama",
             minWidth: 250,
             headerAlign: "center",
             align: "center",

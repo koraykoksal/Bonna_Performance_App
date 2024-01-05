@@ -305,9 +305,6 @@ const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
     }
 
 
-
-
-
     return (
         <div>
 

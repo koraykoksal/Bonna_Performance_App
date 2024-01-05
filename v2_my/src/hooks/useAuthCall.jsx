@@ -6,6 +6,8 @@ import { fetchStart, fetchFail, loginSuccess, logoutSuccess, fetchAllUsers } fro
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import {personelData} from "../helper/personelData"
+
 
 const useAuthCall = () => {
 
@@ -31,6 +33,8 @@ const useAuthCall = () => {
             }
 
             const res = await axios(options)
+
+            console.log(res)
 
             if (res?.data.length > 0) {
                 dispatch(fetchAllUsers(res?.data))
@@ -62,22 +66,22 @@ const useAuthCall = () => {
 
         try {
 
-            await get_bonnaPersonel()
+            // await get_bonnaPersonel()
 
-            const findPersonel = allBonnaPersonel.find((item) => item.TCKIMLIKNO == userdata.tcno)
+            // const findPersonel = allBonnaPersonel.find((item) => item.TCKIMLIKNO == userdata.tcno)
+            const findPersonel = personelData.find((item) => item.TCKIMLIKNO == userdata.tcno)
 
-            console.log(findPersonel)
+            console.log("find personel: ",findPersonel)
 
             if (findPersonel) {
 
                 const res = await axios(options)
                 
-                dispatch(loginSuccess(res?.data))
-                toastSuccessNotify('Login Successful.')
-                navigate('/myperformance')
-                //! yonetici bilgisi
-                // const data = JSON.parse(res?.data[0].YONETICI)
+                console.log("res : ",res)
 
+                dispatch(loginSuccess(res?.data))
+                navigate('/myperformance')
+                toastSuccessNotify('Login Successful.')
                 
             }
             else{
@@ -86,7 +90,8 @@ const useAuthCall = () => {
 
         } catch (error) {
             dispatch(fetchFail())
-            toastErrorNotify("Login Error !")
+            toastErrorNotify("Login Error !",error)
+            console.log("Login Error !",error)
         }
 
     }
