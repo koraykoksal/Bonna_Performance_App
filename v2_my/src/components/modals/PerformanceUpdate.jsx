@@ -302,6 +302,7 @@ const PerformanceUpdate = ({ open, handleClose, info, handleChange }) => {
 
         put_PerformanceData('my-performance', info)
         get_performanceData('my-performance', info.tcNo)
+        
     }
 
 

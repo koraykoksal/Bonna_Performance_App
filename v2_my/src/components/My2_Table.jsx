@@ -198,8 +198,8 @@ const My2_Table = ({ info, setInfo, handleChange }) => {
     if(info.tcNo){
       post_new_performanceData('my-performance', info)
     }
-    
 
+  
     // setInfo({
     //   personel:"",
     //   sicilNo: "",
@@ -238,7 +238,7 @@ const My2_Table = ({ info, setInfo, handleChange }) => {
   }
 
 
-  
+  console.log(info)
 
   return (
 
