@@ -14,6 +14,7 @@ export const my1Titles=[
     {title:"Şoför"},
     {title:"Tekniker"},
     {title:"Teknisyen"},
+    
 ]
 
 export const my2Titles=[
@@ -22,5 +23,6 @@ export const my2Titles=[
     {title:"Takım Lideri"},
     {title:"Varidya Amiri"},
     {title:"Uzman"},
+    
 ]
 

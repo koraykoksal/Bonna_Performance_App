@@ -183,46 +183,47 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
     }
 
     const handleSubmit = (e) => {
+        
         e.preventDefault()
 
         post_new_performanceData('my-performance', info)
 
 
-        setInfo({
-            type: "my1",
-            personel: "",
-            sicilNo: "",
-            tcNo: "",
-            iseGirisTarih: "",
-            dogumTarih: "",
-            birim: "",
-            bolum: "",
-            ustBirim: "",
-            yonetici: "",
-            gorev: "",
-            currentSallary: "",
-            degerlendirmeYili: "",
-            degerlendirmeDonemiAciklama: "",
-            q1Calisan: "",
-            q2Calisan: "",
-            q3Calisan: "",
-            q4Calisan: "",
-            q5Calisan: "",
-            q6Calisan: "",
-            q7Calisan: "",
-            q8Calisan: "",
-            q9Calisan: "",
-            q10Calisan: "",
-            oypCalisan: "",
-            dypCalisan: "",
-            tppCalisan: "",
-            calisanAciklama: "",
-            degerlendirmeSonucu: "",
-            calisanDegerlendirmeYuzdesi: "",
-            createdDate: "",
-            okudumAnladım: "",
-            personelSonuc: ""
-        })
+        // setInfo({
+        //     type: "my1",
+        //     personel: "",
+        //     sicilNo: "",
+        //     tcNo: "",
+        //     iseGirisTarih: "",
+        //     dogumTarih: "",
+        //     birim: "",
+        //     bolum: "",
+        //     ustBirim: "",
+        //     yonetici: "",
+        //     gorev: "",
+        //     currentSallary: "",
+        //     degerlendirmeYili: "",
+        //     degerlendirmeDonemiAciklama: "",
+        //     q1Calisan: "",
+        //     q2Calisan: "",
+        //     q3Calisan: "",
+        //     q4Calisan: "",
+        //     q5Calisan: "",
+        //     q6Calisan: "",
+        //     q7Calisan: "",
+        //     q8Calisan: "",
+        //     q9Calisan: "",
+        //     q10Calisan: "",
+        //     oypCalisan: "",
+        //     dypCalisan: "",
+        //     tppCalisan: "",
+        //     calisanAciklama: "",
+        //     degerlendirmeSonucu: "",
+        //     calisanDegerlendirmeYuzdesi: "",
+        //     createdDate: "",
+        //     okudumAnladım: "",
+        //     personelSonuc: ""
+        // })
     }
 
 

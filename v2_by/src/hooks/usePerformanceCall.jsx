@@ -96,7 +96,7 @@ const usePerformanceCall = () => {
             const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
-
+            // console.log(snapshot.val())
 
             if (!snapshot.exists()) {
 
@@ -122,6 +122,8 @@ const usePerformanceCall = () => {
 
                 distpatch(fetchAllPerformanceData(dizi))
                 // distpatch(fetchAllPerformanceData(snapshot.val()))
+
+            
             }
 
         } catch (error) {

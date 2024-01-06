@@ -192,6 +192,7 @@ const My2_Table = ({ info, setInfo, handleChange }) => {
 
 
   const handleSubmit = (e) => {
+    
     e.preventDefault()
 
     post_new_performanceData('my-performance', info)
