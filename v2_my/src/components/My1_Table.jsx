@@ -186,8 +186,10 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
         
         e.preventDefault()
 
-        post_new_performanceData('my-performance', info)
-
+        if(info.tcNo){
+            post_new_performanceData('my-performance', info)
+        }
+        
 
         // setInfo({
         //     type: "my1",
