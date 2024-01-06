@@ -25,6 +25,7 @@ const style = {
 
 const PerformanceResultView_Personel = ({ open, handleClose, info }) => {
 
+
     return (
 
         <div>
@@ -76,6 +77,7 @@ const PerformanceResultView_Personel = ({ open, handleClose, info }) => {
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yypCalisan} puan</Typography>
                             {/* <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.calisanDegerlendirmeYuzdesi * 100}% </Typography> */}
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Sonuç: {info?.personelSonuc} </Typography>
+                            <Typography variant='subtitle2' align='center' fontWeight={700}>Personel Açıklama: {info?.calisanAciklama} </Typography>
 
                         </Box>
 
