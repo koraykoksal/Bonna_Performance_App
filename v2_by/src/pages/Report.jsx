@@ -13,7 +13,7 @@ const Report = () => {
   const { userInfo, managerPersonels } = useSelector((state) => state.auth)
   const { get_All_PerformanceData } = usePerformanceCall()
   const { all_performanceData } = useSelector((state) => state.performance)
-
+  const [matchedState, setMatchedState] = useState([]);
 
 
   // update modal handle state bilgisi
@@ -217,12 +217,27 @@ const Report = () => {
 
 
 
+
+ useEffect(() => {
+   
+  const maneger_nameSurname = userInfo.NAME +" "+userInfo.SURNAME
+  
+  const matchedData = all_performanceData.filter(item=>item.yonetici === maneger_nameSurname)
+
+  setMatchedState(matchedData);
+
+ }, [all_performanceData])
+ 
+  
+
+
+
   return (
     <div>
 
       <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
-      <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} all_performanceData={all_performanceData} setInfo={setInfo} info={info} />
+      <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} all_performanceData={all_performanceData} setInfo={setInfo} info={info} matchedState={matchedState}/>
 
       <PerformanceUpdate open_editPage={open_editPage} handleClose_editPage={handleClose_editPage} info={info} handleChange={handleChange} />
 

@@ -8,7 +8,7 @@ import { FaEye } from "react-icons/fa";
 import { MdBlock } from "react-icons/md";
 
 
-const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, all_performanceData, setInfo, info }) => {
+const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, all_performanceData, setInfo, info,matchedState }) => {
 
   const currentYear = new Date().getFullYear()
   const {userInfo}=useSelector((state)=>state.auth)
@@ -468,7 +468,7 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, all
       <Box p={5}>
         <DataGrid
           columns={dataGrid_Columns}
-          rows={all_performanceData}
+          rows={matchedState}
           initialState={{
             pagination: {
               paginationModel: {
