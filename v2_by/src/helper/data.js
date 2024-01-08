@@ -21,7 +21,7 @@ export const my2Titles=[
 
     {title:"Vardiya Lideri"},
     {title:"Takım Lideri"},
-    {title:"Varidya Amiri"},
+    {title:"Vardiya Amiri"},
     {title:"Uzman"},
 ]
 

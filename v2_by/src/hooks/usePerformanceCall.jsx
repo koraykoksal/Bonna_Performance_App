@@ -96,7 +96,7 @@ const usePerformanceCall = () => {
             const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
-            // console.log(snapshot.val())
+            console.log(snapshot.val())
 
             if (!snapshot.exists()) {
 
