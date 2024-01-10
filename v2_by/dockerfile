@@ -2,7 +2,7 @@
 FROM node:latest
 
 # Çalışma dizini oluşturma
-WORKDIR /v2_my
+WORKDIR /v2_by
 
 # Bağımlılıkları kopyalama ve yükleme
 COPY package.json yarn.lock ./
