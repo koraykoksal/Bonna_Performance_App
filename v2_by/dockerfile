@@ -11,4 +11,4 @@ COPY package.json yarn.lock ./
 COPY . .
 
 # Uygulamayı başlatma
-CMD ["pnpm", "start"]
+CMD ["yarn", "start"]

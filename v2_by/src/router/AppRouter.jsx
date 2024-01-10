@@ -11,7 +11,7 @@ import ByReports from '../pages/ByReports'
 import Report from '../pages/Report'
 import ManagerReports from '../pages/ManagerReports'
 import Settings from '../pages/Settings'
-import MyReports from '../pages/myreports'
+import MyReports from '../pages/MyReports'
 import AllResults from '../pages/AllResults'
 
 
