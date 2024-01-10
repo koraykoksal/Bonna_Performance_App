@@ -102,7 +102,7 @@ const ByReports = () => {
 
             <PerformanceResultView_OKR info={info} open={open} handleClose={handleClose} />
 
-            <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} />
+            {/* <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} /> */}
 
         </div>
     )
