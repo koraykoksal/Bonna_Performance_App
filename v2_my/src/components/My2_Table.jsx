@@ -238,8 +238,6 @@ const My2_Table = ({ info, setInfo, handleChange }) => {
   }
 
 
-  console.log(info)
-
   return (
 
     <div>

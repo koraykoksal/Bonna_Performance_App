@@ -61,7 +61,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q1Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -70,7 +70,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q2Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -79,7 +79,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q3Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -88,7 +88,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q4Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -97,7 +97,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q5Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -106,7 +106,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Operasyonel Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q6Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -115,7 +115,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q7Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -124,7 +124,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q8Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -133,7 +133,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q9Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
         {
@@ -142,7 +142,7 @@ const My1_Table = ({ info, setInfo, handleChange }) => {
             yetkinlik: 'Davranışsal Yetkinlik',
             referans: '10',
 
-            calisan: <input name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
+            calisan: <input required name='q10Calisan' type="number" min="1" max="10" placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, backgroundColor: 'transparent', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />
             ,
         },
     ];
