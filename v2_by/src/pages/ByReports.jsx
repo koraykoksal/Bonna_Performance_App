@@ -35,8 +35,6 @@ const ByReports = () => {
 
     }
 
-   
-
 
     // sayfa render olduğu zaman twiser sistemine login ol
     useEffect(() => {
