@@ -10,9 +10,9 @@ import DeleteModal from '../components/delete/DeleteModal'
 const MyReports = () => {
 
 
-  const { get_All_PerformanceData } = usePerformanceCall()
-  const { all_performanceData } = useSelector((state) => state.performance)
-
+  const { get_All_PerformanceData, getBonnaPersonels } = usePerformanceCall()
+  const { all_performanceData, bonnaPersonels } = useSelector((state) => state.performance)
+  const [guncellenmisPerformanceData, setGuncellenmisPerformanceData] = useState([]);
 
   // viewer modal handle state bilgisi
   const [open, setOpen] = useState(false)
@@ -28,12 +28,6 @@ const MyReports = () => {
     setOpen_delete(false)
 
   }
-
-
-
-  useEffect(() => {
-    get_All_PerformanceData('my-performance')
-  }, [])
 
 
   //! girilen dataların verilerini tut
@@ -108,6 +102,34 @@ const MyReports = () => {
 
 
 
+  useEffect(() => {
+    // getBonnaPersonels()
+    get_All_PerformanceData('my-performance')
+  }, [])
+
+
+
+  //! yönetici değerlendirme datasının final_degerlendirme sonucunu kontrol et ve güncelle
+  useEffect(() => {
+
+    const guncellenmisData = all_performanceData.map(item => {
+      const sonuc = parseFloat(item.tppCalisan);
+
+      let aciklama = "";
+      if (sonuc > 0 && sonuc <= 40) aciklama = "Beklentiyi Karşılamıyor 😩";
+      else if (sonuc > 40 && sonuc <= 60) aciklama = "Beklentilerin Altında 🥺";
+      else if (sonuc > 60 && sonuc <= 80) aciklama = "Beklenen Performans 😑";
+      else if (sonuc > 80 && sonuc <= 90) aciklama = "Beklentilerin Üzerinde 😀";
+      else if (sonuc > 90 && sonuc <= 100) aciklama = "Üstün Performans 🥳";
+
+      return { ...item, degerlendirmeAciklamasi: aciklama };
+    });
+
+    // Gerekiyorsa bu sonucu başka bir state'e atayabilirsiniz.
+    setGuncellenmisPerformanceData(guncellenmisData);
+
+  }, [all_performanceData])
+
 
   return (
 
@@ -115,7 +137,7 @@ const MyReports = () => {
 
       <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Mavi Yaka Değerlendirme Sonuçları</Typography>
 
-      <PerformanceResult_Table_MY all_performanceData={all_performanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} HandleOpen_delete={HandleOpen_delete}/>
+      <PerformanceResult_Table_MY guncellenmisPerformanceData={guncellenmisPerformanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} HandleOpen_delete={HandleOpen_delete} />
 
       <PerformanceResultView_Personel handleClose={handleClose} info={info} open={open} />
 

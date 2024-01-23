@@ -31,10 +31,23 @@ const Settings_Table = ({ data, setInfo, info, handleOpen, HandleOpen_delete }) 
         id,
         row: {
           createdDate,
-          standartRaise,
-          performanceRaise,
           raiseYear,
           raiseDetail,
+          s1_byZam,
+          s1_myZam,
+          s1_perZam,
+          s2_byZam,
+          s2_myZam,
+          s2_perZam,
+          s3_byZam,
+          s3_myZam,
+          s3_perZam,
+          s4_byZam,
+          s4_myZam,
+          s4_perZam,
+          s5_byZam,
+          s5_myZam,
+          s5_perZam,
 
         }
       }) => {
@@ -50,10 +63,23 @@ const Settings_Table = ({ data, setInfo, info, handleOpen, HandleOpen_delete }) 
               setInfo({
                 id,
                 createdDate,
-                standartRaise,
-                performanceRaise,
                 raiseYear,
                 raiseDetail,
+                s1_byZam,
+                s1_myZam,
+                s1_perZam,
+                s2_byZam,
+                s2_myZam,
+                s2_perZam,
+                s3_byZam,
+                s3_myZam,
+                s3_perZam,
+                s4_byZam,
+                s4_myZam,
+                s4_perZam,
+                s5_byZam,
+                s5_myZam,
+                s5_perZam,
               })
             }}
 
@@ -66,11 +92,6 @@ const Settings_Table = ({ data, setInfo, info, handleOpen, HandleOpen_delete }) 
               HandleOpen_delete()
               setInfo({
                 id,
-                createdDate,
-                standartRaise,
-                performanceRaise,
-                raiseYear,
-                raiseDetail,
                 type: "raise" //delete modal da type bilgisine göre kontrol et ve silme işlemini öyle yap
               })
             }}

@@ -7,6 +7,16 @@ export const rows = [
     {title:"Yönetici"},
 ]
 
+export const raiseRows = [
+
+    {title:"5'li Skala"},
+    {title:"Performans Puanı"},
+    {title:"Beyaz Yaka Standart Zam Oranı"},
+    {title:"Mavi Yaka Standart Zam Oranı"},
+    {title:"Performans Zam Oranı"},
+    {title:"Performans Durumu"},
+]
+
 export const my1Titles=[
 
     {title:"İşçi"},
@@ -50,3 +60,4 @@ export const my2_questions = [
     { id:9,ask: "Ekip yönetebilir ve ekibini yönlendirebilir:" },
     { id:10,ask: "Operasyon ile ilgili diğer çalışanlara teorik ve uygulamalı olarak eğitim verebilir:" },
 ]
+

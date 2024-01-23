@@ -82,12 +82,24 @@ const Settings = () => {
 
 
     const [info, setInfo] = useState({
-
         createdDate: formatDate(createdDate),
-        standartRaise: "",
-        performanceRaise: "",
         raiseYear: new Date().getFullYear(),
-        raiseDetail: evulationInfo()
+        raiseDetail: evulationInfo(),
+        s1_byZam:"",
+        s1_myZam:"",
+        s1_perZam:"",
+        s2_byZam:"",
+        s2_myZam:"",
+        s2_perZam:"",
+        s3_byZam:"",
+        s3_myZam:"",
+        s3_perZam:"",
+        s4_byZam:"",
+        s4_myZam:"",
+        s4_perZam:"",
+        s5_byZam:"",
+        s5_myZam:"",
+        s5_perZam:"",
     })
 
 
@@ -103,18 +115,14 @@ const Settings = () => {
 
 
     useEffect(() => {
-
         const res = Object.keys(raiseData).map(key => ({ id: key, ...raiseData[key] }))
         setData(res)
-
     }, [raiseData])
 
 
 
     return (
         <div>
-
-
 
             <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center' variant='h6'>Ayarlar</Typography>
 
@@ -128,7 +136,7 @@ const Settings = () => {
 
                 <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} HandleOpen_delete={HandleOpen_delete}/>
 
-                <Raise_GraphicData raiseData={raiseData} data={data} />
+                {/* <Raise_GraphicData raiseData={raiseData} data={data} /> */}
             </Box>
 
 

@@ -22,8 +22,6 @@ const style = {
 
 const DeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo }) => {
 
-    console.log(info)
-
     const {
         removeRaiseData,
         get_raiseData,

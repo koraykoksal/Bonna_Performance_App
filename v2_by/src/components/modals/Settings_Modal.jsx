@@ -4,6 +4,36 @@ import Box from '@mui/material/Box';
 import { Typography, Grid, TextField, Button } from "@mui/material"
 import { IoIosCloseCircle } from "react-icons/io";
 import usePerformanceCall from '../../hooks/usePerformanceCall';
+import { raiseRows } from '../../helper/data';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
 
 
 const style = {
@@ -11,8 +41,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '550px',
-    height: '450px',
+    width: '850px',
+    height: '650px',
     overflow: 'scroll',
     bgcolor: 'background.paper',
     border: '2px solid #000',
@@ -21,7 +51,61 @@ const style = {
 
 };
 
+
+
 const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
+
+
+    const raiseScale = [
+        {
+            scale: 1,
+            performancePoint: '0-45',
+            performanceStatus: "Beklentileri Karşılamıyor",
+            byZam: <input required name='s1_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
+            myZam: <input required name='s1_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s1_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            ,
+        },
+        {
+            scale: 2,
+            performancePoint: '45.01-60',
+            performanceStatus: "Beklentilerin Altında",
+            byZam: <input required name='s2_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s2_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s2_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            ,
+        },
+        {
+            scale: 3,
+            performancePoint: '60.01-80',
+            performanceStatus: "Beklenen Performans",
+            byZam: <input required name='s3_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s3_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s3_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            ,
+        },
+        {
+            scale: 4,
+            performancePoint: '80.01-90',
+            performanceStatus: "Beklentilerin Üzerinde",
+            byZam: <input required name='s4_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s4_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s4_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            ,
+        },
+        {
+            scale: 5,
+            performancePoint: '90.01-100',
+            performanceStatus: "Üstün Performans",
+            byZam: <input required name='s5_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s5_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s5_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            ,
+        },
+
+
+    ];
+
 
     const { post_raiseData, get_raiseData, put_raiseData } = usePerformanceCall()
 
@@ -29,6 +113,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
 
         e.preventDefault()
 
+        //?* id bilgisi true ise update işlemi yapar
         if (info?.id) {
             put_raiseData('raise-data', info)
             get_raiseData('raise-data')
@@ -48,7 +133,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
 
             <Modal
                 open={open}
-                onClose={()=>{
+                onClose={() => {
                     handleClose()
                 }}
                 aria-labelledby="modal-modal-title"
@@ -59,37 +144,42 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
 
                     <IoIosCloseCircle size={25} color='red' cursor={'pointer'} onClick={handleClose} />
 
-                    <Box display={'flex'} flexDirection={'column'} gap={5} component={'form'} onSubmit={handleSubmit}>
+                    <Box display={'flex'} flexDirection={'column'} gap={1} component={'form'} onSubmit={handleSubmit}>
 
-                        <Box p={3}>
-                            <Typography variant='h6' color={'red'} fontWeight={700} align='center'>{info?.id ? 'Zam Oranları Güncelle':'Zam Oranları Giriş'}</Typography>
+                        <Box p={1}>
+                            <Typography variant='h6' color={'red'} fontWeight={700} align='center'>{info?.id ? 'Zam Oranları Güncelle' : 'Zam Oranları Giriş'}</Typography>
                         </Box>
 
-                        <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3, p: 3 }} >
+                        <Box sx={{ display: 'flex', justifyContent: 'center', }}>
 
-                            <TextField
-                            required
-                                label='Standart Zam'
-                                id='standartRaise'
-                                name='standartRaise'
-                                type='text'
-                                variant='outlined'
-                                onChange={handleChange}
-                                value={info.standartRaise}
-                                inputProps={{ maxLength: 3 }}
-                            />
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                                    <TableHead>
+                                        <TableRow sx={{ position: 'sticky', top: 0 }}>
+                                            {
+                                                raiseRows.map((item, index) => (
+                                                    <StyledTableCell key={index} align="center">{item.title}</StyledTableCell>
+                                                ))
+                                            }
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {
+                                            raiseScale.map((item, index) => (
+                                                <StyledTableRow key={index}>
+                                                    <StyledTableCell align="center">{item.scale}</StyledTableCell>
+                                                    <StyledTableCell align="center">{item.performancePoint}</StyledTableCell>
+                                                    <StyledTableCell align="center">{item.byZam}</StyledTableCell>
+                                                    <StyledTableCell align="center">{item.myZam}</StyledTableCell>
+                                                    <StyledTableCell align="center">{item.perZam}</StyledTableCell>
+                                                    <StyledTableCell align="center">{item.performanceStatus}</StyledTableCell>
+                                                </StyledTableRow>
+                                            ))
+                                        }
+                                    </TableBody>
 
-                            <TextField
-                            required
-                                label='Performans Zam'
-                                id='performanceRaise'
-                                name='performanceRaise'
-                                type='text'
-                                variant='outlined'
-                                onChange={handleChange}
-                                value={info.performanceRaise}
-                                inputProps={{ maxLength: 3 }}
-                            />
+                                </Table>
+                            </TableContainer>
                         </Box>
 
                         <Box p={3}>

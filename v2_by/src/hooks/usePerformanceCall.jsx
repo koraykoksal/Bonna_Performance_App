@@ -9,12 +9,12 @@ import {
     fetchAllPerformanceData,
     fetchRaiseData,
     fetchByOKRPerformanceData,
-    fetchUnSelectedPersonelData
+    fetchUnSelectedPersonelData,
+    fetchBonnaPersonels
 
 } from '../features/performanceSlice'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { doc, setDoc, Timestamp, collection, addDoc, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../db/firebase_db"
 import { get, getDatabase, onValue, ref, remove, set, update } from "firebase/database";
 import { uid } from "uid"
@@ -96,7 +96,6 @@ const usePerformanceCall = () => {
             const res = ref(db, `${url}/`)
             const snapshot = await get(res)
 
-            console.log(snapshot.val())
 
             if (!snapshot.exists()) {
 
@@ -123,7 +122,7 @@ const usePerformanceCall = () => {
                 distpatch(fetchAllPerformanceData(dizi))
                 // distpatch(fetchAllPerformanceData(snapshot.val()))
 
-            
+
             }
 
         } catch (error) {
@@ -448,6 +447,35 @@ const usePerformanceCall = () => {
     }
 
 
+    //! bonna personel listesini çek
+    const getBonnaPersonels = async () => {
+
+        try {
+
+            const options = {
+                method: 'GET',
+                url: `${import.meta.env.VITE_bonnaUsers_BaseAddress}`,
+                headers: {
+                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+                }
+            }
+
+            const res = await axios(options)
+
+            if (res?.data.length > 0) {
+                distpatch(fetchBonnaPersonels(res?.data))
+            }
+            else {
+                toastWarnNotify('Entegrasyondan cevap alınamadı !')
+                console.log(" ** login öncesi bonna personelleri bilgisini alamıyor. get_bonnaPersonel fonksiyonu çalışmadı session problemi olabilir ! ** ")
+            }
+
+        } catch (error) {
+            console.log("get_bonnaPersonel: ", error)
+        }
+
+    }
+
     return {
         get_managerPersonels,
         get_All_PerformanceData,
@@ -460,7 +488,8 @@ const usePerformanceCall = () => {
         get_beyazYaka_performanceData,
         removeRaiseData,
         removeMyPerformanceData,
-        removeManagerEvaluationData
+        removeManagerEvaluationData,
+        getBonnaPersonels
 
     }
 }

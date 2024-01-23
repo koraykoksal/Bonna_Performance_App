@@ -7,7 +7,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 
-const PerformanceResult_Table_BY = ({ all_performanceData, handleOpen, info, setInfo, HandleOpen_delete }) => {
+const PerformanceResult_Table_BY = ({ guncellenmisPerformanceData, handleOpen, info, setInfo, HandleOpen_delete }) => {
 
 
     const dataGrid_Columns = [
@@ -464,7 +464,7 @@ const PerformanceResult_Table_BY = ({ all_performanceData, handleOpen, info, set
             <Box p={5}>
                 <DataGrid
                     columns={dataGrid_Columns}
-                    rows={all_performanceData}
+                    rows={guncellenmisPerformanceData}
                     initialState={{
                         pagination: {
                             paginationModel: {

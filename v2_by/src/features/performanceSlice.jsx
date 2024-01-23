@@ -8,7 +8,8 @@ const initialState={
     personelPerformanceData:[],
     raiseData:[],
     byOkrPerformance:[],
-    unSelectedData:[]
+    unSelectedData:[],
+    bonnaPersonels:[]
 }
 
 const performanceSlice=createSlice({
@@ -55,6 +56,10 @@ const performanceSlice=createSlice({
             state.loading=false
             state.unSelectedData=payload
         },
+        fetchBonnaPersonels:(state,{payload})=>{
+            state.loading=false
+            state.bonnaPersonels=payload
+        }
     }
 
 })
@@ -67,7 +72,8 @@ export const {
     fetchAllPerformanceData,
     fetchRaiseData,
     fetchByOKRPerformanceData,
-    fetchUnSelectedPersonelData
+    fetchUnSelectedPersonelData,
+    fetchBonnaPersonels
     
     } = performanceSlice.actions
 
