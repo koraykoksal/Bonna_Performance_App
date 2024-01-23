@@ -12,7 +12,7 @@ import DeleteModal from '../components/delete/DeleteModal'
 const Settings = () => {
 
     const createdDate = new Date()
-    const { get_raiseData } = usePerformanceCall()
+    const { post_raiseData, get_raiseData, put_raiseData } = usePerformanceCall()
     const { raiseData } = useSelector((state) => state.performance)
     const [data, setData] = useState([])
 
@@ -85,40 +85,61 @@ const Settings = () => {
         createdDate: formatDate(createdDate),
         raiseYear: new Date().getFullYear(),
         raiseDetail: evulationInfo(),
-        s1_byZam:"",
-        s1_myZam:"",
-        s1_perZam:"",
-        s2_byZam:"",
-        s2_myZam:"",
-        s2_perZam:"",
-        s3_byZam:"",
-        s3_myZam:"",
-        s3_perZam:"",
-        s4_byZam:"",
-        s4_myZam:"",
-        s4_perZam:"",
-        s5_byZam:"",
-        s5_myZam:"",
-        s5_perZam:"",
+        s1_byZam: "",
+        s1_myZam: "",
+        s1_perZam: "",
+        s2_byZam: "",
+        s2_myZam: "",
+        s2_perZam: "",
+        s3_byZam: "",
+        s3_myZam: "",
+        s3_perZam: "",
+        s4_byZam: "",
+        s4_myZam: "",
+        s4_perZam: "",
+        s5_byZam: "",
+        s5_myZam: "",
+        s5_perZam: "",
     })
 
 
+    // onchange işlemini yap
     const handleChange = (e) => {
         setInfo({ ...info, [e.target.name]: e.target.value })
     }
 
 
+    // kayıt işlemi için çalıştır
+    const handleSubmit = (e) => {
+
+        e.preventDefault()
+
+        //?* id bilgisi true ise update işlemi yapar
+        if (info?.id) {
+            put_raiseData('raise-data', info)
+            // get_raiseData('raise-data')
+        }
+        else {
+            post_raiseData('raise-data', info)
+            // get_raiseData('raise-data')
+        }
+
+        handleClose()
+
+    }
+
+
+    // güncel zam oranlarını çek
     useEffect(() => {
         get_raiseData('raise-data')
     }, [])
 
 
-
+    // güncel zam oranlarını array formatına dönüştür
     useEffect(() => {
         const res = Object.keys(raiseData).map(key => ({ id: key, ...raiseData[key] }))
         setData(res)
     }, [raiseData])
-
 
 
     return (
@@ -126,15 +147,16 @@ const Settings = () => {
 
             <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center' variant='h6'>Ayarlar</Typography>
 
-            <Button variant='contained' sx={{ ml: 15,textTransform:'none' }} onClick={() => handleOpen()}>Yeni</Button>
+            <Button variant='contained' sx={{ ml: 15, textTransform: 'none' }} onClick={() => handleOpen()}>Yeni</Button>
 
-            <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} />
+            <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} handleSubmit={handleSubmit} />
 
-            <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo}/>
+            <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} />
+
+
+            <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} HandleOpen_delete={HandleOpen_delete} />
 
             <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'} gap={3} alignItems={'center'}>
-
-                <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} HandleOpen_delete={HandleOpen_delete}/>
 
                 {/* <Raise_GraphicData raiseData={raiseData} data={data} /> */}
             </Box>

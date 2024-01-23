@@ -53,7 +53,7 @@ const style = {
 
 
 
-const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
+const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange,handleSubmit }) => {
 
 
     const raiseScale = [
@@ -61,71 +61,50 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange }) => {
             scale: 1,
             performancePoint: '0-45',
             performanceStatus: "Beklentileri Karşılamıyor",
-            byZam: <input required name='s1_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-            myZam: <input required name='s1_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s1_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s1_byZam' value={info.s1_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
+            myZam: <input required name='s1_myZam' value={info.s1_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s1_perZam' value={info.s1_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
         },
         {
             scale: 2,
             performancePoint: '45.01-60',
             performanceStatus: "Beklentilerin Altında",
-            byZam: <input required name='s2_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s2_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s2_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s2_byZam' value={info.s2_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s2_myZam' value={info.s2_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s2_perZam' value={info.s2_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
         },
         {
             scale: 3,
             performancePoint: '60.01-80',
             performanceStatus: "Beklenen Performans",
-            byZam: <input required name='s3_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s3_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s3_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s3_byZam' value={info.s3_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s3_myZam' value={info.s3_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s3_perZam' value={info.s3_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
         },
         {
             scale: 4,
             performancePoint: '80.01-90',
             performanceStatus: "Beklentilerin Üzerinde",
-            byZam: <input required name='s4_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s4_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s4_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s4_byZam' value={info.s4_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s4_myZam' value={info.s4_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s4_perZam' value={info.s4_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
         },
         {
             scale: 5,
             performancePoint: '90.01-100',
             performanceStatus: "Üstün Performans",
-            byZam: <input required name='s5_byZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s5_myZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s5_perZam' type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s5_byZam' value={info.s5_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            myZam: <input required name='s5_myZam' value={info.s5_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
+            perZam: <input required name='s5_perZam' value={info.s5_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
             ,
         },
 
 
     ];
-
-
-    const { post_raiseData, get_raiseData, put_raiseData } = usePerformanceCall()
-
-    const handleSubmit = (e) => {
-
-        e.preventDefault()
-
-        //?* id bilgisi true ise update işlemi yapar
-        if (info?.id) {
-            put_raiseData('raise-data', info)
-            get_raiseData('raise-data')
-        }
-        else {
-            post_raiseData('raise-data', info)
-            get_raiseData('raise-data')
-        }
-
-        handleClose()
-
-    }
 
 
     return (

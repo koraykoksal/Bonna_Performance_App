@@ -261,7 +261,7 @@ const usePerformanceCall = () => {
     }
 
 
-
+    //! zam oranı bilgisini kayıt et
     const post_raiseData = async (url, info) => {
 
         try {
@@ -278,6 +278,8 @@ const usePerformanceCall = () => {
                 await set(ref(db, `${url}/${uID}`), info)
                 toastSuccessNotify('Kayıt yapılmıştır.');
 
+                //! zam oranı bilgisini çek
+                await get_raiseData('raise-data')
             }
             else {
 
@@ -334,7 +336,7 @@ const usePerformanceCall = () => {
     }
 
 
-
+    //! zam oranı bilgisini güncelle
     const put_raiseData = async (url, info) => {
 
         try {
@@ -342,6 +344,9 @@ const usePerformanceCall = () => {
             const db = getDatabase()
             await update(ref(db, `${url}/${info.id}`), info)
             toastSuccessNotify('Updated Data')
+
+            //! zam oranı bilgisini çek
+            await get_raiseData('raise-data')
 
         } catch (error) {
             console.log("put_raiseData error: ", error)
@@ -475,6 +480,9 @@ const usePerformanceCall = () => {
         }
 
     }
+
+
+
 
     return {
         get_managerPersonels,
