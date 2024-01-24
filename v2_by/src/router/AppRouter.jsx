@@ -12,7 +12,7 @@ import Report from '../pages/Report'
 import ManagerReports from '../pages/ManagerReports'
 import Settings from '../pages/Settings'
 import MyReports from '../pages/MyReports'
-import AllResults from '../pages/AllResults'
+import Calculates from '../pages/Calculates'
 
 
 
@@ -34,7 +34,7 @@ export const AppRouter = () => {
               <Route path='managerreports' element={<ManagerReports/>}/>
               <Route path='byreports' element={<ByReports/>}/>
               <Route path='settings' element={<Settings/>}/>
-              <Route path='allresults' element={<AllResults/>}/>
+              <Route path='calculates' element={<Calculates/>}/>
             </Route>
 
           </Route>

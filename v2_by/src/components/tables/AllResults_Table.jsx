@@ -119,6 +119,14 @@ const AllResults_Table = ({myCalculatedData}) => {
             flex: 1,
         },
         {
+            field: "iseGirisTarih",
+            headerName: "İşe Giriş Tarihi",
+            minWidth: 110,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
             field: "personel",
             headerName: "Personel",
             minWidth: 190,
@@ -159,9 +167,17 @@ const AllResults_Table = ({myCalculatedData}) => {
             flex: 1,
         },
         {
-            field: "type",
-            headerName: "Tip",//ismi sistem puanı olacak
-            minWidth: 80,
+            field: "yonetici",
+            headerName: "Yönetici",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "grup",
+            headerName: "Personel Durumu",//ismi sistem puanı olacak
+            minWidth: 130,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -250,8 +266,6 @@ const AllResults_Table = ({myCalculatedData}) => {
                 <DataGrid
                     columns={dataGrid_Columns}
                     rows={myCalculatedData}
-                    //byOkrPerformance datası içerisinde bir id değeri olmadığı için getRowId={(row)=>row.UserEmployeeNo} işlemi yaparak UserEmployeeNo bilgisi id olarak kullanıldı
-                    // getRowId={(row) => row.UserEmployeeNo}
                     initialState={{
                         pagination: {
                             paginationModel: {

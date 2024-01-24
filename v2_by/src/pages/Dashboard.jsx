@@ -59,8 +59,8 @@ function Dashboard() {
             url: '/byperformance/byreports'
         },
         {
-            title: 'Sonuçlar',
-            url: '/byperformance/allresults'
+            title: 'Hesaplama',
+            url: '/byperformance/calculates'
         },
         {
             title: 'Ayarlar',

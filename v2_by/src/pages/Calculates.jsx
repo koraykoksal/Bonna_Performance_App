@@ -5,8 +5,9 @@ import usePerformanceCall from '../hooks/usePerformanceCall'
 import useAuthCall from '../hooks/useAuthCall'
 import { Box, Typography, Container, Grid, Button } from "@mui/material"
 import AllResults_Table from '../components/tables/AllResults_Table'
+import AllReults_GraphicData from '../components/tables/AllReults_GraphicData'
 
-const AllResults = () => {
+const Calculates = () => {
 
   const { twiserLogin } = useAuthCall()
   const { get_raiseData, get_All_PerformanceData, get_beyazYaka_performanceData } = usePerformanceCall()
@@ -17,6 +18,32 @@ const AllResults = () => {
   const [guncellenmisPerformanceData, setGuncellenmisPerformanceData] = useState([]);
 
   const [myCalculatedData, setMyCalculatedData] = useState([])
+  const [byCalculatedData, setByCalculatedData] = useState([])
+
+
+  //! performans dönemini açıklamasını göster
+  const evulationInfo = () => {
+
+    const thisYear = new Date().getFullYear()
+    const nextYear = new Date().getFullYear() + 1
+    let performanceResult = ""
+
+    const currentDate = new Date();
+    const startLimit = new Date(thisYear, 11); // 2023 yılının Ekim ayı için (aylar 0'dan başlar)
+    const endLimit = new Date(nextYear, 1); // 2024 yılının Şubat ayı için
+
+    if (currentDate > startLimit || currentDate < endLimit) {
+      performanceResult = 'Yıl Sonu Performans Değerlendirme'
+    }
+    else {
+      performanceResult = '6 Aylık Performans Değerlendirme'
+    }
+
+    return performanceResult
+
+  }
+
+
 
   //* zam oranı ve yönetici performans değerlendirme sonuçlarını çek
   useEffect(() => {
@@ -59,7 +86,11 @@ const AllResults = () => {
   //! yönetici değerlendirme datası (all_performanceData) final_degerlendirme sonucunu kontrol et ve güncelle
   useEffect(() => {
 
-    const guncellenmisData = all_performanceData.map(item => {
+    // donem aciklamasını göster
+    const donemAciklamasi = evulationInfo()
+
+    // performans datası içerisinden ilgili dönem yılını ve dönem açıklamasını bul ve map işlemi yap
+    const guncellenmisData = all_performanceData.filter(element => element.degerlendirmeYili == currentYear && element.degerlendirmeDonemiAciklama == donemAciklamasi).map(item => {
       const sonuc = parseFloat(item.final_degerlendirmeSonucu);
 
       let aciklama = "";
@@ -72,7 +103,6 @@ const AllResults = () => {
       return { ...item, final_degerlendirmeAciklamasi: aciklama };
     });
 
-    // Gerekiyorsa bu sonucu başka bir state'e atayabilirsiniz.
     setGuncellenmisPerformanceData(guncellenmisData);
 
   }, [all_performanceData])
@@ -82,23 +112,24 @@ const AllResults = () => {
   const handleCalculate = (e) => {
     e.preventDefault()
 
-    const myData = guncellenmisPerformanceData.map(item=>{
+    const myData = guncellenmisPerformanceData.map(item => {
       const sonuc = parseFloat(item.final_degerlendirmeSonucu);
       const mevcutUcret = parseFloat(item.currentSallary)
-      let scale=""
-      let standartRaise=""
-      let performanceRaise=""
-      let totalRaise=""
-      let nextSallary=""
-      let fark=""
+      let scale = ""
+      let standartRaise = ""
+      let performanceRaise = ""
+      let totalRaise = ""
+      let nextSallary = ""
+      let fark = ""
+      let yakaTipi = "Mavi"
 
-      if (sonuc > 0 && sonuc <= 40) scale = "1" , standartRaise=zamData.s1_myZam , performanceRaise=zamData.s1_perZam, totalRaise=Number(zamData.s1_myZam) + Number(zamData.s1_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
-      else if (sonuc > 40 && sonuc <= 60) scale = "2" , standartRaise=zamData.s2_myZam , performanceRaise=zamData.s2_perZam, totalRaise=Number(zamData.s2_myZam) + Number(zamData.s2_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
-      else if (sonuc > 60 && sonuc <= 80) scale = "3" , standartRaise=zamData.s3_myZam , performanceRaise=zamData.s3_perZam, totalRaise=Number(zamData.s3_myZam) + Number(zamData.s3_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
-      else if (sonuc > 80 && sonuc <= 90) scale = "4" , standartRaise=zamData.s4_myZam , performanceRaise=zamData.s4_perZam, totalRaise=Number(zamData.s4_myZam) + Number(zamData.s4_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
-      else if (sonuc > 90 && sonuc <= 100) scale = "5" , standartRaise=zamData.s5_myZam , performanceRaise=zamData.s5_perZam,totalRaise=Number(zamData.s5_myZam) + Number(zamData.s5_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
+      if (sonuc > 0 && sonuc <= 40) scale = "1", standartRaise = zamData.s1_myZam, performanceRaise = zamData.s1_perZam, totalRaise = Number(zamData.s1_myZam) + Number(zamData.s1_perZam), fark = (Number(mevcutUcret) * Number(totalRaise)) / 100, nextSallary = Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 40 && sonuc <= 60) scale = "2", standartRaise = zamData.s2_myZam, performanceRaise = zamData.s2_perZam, totalRaise = Number(zamData.s2_myZam) + Number(zamData.s2_perZam), fark = (Number(mevcutUcret) * Number(totalRaise)) / 100, nextSallary = Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 60 && sonuc <= 80) scale = "3", standartRaise = zamData.s3_myZam, performanceRaise = zamData.s3_perZam, totalRaise = Number(zamData.s3_myZam) + Number(zamData.s3_perZam), fark = (Number(mevcutUcret) * Number(totalRaise)) / 100, nextSallary = Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 80 && sonuc <= 90) scale = "4", standartRaise = zamData.s4_myZam, performanceRaise = zamData.s4_perZam, totalRaise = Number(zamData.s4_myZam) + Number(zamData.s4_perZam), fark = (Number(mevcutUcret) * Number(totalRaise)) / 100, nextSallary = Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 90 && sonuc <= 100) scale = "5", standartRaise = zamData.s5_myZam, performanceRaise = zamData.s5_perZam, totalRaise = Number(zamData.s5_myZam) + Number(zamData.s5_perZam), fark = (Number(mevcutUcret) * Number(totalRaise)) / 100, nextSallary = Number(mevcutUcret) + Number(fark)
 
-      return {...item, skala:scale,standartZam:standartRaise,performansZam:performanceRaise,toplamZam:totalRaise,eklenenUcret:fark,yeniUcret:nextSallary}
+      return { ...item, skala: scale, standartZam: standartRaise, performansZam: performanceRaise, toplamZam: totalRaise, eklenenUcret: fark, yeniUcret: nextSallary, grup: yakaTipi }
     })
 
     setMyCalculatedData(myData)
@@ -122,10 +153,14 @@ const AllResults = () => {
           <Button variant='outlined'>Kaydet</Button>
         </Container>
 
-
-        <AllResults_Table myCalculatedData={myCalculatedData}/>
-
       </Box>
+
+      <Container display={'flex'} justifyContent={'center'} gap={1} alignItems={'center'}>
+
+      <AllResults_Table myCalculatedData={myCalculatedData} />
+      <AllReults_GraphicData myCalculatedData={myCalculatedData} />
+
+      </Container>
 
 
 
@@ -134,4 +169,4 @@ const AllResults = () => {
   )
 }
 
-export default AllResults
+export default Calculates
