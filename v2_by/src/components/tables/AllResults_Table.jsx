@@ -1,0 +1,276 @@
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
+import { Box } from '@mui/material';
+import { AiFillEdit } from "react-icons/ai";
+import { FaEye } from "react-icons/fa";
+
+
+const AllResults_Table = ({myCalculatedData}) => {
+
+
+    const dataGrid_Columns = [
+        // {
+        //     field: "id",
+        //     headerName: "ID",
+        //     minWidth: 150,
+        //     headerAlign: "center",
+        //     align: "center",
+        //     flex: 1,
+        // },
+        {
+            field: "actions",
+            headerName: "Düzenle",
+            minWidth: 80,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+            renderCell: ({
+                id,
+                row: {
+                    UserEmployeeNo,
+                    CompanyName,
+                    CompetencePeriodList,
+                    CompetencePeriods,
+                    CompetencePeriodsAvg,
+                    CompetenceWeight,
+                    Department,
+                    DimensionName,
+                    ExternalNote,
+                    ExternalNoteName,
+                    ExternalNoteWeight,
+                    FinalScore,
+                    FinalScoreScale,
+                    IncludeModules,
+                    ManagerComment,
+                    ManagerScore,
+                    ManagerScoreIsSend,
+                    ManagerScoreScale,
+                    ObjectivePeriodList,
+                    ObjectivePeriods,
+                    ObjectivePeriodsAvg,
+                    ObjectiveWeight,
+                    ParentEmail,
+                    ParentFullName,
+                    PerformancePeriodName,
+                    SystemNote,
+                    SystemNoteScale,
+                    UserEmail,
+                    UserFullName,
+                    UserPosition
+                }
+            }) => {
+                return [
+
+                    <GridActionsCellItem
+                        key={'show'}
+                        label='Show'
+                        icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
+                        onClick={() => {
+                            handleOpen()
+                            setInfo({
+                                id,
+                                CompanyName,
+                                CompetencePeriodList,
+                                CompetencePeriods,
+                                CompetencePeriodsAvg,
+                                CompetenceWeight,
+                                Department,
+                                DimensionName,
+                                ExternalNote,
+                                ExternalNoteName,
+                                ExternalNoteWeight,
+                                FinalScore,
+                                FinalScoreScale,
+                                IncludeModules,
+                                ManagerComment,
+                                ManagerScore,
+                                ManagerScoreIsSend,
+                                ManagerScoreScale,
+                                ObjectivePeriodList,
+                                ObjectivePeriods,
+                                ObjectivePeriodsAvg,
+                                ObjectiveWeight,
+                                ParentEmail,
+                                ParentFullName,
+                                PerformancePeriodName,
+                                SystemNote,
+                                SystemNoteScale,
+                                UserEmail,
+                                UserEmployeeNo,
+                                UserFullName,
+                                UserPosition
+                            })
+
+                        }}
+                    />
+
+
+                ]
+            },
+        },
+        {
+            field: "sicilNo",
+            headerName: "Sicil No",
+            minWidth: 80,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "personel",
+            headerName: "Personel",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ustBirim",
+            headerName: "Üst Birim",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "birim",
+            headerName: "Birim",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "bolum",
+            headerName: "Bölüm",
+            minWidth: 150,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "gorev",
+            headerName: "Görev",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "type",
+            headerName: "Tip",//ismi sistem puanı olacak
+            minWidth: 80,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "skala",
+            headerName: "Skala",
+            minWidth: 80,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "final_degerlendirmeSonucu",
+            headerName: "Değerlendirme Puanı",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "final_degerlendirmeAciklamasi",
+            headerName: "Değerlendirme Açıklaması",
+            minWidth: 200,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "standartZam",
+            headerName: "Standart Zam", // ismi yönetici puanı olacak
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "performansZam",
+            headerName: "Performans Zam", // ismi okr notu olacak
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "toplamZam",
+            headerName: "Toplam Zam",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "currentSallary",
+            headerName: "Mevcut Ücret",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "eklenenUcret",
+            headerName: "Eklenen Ücret",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "yeniUcret",
+            headerName: "Yeni Ücret",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+
+
+    ];
+
+
+    return (
+        <div>
+
+            <Box p={5}>
+                <DataGrid
+                    columns={dataGrid_Columns}
+                    rows={myCalculatedData}
+                    //byOkrPerformance datası içerisinde bir id değeri olmadığı için getRowId={(row)=>row.UserEmployeeNo} işlemi yaparak UserEmployeeNo bilgisi id olarak kullanıldı
+                    // getRowId={(row) => row.UserEmployeeNo}
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 10,
+                            },
+                        },
+                    }}
+                    pageSizeOptions={[10, 25, 50, 75, 100]}
+                    slots={{ toolbar: GridToolbar }}
+                    disableRowSelectionOnClick
+                    sx={{
+                        boxShadow: 4,
+                    }}
+                />
+            </Box>
+
+        </div>
+    )
+
+}
+
+export default AllResults_Table

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import usePerformanceCall from '../hooks/usePerformanceCall'
 import useAuthCall from '../hooks/useAuthCall'
 import { Box, Typography, Container, Grid, Button } from "@mui/material"
+import AllResults_Table from '../components/tables/AllResults_Table'
 
 const AllResults = () => {
 
@@ -77,31 +78,31 @@ const AllResults = () => {
   }, [all_performanceData])
 
 
+  //! zam oranları ve skala bilgisini hesapla
   const handleCalculate = (e) => {
     e.preventDefault()
 
     const myData = guncellenmisPerformanceData.map(item=>{
       const sonuc = parseFloat(item.final_degerlendirmeSonucu);
+      const mevcutUcret = parseFloat(item.currentSallary)
       let scale=""
       let standartRaise=""
       let performanceRaise=""
       let totalRaise=""
+      let nextSallary=""
+      let fark=""
 
-      if (sonuc > 0 && sonuc <= 40) scale = "1" , standartRaise=zamData.s1_myZam , performanceRaise=zamData.s1_perZam, totalRaise=Number(zamData.s1_myZam) + Number(zamData.s1_perZam)
-      else if (sonuc > 40 && sonuc <= 60) scale = "2" , standartRaise=zamData.s2_myZam , performanceRaise=zamData.s2_perZam, totalRaise=Number(zamData.s2_myZam) + Number(zamData.s2_perZam)
-      else if (sonuc > 60 && sonuc <= 80) scale = "3" , standartRaise=zamData.s3_myZam , performanceRaise=zamData.s3_perZam, totalRaise=Number(zamData.s3_myZam) + Number(zamData.s3_perZam)
-      else if (sonuc > 80 && sonuc <= 90) scale = "4" , standartRaise=zamData.s4_myZam , performanceRaise=zamData.s4_perZam, totalRaise=Number(zamData.s4_myZam) + Number(zamData.s4_perZam)
-      else if (sonuc > 90 && sonuc <= 100) scale = "5" , standartRaise=zamData.s5_myZam , performanceRaise=zamData.s5_perZam,totalRaise=Number(zamData.s5_myZam) + Number(zamData.s5_perZam)
+      if (sonuc > 0 && sonuc <= 40) scale = "1" , standartRaise=zamData.s1_myZam , performanceRaise=zamData.s1_perZam, totalRaise=Number(zamData.s1_myZam) + Number(zamData.s1_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 40 && sonuc <= 60) scale = "2" , standartRaise=zamData.s2_myZam , performanceRaise=zamData.s2_perZam, totalRaise=Number(zamData.s2_myZam) + Number(zamData.s2_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 60 && sonuc <= 80) scale = "3" , standartRaise=zamData.s3_myZam , performanceRaise=zamData.s3_perZam, totalRaise=Number(zamData.s3_myZam) + Number(zamData.s3_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 80 && sonuc <= 90) scale = "4" , standartRaise=zamData.s4_myZam , performanceRaise=zamData.s4_perZam, totalRaise=Number(zamData.s4_myZam) + Number(zamData.s4_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
+      else if (sonuc > 90 && sonuc <= 100) scale = "5" , standartRaise=zamData.s5_myZam , performanceRaise=zamData.s5_perZam,totalRaise=Number(zamData.s5_myZam) + Number(zamData.s5_perZam), fark=(Number(mevcutUcret)*Number(totalRaise)) / 100, nextSallary=Number(mevcutUcret) + Number(fark)
 
-      return {...item, skala:scale,standartZam:standartRaise,performansZam:performanceRaise,toplamZam:totalRaise}
+      return {...item, skala:scale,standartZam:standartRaise,performansZam:performanceRaise,toplamZam:totalRaise,eklenenUcret:fark,yeniUcret:nextSallary}
     })
 
     setMyCalculatedData(myData)
   }
-
-
-  console.log(zamData)
-  console.log(myCalculatedData)
 
 
   return (
@@ -111,7 +112,7 @@ const AllResults = () => {
 
       <Box display={'flex'} flexDirection={'column'} gap={3}>
 
-        <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Tüm Değerlendirme ve Hesaplama Sonuçları</Typography>
+        <Typography variant='h6' align='center' mt={12} mb={5} letterSpacing={5} fontWeight={700} color={'red'}>Tüm Değerlendirme ve Hesaplama Sonuçları</Typography>
 
 
         <Typography variant='subtitle' align='center' color={'black'}>Tüm hesaplamalar güncel zam oranı bilgilerine göre yapılacaktır.</Typography>
@@ -120,6 +121,9 @@ const AllResults = () => {
           <Button variant='contained' onClick={handleCalculate}>Hesaplama Yap</Button>
           <Button variant='outlined'>Kaydet</Button>
         </Container>
+
+
+        <AllResults_Table myCalculatedData={myCalculatedData}/>
 
       </Box>
 
