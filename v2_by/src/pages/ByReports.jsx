@@ -43,6 +43,7 @@ const ByReports = () => {
     //     }
     // }, [])
 
+    
     // twiser sistemine login olduktan sonra performans verilerini çek
     useEffect(() => {
         get_beyazYaka_performanceData()

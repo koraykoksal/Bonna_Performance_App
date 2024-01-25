@@ -6,6 +6,7 @@ import useAuthCall from '../hooks/useAuthCall'
 import { Box, Typography, Container, Grid, Button } from "@mui/material"
 import AllResults_Table from '../components/tables/AllResults_Table'
 import AllReults_GraphicData from '../components/tables/AllReults_GraphicData'
+import { toastWarnNotify } from '../helper/ToastNotify'
 
 const Calculates = () => {
 
@@ -44,8 +45,7 @@ const Calculates = () => {
   }
 
 
-
-  //* zam oranı ve yönetici performans değerlendirme sonuçlarını çek
+  //! zam oranı ve yönetici performans değerlendirme sonuçlarını çek
   useEffect(() => {
     get_raiseData('raise-data')
     get_All_PerformanceData('manager-evaluation')
@@ -56,13 +56,13 @@ const Calculates = () => {
   }, [])
 
 
-  //* beyaz yaka okr sonuçlarını al
+  //! beyaz yaka okr sonuçlarını al
   useEffect(() => {
     get_beyazYaka_performanceData()
   }, [twiserAccesToken])
 
 
-  //* zam oranı bilgisininde son kayıt edilen (current yıl değeri) zam oranı bilgisini çek
+  //! zam oranı bilgisininde son kayıt edilen (current yıl değeri) zam oranı bilgisini çek
   useEffect(() => {
 
     if (!raiseData || raiseData.length === 0) {
@@ -83,7 +83,7 @@ const Calculates = () => {
   }, [raiseData])
 
 
-  //! yönetici değerlendirme datası (all_performanceData) final_degerlendirme sonucunu kontrol et ve güncelle
+  //! yönetici değerlendirme datası current yıla eşit ve değerlendirme aciklaması eşit olan (all_performanceData) final_degerlendirme sonucunu kontrol et ve güncelle
   useEffect(() => {
 
     // donem aciklamasını göster
@@ -136,10 +136,18 @@ const Calculates = () => {
   }
 
 
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    if(!myCalculatedData.length>0){
+      toastWarnNotify('Hesaplanmış veri seti yok !')
+    } 
+  }
+
+
+
+
   return (
     <div>
-
-
 
       <Box display={'flex'} flexDirection={'column'} gap={3}>
 
@@ -150,21 +158,15 @@ const Calculates = () => {
 
         <Container sx={{ display: 'flex', justifyContent: 'space-evenly', gap: 3 }}>
           <Button variant='contained' onClick={handleCalculate}>Hesaplama Yap</Button>
-          <Button variant='outlined'>Kaydet</Button>
+          <Button variant='outlined' onClick={handleSubmit}>Kaydet</Button>
         </Container>
 
       </Box>
 
-      <Container display={'flex'} justifyContent={'center'} gap={1} alignItems={'center'}>
-
       <AllResults_Table myCalculatedData={myCalculatedData} />
+
       <AllReults_GraphicData myCalculatedData={myCalculatedData} />
-
-      </Container>
-
-
-
-
+      
     </div>
   )
 }

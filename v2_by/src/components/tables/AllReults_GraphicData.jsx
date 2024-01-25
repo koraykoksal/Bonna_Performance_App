@@ -94,7 +94,8 @@ const AllReults_GraphicData = ({ myCalculatedData }) => {
 
     return (
         <div>
-            <Box display={'flex'} flexDirection={'column'} gap={2} p={3}>
+            <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'} gap={2} p={3}>
+
                 <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
                     <Typography variant='subtitle2' align='center'>Genel Mavi Yaka Performans Puanı</Typography>
                     <ResponsiveContainer width="100%" height="100%">
@@ -115,6 +116,7 @@ const AllReults_GraphicData = ({ myCalculatedData }) => {
                         </BarChart>
                     </ResponsiveContainer>
                 </Box>
+
                 <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
                     <Typography variant='subtitle2' align='center'>Unvan Bazlı Mavi Yaka Performans Puanı</Typography>
                     <ResponsiveContainer width="100%" height="100%">
@@ -135,6 +137,7 @@ const AllReults_GraphicData = ({ myCalculatedData }) => {
                         </BarChart>
                     </ResponsiveContainer>
                 </Box>
+
             </Box>
         </div>
     )
