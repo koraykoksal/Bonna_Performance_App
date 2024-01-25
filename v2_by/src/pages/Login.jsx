@@ -25,7 +25,7 @@ export const Login = () => {
       password:""
   })
 
-  const { login,get_managerPersonels } = useAuthCall()
+  const { login,get_managerPersonels, twiserLogin } = useAuthCall()
 
   const handleChange=(e)=>{
     setInfo({ ...info, [e.target.name]: e.target.value })
@@ -40,6 +40,10 @@ export const Login = () => {
 
     //login sonrası yöneticiye bağlı personellerin litesini çekmek için çalıştırılan hook
     get_managerPersonels(info)
+
+    // twiser sisteminde login talebi gönder
+    twiserLogin()
+
 
     setInfo({
       username:"",

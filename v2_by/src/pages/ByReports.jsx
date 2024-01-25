@@ -37,11 +37,11 @@ const ByReports = () => {
 
 
     // sayfa render olduğu zaman twiser sistemine login ol
-    useEffect(() => {
-        if (!twiserAccesToken) {
-            twiserLogin()
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (!twiserAccesToken) {
+    //         twiserLogin()
+    //     }
+    // }, [])
 
     // twiser sistemine login olduktan sonra performans verilerini çek
     useEffect(() => {

@@ -116,7 +116,7 @@ const AllReults_GraphicData = ({ myCalculatedData }) => {
                     </ResponsiveContainer>
                 </Box>
                 <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
-                    <Typography variant='subtitle2' align='center'>Genel Mavi Yaka Performans Puanı</Typography>
+                    <Typography variant='subtitle2' align='center'>Unvan Bazlı Mavi Yaka Performans Puanı</Typography>
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                             data={unvanData}
