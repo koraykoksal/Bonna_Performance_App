@@ -4,7 +4,7 @@ import { Box, Typography, Container, Grid, Button } from "@mui/material"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LabelList } from 'recharts';
 
 
-const AllReults_GraphicData = ({ myCalculatedData }) => {
+const AllReults_GraphicData = ({ myCalculatedData , combinedData }) => {
 
     const [genelData, setGenelData] = useState([])
     const [lokasyonData, setLokasyonData] = useState([])

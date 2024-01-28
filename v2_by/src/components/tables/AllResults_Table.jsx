@@ -7,108 +7,18 @@ import { AiFillEdit } from "react-icons/ai";
 import { FaEye } from "react-icons/fa";
 
 
-const AllResults_Table = ({myCalculatedData}) => {
+const AllResults_Table = ({myCalculatedData,combinedData}) => {
+
 
 
     const dataGrid_Columns = [
-        // {
-        //     field: "id",
-        //     headerName: "ID",
-        //     minWidth: 150,
-        //     headerAlign: "center",
-        //     align: "center",
-        //     flex: 1,
-        // },
         {
-            field: "actions",
-            headerName: "Düzenle",
-            minWidth: 80,
+            field: "id",
+            headerName: "ID",
+            minWidth: 50,
             headerAlign: "center",
             align: "center",
             flex: 1,
-            renderCell: ({
-                id,
-                row: {
-                    UserEmployeeNo,
-                    CompanyName,
-                    CompetencePeriodList,
-                    CompetencePeriods,
-                    CompetencePeriodsAvg,
-                    CompetenceWeight,
-                    Department,
-                    DimensionName,
-                    ExternalNote,
-                    ExternalNoteName,
-                    ExternalNoteWeight,
-                    FinalScore,
-                    FinalScoreScale,
-                    IncludeModules,
-                    ManagerComment,
-                    ManagerScore,
-                    ManagerScoreIsSend,
-                    ManagerScoreScale,
-                    ObjectivePeriodList,
-                    ObjectivePeriods,
-                    ObjectivePeriodsAvg,
-                    ObjectiveWeight,
-                    ParentEmail,
-                    ParentFullName,
-                    PerformancePeriodName,
-                    SystemNote,
-                    SystemNoteScale,
-                    UserEmail,
-                    UserFullName,
-                    UserPosition
-                }
-            }) => {
-                return [
-
-                    <GridActionsCellItem
-                        key={'show'}
-                        label='Show'
-                        icon={<FaEye size={23} style={{ cursor: 'pointer', color: 'darkblue' }} />}
-                        onClick={() => {
-                            handleOpen()
-                            setInfo({
-                                id,
-                                CompanyName,
-                                CompetencePeriodList,
-                                CompetencePeriods,
-                                CompetencePeriodsAvg,
-                                CompetenceWeight,
-                                Department,
-                                DimensionName,
-                                ExternalNote,
-                                ExternalNoteName,
-                                ExternalNoteWeight,
-                                FinalScore,
-                                FinalScoreScale,
-                                IncludeModules,
-                                ManagerComment,
-                                ManagerScore,
-                                ManagerScoreIsSend,
-                                ManagerScoreScale,
-                                ObjectivePeriodList,
-                                ObjectivePeriods,
-                                ObjectivePeriodsAvg,
-                                ObjectiveWeight,
-                                ParentEmail,
-                                ParentFullName,
-                                PerformancePeriodName,
-                                SystemNote,
-                                SystemNoteScale,
-                                UserEmail,
-                                UserEmployeeNo,
-                                UserFullName,
-                                UserPosition
-                            })
-
-                        }}
-                    />
-
-
-                ]
-            },
         },
         {
             field: "sicilNo",
@@ -121,6 +31,14 @@ const AllResults_Table = ({myCalculatedData}) => {
         {
             field: "iseGirisTarih",
             headerName: "İşe Giriş Tarihi",
+            minWidth: 110,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "lokasyon",
+            headerName: "Çalışma Yeri",
             minWidth: 110,
             headerAlign: "center",
             align: "center",
@@ -265,7 +183,7 @@ const AllResults_Table = ({myCalculatedData}) => {
             <Box p={5}>
                 <DataGrid
                     columns={dataGrid_Columns}
-                    rows={myCalculatedData}
+                    rows={combinedData}
                     initialState={{
                         pagination: {
                             paginationModel: {

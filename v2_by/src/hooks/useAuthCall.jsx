@@ -24,8 +24,6 @@ const useAuthCall = () => {
 
     const login = async ({ username, password }) => {
 
-        console.log(username,password)
-
         dispatch(fetchStart())
 
         const options = {

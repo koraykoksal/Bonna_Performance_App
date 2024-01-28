@@ -25,11 +25,8 @@ const usePerformanceCall = () => {
 
     const distpatch = useDispatch()
     const navi = useNavigate()
-    const [managerpersonelData, setmanagerpersonelData] = useState([])
     const { twiserAccesToken, managerPersonels } = useSelector((state) => state.auth)
-    const { all_performanceData } = useSelector((state) => state.performance)
-    const [data, setData] = useState([])
-
+    const currentYear = new Date().getFullYear()
 
     //! performans dönemini açıklamasını göster
     const evulationInfo = () => {
@@ -311,7 +308,7 @@ const usePerformanceCall = () => {
     }
 
 
-
+    //! zam datasını çek
     const get_raiseData = async (url) => {
 
         try {
@@ -325,8 +322,21 @@ const usePerformanceCall = () => {
                 toastWarnNotify('Zam bilgisi bulunmuyor')
             }
             else {
-                const data = snapshot.val()
-                distpatch(fetchRaiseData(data))
+                // const data = snapshot.val()
+                // distpatch(fetchRaiseData(data))
+
+                const data = Object.values(snapshot.val());
+                const lastData = data.find(item => item.raiseYear === currentYear);
+
+                if (!lastData) {
+                    toastWarnNotify(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`)
+                    console.log(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`);
+                    return;
+                }
+                else{
+                    distpatch(fetchRaiseData(lastData))
+                }
+
             }
 
         } catch (error) {
