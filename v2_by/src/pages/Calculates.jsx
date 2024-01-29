@@ -318,14 +318,6 @@ const Calculates = () => {
   }
 
 
-  // console.log("myGuncellenmisPerformanceData: ",myGuncellenmisPerformanceData)
-  // console.log("byGuncellenmisPerformanceData: ",byGuncellenmisPerformanceData)
-  console.log("byOkrPerformance: ",byOkrPerformance)
-  // console.log("bonnaPersonels: ",bonnaPersonels)
-
-  console.log("twiserAccesToken: ",twiserAccesToken)
-
-
   // const res = byGuncellenmisPerformanceData.filter(item=>item.ustBirim == 'Bilinmiyor').map(data=>{
   //   return{
   //     personel:data.UserFullName,
