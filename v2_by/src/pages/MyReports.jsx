@@ -103,7 +103,7 @@ const MyReports = () => {
 
 
   useEffect(() => {
-    // getBonnaPersonels()
+    getBonnaPersonels()
     get_All_PerformanceData('my-performance')
   }, [])
 
@@ -122,9 +122,9 @@ const MyReports = () => {
       else if (sonuc > 80 && sonuc <= 90) aciklama = "Beklentilerin Üzerinde 😀";
       else if (sonuc > 90 && sonuc <= 100) aciklama = "Üstün Performans 🥳";
 
-      const personel = bonnaPersonels.find(person => person.TCKIMLIKNO == item.tcNo)
+      const personel = bonnaPersonels?.find(person => person?.TCKIMLIKNO == item?.tcNo)
 
-      const lokasyon = personel ? personel.LOKASYON : "Bilinmiyor";
+      const lokasyon = personel ? personel?.LOKASYON : "Bilinmiyor";
 
 
       return { ...item, degerlendirmeAciklamasi: aciklama , lokasyon};
@@ -133,7 +133,7 @@ const MyReports = () => {
     // Gerekiyorsa bu sonucu başka bir state'e atayabilirsiniz.
     setGuncellenmisPerformanceData(guncellenmisData);
 
-  }, [all_performanceData])
+  }, [all_performanceData,bonnaPersonels])
 
 
   return (

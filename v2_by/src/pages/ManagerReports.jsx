@@ -10,7 +10,7 @@ import DeleteModal from '../components/delete/DeleteModal'
 const ManagerReports = () => {
 
 
-  const { get_All_PerformanceData } = usePerformanceCall()
+  const { get_All_PerformanceData, getBonnaPersonels } = usePerformanceCall()
   const { all_performanceData,bonnaPersonels } = useSelector((state) => state.performance)
   const [guncellenmisPerformanceData, setGuncellenmisPerformanceData] = useState([]);
 
@@ -102,6 +102,7 @@ const ManagerReports = () => {
 
 
   useEffect(() => {
+    getBonnaPersonels()
     get_All_PerformanceData('manager-evaluation')
   }, [])
 
@@ -119,9 +120,9 @@ const ManagerReports = () => {
       else if (sonuc > 80 && sonuc <= 90) aciklama = "Beklentilerin Üzerinde 😀";
       else if (sonuc > 90 && sonuc <= 100) aciklama = "Üstün Performans 🥳";
 
-      const personel = bonnaPersonels.find(person => person.TCKIMLIKNO == item.tcNo)
+      const personel = bonnaPersonels?.find(person => person?.TCKIMLIKNO == item?.tcNo)
 
-      const lokasyon = personel ? personel.LOKASYON : "Bilinmiyor";
+      const lokasyon = personel ? personel?.LOKASYON : "Bilinmiyor";
 
       return { ...item, final_degerlendirmeAciklamasi: aciklama,lokasyon };
     });
@@ -129,9 +130,7 @@ const ManagerReports = () => {
     // Gerekiyorsa bu sonucu başka bir state'e atayabilirsiniz.
     setGuncellenmisPerformanceData(guncellenmisData);
 
-  }, [all_performanceData])
-
-  console.log(bonnaPersonels)
+  }, [all_performanceData,bonnaPersonels])
 
 
   return (
