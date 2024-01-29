@@ -131,6 +131,8 @@ const ManagerReports = () => {
 
   }, [all_performanceData])
 
+  console.log(bonnaPersonels)
+
 
   return (
     <div>

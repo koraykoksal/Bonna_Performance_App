@@ -99,6 +99,7 @@ const Calculates = () => {
 
   //! ortak hesaplama fonksiyonu
   const calculateSalary = (sonuc, mevcutUcret, zamData, yakaTipi) => {
+
     let scale = ""
     let standartRaise = ""
     let performanceRaise = ""
@@ -106,11 +107,24 @@ const Calculates = () => {
     let nextSallary = ""
     let fark = ""
 
-    if (sonuc > 0 && sonuc <= 40) scale = "1", standartRaise = zamData.s1_myZam, performanceRaise = zamData.s1_perZam, totalRaise = Number(zamData.s1_myZam) + Number(zamData.s1_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
-    else if (sonuc > 40 && sonuc <= 60) scale = "2", standartRaise = zamData.s2_myZam, performanceRaise = zamData.s2_perZam, totalRaise = Number(zamData.s2_myZam) + Number(zamData.s2_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
-    else if (sonuc > 60 && sonuc <= 80) scale = "3", standartRaise = zamData.s3_myZam, performanceRaise = zamData.s3_perZam, totalRaise = Number(zamData.s3_myZam) + Number(zamData.s3_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
-    else if (sonuc > 80 && sonuc <= 90) scale = "4", standartRaise = zamData.s4_myZam, performanceRaise = zamData.s4_perZam, totalRaise = Number(zamData.s4_myZam) + Number(zamData.s4_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
-    else if (sonuc > 90 && sonuc <= 100) scale = "5", standartRaise = zamData.s5_myZam, performanceRaise = zamData.s5_perZam, totalRaise = Number(zamData.s5_myZam) + Number(zamData.s5_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+    if(yakaTipi == "Mavi"){
+
+      if (sonuc > 0 && sonuc <= 40) scale = "1", standartRaise = zamData.s1_myZam, performanceRaise = zamData.s1_perZam, totalRaise = Number(zamData.s1_myZam) + Number(zamData.s1_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 40 && sonuc <= 60) scale = "2", standartRaise = zamData.s2_myZam, performanceRaise = zamData.s2_perZam, totalRaise = Number(zamData.s2_myZam) + Number(zamData.s2_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 60 && sonuc <= 80) scale = "3", standartRaise = zamData.s3_myZam, performanceRaise = zamData.s3_perZam, totalRaise = Number(zamData.s3_myZam) + Number(zamData.s3_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 80 && sonuc <= 90) scale = "4", standartRaise = zamData.s4_myZam, performanceRaise = zamData.s4_perZam, totalRaise = Number(zamData.s4_myZam) + Number(zamData.s4_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 90 && sonuc <= 100) scale = "5", standartRaise = zamData.s5_myZam, performanceRaise = zamData.s5_perZam, totalRaise = Number(zamData.s5_myZam) + Number(zamData.s5_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+
+    }
+    else{
+      if (sonuc > 0 && sonuc <= 40) scale = "1", standartRaise = zamData.s1_byZam, performanceRaise = zamData.s1_perZam, totalRaise = Number(zamData.s1_byZam) + Number(zamData.s1_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 40 && sonuc <= 60) scale = "2", standartRaise = zamData.s2_byZam, performanceRaise = zamData.s2_perZam, totalRaise = Number(zamData.s2_byZam) + Number(zamData.s2_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 60 && sonuc <= 80) scale = "3", standartRaise = zamData.s3_byZam, performanceRaise = zamData.s3_perZam, totalRaise = Number(zamData.s3_byZam) + Number(zamData.s3_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 80 && sonuc <= 90) scale = "4", standartRaise = zamData.s4_byZam, performanceRaise = zamData.s4_perZam, totalRaise = Number(zamData.s4_byZam) + Number(zamData.s4_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+      else if (sonuc > 90 && sonuc <= 100) scale = "5", standartRaise = zamData.s5_byZam, performanceRaise = zamData.s5_perZam, totalRaise = Number(zamData.s5_byZam) + Number(zamData.s5_perZam), fark = ((Number(mevcutUcret) * Number(totalRaise)) / 100).toFixed(2), nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
+    }
+
+   
 
 
     return { scale, standartRaise, performanceRaise, totalRaise, addedSalary: fark, nextSallary, yakaTipi };
