@@ -127,13 +127,16 @@ const Calculates = () => {
         // else if (sonuc > 80 && sonuc <= 90) aciklama = "Beklentilerin Üzerinde 😀";
         // else if (sonuc > 90 && sonuc <= 100) aciklama = "Üstün Performans 🥳";
 
-        const personel = bonnaPersonels.filter(data => data.STATUSCODE == personelStatusCode).find(person => person.TCKIMLIKNO === item.tcNo)
+        // const personel = bonnaPersonels.filter(data => data.STATUSCODE == personelStatusCode).find(person => person.TCKIMLIKNO == item.tcNo)
+
+        const personel = bonnaPersonels.find(person => person.TCKIMLIKNO == item.tcNo)
+
         const lokasyon = personel ? personel.LOKASYON : "Bilinmiyor";
 
-        return { 
-          ...item, 
-          final_degerlendirmeAciklamasi: aciklama, 
-          lokasyon 
+        return {
+          ...item,
+          final_degerlendirmeAciklamasi: aciklama,
+          lokasyon
         };
       });
 
@@ -163,7 +166,9 @@ const Calculates = () => {
       // else if (managerScore > 80 && managerScore <= 90) aciklama = "Beklentilerin Üzerinde 😀";
       // else if (managerScore > 90 && managerScore <= 100) aciklama = "Üstün Performans 🥳";
 
-      const personel = bonnaPersonels.filter(data => data.STATUSCODE == personelStatusCode).find(person => person.PERSID == item.UserEmployeeNo) || {}
+      // const personel = bonnaPersonels.filter(data => data.STATUSCODE == personelStatusCode).find(person => person.PERSID == item.UserEmployeeNo) || {}
+
+      const personel = bonnaPersonels.find(person => person.PERSID == item.UserEmployeeNo) || {}
 
       const name = personel && personel.NAME ? personel.NAME : "Bilinmiyor";
       const surname = personel && personel.SURNAME ? personel.SURNAME : "Bilinmiyor";
@@ -311,7 +316,29 @@ const Calculates = () => {
   }
 
 
-  
+  const res = myGuncellenmisPerformanceData.filter(item => item.lokasyon == 'Bilinmiyor').map(data => {
+    return {
+      name: data.personel,
+      bolum: data.bolum,
+      birim: data.birim
+    }
+  })
+
+  const res2 = bonnaPersonels.filter(item => item.SURNAME == "VATANSEVER").map(data => {
+    return {
+      name: data.NAME,
+      surname: data.SURNAME,
+      bolum: data.DEPARTMANACIKLAMA,
+      sicil: data.PERSID,
+      lokasyon: data.LOKASYON,
+      yaka: data.STATUSCODE
+    }
+  })
+
+  // console.log(res)
+  // console.log(res)
+
+
 
   return (
     <div>

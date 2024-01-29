@@ -285,6 +285,14 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
             flex: 1,
         },
         {
+            field: "ustBirim",
+            headerName: "Üst Birim",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
             field: "birim",
             headerName: "Birim",
             minWidth: 180,
@@ -301,9 +309,9 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
             flex: 1,
         },
         {
-            field: "ustBirim",
-            headerName: "Üst Birim",
-            minWidth: 180,
+            field: "gorev",
+            headerName: "Görev",
+            minWidth: 150,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -316,14 +324,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
             align: "center",
             flex: 1,
         },
-        {
-            field: "gorev",
-            headerName: "Görev",
-            minWidth: 150,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-        },
+        
         {
             field: "degerlendirmeYili",
             headerName: "Değerlendirme Yılı",
