@@ -121,10 +121,21 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
             }
         })
 
+        function sortArray(data) {
+            return data.sort((a, b) => {
+                if (a.name < b.name) return -1;
+                if (a.name > b.name) return 1;
+                if (a.lokasyon < b.lokasyon) return -1;
+                if (a.lokasyon > b.lokasyon) return 1;
+                return 0;
+            });
+        }
+
+        const lokasyonSortingData = sortArray(lokasyonChartData)
 
         setGenelData(genelChartData)
         setUnvanData(unvanChartData)
-        setLokasyonData(lokasyonChartData)
+        setLokasyonData(lokasyonSortingData)
 
     }, [formatlanmisChartGenelData, formatlanmisChartUnvanData])
 

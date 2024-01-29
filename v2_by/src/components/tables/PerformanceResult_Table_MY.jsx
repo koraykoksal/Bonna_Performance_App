@@ -247,7 +247,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "type",
             headerName: "Tip",
-            minWidth: 190,
+            minWidth: 50,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -263,7 +263,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "sicilNo",
             headerName: "Sicil No",
-            minWidth: 150,
+            minWidth: 90,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -352,7 +352,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q1Calisan",
             headerName: "S1-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -360,7 +360,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q2Calisan",
             headerName: "S2-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -368,7 +368,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q3Calisan",
             headerName: "S3-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -376,7 +376,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q4Calisan",
             headerName: "S4-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -384,7 +384,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q5Calisan",
             headerName: "S5-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -392,7 +392,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q6Calisan",
             headerName: "S6-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -400,7 +400,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q7Calisan",
             headerName: "S7-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -408,7 +408,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q8Calisan",
             headerName: "S8-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -416,7 +416,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q9Calisan",
             headerName: "S9-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -424,7 +424,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         {
             field: "q10Calisan",
             headerName: "S10-Puan",
-            minWidth: 150,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,

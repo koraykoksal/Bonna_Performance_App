@@ -113,7 +113,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "UserEmployeeNo",
             headerName: "User No",
-            minWidth: 190,
+            minWidth: 90,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -161,7 +161,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "SystemNote",
             headerName: "Sistem Puanı",//ismi sistem puanı olacak
-            minWidth: 180,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -193,7 +193,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "ManagerScore",
             headerName: "Yönetici Puanı", // ismi yönetici puanı olacak
-            minWidth: 180,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -201,7 +201,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "ObjectivePeriodsAvg",
             headerName: "OKR Notu", // ismi okr notu olacak
-            minWidth: 180,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -209,7 +209,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "ObjectivePeriods",
             headerName: "OKR Yılı",
-            minWidth: 180,
+            minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
