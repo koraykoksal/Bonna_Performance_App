@@ -67,8 +67,7 @@ const authSlice=createSlice({
             state.loading=false;
             state.twiserAccesToken=payload?.AccessToken
             state.twiserRefreshToken=payload?.RefreshToken
-            state.twiserUserId=payload?.UserId
-        
+            state.twiserUserId=payload?.UserId        
         },
 
     }

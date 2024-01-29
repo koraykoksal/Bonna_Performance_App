@@ -123,24 +123,12 @@ const Calculates = () => {
 
     const donemAciklamasi = evulationInfo()
 
-    const personelStatusCode = "Mavi Yaka"
-
     const myGuncellenmisData = all_performanceData
       .filter(element => element.degerlendirmeYili === currentYear && element.degerlendirmeDonemiAciklama === donemAciklamasi)
       .map(item => {
 
         const sonuc = parseFloat(item.final_degerlendirmeSonucu);
         const aciklama = getPerformanceDescription(sonuc);
-
-        // let aciklama = "";
-
-        // if (sonuc > 0 && sonuc <= 40) aciklama = "Beklentiyi Karşılamıyor 😩";
-        // else if (sonuc > 40 && sonuc <= 60) aciklama = "Beklentilerin Altında 🥺";
-        // else if (sonuc > 60 && sonuc <= 80) aciklama = "Beklenen Performans 😑";
-        // else if (sonuc > 80 && sonuc <= 90) aciklama = "Beklentilerin Üzerinde 😀";
-        // else if (sonuc > 90 && sonuc <= 100) aciklama = "Üstün Performans 🥳";
-
-        // const personel = bonnaPersonels.filter(data => data.STATUSCODE == personelStatusCode).find(person => person.TCKIMLIKNO == item.tcNo)
 
         const personel = bonnaPersonels.find(person => person.TCKIMLIKNO == item.tcNo)
 
@@ -163,23 +151,10 @@ const Calculates = () => {
   //! beyaz yaka değerlendirmesi için beyaz yaka okr sonuçlarını işle
   useEffect(() => {
 
-    const donemAciklamasi = evulationInfo()
-
-    const personelStatusCode = "Beyaz Yaka"
-
     const byGuncellenmisData = byOkrPerformance.map(item => {
 
       const managerScore = parseFloat(item.ManagerScore);
       const aciklama = getPerformanceDescription(managerScore);
-      // let aciklama = "";
-
-      // if (managerScore > 0 && managerScore <= 40) aciklama = "Beklentiyi Karşılamıyor 😩";
-      // else if (managerScore > 40 && managerScore <= 60) aciklama = "Beklentilerin Altında 🥺";
-      // else if (managerScore > 60 && managerScore <= 80) aciklama = "Beklenen Performans 😑";
-      // else if (managerScore > 80 && managerScore <= 90) aciklama = "Beklentilerin Üzerinde 😀";
-      // else if (managerScore > 90 && managerScore <= 100) aciklama = "Üstün Performans 🥳";
-
-      // const personel = bonnaPersonels.filter(data => data.STATUSCODE == personelStatusCode).find(person => person.PERSID == item.UserEmployeeNo) || {}
 
       const personel = bonnaPersonels.find(person => person.PERSID == item.UserEmployeeNo) || {}
 
@@ -329,24 +304,18 @@ const Calculates = () => {
   }
 
 
-  const res = myGuncellenmisPerformanceData.filter(item => item.lokasyon == 'Bilinmiyor').map(data => {
-    return {
-      name: data.personel,
-      bolum: data.bolum,
-      birim: data.birim
-    }
-  })
 
-  const res2 = bonnaPersonels.filter(item => item.SURNAME == "VATANSEVER").map(data => {
-    return {
-      name: data.NAME,
-      surname: data.SURNAME,
-      bolum: data.DEPARTMANACIKLAMA,
-      sicil: data.PERSID,
-      lokasyon: data.LOKASYON,
-      yaka: data.STATUSCODE
-    }
-  })
+  // const res = byGuncellenmisPerformanceData.filter(item=>item.ustBirim == 'Bilinmiyor').map(data=>{
+  //   return{
+  //     personel:data.UserFullName,
+  //     UserEmployeeNo : data.UserEmployeeNo,
+  //     sicilNo:data.sicilNo,
+
+  //   }
+
+  // })
+
+
 
 
   return (
@@ -359,10 +328,21 @@ const Calculates = () => {
 
         <Typography variant='subtitle' align='center' color={'black'}>Tüm hesaplamalar güncel zam oranı bilgilerine göre yapılacaktır.</Typography>
 
-        <Container sx={{ display: 'flex', justifyContent: 'space-evenly', gap: 3 }}>
-          <Button variant='contained' onClick={handleCalculate}>Hesaplama Yap</Button>
-          <Button variant='outlined' onClick={handleSubmit}>Kaydet</Button>
-        </Container>
+
+
+        {
+          myGuncellenmisPerformanceData.length > 0 && byGuncellenmisPerformanceData.length > 0 ?
+            (
+              <Container sx={{ display: 'flex', justifyContent: 'space-evenly', gap: 3 }}>
+                <Button variant='contained' onClick={handleCalculate}>Hesaplama Yap</Button>
+                <Button variant='outlined' onClick={handleSubmit}>Kaydet</Button>
+              </Container>
+            )
+            :
+            (
+              ""
+            )
+        }
 
       </Box>
 

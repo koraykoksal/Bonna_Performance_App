@@ -35,18 +35,12 @@ const ByReports = () => {
 
     }
 
-
-    // sayfa render olduğu zaman twiser sistemine login ol
-    // useEffect(() => {
-    //     if (!twiserAccesToken) {
-    //         twiserLogin()
-    //     }
-    // }, [])
-
-    
     // twiser sistemine login olduktan sonra performans verilerini çek
     useEffect(() => {
-        get_beyazYaka_performanceData()
+        if (twiserAccesToken) {
+            get_beyazYaka_performanceData()
+        }
+
     }, [twiserAccesToken])
 
 

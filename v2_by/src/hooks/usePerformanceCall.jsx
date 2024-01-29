@@ -365,7 +365,7 @@ const usePerformanceCall = () => {
     }
 
 
-
+    //! twiser performance data
     const get_beyazYaka_performanceData = () => {
 
         fetch(`${import.meta.env.VITE_TWISER_BYDATA_BASEADDRESS}`, {
@@ -405,13 +405,11 @@ const usePerformanceCall = () => {
                             dizi.push(item)
                             return { ...item, item }
                         })
-
-
                         distpatch(fetchByOKRPerformanceData(dizi))
                     }
                 })
 
-
+                // console.log("dizi: ",dizi)
 
             })
             .catch(err => console.log(err))

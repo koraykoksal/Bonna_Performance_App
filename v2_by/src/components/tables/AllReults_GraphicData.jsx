@@ -14,6 +14,10 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
     const [formatlanmisChartUnvanData, setFormatlanmisChartUnvanData] = useState([])
     const [formatlanmisChartLokasyonData, setFormatlanmisChartLokasyonData] = useState([])
 
+    const [genelDataBY, setGenelDataBy] = useState([])
+    const [birimDataBY, setBirimDataBy] = useState([])
+    const [formatlanmisChartGenelDataBY, setFormatlanmisChartGenelDataBY] = useState([])
+    const [formatlanmisChartGenelDataBY_birim, setFormatlanmisChartGenelDataBY_birim] = useState([])
 
 
     useEffect(() => {
@@ -137,18 +141,98 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         setUnvanData(unvanChartData)
         setLokasyonData(lokasyonSortingData)
 
-    }, [formatlanmisChartGenelData, formatlanmisChartUnvanData])
+    }, [formatlanmisChartGenelData, formatlanmisChartUnvanData, formatlanmisChartLokasyonData])
 
+
+    useEffect(() => {
+
+        const ustBirimMap = {};
+        const birimMap = {};
+        const unvanMap = {};
+        let lokasyonSkalaMap = {};
+
+
+        // üst birim bilgilerini foreach ile kontrol et ve skala değerini al
+        byCalculatedData.forEach(item => {
+            const ustBirim = item.ustBirim;
+            const skala = parseFloat(item.scale);
+
+            if (!ustBirimMap[ustBirim]) {
+                ustBirimMap[ustBirim] = { total: 0, count: 0 };
+            }
+
+            ustBirimMap[ustBirim].total += skala;
+            ustBirimMap[ustBirim].count += 1;
+        });
+
+        // üst birim skala değerlerinin ortalamasını al
+        const ustBirimResult = Object.keys(ustBirimMap).map(key => {
+            const average = ustBirimMap[key].total / ustBirimMap[key].count;
+            return { [key]: average };
+        });
+
+
+        byCalculatedData.forEach(item => {
+            const ustBirim = item.birim;
+            const skala = parseFloat(item.scale);
+
+            if (!birimMap[ustBirim]) {
+                birimMap[ustBirim] = { total: 0, count: 0 };
+            }
+
+            birimMap[ustBirim].total += skala;
+            birimMap[ustBirim].count += 1;
+        });
+
+        // üst birim skala değerlerinin ortalamasını al
+        const birimResult = Object.keys(birimMap).map(key => {
+            const average = birimMap[key].total / birimMap[key].count;
+            return { [key]: average };
+        });
+
+
+        setFormatlanmisChartGenelDataBY(ustBirimResult)
+        setFormatlanmisChartGenelDataBY_birim(birimResult)
+
+    }, [byCalculatedData])
+
+
+    useEffect(() => {
+
+        const genelChartDataBY = formatlanmisChartGenelDataBY.map(item => {
+            const ustBirim = Object.keys(item)[0];
+            return {
+                name: ustBirim,
+                Skala: item[ustBirim].toFixed(2)
+            };
+        });
+
+        const genelChartDataBY_birim = formatlanmisChartGenelDataBY_birim.map(item => {
+            const birim = Object.keys(item)[0];
+            return {
+                name: birim,
+                Skala: item[birim].toFixed(2)
+            };
+        });
+
+        setGenelDataBy(genelChartDataBY)
+        setBirimDataBy(genelChartDataBY_birim)
+
+    }, [formatlanmisChartGenelDataBY,formatlanmisChartGenelDataBY_birim])
+
+
+    
 
     return (
         <div>
+            
             <Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'} gap={2} p={3}>
 
                 <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
 
 
                     <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
-                        <Typography variant='subtitle2' align='center'>Genel Mavi Yaka Performans Puanı</Typography>
+                        <Typography variant='subtitle2' fontWeight={700} align='center'>(Genel) Mavi Yaka Performans Puanı</Typography>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={genelData}
@@ -161,7 +245,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="Skala" fill="#8884d8">
+                                <Bar dataKey="Skala" fill="#80BCBD">
                                     <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
                                 </Bar>
                             </BarChart>
@@ -169,7 +253,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                     </Box>
 
                     <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
-                        <Typography variant='subtitle2' align='center'>Unvan Bazlı Mavi Yaka Performans Puanı</Typography>
+                        <Typography variant='subtitle2' fontWeight={700} align='center'>(Unvan Bazlı) Mavi Yaka Performans Puanı</Typography>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={unvanData}
@@ -182,7 +266,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
-                                <Bar dataKey="Skala" fill="#8884d8">
+                                <Bar dataKey="Skala" fill="#B19470">
                                     <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
                                 </Bar>
                             </BarChart>
@@ -193,7 +277,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
 
 
                 <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
-                    <Typography variant='subtitle2' align='center'>Lokasyon Bazlı Mavi Yaka Performans Puanı</Typography>
+                    <Typography variant='subtitle2' fontWeight={700} align='center'>(Lokasyon Bazlı) Mavi Yaka Performans Puanı</Typography>
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                             data={lokasyonData}
@@ -201,12 +285,12 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 top: 5, right: 30, left: 20, bottom: 5,
                             }}
                         >
-                            <CartesianGrid strokeDasharray="3 3" />
+                            {/* <CartesianGrid strokeDasharray="3 3" /> */}
                             <XAxis dataKey="lokasyon" />
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="Skala" fill="#8884d8">
+                            <Bar dataKey="Skala" fill="#0766AD">
                                 <LabelList dataKey="name" position="insideTop" fill='#ffffff' />
                                 <LabelList dataKey="Skala" position="top" offset={10} fill='#000000' />
                             </Bar>
@@ -214,8 +298,56 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                     </ResponsiveContainer>
                 </Box>
 
+            </Box>
 
 
+            <Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'} gap={2} p={3}>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+                    <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
+                        <Typography variant='subtitle2' fontWeight={700} align='center'>(Genel) Beyaz Yaka Performans Puanı</Typography>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                data={genelDataBY}
+                                margin={{
+                                    top: 5, right: 30, left: 20, bottom: 5,
+                                }}
+                            >
+                                {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="Skala" fill="#A3B763">
+                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </Box>
+                </Box>
+
+                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+                    <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
+                        <Typography variant='subtitle2' fontWeight={700} align='center'>(Birim Bazlı) Beyaz Yaka Performans Puanı</Typography>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                data={birimDataBY}
+                                margin={{
+                                    top: 5, right: 30, left: 20, bottom: 5,
+                                }}
+                            >
+                                {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="Skala" fill="#D0A2F7">
+                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </Box>
+                </Box>
 
             </Box>
         </div>

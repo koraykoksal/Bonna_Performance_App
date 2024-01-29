@@ -151,7 +151,7 @@ const useAuthCall = () => {
         })
             .then(res => res.json())
             .then(data => {
-              
+                console.log("twiser login data: ",data)
                 dispatch(fetchTwiserLoginSuccess(data))
             })
             .catch(error => console.error('Error:', error));
