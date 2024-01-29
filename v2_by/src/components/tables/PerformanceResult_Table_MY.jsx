@@ -285,6 +285,14 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
             flex: 1,
         },
         {
+            field: "lokasyon",
+            headerName: "Çalışma Yeri",
+            minWidth: 190,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
             field: "ustBirim",
             headerName: "Üst Birim",
             minWidth: 180,

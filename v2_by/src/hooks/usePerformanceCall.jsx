@@ -322,20 +322,20 @@ const usePerformanceCall = () => {
                 toastWarnNotify('Zam bilgisi bulunmuyor')
             }
             else {
-                // const data = snapshot.val()
-                // distpatch(fetchRaiseData(data))
+                const data = snapshot.val()
+                distpatch(fetchRaiseData(data))
 
-                const data = Object.values(snapshot.val());
-                const lastData = data.find(item => item.raiseYear === currentYear);
+                // const data = Object.values(snapshot.val());
+                // const lastData = data.find(item => item.raiseYear === currentYear);
 
-                if (!lastData) {
-                    toastWarnNotify(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`)
-                    console.log(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`);
-                    return;
-                }
-                else{
-                    distpatch(fetchRaiseData(lastData))
-                }
+                // if (!lastData) {
+                //     toastWarnNotify(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`)
+                //     console.log(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`);
+                //     return;
+                // }
+                // else{
+                //     distpatch(fetchRaiseData(data))
+                // }
 
             }
 

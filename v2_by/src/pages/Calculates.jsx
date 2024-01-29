@@ -14,6 +14,8 @@ const Calculates = () => {
   const { get_raiseData, get_All_PerformanceData, get_beyazYaka_performanceData, getBonnaPersonels } = usePerformanceCall()
   const { all_performanceData, byOkrPerformance, raiseData, bonnaPersonels } = useSelector((state) => state.performance)
   const { twiserAccesToken } = useSelector((state) => state.auth)
+  const [zamData, setZamData] = useState([])
+
   const currentYear = new Date().getFullYear()
 
   const [myGuncellenmisPerformanceData, setMyGuncellenmisPerformanceData] = useState([]);
@@ -60,6 +62,17 @@ const Calculates = () => {
       twiserLogin()
     }
   }, [])
+
+
+  //! current year zam oranı
+  useEffect(() => {
+
+    const data = Object.values(raiseData);
+    const lastData = data.find(item => item.raiseYear === currentYear);
+
+    setZamData(lastData)
+
+  }, [raiseData])
 
 
   //! beyaz yaka okr sonuçlarını al
@@ -216,7 +229,7 @@ const Calculates = () => {
       const result = calculateSalary(
         parseFloat(item.final_degerlendirmeSonucu),
         parseFloat(item.currentSallary),
-        raiseData,
+        zamData,
         "Mavi"
       );
 
@@ -228,7 +241,7 @@ const Calculates = () => {
       const result = calculateSalary(
         parseFloat(item.ManagerScore),
         parseFloat(item.maas),
-        raiseData,
+        zamData,
         "Beyaz"
       );
 
@@ -334,10 +347,6 @@ const Calculates = () => {
       yaka: data.STATUSCODE
     }
   })
-
-  // console.log(res)
-  // console.log(res)
-
 
 
   return (

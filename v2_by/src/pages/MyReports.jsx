@@ -122,7 +122,12 @@ const MyReports = () => {
       else if (sonuc > 80 && sonuc <= 90) aciklama = "Beklentilerin Üzerinde 😀";
       else if (sonuc > 90 && sonuc <= 100) aciklama = "Üstün Performans 🥳";
 
-      return { ...item, degerlendirmeAciklamasi: aciklama };
+      const personel = bonnaPersonels.find(person => person.TCKIMLIKNO == item.tcNo)
+
+      const lokasyon = personel ? personel.LOKASYON : "Bilinmiyor";
+
+
+      return { ...item, degerlendirmeAciklamasi: aciklama , lokasyon};
     });
 
     // Gerekiyorsa bu sonucu başka bir state'e atayabilirsiniz.

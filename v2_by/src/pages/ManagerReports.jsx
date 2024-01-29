@@ -11,7 +11,7 @@ const ManagerReports = () => {
 
 
   const { get_All_PerformanceData } = usePerformanceCall()
-  const { all_performanceData } = useSelector((state) => state.performance)
+  const { all_performanceData,bonnaPersonels } = useSelector((state) => state.performance)
   const [guncellenmisPerformanceData, setGuncellenmisPerformanceData] = useState([]);
 
   // viewer modal handle state bilgisi
@@ -119,7 +119,11 @@ const ManagerReports = () => {
       else if (sonuc > 80 && sonuc <= 90) aciklama = "Beklentilerin Üzerinde 😀";
       else if (sonuc > 90 && sonuc <= 100) aciklama = "Üstün Performans 🥳";
 
-      return { ...item, final_degerlendirmeAciklamasi: aciklama };
+      const personel = bonnaPersonels.find(person => person.TCKIMLIKNO == item.tcNo)
+
+      const lokasyon = personel ? personel.LOKASYON : "Bilinmiyor";
+
+      return { ...item, final_degerlendirmeAciklamasi: aciklama,lokasyon };
     });
 
     // Gerekiyorsa bu sonucu başka bir state'e atayabilirsiniz.

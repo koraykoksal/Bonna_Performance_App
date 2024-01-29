@@ -141,6 +141,8 @@ const Settings = () => {
         setData(res)
     }, [raiseData])
 
+  
+
 
     return (
         <div>
