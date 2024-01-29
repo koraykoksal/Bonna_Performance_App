@@ -1,10 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import { Box, Typography, Container, Grid, Button } from "@mui/material"
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LabelList } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LabelList, Rectangle } from 'recharts';
 
 
-const AllReults_GraphicData = ({ myCalculatedData , combinedData }) => {
+const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
 
     const [genelData, setGenelData] = useState([])
     const [lokasyonData, setLokasyonData] = useState([])
@@ -12,17 +12,21 @@ const AllReults_GraphicData = ({ myCalculatedData , combinedData }) => {
 
     const [formatlanmisChartGenelData, setFormatlanmisChartGenelData] = useState([])
     const [formatlanmisChartUnvanData, setFormatlanmisChartUnvanData] = useState([])
+    const [formatlanmisChartLokasyonData, setFormatlanmisChartLokasyonData] = useState([])
+
+
 
     useEffect(() => {
 
         const ustBirimMap = {};
         const unvanMap = {};
+        let lokasyonSkalaMap = {};
 
 
         // üst birim bilgilerini foreach ile kontrol et ve skala değerini al
         myCalculatedData.forEach(item => {
             const ustBirim = item.ustBirim;
-            const skala = parseFloat(item.skala);
+            const skala = parseFloat(item.scale);
 
             if (!ustBirimMap[ustBirim]) {
                 ustBirimMap[ustBirim] = { total: 0, count: 0 };
@@ -42,7 +46,7 @@ const AllReults_GraphicData = ({ myCalculatedData , combinedData }) => {
         // ünvan bilgilerini foreach ile kontrol et ve skala değerini al
         myCalculatedData.forEach(item => {
             const unvan = item.gorev
-            const skala = parseFloat(item.skala)
+            const skala = parseFloat(item.scale)
 
             if (!unvanMap[unvan]) {
                 unvanMap[unvan] = { total: 0, count: 0 }
@@ -60,8 +64,32 @@ const AllReults_GraphicData = ({ myCalculatedData , combinedData }) => {
         });
 
 
+        // lokasyon bazlı üst birim skala datası
+        myCalculatedData.forEach(item => {
+            const ustBirim = item.ustBirim;
+            const lokasyon = item.lokasyon;
+            const skala = parseFloat(item.scale);
+            const key = `${ustBirim}-${lokasyon}`;
+
+            if (!lokasyonSkalaMap[key]) {
+                lokasyonSkalaMap[key] = { total: 0, count: 0, ustBirim, lokasyon };
+            }
+
+            lokasyonSkalaMap[key].total += skala;
+            lokasyonSkalaMap[key].count += 1;
+        });
+
+        const lokasyonResult = Object.values(lokasyonSkalaMap).map(entry => ({
+            lokasyon: entry.lokasyon,
+            ortalamaSkala: entry.total / entry.count,
+            ustBirim: entry.ustBirim
+        }));
+
+
+
         setFormatlanmisChartGenelData(ustBirimResult);
         setFormatlanmisChartUnvanData(unvanResult)
+        setFormatlanmisChartLokasyonData(lokasyonResult)
 
     }, [myCalculatedData])
 
@@ -85,12 +113,23 @@ const AllReults_GraphicData = ({ myCalculatedData , combinedData }) => {
             };
         });
 
+        const lokasyonChartData = formatlanmisChartLokasyonData.map(item => {
+            return {
+                name: item['ustBirim'],
+                Skala: item['ortalamaSkala'].toFixed(2),
+                lokasyon: item['lokasyon']
+            }
+        })
+
+
         setGenelData(genelChartData)
         setUnvanData(unvanChartData)
+        setLokasyonData(lokasyonChartData)
 
-    }, [formatlanmisChartGenelData,formatlanmisChartUnvanData])
+    }, [formatlanmisChartGenelData, formatlanmisChartUnvanData])
 
 
+    // console.log(lokasyonData)
 
     return (
         <div>
@@ -137,6 +176,31 @@ const AllReults_GraphicData = ({ myCalculatedData , combinedData }) => {
                         </BarChart>
                     </ResponsiveContainer>
                 </Box>
+
+                <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
+                    <Typography variant='subtitle2' align='center'>Lokasyon Bazlı Mavi Yaka Performans Puanı</Typography>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                            data={lokasyonData}
+                            margin={{
+                                top: 5, right: 30, left: 20, bottom: 5,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="lokasyon" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="Skala" fill="#8884d8">
+                                <LabelList dataKey="name" position="top" /> {/* "name" bilgisini etiket olarak kullan */}
+                                <LabelList dataKey="Skala" position="insideTop" offset={10} fill='#000000' /> {/* "Skala" bilgisini etiket olarak kullan */}
+                            </Bar>
+                        </BarChart>
+                    </ResponsiveContainer>
+                </Box>
+
+
+
 
             </Box>
         </div>

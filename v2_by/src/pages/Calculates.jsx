@@ -311,6 +311,8 @@ const Calculates = () => {
   }
 
 
+  
+
   return (
     <div>
 
@@ -330,7 +332,7 @@ const Calculates = () => {
 
       <AllResults_Table combinedData={combinedData} />
 
-      <AllReults_GraphicData myCalculatedData={myCalculatedData} combinedData={combinedData} />
+      <AllReults_GraphicData myCalculatedData={myCalculatedData} byCalculatedData={byCalculatedData} />
 
     </div>
   )
