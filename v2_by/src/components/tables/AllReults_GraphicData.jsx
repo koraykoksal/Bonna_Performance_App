@@ -129,53 +129,57 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
     }, [formatlanmisChartGenelData, formatlanmisChartUnvanData])
 
 
-    // console.log(lokasyonData)
-
     return (
         <div>
-            <Box display={'flex'} justifyContent={'center'} flexWrap={'wrap'} gap={2} p={3}>
+            <Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'} gap={2} p={3}>
 
-                <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
-                    <Typography variant='subtitle2' align='center'>Genel Mavi Yaka Performans Puanı</Typography>
-                    <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                            data={genelData}
-                            margin={{
-                                top: 5, right: 30, left: 20, bottom: 5,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="Skala" fill="#8884d8">
-                                <LabelList dataKey={'Skala'} position={'top'} />
-                            </Bar>
-                        </BarChart>
-                    </ResponsiveContainer>
+                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+
+
+                    <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
+                        <Typography variant='subtitle2' align='center'>Genel Mavi Yaka Performans Puanı</Typography>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                data={genelData}
+                                margin={{
+                                    top: 5, right: 30, left: 20, bottom: 5,
+                                }}
+                            >
+                                {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="Skala" fill="#8884d8">
+                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </Box>
+
+                    <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
+                        <Typography variant='subtitle2' align='center'>Unvan Bazlı Mavi Yaka Performans Puanı</Typography>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart
+                                data={unvanData}
+                                margin={{
+                                    top: 5, right: 30, left: 20, bottom: 5,
+                                }}
+                            >
+                                {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="Skala" fill="#8884d8">
+                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </Box>
+
                 </Box>
 
-                <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
-                    <Typography variant='subtitle2' align='center'>Unvan Bazlı Mavi Yaka Performans Puanı</Typography>
-                    <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                            data={unvanData}
-                            margin={{
-                                top: 5, right: 30, left: 20, bottom: 5,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="Skala" fill="#8884d8">
-                                <LabelList dataKey={'Skala'} position={'top'} />
-                            </Bar>
-                        </BarChart>
-                    </ResponsiveContainer>
-                </Box>
 
                 <Box display={'flex'} flexDirection={'column'} gap={1} width={"100%"} height={300}>
                     <Typography variant='subtitle2' align='center'>Lokasyon Bazlı Mavi Yaka Performans Puanı</Typography>
@@ -192,8 +196,8 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="Skala" fill="#8884d8">
-                                <LabelList dataKey="name" position="top" /> {/* "name" bilgisini etiket olarak kullan */}
-                                <LabelList dataKey="Skala" position="insideTop" offset={10} fill='#000000' /> {/* "Skala" bilgisini etiket olarak kullan */}
+                                <LabelList dataKey="name" position="insideTop" fill='#ffffff' />
+                                <LabelList dataKey="Skala" position="top" offset={10} fill='#000000' />
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>
