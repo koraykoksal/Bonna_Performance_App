@@ -54,14 +54,11 @@ const Calculates = () => {
   // mavi yaka performans sonuçlarını çek
   // bonna personel verisini çek
   useEffect(() => {
+    getBonnaPersonels() // bonna personel verisini çek
     get_raiseData('raise-data') // zam oranları bilgisini çek
     get_All_PerformanceData('manager-evaluation') // mavi yaka performans sonuçlarını çek
-    getBonnaPersonels() // bonna personel verisini çek
-
-    if (!twiserAccesToken) {
-      twiserLogin()
-    }
   }, [])
+
 
 
   //! current year zam oranı
@@ -73,6 +70,8 @@ const Calculates = () => {
     setZamData(lastData)
 
   }, [raiseData])
+
+
 
 
   //! beyaz yaka okr sonuçlarını al
@@ -131,6 +130,7 @@ const Calculates = () => {
   };
 
 
+  
   //myGüncellenmiş Data
   //! yönetici değerlendirme datası current yıla eşit ve değerlendirme aciklaması eşit olan (all_performanceData) final_degerlendirme sonucunu kontrol et ve güncelle
   useEffect(() => {
@@ -157,7 +157,7 @@ const Calculates = () => {
 
     setMyGuncellenmisPerformanceData(myGuncellenmisData);
 
-  }, [all_performanceData])
+  }, [all_performanceData,bonnaPersonels])
 
 
 
@@ -204,7 +204,7 @@ const Calculates = () => {
 
     setByGuncellenmisPerformanceData(byGuncellenmisData);
 
-  }, [byOkrPerformance])
+  }, [byOkrPerformance,bonnaPersonels])
 
 
 
@@ -317,6 +317,13 @@ const Calculates = () => {
     }
   }
 
+
+  // console.log("myGuncellenmisPerformanceData: ",myGuncellenmisPerformanceData)
+  // console.log("byGuncellenmisPerformanceData: ",byGuncellenmisPerformanceData)
+  console.log("byOkrPerformance: ",byOkrPerformance)
+  // console.log("bonnaPersonels: ",bonnaPersonels)
+
+  console.log("twiserAccesToken: ",twiserAccesToken)
 
 
   // const res = byGuncellenmisPerformanceData.filter(item=>item.ustBirim == 'Bilinmiyor').map(data=>{

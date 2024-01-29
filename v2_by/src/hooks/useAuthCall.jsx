@@ -132,32 +132,20 @@ const useAuthCall = () => {
 
     const twiserLogin = async () => {
 
-
         // TWISER sistmeine istek atıldığınzaman farklı veri kaynaklarından veri aldığı için CORS (cross-origin-resource-sharing) işlemi yapılıyor. bundan dolayı proxy ayarı yapılması gerekir
         //? Vite config dosyası içerisine yazılan proxy ayarı ile işlem yapılır
 
-
         dispatch(fetchTwiserStart())
 
-        fetch(`${import.meta.env.VITE_PROXY_BASE_ADDRESS}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_PROXY_BASE_ADDRESS}`, {
                 Email: `${import.meta.env.VITE_TWISER_LOGIN_EMAIL}`,
                 Password: `${import.meta.env.VITE_TWISER_LOGIN_PASSWORD}`
-            })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log("twiser login data: ",data)
-                dispatch(fetchTwiserLoginSuccess(data))
-            })
-            .catch(error => console.error('Error:', error));
-
-
-
+            });
+            dispatch(fetchTwiserLoginSuccess(response?.data));
+        } catch (error) {
+            console.error('twiserLogin Error:', error);
+        }
     }
 
 
