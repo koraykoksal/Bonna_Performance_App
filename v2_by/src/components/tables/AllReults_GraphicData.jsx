@@ -20,6 +20,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
     const [formatlanmisChartGenelDataBY_birim, setFormatlanmisChartGenelDataBY_birim] = useState([])
 
 
+    //mavi yaka grafik data formatına çevir
     useEffect(() => {
 
         const ustBirimMap = {};
@@ -97,7 +98,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
 
     }, [myCalculatedData])
 
-
+    // mavi yaka grafik datalarını state gönder
     useEffect(() => {
 
         //* Grafikte gösterilecek verileri formatlama
@@ -144,6 +145,8 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
     }, [formatlanmisChartGenelData, formatlanmisChartUnvanData, formatlanmisChartLokasyonData])
 
 
+
+    //beyaz yaka grafik data formatına çevir
     useEffect(() => {
 
         const ustBirimMap = {};
@@ -197,6 +200,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
     }, [byCalculatedData])
 
 
+    // beyaz yaka grafik datalarını state gönder
     useEffect(() => {
 
         const genelChartDataBY = formatlanmisChartGenelDataBY.map(item => {
@@ -218,14 +222,14 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         setGenelDataBy(genelChartDataBY)
         setBirimDataBy(genelChartDataBY_birim)
 
-    }, [formatlanmisChartGenelDataBY,formatlanmisChartGenelDataBY_birim])
+    }, [formatlanmisChartGenelDataBY, formatlanmisChartGenelDataBY_birim])
 
 
-    
+
 
     return (
         <div>
-            
+
             <Box display={'flex'} flexDirection={'column'} flexWrap={'wrap'} gap={2} p={3}>
 
                 <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
@@ -241,12 +245,13 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 }}
                             >
                                 {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="Skala" fontSize={13} />
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#80BCBD">
-                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                    <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
+                                    {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15} /> */}
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
@@ -262,12 +267,13 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 }}
                             >
                                 {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="Skala" fontSize={13} />
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#B19470">
-                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                    <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
+                                    {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15} /> */}
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
@@ -286,13 +292,13 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                             }}
                         >
                             {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                            <XAxis dataKey="lokasyon" />
+                            <XAxis dataKey="lokasyon" fontSize={13} />
                             <YAxis />
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="Skala" fill="#0766AD">
-                                <LabelList dataKey="name" position="insideTop" fill='#ffffff' />
-                                <LabelList dataKey="Skala" position="top" offset={10} fill='#000000' />
+                                <LabelList dataKey="name" position="insideTop" fill='#ffffff' fontSize={11} />
+                                <LabelList dataKey="Skala" position="top" offset={10} fill='#000000' fontSize={13} />
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>
@@ -314,12 +320,13 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 }}
                             >
                                 {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="Skala" fontSize={13} />
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#A3B763">
-                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                    <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
+                                    {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15}/> */}
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
@@ -337,12 +344,13 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 }}
                             >
                                 {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="Skala" fontSize={13} />
                                 <YAxis />
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#D0A2F7">
-                                    <LabelList dataKey={'Skala'} position={'top'} fill='#000000' />
+                                    <LabelList dataKey="name" position="top" fill='#000000' fontSize={11} />
+                                    {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15}/> */}
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
