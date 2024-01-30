@@ -24,6 +24,7 @@ const style = {
 
 const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
+
   const scaleDescription = (score) => {
 
     if (score.ManagerScore > 0 && score.ManagerScore <= 40) return "1";
