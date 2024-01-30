@@ -44,7 +44,11 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         // üst birim skala değerlerinin ortalamasını al
         const ustBirimResult = Object.keys(ustBirimMap).map(key => {
             const average = ustBirimMap[key].total / ustBirimMap[key].count;
-            return { [key]: average };
+            return {
+                ustBirim: key,
+                ortalamaSkala: average,
+                count: ustBirimMap[key].count // Kaç kere sayıldığını da ekleyin
+            };
         });
 
 
@@ -65,7 +69,12 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         // üst birim skala değerlerinin ortalamasını al
         const unvanResult = Object.keys(unvanMap).map(key => {
             const average = unvanMap[key].total / unvanMap[key].count;
-            return { [key]: average };
+            // return { [key]: average };
+            return {
+                unvan: key,
+                ortalamaSkala: average,
+                count: unvanMap[key].count // Kaç kere sayıldığını da ekleyin
+            };
         });
 
 
@@ -87,7 +96,8 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         const lokasyonResult = Object.values(lokasyonSkalaMap).map(entry => ({
             lokasyon: entry.lokasyon,
             ortalamaSkala: entry.total / entry.count,
-            ustBirim: entry.ustBirim
+            ustBirim: entry.ustBirim,
+            count : entry.count
         }));
 
 
@@ -103,18 +113,20 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
 
         //* Grafikte gösterilecek verileri formatlama
         const genelChartData = formatlanmisChartGenelData.map(item => {
-            const ustBirim = Object.keys(item)[0];
+            // const ustBirim = Object.keys(item)[0];
             return {
-                name: ustBirim,
-                Skala: item[ustBirim].toFixed(2)
+                name: item.ustBirim,
+                Skala: item.ortalamaSkala.toFixed(2),
+                count: item.count
             };
         });
 
         const unvanChartData = formatlanmisChartUnvanData.map(item => {
-            const unvan = Object.keys(item)[0];
+            // const unvan = Object.keys(item)[0];
             return {
-                name: unvan,
-                Skala: item[unvan].toFixed(2)
+                name: item.unvan,
+                Skala: item.ortalamaSkala.toFixed(2),
+                count: item.count
             };
         });
 
@@ -122,7 +134,8 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
             return {
                 name: item['ustBirim'],
                 Skala: item['ortalamaSkala'].toFixed(2),
-                lokasyon: item['lokasyon']
+                lokasyon: item['lokasyon'],
+                count : item.count
             }
         })
 
@@ -171,7 +184,12 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         // üst birim skala değerlerinin ortalamasını al
         const ustBirimResult = Object.keys(ustBirimMap).map(key => {
             const average = ustBirimMap[key].total / ustBirimMap[key].count;
-            return { [key]: average };
+            // return { [key]: average };
+            return{
+                ustBirim : key,
+                ortalamaSkala : average,
+                count : ustBirimMap[key].count
+            }
         });
 
 
@@ -190,7 +208,12 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         // üst birim skala değerlerinin ortalamasını al
         const birimResult = Object.keys(birimMap).map(key => {
             const average = birimMap[key].total / birimMap[key].count;
-            return { [key]: average };
+            // return { [key]: average };
+            return{
+                birim : key,
+                ortalamaSkala: average,
+                count : birimMap[key].count
+            }
         });
 
 
@@ -204,18 +227,20 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
     useEffect(() => {
 
         const genelChartDataBY = formatlanmisChartGenelDataBY.map(item => {
-            const ustBirim = Object.keys(item)[0];
+            // const ustBirim = Object.keys(item)[0];
             return {
-                name: ustBirim,
-                Skala: item[ustBirim].toFixed(2)
+                name: item.ustBirim,
+                Skala: item.ortalamaSkala.toFixed(2),
+                count : item.count
             };
         });
 
         const genelChartDataBY_birim = formatlanmisChartGenelDataBY_birim.map(item => {
-            const birim = Object.keys(item)[0];
+            // const birim = Object.keys(item)[0];
             return {
-                name: birim,
-                Skala: item[birim].toFixed(2)
+                name: item.birim,
+                Skala: item.ortalamaSkala.toFixed(2),
+                count : item.count
             };
         });
 
@@ -223,6 +248,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         setBirimDataBy(genelChartDataBY_birim)
 
     }, [formatlanmisChartGenelDataBY, formatlanmisChartGenelDataBY_birim])
+
 
 
 
@@ -251,7 +277,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#80BCBD">
                                     <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
-                                    {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15} /> */}
+                                    <LabelList dataKey={'count'} position={'center'} fill='#000000' fontSize={12} />
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
@@ -273,6 +299,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#B19470">
                                     <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
+                                    <LabelList dataKey={'count'} position={'center'} fill='#000000' fontSize={12} />
                                     {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15} /> */}
                                 </Bar>
                             </BarChart>
@@ -296,9 +323,10 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="Skala" fill="#0766AD">
+                            <Bar dataKey="Skala" fill="#EA906C">
                                 <LabelList dataKey="name" position="insideTop" fill='#ffffff' fontSize={11} />
                                 <LabelList dataKey="Skala" position="top" offset={10} fill='#000000' fontSize={13} />
+                                <LabelList dataKey="count" position="center" offset={10} fill='#000000' fontSize={13} />
                             </Bar>
                         </BarChart>
                     </ResponsiveContainer>
@@ -326,6 +354,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#A3B763">
                                     <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
+                                    <LabelList dataKey={'count'} position={'center'} fill='#000000' fontSize={13} />
                                     {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15}/> */}
                                 </Bar>
                             </BarChart>
@@ -350,6 +379,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#D0A2F7">
                                     <LabelList dataKey="name" position="top" fill='#000000' fontSize={11} />
+                                    <LabelList dataKey="count" position="center" fill='#000000' fontSize={13} />
                                     {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15}/> */}
                                 </Bar>
                             </BarChart>

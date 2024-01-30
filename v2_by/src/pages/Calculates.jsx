@@ -179,7 +179,8 @@ const Calculates = () => {
       const maas = personel && personel.MAAS ? personel.MAAS : "0";
       const sicilNo = personel && personel.PERSID ? personel.PERSID : "Bilinmiyor";
       const ustBirim = personel && personel.USTBIRIMACIKLAMA ? personel.USTBIRIMACIKLAMA : "Bilinmiyor";
-      const birim = personel && personel.BIRIMACIKLAMA ? personel.BIRIMACIKLAMA : "Bilinmiyor";
+      const birim_ = personel && personel.BIRIMACIKLAMA ? personel.BIRIMACIKLAMA : "Bilinmiyor";
+      const birim = birim_.replace(/&amp;/g, '&');
       const bolum = personel && personel.DEPARTMANACIKLAMA ? personel.DEPARTMANACIKLAMA : "Bilinmiyor";
       const gorev = personel && personel.GOREVACIKLAMA ? personel.GOREVACIKLAMA : "Bilinmiyor";
       const yonetici = personel && personel.YONETICI ? personel.YONETICI : "Bilinmiyor";
@@ -318,7 +319,7 @@ const Calculates = () => {
   }
 
 
-  // const res = byGuncellenmisPerformanceData.filter(item=>item.ustBirim == 'Bilinmiyor').map(data=>{
+  // const res = byGuncellenmisPerformanceData.filter(item=>item.birim == 'Genel Müdürlük').map(data=>{
   //   return{
   //     personel:data.UserFullName,
   //     UserEmployeeNo : data.UserEmployeeNo,
@@ -329,9 +330,10 @@ const Calculates = () => {
   // })
 
 
-  // const res = byGuncellenmisPerformanceData.filter(item=>item.ustBirim == 'Yönetim')
+  // const res = byGuncellenmisPerformanceData.filter(item=>item.birim == 'Genel Müdürlük')
+  const res = bonnaPersonels.filter(item=>item.BIRIMACIKLAMA == 'ArGe&amp;Proses')
 
-  // console.log(res)
+  console.log(res)
 
 
   return (
