@@ -24,6 +24,18 @@ const style = {
 
 const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
+  const scaleDescription = (score) => {
+
+    if (score.ManagerScore > 0 && score.ManagerScore <= 40) return "1";
+    if (score.ManagerScore > 40 && score.ManagerScore <= 60) return "2";
+    if (score.ManagerScore > 60 && score.ManagerScore <= 80) return "3";
+    if (score.ManagerScore > 80 && score.ManagerScore <= 90) return "4";
+    if (score.ManagerScore > 90 && score.ManagerScore <= 100) return "5";
+    return "";
+
+  }
+
+
   return (
     <div>
 
@@ -60,13 +72,28 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
             </Box>
 
 
-
-
             <Box display={'flex'} flexDirection={'column'} gap={3}>
               <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici : {info?.ParentFullName}</Typography>
 
 
-              <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici Puan: {info?.ManagerScore} puan</Typography>
+              <Typography variant='subtitle2' align='center' fontWeight={700}>Sistem Notu: {info?.SystemNote} </Typography>
+
+              <Typography variant='subtitle2' align='center' fontWeight={700}>
+                Değerlendirme Sonuç:
+                {info?.ManagerScore >= 0 && info?.ManagerScore <= 45 && " Beklentileri Karşılamıyor 😫"}
+                {info?.ManagerScore > 45 && info?.ManagerScore <= 60 && " Beklentilerin Altında 🙁"}
+                {info?.ManagerScore > 60 && info?.ManagerScore <= 80 && " Beklenen Performans 😐"}
+                {info?.ManagerScore > 80 && info?.ManagerScore <= 90 && " Beklentilerin Üzerinde 😬"}
+                {info?.ManagerScore > 90 && info?.ManagerScore <= 100 && " Üstün Performans 😎"}
+              </Typography>
+
+              <Box display={'flex'} justifyContent={'center'} gap={3}>
+                <Typography variant='subtitle2' align='center' fontWeight={700}>OKR Ağırlığı: {info?.ObjectiveWeight} </Typography>
+                <Typography variant='subtitle2' align='center' fontWeight={700}>
+                  Yetkinlik Ağırlığı: {info?.CompetenceWeight}
+                </Typography>
+
+              </Box>
 
             </Box>
 
@@ -79,31 +106,15 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
           <Box mt={10} display={'flex'} flexDirection={'column'} gap={3}>
 
 
+            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici Puan (Performans Puanı) : {info?.ManagerScore} puan</Typography>
 
-            
+            <Typography variant='subtitle2' align='center' fontWeight={700}>Skala : {scaleDescription(info)}</Typography>
 
-            <Typography variant='subtitle2' align='center' fontWeight={700}>Performans Notu: {info?.SystemNote} </Typography>
-
-            <Typography variant='subtitle2' align='center' fontWeight={700}>
-              Değerlendirme Sonuç:
-              {info?.SystemNote >= 0 && info?.SystemNote <= 45 && " Beklentileri Karşılamıyor 😫"}
-              {info?.SystemNote >= 46 && info?.SystemNote <= 60 && " Beklentilerin Altında 🙁"}
-              {info?.SystemNote >= 61 && info?.SystemNote <= 80 && " Beklenen Performans 😐"}
-              {info?.SystemNote >= 81 && info?.SystemNote <= 90 && " Beklentilerin Üzerinde 😬"}
-              {info?.SystemNote >= 91 && info?.SystemNote <= 100 && " Üstün Performans 😎"}
-            </Typography>
 
           </Box>
 
           <Box display={'flex'} flexDirection={'column'} gap={5} mt={5}>
 
-            <Box display={'flex'} justifyContent={'center'} gap={3}>
-              <Typography variant='subtitle2' align='center' fontWeight={700}>OKR Ağırlığı: {info?.ObjectiveWeight} </Typography>
-              <Typography variant='subtitle2' align='center' fontWeight={700}>
-                Yetkinlik Ağırlığı: {info?.CompetenceWeight}
-              </Typography>
-
-            </Box>
 
             <Box>
               <Typography variant='subtitle2'>Aydınlatma Metni : İşbu form, Kişisel Verileri Koruma Kanunu kapsamında belirli, açık ve meşru olarak Performans Değerlendirme Süreçlerinin Yürütülmesi amacıyla bağlantılı, sınırlı ve ölçülü olma ilkeleri gözetilerek oluşturulmuştur. Yukarıda doldurduğum bilgilerin doğruluğunu ve gizliliğini kabul ediyorum.</Typography>
@@ -117,6 +128,7 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
           </Box>
 
         </Box>
+
 
 
 

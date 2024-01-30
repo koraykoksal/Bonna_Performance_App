@@ -310,7 +310,7 @@ const PerformanceResult_Table_MY = ({ guncellenmisPerformanceData, handleOpen, i
         },
         {
             field: "bolum",
-            headerName: "bölüm",
+            headerName: "Bölüm",
             minWidth: 180,
             headerAlign: "center",
             align: "center",

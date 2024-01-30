@@ -298,7 +298,7 @@ const PerformanceResult_Table = ({ handleOpen_editPage, handleOpen_viewPage, all
     },
     {
       field: "bolum",
-      headerName: "bölüm",
+      headerName: "Bölüm",
       minWidth: 180,
       headerAlign: "center",
       align: "center",
