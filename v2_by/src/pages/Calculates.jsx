@@ -180,7 +180,7 @@ const Calculates = () => {
       const sicilNo = personel && personel.PERSID ? personel.PERSID : "Bilinmiyor";
       const ustBirim = personel && personel.USTBIRIMACIKLAMA ? personel.USTBIRIMACIKLAMA : "Bilinmiyor";
       const birim_ = personel && personel.BIRIMACIKLAMA ? personel.BIRIMACIKLAMA : "Bilinmiyor";
-      const birim = birim_.replace(/&amp;/g, '&');
+      const birim = birim_.replace(/&amp;/g, '&'); // hatalı gelen string değeri güncelle
       const bolum = personel && personel.DEPARTMANACIKLAMA ? personel.DEPARTMANACIKLAMA : "Bilinmiyor";
       const gorev = personel && personel.GOREVACIKLAMA ? personel.GOREVACIKLAMA : "Bilinmiyor";
       const yonetici = personel && personel.YONETICI ? personel.YONETICI : "Bilinmiyor";

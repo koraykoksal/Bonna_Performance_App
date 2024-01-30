@@ -10,6 +10,8 @@ import { MdDeleteForever } from "react-icons/md";
 const PerformanceResult_Table_BY = ({ guncellenmisPerformanceData, handleOpen, info, setInfo, HandleOpen_delete }) => {
 
 
+    console.log(guncellenmisPerformanceData)
+
     const dataGrid_Columns = [
         // {
         //     field: "id",

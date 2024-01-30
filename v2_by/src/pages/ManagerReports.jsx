@@ -111,6 +111,7 @@ const ManagerReports = () => {
   useEffect(() => {
 
     const guncellenmisData = all_performanceData.map(item => {
+
       const sonuc = parseFloat(item.final_degerlendirmeSonucu);
 
       let aciklama = "";
@@ -123,8 +124,10 @@ const ManagerReports = () => {
       const personel = bonnaPersonels?.find(person => person?.TCKIMLIKNO == item?.tcNo)
 
       const lokasyon = personel ? personel?.LOKASYON : "Bilinmiyor";
+      const birim_ = personel && personel.BIRIMACIKLAMA ? personel.BIRIMACIKLAMA : "Bilinmiyor";
+      const birim = birim_.replace(/&amp;/g, '&'); // hatalı gelen string değeri güncelle
 
-      return { ...item, final_degerlendirmeAciklamasi: aciklama,lokasyon };
+      return { ...item, final_degerlendirmeAciklamasi: aciklama,lokasyon,birim };
     });
 
     // Gerekiyorsa bu sonucu başka bir state'e atayabilirsiniz.
