@@ -41,6 +41,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
             ustBirimMap[ustBirim].count += 1;
         });
 
+        
         // üst birim skala değerlerinin ortalamasını al
         const ustBirimResult = Object.keys(ustBirimMap).map(key => {
             const average = ustBirimMap[key].total / ustBirimMap[key].count;
