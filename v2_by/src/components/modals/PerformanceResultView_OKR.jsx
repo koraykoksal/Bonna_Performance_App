@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
-import { my1_questions, my2_questions } from "../../helper/data"
+import { FaWindowClose } from "react-icons/fa";
 
 
 
@@ -48,6 +48,8 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
       >
         <Box sx={style}>
+
+          <FaWindowClose size={25} color='red' onClick={handleClose} cursor={'pointer'}/>
 
           <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 

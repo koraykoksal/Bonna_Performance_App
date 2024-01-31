@@ -2,7 +2,6 @@ import React from 'react'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { Typography, Grid, TextField, Button } from "@mui/material"
-import { IoIosCloseCircle } from "react-icons/io";
 import usePerformanceCall from '../../hooks/usePerformanceCall';
 import { raiseRows } from '../../helper/data';
 import { styled } from '@mui/material/styles';
@@ -13,6 +12,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { FaWindowClose } from "react-icons/fa";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -121,7 +121,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange,handleS
             >
                 <Box sx={style}>
 
-                    <IoIosCloseCircle size={25} color='red' cursor={'pointer'} onClick={handleClose} />
+                    <FaWindowClose size={25} color='red' cursor={'pointer'} onClick={handleClose} />
 
                     <Box display={'flex'} flexDirection={'column'} gap={1} component={'form'} onSubmit={handleSubmit}>
 

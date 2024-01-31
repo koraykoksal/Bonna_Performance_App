@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { my1_questions, my2_questions } from "../../helper/data"
+import { FaWindowClose } from "react-icons/fa";
 
 
 
@@ -40,6 +41,8 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
 
             >
                 <Box sx={style}>
+
+                <FaWindowClose size={25} color='red' onClick={handleClose} cursor={'pointer'}/>
 
                     <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 

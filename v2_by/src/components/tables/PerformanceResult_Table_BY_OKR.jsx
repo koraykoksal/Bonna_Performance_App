@@ -22,7 +22,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "actions",
             headerName: "Düzenle",
-            minWidth: 120,
+            minWidth: 80,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -113,7 +113,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "UserEmployeeNo",
             headerName: "User No",
-            minWidth: 90,
+            minWidth: 80,
             headerAlign: "center",
             align: "center",
             flex: 1,

@@ -4,10 +4,7 @@ import Box from '@mui/material/Box';
 import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { my1_questions, my2_questions } from "../../helper/data"
-import { BsFiletypePdf } from "react-icons/bs";
-import { RiDownload2Fill } from "react-icons/ri";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import { FaWindowClose } from "react-icons/fa";
 
 
 const style = {
@@ -40,6 +37,9 @@ const PerformanceResultView_HR = ({ open, handleClose, info }) => {
 
             >
                 <Box sx={style}>
+
+                    <FaWindowClose size={25} color='red' onClick={handleClose} cursor={'pointer'} />
+
 
                     <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 

@@ -2,8 +2,8 @@ import React from 'react'
 import Modal from '@mui/material/Modal';
 import { Typography, Grid, TextField, Button } from "@mui/material"
 import { Box, Container } from "@mui/material"
-import { IoIosCloseCircle } from "react-icons/io";
 import usePerformanceCall from '../../hooks/usePerformanceCall';
+import { FaWindowClose } from "react-icons/fa";
 
 
 const style = {
@@ -63,7 +63,7 @@ const DeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo }) => {
             >
                 <Box sx={style}>
 
-                    <IoIosCloseCircle size={25} color='black' cursor={'pointer'} onClick={HandleClose_delete} />
+                    <FaWindowClose size={25} color='red' cursor={'pointer'} onClick={HandleClose_delete} />
 
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
 
