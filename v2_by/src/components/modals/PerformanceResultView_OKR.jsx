@@ -79,14 +79,7 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
               <Typography variant='subtitle2' align='center' fontWeight={700}>Sistem Notu: {info?.SystemNote} </Typography>
 
-              <Typography variant='subtitle2' align='center' fontWeight={700}>
-                Değerlendirme Sonuç:
-                {info?.ManagerScore >= 0 && info?.ManagerScore <= 45 && " Beklentileri Karşılamıyor 😫"}
-                {info?.ManagerScore > 45 && info?.ManagerScore <= 60 && " Beklentilerin Altında 🙁"}
-                {info?.ManagerScore > 60 && info?.ManagerScore <= 80 && " Beklenen Performans 😐"}
-                {info?.ManagerScore > 80 && info?.ManagerScore <= 90 && " Beklentilerin Üzerinde 😬"}
-                {info?.ManagerScore > 90 && info?.ManagerScore <= 100 && " Üstün Performans 😎"}
-              </Typography>
+
 
               <Box display={'flex'} justifyContent={'center'} gap={3}>
                 <Typography variant='subtitle2' align='center' fontWeight={700}>OKR Ağırlığı: {info?.ObjectiveWeight} </Typography>
@@ -104,12 +97,21 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
 
 
-          <Box mt={10} display={'flex'} flexDirection={'column'} gap={3}>
+          <Box mt={15} display={'flex'} flexDirection={'column'} gap={3}>
 
 
             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici Puan (Performans Puanı) : {info?.ManagerScore} puan</Typography>
 
             <Typography variant='subtitle2' align='center' fontWeight={700}>Skala : {scaleDescription(info)}</Typography>
+
+            <Typography variant='subtitle2' align='center' fontWeight={700}>
+              Değerlendirme Sonuç:
+              {info?.ManagerScore >= 0 && info?.ManagerScore <= 45 && " Beklentileri Karşılamıyor 😫"}
+              {info?.ManagerScore > 45 && info?.ManagerScore <= 60 && " Beklentilerin Altında 🙁"}
+              {info?.ManagerScore > 60 && info?.ManagerScore <= 80 && " Beklenen Performans 😐"}
+              {info?.ManagerScore > 80 && info?.ManagerScore <= 90 && " Beklentilerin Üzerinde 😬"}
+              {info?.ManagerScore > 90 && info?.ManagerScore <= 100 && " Üstün Performans 😎"}
+            </Typography>
 
 
           </Box>
