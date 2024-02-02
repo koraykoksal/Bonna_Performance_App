@@ -243,8 +243,6 @@ const usePerformanceCall = () => {
 
     const put_performanceData = async (url, info) => {
 
-        console.log(info)
-
         distpatch(fetchStart())
 
         try {

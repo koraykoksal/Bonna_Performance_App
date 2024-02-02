@@ -1,17 +1,19 @@
 import React from 'react'
 import usePerformanceCall from '../hooks/usePerformanceCall'
 import { useEffect, useState } from 'react'
-import { Box, Typography, Container, Grid } from "@mui/material"
+import { Box, Typography, Container, Grid, Button } from "@mui/material"
 import { useSelector } from "react-redux"
 import PerformanceResult_Table_BY from '../components/tables/PerformanceResult_Table_BY'
 import PerformanceResultView_HR from '../components/modals/PerformanceResultView_HR'
 import DeleteModal from '../components/delete/DeleteModal'
 import PerformanceUpdate from '../components/modals/PerformanceUpdate'
+import { personelChanceData } from '../helper/personelScoreData'
+
 
 const ManagerReports = () => {
 
 
-  const { get_All_PerformanceData, getBonnaPersonels } = usePerformanceCall()
+  const { get_All_PerformanceData, getBonnaPersonels,put_performanceData } = usePerformanceCall()
   const { all_performanceData, bonnaPersonels } = useSelector((state) => state.performance)
   const [guncellenmisPerformanceData, setGuncellenmisPerformanceData] = useState([]);
 
@@ -243,9 +245,46 @@ const ManagerReports = () => {
 
 
 
+  //! MEVCUT VERİLERİN DEĞİŞTİRİLMESİ İÇİN MANUEL OLARAK TETİKLENEN FONKSİYON BLOĞUDUR
+  // const handleCalistir = (e) => {
+
+  //   let updates = []; // Güncellenen kayıtları saklamak için bir dizi.
+
+  //   personelChanceData.forEach((newPerson) => {
+  //     // Sicil numarasına göre mevcut performans verisini bul.
+  //     let index = all_performanceData.findIndex(performance => performance.sicilNo == newPerson["Sicil No"]);
+
+  //     // Eğer eşleşme varsa, final_degerlendirmeSonucu'nu güncelle.
+  //     if (index !== -1) {
+  //       let updatedRecord = { ...all_performanceData[index] }; // Güncellenecek kaydın bir kopyasını al.
+  //       updatedRecord.final_degerlendirmeSonucu = newPerson.newScore.toString(); // Güncelleme yap.
+
+
+  //       //! update tetikle
+  //       // put_performanceData('manager-evaluation', updatedRecord)
+
+  //       updates.push(updatedRecord); // Güncellenen kaydı updates dizisine ekle.
+  //     }
+  //   });
+
+  //   // Yalnızca güncellenen kayıtları içeren diziyi state'e ata.
+  //   setUpdatedRecords(updates);
+
+  
+
+  // }
+
+  
+
   return (
     <div>
+
+
+
       <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Yönetici Değerlendirme Sonuçları</Typography>
+
+      {/* //! MEVCUT VERİLERİN DEĞİŞTİRİLMESİ İÇİN MANUEL OLARAK TETİKLENEN BUTTON */}
+      {/* <Button onClick={handleCalistir}>Çalıştır</Button> */}
 
       <PerformanceResult_Table_BY guncellenmisPerformanceData={guncellenmisPerformanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} HandleOpen_delete={HandleOpen_delete} HandleOpen_editPage={HandleOpen_editPage} />
 

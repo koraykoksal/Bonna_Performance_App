@@ -372,9 +372,6 @@ const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, 
   }
 
 
-  // console.log(info)
-
-
 
   return (
     <div>
