@@ -241,7 +241,7 @@ const ManagerReports = () => {
 
   }
 
-  console.log(info)
+
 
   return (
     <div>
