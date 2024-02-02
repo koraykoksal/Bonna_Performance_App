@@ -42,7 +42,7 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
             >
                 <Box sx={style}>
 
-                <FaWindowClose size={25} color='red' onClick={handleClose} cursor={'pointer'}/>
+                    <FaWindowClose size={25} color='red' onClick={handleClose_viewPage} cursor={'pointer'} />
 
                     <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 
@@ -129,7 +129,7 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
                     <Box mt={5} display={'flex'} flexDirection={'column'} gap={3}>
                         <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Puanı: {info?.final_degerlendirmeSonucu} </Typography>
                         <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirme Sonuç: {info?.final_degerlendirmeAciklamasi} </Typography>
-                        
+
 
                     </Box>
 

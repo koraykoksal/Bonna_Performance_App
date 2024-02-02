@@ -330,10 +330,10 @@ const Calculates = () => {
   // })
 
 
-  // const res = byGuncellenmisPerformanceData.filter(item=>item.birim == 'Genel Müdürlük')
+  // const res = byGuncellenmisPerformanceData.filter(item=>item.birim == 'Pazarlama')
   // const res = byCalculatedData.filter(item=>item.birim== "Genel Müdürlük")
 
-
+  // console.log(res)
 
 
   return (

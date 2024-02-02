@@ -16,6 +16,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux"
 import usePerformanceCall from '../../hooks/usePerformanceCall';
+import { FaWindowClose } from "react-icons/fa";
+
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -370,6 +372,10 @@ const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, 
   }
 
 
+  // console.log(info)
+
+
+
   return (
     <div>
 
@@ -381,6 +387,8 @@ const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, 
 
       >
         <Box sx={style}>
+
+          <FaWindowClose size={25} color='red' cursor={'pointer'} onClick={handleClose_editPage}/>
 
           {
             info.type == "my1" ?
