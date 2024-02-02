@@ -380,7 +380,8 @@ const usePerformanceCall = () => {
                     1056
                 ],
                 "PeriodSettingIds": [
-                    "64c1361bb93717671ededea5"
+                    // "64c1361bb93717671ededea5"
+                    "653253004e64e5f2dde325cd"
                 ],
                 "DimensionIds": [],
                 "UserIdList": [],
