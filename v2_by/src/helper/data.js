@@ -17,6 +17,12 @@ export const raiseRows = [
     {title:"Performans Durumu"},
 ]
 
+export const experienceRows=[
+    {title:"Kıdem Yılı"},
+    {title:"Artış Oranı"},
+    {title:"Oran"},
+]
+
 export const my1Titles=[
 
     {title:"İşçi"},

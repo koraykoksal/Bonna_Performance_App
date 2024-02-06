@@ -53,7 +53,7 @@ const style = {
 
 
 
-const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange,handleSubmit }) => {
+const Sallary_Modal = ({ open, handleClose, info, setInfo, handleChangeSallary,handleSubmit }) => {
 
 
     const raiseScale = [
@@ -61,45 +61,45 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange,handleS
             scale: 1,
             performancePoint: '0-45',
             performanceStatus: "Beklentileri Karşılamıyor",
-            byZam: <input required name='s1_byZam' value={info.s1_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange} />,
-            myZam: <input required name='s1_myZam' value={info.s1_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s1_perZam' value={info.s1_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s1_byZam' value={info.s1_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary} />,
+            myZam: <input required name='s1_myZam' value={info.s1_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            perZam: <input required name='s1_perZam' value={info.s1_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>
             ,
         },
         {
             scale: 2,
             performancePoint: '45.01-60',
             performanceStatus: "Beklentilerin Altında",
-            byZam: <input required name='s2_byZam' value={info.s2_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s2_myZam' value={info.s2_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s2_perZam' value={info.s2_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s2_byZam' value={info.s2_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            myZam: <input required name='s2_myZam' value={info.s2_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            perZam: <input required name='s2_perZam' value={info.s2_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>
             ,
         },
         {
             scale: 3,
             performancePoint: '60.01-80',
             performanceStatus: "Beklenen Performans",
-            byZam: <input required name='s3_byZam' value={info.s3_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s3_myZam' value={info.s3_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s3_perZam' value={info.s3_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s3_byZam' value={info.s3_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            myZam: <input required name='s3_myZam' value={info.s3_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            perZam: <input required name='s3_perZam' value={info.s3_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>
             ,
         },
         {
             scale: 4,
             performancePoint: '80.01-90',
             performanceStatus: "Beklentilerin Üzerinde",
-            byZam: <input required name='s4_byZam' value={info.s4_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s4_myZam' value={info.s4_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s4_perZam' value={info.s4_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s4_byZam' value={info.s4_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            myZam: <input required name='s4_myZam' value={info.s4_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            perZam: <input required name='s4_perZam' value={info.s4_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>
             ,
         },
         {
             scale: 5,
             performancePoint: '90.01-100',
             performanceStatus: "Üstün Performans",
-            byZam: <input required name='s5_byZam' value={info.s5_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            myZam: <input required name='s5_myZam' value={info.s5_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>,
-            perZam: <input required name='s5_perZam' value={info.s5_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChange}/>
+            byZam: <input required name='s5_byZam' value={info.s5_byZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            myZam: <input required name='s5_myZam' value={info.s5_myZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>,
+            perZam: <input required name='s5_perZam' value={info.s5_perZam} type="number" min={0} placeholder='0' style={{ height: 35, width: 55, borderRadius: 3, color: "white", backgroundColor: 'darkred', border: '1px solid #000000', fontSize: 18 }} onChange={handleChangeSallary}/>
             ,
         },
 
@@ -123,7 +123,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange,handleS
 
                     <FaWindowClose size={25} color='red' cursor={'pointer'} onClick={handleClose} />
 
-                    <Box display={'flex'} flexDirection={'column'} gap={1} component={'form'} onSubmit={handleSubmit}>
+                    <Box display={'flex'} flexDirection={'column'} gap={1} component={'form'} onSubmit={(e)=>handleSubmit(e,'Sallary')}>
 
                         <Box p={1}>
                             <Typography variant='h6' color={'red'} fontWeight={700} align='center'>{info?.id ? 'Zam Oranları Güncelle' : 'Zam Oranları Giriş'}</Typography>
@@ -162,7 +162,7 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange,handleS
                         </Box>
 
                         <Box p={3}>
-                            <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit' fullWidth>{info?.id ? "Güncelle" : "Kaydet"}</Button>
+                            <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit' fullWidth >{info?.id ? "Güncelle" : "Kaydet"}</Button>
                         </Box>
 
                     </Box>
@@ -177,4 +177,4 @@ const Settings_Modal = ({ open, handleClose, info, setInfo, handleChange,handleS
     )
 }
 
-export default Settings_Modal
+export default Sallary_Modal

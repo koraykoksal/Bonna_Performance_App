@@ -336,6 +336,7 @@ const Calculates = () => {
   // console.log(res)
 
 
+
   return (
     <div>
 

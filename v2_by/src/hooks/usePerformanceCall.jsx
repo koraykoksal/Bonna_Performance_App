@@ -10,7 +10,8 @@ import {
     fetchRaiseData,
     fetchByOKRPerformanceData,
     fetchUnSelectedPersonelData,
-    fetchBonnaPersonels
+    fetchBonnaPersonels,
+    fetchExperienceData
 
 } from '../features/performanceSlice'
 import axios from 'axios'
@@ -27,6 +28,8 @@ const usePerformanceCall = () => {
     const navi = useNavigate()
     const { twiserAccesToken, managerPersonels } = useSelector((state) => state.auth)
     const currentYear = new Date().getFullYear()
+
+
 
     //! performans dönemini açıklamasını göster
     const evulationInfo = () => {
@@ -79,7 +82,6 @@ const usePerformanceCall = () => {
             console.log("managerPersonels function error: ", error)
         }
     }
-
 
 
     //! tüm personel performans datasının getir
@@ -258,6 +260,25 @@ const usePerformanceCall = () => {
     }
 
 
+    //! zam oranı bilgisini güncelle
+    const put_raiseData = async (url, info) => {
+
+        try {
+
+            const db = getDatabase()
+            await update(ref(db, `${url}/${info.id}`), info)
+            toastSuccessNotify('Updated Data')
+
+            //! zam oranı bilgisini çek
+            await get_raiseData('raise-data')
+
+        } catch (error) {
+            console.log("put_raiseData error: ", error)
+            toastErrorNotify('Not OK Update ')
+        }
+    }
+
+
     //! zam oranı bilgisini kayıt et
     const post_raiseData = async (url, info) => {
 
@@ -346,9 +367,11 @@ const usePerformanceCall = () => {
     }
 
 
-    //! zam oranı bilgisini güncelle
-    const put_raiseData = async (url, info) => {
+    //! kıdem oranı bilgisini güncelle
+    const put_experienceData = async (url, info) => {
 
+        console.log(info)
+        
         try {
 
             const db = getDatabase()
@@ -356,13 +379,102 @@ const usePerformanceCall = () => {
             toastSuccessNotify('Updated Data')
 
             //! zam oranı bilgisini çek
-            await get_raiseData('raise-data')
+            await get_experienceData('experience-data')
 
         } catch (error) {
-            console.log("put_raiseData error: ", error)
+            console.log("put-experience error: ", error)
             toastErrorNotify('Not OK Update ')
         }
     }
+
+
+    //! kıdem oranı bilgisini kayıt et
+    const post_experienceData = async (url, info) => {
+
+        try {
+
+            const db = getDatabase()
+            const res = ref(db, `${url}`)
+            const snapshot = await get(res)
+
+
+            if (!snapshot.exists()) {
+
+                const db = getDatabase()
+                const uID = uid()
+                await set(ref(db, `${url}/${uID}`), info)
+                toastSuccessNotify('Kayıt yapılmıştır.');
+
+                //! zam oranı bilgisini çek
+                await get_experienceData('experience-data')
+            }
+            else {
+
+                const currentYear = new Date().getFullYear();
+                const data = snapshot.val();
+
+                const result = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+
+                const findElement = result.filter(item => item.raiseYear == currentYear);
+
+                // doğrula sonrası işlemleri yap
+                if (findElement.length > 0) {
+                    toastWarnNotify(`${currentYear} için zam oranı bulunmaktadır !`);
+                } else {
+                    const uID = uid();
+                    const newDb = getDatabase();
+                    await set(ref(newDb, `${url}/${uID}`), info);
+                    toastSuccessNotify('Kayıt yapılmıştır.');
+                }
+
+            }
+
+
+
+        } catch (error) {
+            console.log("post_experienceData: ", error)
+            toastErrorNotify('Not OK Experience Data ')
+        }
+    }
+
+
+    //! kıdem oranları datasını çek
+    const get_experienceData = async (url) => {
+
+        try {
+
+            const db = getDatabase()
+            const res = ref(db, `${url}`)
+            const snapshot = await get(res)
+
+
+            if (!snapshot.exists()) {
+                toastWarnNotify('Kıdem oranları verisi bulunmuyor')
+            }
+            else {
+                const data = snapshot.val()
+                distpatch(fetchExperienceData(data))
+
+                // const data = Object.values(snapshot.val());
+                // const lastData = data.find(item => item.raiseYear === currentYear);
+
+                // if (!lastData) {
+                //     toastWarnNotify(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`)
+                //     console.log(`raiseYear değeri ${currentYear} olan bir veri bulunamadı.`);
+                //     return;
+                // }
+                // else{
+                //     distpatch(fetchRaiseData(data))
+                // }
+
+            }
+
+        } catch (error) {
+            console.log("get_experienceData: ", error)
+            toastErrorNotify('Not OK Experience Data ')
+        }
+    }
+
 
 
     //! twiser performance data
@@ -431,6 +543,20 @@ const usePerformanceCall = () => {
     }
 
 
+    //! firebase zam oranı data silme
+    const removeExperienceData = async (address, id) => {
+
+        try {
+            const db = getDatabase();
+            await remove(ref(db, `${address}/${id}`))
+            toastSuccessNotify('Data Deleted ✅')
+
+        } catch (error) {
+            toastErrorNotify('No Delete Data ❌')
+        }
+    }
+
+
 
     //! firebase maviyaka performans data silme
     const removeMyPerformanceData = async (address, info) => {
@@ -467,10 +593,11 @@ const usePerformanceCall = () => {
         try {
 
             const options = {
-                method: 'GET',
+                method: 'POST',
                 url: `${import.meta.env.VITE_bonnaUsers_BaseAddress}`,
                 headers: {
-                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`,
+                    'PYEAR': '2023'
                 }
             }
 
@@ -506,7 +633,11 @@ const usePerformanceCall = () => {
         removeRaiseData,
         removeMyPerformanceData,
         removeManagerEvaluationData,
-        getBonnaPersonels
+        getBonnaPersonels,
+        get_experienceData,
+        post_experienceData,
+        put_experienceData,
+        removeExperienceData
 
     }
 }

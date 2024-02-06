@@ -1,13 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { DataGrid, GridToolbar, GridActionsCellItem } from '@mui/x-data-grid';
-import { Box } from '@mui/material';
 import { AiFillEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
+import { Button, Box, Container, Grid, Typography } from "@mui/material"
 
-
-const Settings_Table = ({ data, setInfo, info, handleOpen, HandleOpen_delete }) => {
+const Sallary_Table = ({ sallaryData, setInfo, info, handleOpen, HandleOpen_delete }) => {
 
 
   const dataGrid_Columns = [
@@ -246,17 +245,18 @@ const Settings_Table = ({ data, setInfo, info, handleOpen, HandleOpen_delete }) 
   return (
     <div>
       <Box p={5}>
+      <Typography variant='subtitle1' fontWeight={700} align='center'>Zam Oranları</Typography>
         <DataGrid
           columns={dataGrid_Columns}
-          rows={data}
+          rows={sallaryData}
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 10,
+                pageSize: 5,
               },
             },
           }}
-          pageSizeOptions={[10, 25, 50, 75, 100]}
+          pageSizeOptions={[5,10, 25, 50, 75, 100]}
           slots={{ toolbar: GridToolbar }}
           disableRowSelectionOnClick
           sx={{
@@ -269,4 +269,4 @@ const Settings_Table = ({ data, setInfo, info, handleOpen, HandleOpen_delete }) 
   )
 }
 
-export default Settings_Table
+export default Sallary_Table

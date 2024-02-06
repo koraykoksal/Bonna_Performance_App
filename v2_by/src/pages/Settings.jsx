@@ -1,19 +1,22 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Button, Box, Container, Grid, Typography } from "@mui/material"
-import Settings_Modal from '../components/modals/Settings_Modal'
+import Sallary_Modal from '../components/modals/Sallary_Modal'
 import usePerformanceCall from '../hooks/usePerformanceCall'
 import { useSelector } from "react-redux"
-import Settings_Table from '../components/tables/Settings_Table'
+import Sallary_Table from '../components/tables/Sallary_Table'
 import DeleteModal from '../components/delete/DeleteModal'
+import Experience_Table from '../components/tables/Experience_Table'
+import Experience_Modal from '../components/modals/Experience_Modal'
 
 
 const Settings = () => {
 
     const createdDate = new Date()
-    const { post_raiseData, get_raiseData, put_raiseData } = usePerformanceCall()
-    const { raiseData } = useSelector((state) => state.performance)
-    const [data, setData] = useState([])
+    const { post_raiseData, get_raiseData, put_raiseData,get_experienceData,put_experienceData,post_experienceData } = usePerformanceCall()
+    const { raiseData,experienceData } = useSelector((state) => state.performance)
+    const [sallaryData, setSallaryData] = useState([])
+    const [experienceDatas, setExperienceDatas] = useState([])
 
 
     const [open, setOpen] = useState(false)
@@ -35,6 +38,13 @@ const Settings = () => {
     const HandleOpen_delete = () => setOpen_delete(true);
     const HandleClose_delete = () => {
         setOpen_delete(false)
+
+    }
+
+    const [Open_experience, setOpen_experience] = useState(false)
+    const HandleOpen_experience = () => setOpen_experience(true);
+    const HandleClose_experience = () => {
+        setOpen_experience(false)
 
     }
 
@@ -80,7 +90,9 @@ const Settings = () => {
     }
 
 
+    // maaş oranları bilgisi
     const [info, setInfo] = useState({
+        type:"Sallary",
         createdDate: formatDate(createdDate),
         raiseYear: new Date().getFullYear(),
         raiseDetail: evulationInfo(),
@@ -101,26 +113,50 @@ const Settings = () => {
         s5_perZam: "",
     })
 
+    // kıdem oranları bilgisi
+    const [experienceInfo, setExperienceInfo] = useState({
+        "type":"Experience",
+        "createdDate": formatDate(createdDate),
+        "raiseYear": new Date().getFullYear(),
+        "ky_sifiriki":"",
+        "ky_ikibes":"",
+        "ky_beson":"",
+        "ky_onplus":""
+    })
 
-    // onchange işlemini yap
-    const handleChange = (e) => {
+
+    // maaş girişlerin verileri karşıla
+    const handleChangeSallary = (e) => {
         setInfo({ ...info, [e.target.name]: e.target.value })
     }
 
+    // kıdem yılı girişlerinde verileri karıla
+    const handleChangeExperience = (e) => {
+        setExperienceInfo({ ...experienceInfo, [e.target.name]: e.target.value })
+    }
 
-    // kayıt işlemi için çalıştır
-    const handleSubmit = (e) => {
+
+    // maaş ve kıdem yılı kayıt işlemi için çalıştır
+    const handleSubmit = (e,data) => {
 
         e.preventDefault()
 
-        //?* id bilgisi true ise update işlemi yapar
-        if (info?.id) {
-            put_raiseData('raise-data', info)
-            // get_raiseData('raise-data')
+        if(data=="Sallary"){
+
+            if (info?.id) {
+                put_raiseData('raise-data', info)
+            }
+            else {
+                post_raiseData('raise-data', info)
+            }
         }
-        else {
-            post_raiseData('raise-data', info)
-            // get_raiseData('raise-data')
+        else{
+            if (experienceInfo?.id) {
+                put_experienceData('experience-data', experienceInfo)
+            }
+            else {
+                post_experienceData('experience-data', experienceInfo)
+            }
         }
 
         handleClose()
@@ -131,31 +167,58 @@ const Settings = () => {
     // güncel zam oranlarını çek
     useEffect(() => {
         get_raiseData('raise-data')
+        get_experienceData('experience-data')
     }, [])
+
 
 
     // güncel zam oranlarını array formatına dönüştür
     useEffect(() => {
-        const res = Object.keys(raiseData).map(key => ({ id: key, ...raiseData[key] }))
-        setData(res)
-    }, [raiseData])
 
-  
+        const sallaryRes = Object.keys(raiseData).map(key => ({ id: key, ...raiseData[key] }))
+        const experienceRes = Object.keys(experienceData).map(key => ({ id: key, ...experienceData[key] }))
+
+        setSallaryData(sallaryRes)
+        setExperienceDatas(experienceRes)
+
+    }, [raiseData,experienceData])
+
+
 
 
     return (
         <div>
 
-            <Typography letterSpacing={10} mt={12} fontWeight={700} color={'red'} align='center' variant='h6'>Ayarlar</Typography>
-
-            <Button variant='contained' sx={{ ml: 15, textTransform: 'none' }} onClick={() => handleOpen()}>Yeni</Button>
-
-            <Settings_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChange={handleChange} handleSubmit={handleSubmit} />
-
-            <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} />
+            <Typography letterSpacing={10} mt={12} mb={5} fontWeight={700} color={'red'} align='center' variant='h6'>Ayarlar</Typography>
 
 
-            <Settings_Table data={data} info={info} setInfo={setInfo} handleOpen={handleOpen} HandleOpen_delete={HandleOpen_delete} />
+
+
+            <Box display={'flex'} justifyContent={'center'} gap={3} p={3}>
+
+                <Button variant='contained' sx={{ textTransform: 'none', width: '150px' }} onClick={() => handleOpen()}>Yeni Zam Oranı</Button>
+
+                <Button variant='contained' sx={{ textTransform: 'none', width: '150px' }} onClick={() => HandleOpen_experience()}>Yeni Kıdem Oranı</Button>
+
+            </Box>
+
+
+            <Box display={'flex'} flexDirection={'column'} p={1}>
+
+                <Sallary_Table sallaryData={sallaryData} info={info} setInfo={setInfo} handleOpen={handleOpen} HandleOpen_delete={HandleOpen_delete} />
+
+                <Experience_Table  experienceDatas={experienceDatas} experienceInfo={experienceInfo} setExperienceInfo={setExperienceInfo} HandleOpen_experience={HandleOpen_experience} HandleOpen_delete={HandleOpen_delete}/>
+
+            </Box>
+
+
+            <Sallary_Modal open={open} handleClose={handleClose} info={info} setInfo={setInfo} handleChangeSallary={handleChangeSallary} handleSubmit={handleSubmit} />
+
+
+            <Experience_Modal Open_experience={Open_experience} experienceInfo={experienceInfo} handleChangeExperience={handleChangeExperience} handleSubmit={handleSubmit} HandleClose_experience={HandleClose_experience}/>
+
+
+            <DeleteModal Open_delete={Open_delete} HandleClose_delete={HandleClose_delete} info={info} setInfo={setInfo} experienceInfo={experienceInfo}/>
 
 
 

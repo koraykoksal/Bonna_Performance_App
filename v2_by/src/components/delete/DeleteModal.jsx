@@ -20,35 +20,43 @@ const style = {
 };
 
 
-const DeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo }) => {
+const DeleteModal = ({ HandleClose_delete, Open_delete, info, setInfo, experienceInfo }) => {
 
     const {
         removeRaiseData,
         get_raiseData,
         get_All_PerformanceData,
         removeMyPerformanceData,
-        removeManagerEvaluationData
-    
-    }=usePerformanceCall()
+        removeManagerEvaluationData,
+        removeExperienceData,
+        get_experienceData
+
+    } = usePerformanceCall()
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if(info.type == "raise"){
-            removeRaiseData('raise-data',info.id)
+        if (info.type == "raise") {
+            removeRaiseData('raise-data', info.id)
             get_raiseData('raise-data')
         }
-        else if(info.type == "my-performance"){
-            removeMyPerformanceData('my-performance',info)
+        else if (info.type == "my-performance") {
+            removeMyPerformanceData('my-performance', info)
             get_All_PerformanceData('my-performance')
         }
-        else if(info.type == "manager-evaluation"){
-            removeManagerEvaluationData('manager-evaluation',info)
+        else if (info.type == "manager-evaluation") {
+            removeManagerEvaluationData('manager-evaluation', info)
             get_All_PerformanceData('manager-evaluation')
         }
-        
+
+        if (experienceInfo.type == "experience") {
+            removeExperienceData('experience-data', experienceInfo.id)
+            get_experienceData('experience-data')
+        }
+
+
         HandleClose_delete()
-        
+
     }
 
 
