@@ -288,7 +288,8 @@ const Calculates = () => {
 
 
 
-
+  //byGüncellenmiş Data
+  //! beyaz yaka değerlendirmesi için beyaz yaka okr sonuçlarını işle
   useEffect(() => {
     const byGuncellenmisData = byOkrPerformance.reduce((acc, item) => {
       const managerScore = parseFloat(item.ManagerScore);
@@ -486,35 +487,6 @@ const Calculates = () => {
   }
 
 
-  const byGuncellenmisData = byOkrPerformance.map(item => {
-
-    const personel = bonnaPersonels.find(person => person.PERSID !== item.UserEmployeeNo)
-
-
-    // console.log(personel)
-
-    // const {
-    //   NAME = "Bilinmiyor",
-    //   SURNAME = "Bilinmiyor",
-    //   LOKASYON = "Bilinmiyor",
-    //   MAAS = "0",
-    //   PERSID = "Bilinmiyor",
-    //   USTBIRIMACIKLAMA = "Bilinmiyor",
-    //   BIRIMACIKLAMA = "Bilinmiyor",
-    //   DEPARTMANACIKLAMA = "Bilinmiyor",
-    //   GOREVACIKLAMA = "Bilinmiyor",
-    //   YONETICI = "Bilinmiyor",
-    //   GIRISTARIHI = "Bilinmiyor",
-    // } = personel;
-
-
-  })
-
-
-  const personelOKR = byOkrPerformance.find(person => person.UserEmployeeNo == "3204")
-  const personel = bonnaPersonels.find(person => person.NAME == "ADEM" && person.SURNAME == "VAROL")
-
-  // console.log(personelOKR)
 
 
 
