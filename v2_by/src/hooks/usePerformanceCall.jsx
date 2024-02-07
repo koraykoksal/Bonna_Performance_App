@@ -588,7 +588,7 @@ const usePerformanceCall = () => {
 
 
     //! bonna personel listesini çek
-    const getBonnaPersonels = async () => {
+    const getBonnaPersonels = async (year) => {
 
         try {
 
@@ -597,18 +597,16 @@ const usePerformanceCall = () => {
                 url: `${import.meta.env.VITE_bonnaUsers_BaseAddress}`,
                 headers: {
                     'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`,
+                    // 'PYEAR': `${year}`
                     'PYEAR': '2023'
                 }
             }
 
             const res = await axios(options)
 
+
             if (res?.data.length > 0) {
                 distpatch(fetchBonnaPersonels(res?.data))
-            }
-            else {
-                toastWarnNotify('Entegrasyondan cevap alınamadı !')
-                console.log(" ** login öncesi bonna personelleri bilgisini alamıyor. get_bonnaPersonel fonksiyonu çalışmadı session problemi olabilir ! ** ")
             }
 
         } catch (error) {

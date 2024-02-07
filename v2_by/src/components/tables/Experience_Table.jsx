@@ -110,6 +110,14 @@ const Experience_Table = ({ experienceDatas, experienceInfo, setExperienceInfo, 
             align: "center",
             flex: 1,
         },
+        {
+            field: "raiseYear",
+            headerName: "Yıl",
+            minWidth: 90,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
 
 
 

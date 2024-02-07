@@ -9,8 +9,6 @@ import { FaEye } from "react-icons/fa";
 
 const AllResults_Table = ({myCalculatedData,combinedData}) => {
 
-
-
     const dataGrid_Columns = [
         {
             field: "id",
@@ -141,6 +139,14 @@ const AllResults_Table = ({myCalculatedData,combinedData}) => {
             flex: 1,
         },
         {
+            field: "kidemOrani",
+            headerName: "Kıdem Oranı", // ismi okr notu olacak
+            minWidth: 100,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
             field: "toplamZam",
             headerName: "Toplam Zam",
             minWidth: 180,
@@ -187,11 +193,11 @@ const AllResults_Table = ({myCalculatedData,combinedData}) => {
                     initialState={{
                         pagination: {
                             paginationModel: {
-                                pageSize: 10,
+                                pageSize: 5,
                             },
                         },
                     }}
-                    pageSizeOptions={[10, 25, 50, 75, 100]}
+                    pageSizeOptions={[5,10, 25, 50, 75, 100]}
                     slots={{ toolbar: GridToolbar }}
                     disableRowSelectionOnClick
                     sx={{

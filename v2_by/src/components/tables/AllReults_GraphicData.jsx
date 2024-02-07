@@ -109,6 +109,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
 
     }, [myCalculatedData])
 
+
     // mavi yaka grafik datalarını state gönder
     useEffect(() => {
 
@@ -157,7 +158,6 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
         setLokasyonData(lokasyonSortingData)
 
     }, [formatlanmisChartGenelData, formatlanmisChartUnvanData, formatlanmisChartLokasyonData])
-
 
 
     //beyaz yaka grafik data formatına çevir
@@ -252,8 +252,6 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
 
 
 
-
-
     return (
         <div>
 
@@ -277,7 +275,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#80BCBD">
-                                    <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
+                                    <LabelList dataKey={'name'} position={'insideTop'} fill='#000000' fontSize={11} />
                                     <LabelList dataKey={'count'} position={'center'} fill='#000000' fontSize={12} />
                                 </Bar>
                             </BarChart>
@@ -299,7 +297,7 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                                 <Tooltip />
                                 <Legend />
                                 <Bar dataKey="Skala" fill="#B19470">
-                                    <LabelList dataKey={'name'} position={'top'} fill='#000000' fontSize={11} />
+                                    <LabelList dataKey={'name'} position={'insideTop'} fill='#000000' fontSize={11} />
                                     <LabelList dataKey={'count'} position={'center'} fill='#000000' fontSize={12} />
                                     {/* <LabelList dataKey={'Skala'} position={'top'} fill='#000000' fontSize={15} /> */}
                                 </Bar>
@@ -325,8 +323,8 @@ const AllReults_GraphicData = ({ myCalculatedData, byCalculatedData }) => {
                             <Tooltip />
                             <Legend />
                             <Bar dataKey="Skala" fill="#EA906C">
-                                <LabelList dataKey="name" position="insideTop" fill='#ffffff' fontSize={11} />
-                                <LabelList dataKey="Skala" position="top" offset={10} fill='#000000' fontSize={13} />
+                                <LabelList dataKey="name" position="insideTop" fill='#000000' fontSize={11} />
+                                <LabelList dataKey="Skala" position="insideBottom" offset={10} fill='#000000' fontSize={13} />
                                 <LabelList dataKey="count" position="center" offset={10} fill='#000000' fontSize={13} />
                             </Bar>
                         </BarChart>

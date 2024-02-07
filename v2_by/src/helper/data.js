@@ -67,3 +67,8 @@ export const my2_questions = [
     { id:10,ask: "Operasyon ile ilgili diğer çalışanlara teorik ve uygulamalı olarak eğitim verebilir:" },
 ]
 
+
+export const bonnaYears=[
+    "2023",
+    "2024",
+]
