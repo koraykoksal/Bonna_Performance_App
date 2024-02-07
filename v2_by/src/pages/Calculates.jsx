@@ -292,7 +292,7 @@ const Calculates = () => {
   //! beyaz yaka değerlendirmesi için beyaz yaka okr sonuçlarını işle
   useEffect(() => {
     const byGuncellenmisData = byOkrPerformance.reduce((acc, item) => {
-      const managerScore = parseFloat(item.ManagerScore);
+      const managerScore = parseFloat(item.FinalScore);
       const aciklama = getPerformanceDescription(managerScore);
 
       const personel = bonnaPersonels.find(person => person.PERSID === item.UserEmployeeNo);
@@ -345,76 +345,12 @@ const Calculates = () => {
   }, [byOkrPerformance, bonnaPersonels]);
 
 
-
-  //byGüncellenmiş Data
-  //! beyaz yaka değerlendirmesi için beyaz yaka okr sonuçlarını işle
-  // useEffect(() => {
-
-  //   const byGuncellenmisData = byOkrPerformance.map(item => {
-
-  //     const managerScore = parseFloat(item.ManagerScore);
-  //     const aciklama = getPerformanceDescription(managerScore);
-
-  //     const personel = bonnaPersonels.find(person => person.PERSID == item.UserEmployeeNo) || {}
-
-  //     const {
-  //       NAME = "Bilinmiyor",
-  //       SURNAME = "Bilinmiyor",
-  //       LOKASYON = "Bilinmiyor",
-  //       MAAS = "0",
-  //       PERSID = "Bilinmiyor",
-  //       USTBIRIMACIKLAMA = "Bilinmiyor",
-  //       BIRIMACIKLAMA = "Bilinmiyor",
-  //       DEPARTMANACIKLAMA = "Bilinmiyor",
-  //       GOREVACIKLAMA = "Bilinmiyor",
-  //       YONETICI = "Bilinmiyor",
-  //       GIRISTARIHI = "Bilinmiyor",
-  //     } = personel;
-
-
-  //     const nameSurname = `${NAME} ${SURNAME}`;
-  //     const birim = BIRIMACIKLAMA.replace(/&amp;/g, '&');
-
-  //     // İşe giriş tarihi ve kıdem yılı hesaplamaları
-  //     const girisYili = GIRISTARIHI.substring(6, 10);
-  //     const kidemYili = Number(currentYear) - Number(girisYili) || 0;
-  //     const kidemOrani = calculateKidem(kidemYili);
-
-
-  //     return {
-  //       ...item,
-  //       final_degerlendirmeAciklamasi: aciklama,
-  //       personel: nameSurname,
-  //       lokasyon: LOKASYON,
-  //       maas: MAAS,
-  //       sicilNo: PERSID,
-  //       ustBirim: USTBIRIMACIKLAMA,
-  //       birim,
-  //       bolum: DEPARTMANACIKLAMA,
-  //       gorev: GOREVACIKLAMA,
-  //       yonetici: YONETICI,
-  //       iseGirisTarih: GIRISTARIHI,
-  //       kidemOrani
-  //     };
-
-  //   });
-
-
-
-  //   setByGuncellenmisPerformanceData(byGuncellenmisData);
-
-  // }, [byOkrPerformance, bonnaPersonels])
-
-
-
-
-
   //! by ve my array datasını birleştir
   useEffect(() => {
 
     const myArrayData1 = myCalculatedData.map((item, index) => ({ id: index, sicilNo: item.sicilNo, iseGirisTarih: item.iseGirisTarih, lokasyon: item.lokasyon, personel: item.personel, ustBirim: item.ustBirim, birim: item.birim, bolum: item.bolum, gorev: item.gorev, yonetici: item.yonetici, grup: item.yakaTipi, skala: item.scale, final_degerlendirmeSonucu: item.final_degerlendirmeSonucu, final_degerlendirmeAciklamasi: item.final_degerlendirmeAciklamasi, standartZam: item.standartRaise, performansZam: item.performanceRaise, toplamZam: item.totalRaise, currentSallary: item.currentSallary, eklenenUcret: item.addedSalary, yeniUcret: item.nextSallary, kidemOrani: item.kidemOrani }))
 
-    const byArrayData1 = byCalculatedData.map((item, index) => ({ id: index, sicilNo: item.sicilNo, iseGirisTarih: item.iseGirisTarih, lokasyon: item.lokasyon, personel: item.personel, ustBirim: item.ustBirim, birim: item.birim, bolum: item.bolum, gorev: item.gorev, yonetici: item.yonetici, grup: item.yakaTipi, skala: item.scale, final_degerlendirmeSonucu: item.ManagerScore, final_degerlendirmeAciklamasi: item.final_degerlendirmeAciklamasi, standartZam: item.standartRaise, performansZam: item.performanceRaise, toplamZam: item.totalRaise, currentSallary: item.maas, eklenenUcret: item.addedSalary, yeniUcret: item.nextSallary, kidemOrani: item.kidemOrani }))
+    const byArrayData1 = byCalculatedData.map((item, index) => ({ id: index, sicilNo: item.sicilNo, iseGirisTarih: item.iseGirisTarih, lokasyon: item.lokasyon, personel: item.personel, ustBirim: item.ustBirim, birim: item.birim, bolum: item.bolum, gorev: item.gorev, yonetici: item.yonetici, grup: item.yakaTipi, skala: item.scale, final_degerlendirmeSonucu: item.FinalScore, final_degerlendirmeAciklamasi: item.final_degerlendirmeAciklamasi, standartZam: item.standartRaise, performansZam: item.performanceRaise, toplamZam: item.totalRaise, currentSallary: item.maas, eklenenUcret: item.addedSalary, yeniUcret: item.nextSallary, kidemOrani: item.kidemOrani }))
 
     //! burada her bir dataya benzersir bir id değeri atanmalıdır yoksa dataGrid elementinde ay data iki kere görünecektir
     const combinedArray = [...myArrayData1, ...byArrayData1].map((item, index) => ({
@@ -445,7 +381,8 @@ const Calculates = () => {
       const kidem = item?.kidemOrani
 
       const result = calculateSalary(
-        parseFloat(item.ManagerScore),
+        // parseFloat(item.ManagerScore),
+        parseFloat(item.FinalScore),
         parseFloat(item.maas),
         zamData,
         "Beyaz",
