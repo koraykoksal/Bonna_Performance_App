@@ -13,7 +13,7 @@ import { personelViewModalStyle } from '../../styles/globalStyle';
 
 const PerformanceResultView_HR = ({ open, handleClose, info }) => {
 
-
+    console.log(info)
 
     return (
         <div id='modalContent'>
@@ -72,8 +72,10 @@ const PerformanceResultView_HR = ({ open, handleClose, info }) => {
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Operasyonel Yetklinlik Puan: {info?.oypCalisan} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.dypCalisan} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yypCalisan} puan</Typography>
-                            {/* <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.calisanDegerlendirmeYuzdesi * 100}% </Typography> */}
 
+                            <Typography variant='subtitle1' align='center' fontSize={14} fontFamily={'Arial'}>
+                                <span style={{ fontWeight: 700 }}>Personel Açıklama :</span> {info?.calisanAciklama}
+                            </Typography>
                         </Box>
 
 
@@ -108,7 +110,10 @@ const PerformanceResultView_HR = ({ open, handleClose, info }) => {
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Operasyonel Yetklinlik Puan: {info?.yoneticiOyp} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Davranışsal Yetklinlik Puan: {info?.yoneticiDyp} puan</Typography>
                             <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetsel Yetklinlik Puan: {info?.yoneticiYyp} puan</Typography>
-                            {/* <Typography variant='subtitle2' align='center' fontWeight={700}>Değerlendirmeye Etkisi: {info?.yoneticiDegerlendirmeYuzdesi * 100}% </Typography> */}
+
+                            <Typography variant='subtitle1' align='center' fontSize={14} fontFamily={'Arial'}>
+                                <span style={{ fontWeight: 600 }}>Yönetici Açıklama :</span> {info?.yoneticiAciklama}
+                            </Typography>
 
                         </Box>
 
@@ -125,7 +130,10 @@ const PerformanceResultView_HR = ({ open, handleClose, info }) => {
                     </Box>
 
                     <Box mt={5}>
-                        <Typography variant='subtitle2'>Aydınlatma Metni : İşbu form, Kişisel Verileri Koruma Kanunu kapsamında belirli, açık ve meşru olarak Performans Değerlendirme Süreçlerinin Yürütülmesi amacıyla bağlantılı, sınırlı ve ölçülü olma ilkeleri gözetilerek oluşturulmuştur. Yukarıda doldurduğum bilgilerin doğruluğunu ve gizliliğini kabul ediyorum.</Typography>
+                        <Typography variant='subtitle1' fontSize={15} fontFamily={'Arial'}>
+                            <span style={{ fontWeight: 700 }}>Aydınlatma Metni :</span> İşbu form, Kişisel Verileri Koruma Kanunu kapsamında belirli, açık ve meşru olarak Performans Değerlendirme Süreçlerinin Yürütülmesi amacıyla bağlantılı, sınırlı ve ölçülü olma ilkeleri gözetilerek oluşturulmuştur. Yukarıda doldurduğum bilgilerin doğruluğunu ve gizliliğini kabul ediyorum.
+                        </Typography>
+
                     </Box>
 
 

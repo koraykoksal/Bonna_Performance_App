@@ -101,7 +101,7 @@ export const personelViewModalStyle={
 export const okrViewModalStyle={
 
     overflow:'auto',
-    backgroundImage: `url(${pattern8})`,
+    backgroundImage: `url(${pattern3})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",

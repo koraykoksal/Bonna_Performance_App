@@ -158,17 +158,9 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
             flex: 1,
         },
         {
-            field: "SystemNote",
-            headerName: "Sistem Puanı",//ismi sistem puanı olacak
-            minWidth: 100,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-        },
-        {
-            field: "SystemNoteScale",
-            headerName: "Değerlendirme",
-            minWidth: 180,
+            field: "FinalScore",
+            headerName: "Yönetici Puanı",
+            minWidth: 130,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -182,41 +174,18 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
             flex: 1,
         },
         {
-            field: "ManagerComment",
-            headerName: "Yönetici Açıklama",
-            minWidth: 180,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-        },
-        {
-            field: "FinalScore",
-            headerName: "Yönetici Puanı", // ismi yönetici puanı olacak
+            field: "SystemNote",
+            headerName: "Sistem Puanı",//ismi sistem puanı olacak
             minWidth: 100,
             headerAlign: "center",
             align: "center",
             flex: 1,
         },
+        
         {
             field: "ObjectivePeriodsAvg",
-            headerName: "OKR Notu", // ismi okr notu olacak
+            headerName: "OKR Notu",
             minWidth: 100,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-        },
-        {
-            field: "ObjectivePeriods",
-            headerName: "OKR Yılı",
-            minWidth: 100,
-            headerAlign: "center",
-            align: "center",
-            flex: 1,
-        },
-        {
-            field: "CompetencePeriods",
-            headerName: "Değerlendirme Dönemi",
-            minWidth: 180,
             headerAlign: "center",
             align: "center",
             flex: 1,
@@ -224,6 +193,14 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
         {
             field: "CompetencePeriodsAvg",
             headerName: "Yetkinlik Değerlendirme Notu",
+            minWidth: 180,
+            headerAlign: "center",
+            align: "center",
+            flex: 1,
+        },
+        {
+            field: "ManagerComment",
+            headerName: "Yönetici Açıklama",
             minWidth: 180,
             headerAlign: "center",
             align: "center",

@@ -28,8 +28,8 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
   const scaleDescription = (score) => {
 
-    if (score.FinalScore > 0 && score.FinalScore <= 40) return "1";
-    if (score.FinalScore > 40 && score.FinalScore <= 60) return "2";
+    if (score.FinalScore > 0 && score.FinalScore <= 45) return "1";
+    if (score.FinalScore > 45 && score.FinalScore <= 60) return "2";
     if (score.FinalScore > 60 && score.FinalScore <= 80) return "3";
     if (score.FinalScore > 80 && score.FinalScore <= 90) return "4";
     if (score.FinalScore > 90 && score.FinalScore <= 100) return "5";
@@ -122,8 +122,15 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
           <Box display={'flex'} flexDirection={'column'} gap={5} mt={5}>
 
 
-            <Container sx={{display:'flex',flexDirection:'column',gap:5}}>
-              <Typography variant='subtitle2'>Aydınlatma Metni : İşbu form, Kişisel Verileri Koruma Kanunu kapsamında belirli, açık ve meşru olarak Performans Değerlendirme Süreçlerinin Yürütülmesi amacıyla bağlantılı, sınırlı ve ölçülü olma ilkeleri gözetilerek oluşturulmuştur. Yukarıda doldurduğum bilgilerin doğruluğunu ve gizliliğini kabul ediyorum.</Typography>
+            <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+
+              <Typography variant='subtitle1' fontSize={15} fontFamily={'Arial'}>
+                <span style={{fontWeight:700}}>Yönetici Açıklama :</span> {info.ManagerComment}
+              </Typography>
+
+              <Typography variant='subtitle1' fontSize={15} fontFamily={'Arial'}>
+              <span style={{fontWeight:700}}>Aydınlatma Metni :</span> İşbu form, Kişisel Verileri Koruma Kanunu kapsamında belirli, açık ve meşru olarak Performans Değerlendirme Süreçlerinin Yürütülmesi amacıyla bağlantılı, sınırlı ve ölçülü olma ilkeleri gözetilerek oluşturulmuştur. Yukarıda doldurduğum bilgilerin doğruluğunu ve gizliliğini kabul ediyorum.
+              </Typography>
 
               <Box display={'flex'} justifyContent={'space-around'}>
                 <Typography variant='subtitle2'>Çalışan İmza:</Typography>
