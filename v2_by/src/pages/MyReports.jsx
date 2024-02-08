@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import PerformanceResult_Table_MY from '../components/tables/PerformanceResult_Table_MY'
 import PerformanceResultView_Personel from '../components/modals/PerformanceResultView_Personel'
 import DeleteModal from '../components/delete/DeleteModal'
+import { reportPageBgStyle } from '../styles/globalStyle'
 
 const MyReports = () => {
 
@@ -139,9 +140,9 @@ const MyReports = () => {
 
   return (
 
-    <div>
+    <div style={reportPageBgStyle}>
 
-      <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Mavi Yaka Değerlendirme Sonuçları</Typography>
+      <Typography variant='h6' align='center' pt={10} letterSpacing={5} fontWeight={700} color={'red'}>Mavi Yaka Değerlendirme Sonuçları</Typography>
 
       <PerformanceResult_Table_MY guncellenmisPerformanceData={guncellenmisPerformanceData} handleOpen={handleOpen} setInfo={setInfo} info={info} HandleOpen_delete={HandleOpen_delete} />
 

@@ -5,23 +5,11 @@ import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { my1_questions, my2_questions } from "../../helper/data"
 import { FaWindowClose } from "react-icons/fa";
+import { personelViewModalStyle } from '../../styles/globalStyle';
 
 
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    height: '90%',
-    overflow: 'scroll',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 5,
 
-};
 
 
 const PerformanceResultView_Personel = ({ open, handleClose, info }) => {
@@ -38,7 +26,7 @@ const PerformanceResultView_Personel = ({ open, handleClose, info }) => {
                 aria-describedby="modal-modal-description"
 
             >
-                <Box sx={style}>
+                <Box sx={personelViewModalStyle}>
 
                 <FaWindowClose size={25} color='red' onClick={handleClose} cursor={'pointer'}/>
 

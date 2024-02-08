@@ -12,6 +12,7 @@ import { my1Titles, my2Titles } from '../helper/data';
 import My1 from '../components/My1';
 import My2 from '../components/My2';
 import UnSelectedPersonels from '../components/modals/UnSelectedPersonels';
+import { homePageBgStyle } from '../styles/globalStyle';
 
 
 export const Home = () => {
@@ -108,9 +109,9 @@ export const Home = () => {
 
   return (
 
-    <div>
+    <div style={homePageBgStyle}>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', mt: 10, gap: 5 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', pt: 10, gap: 5 }}>
 
         <Container sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', gap: 3 }}>
 

@@ -13,6 +13,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { FaWindowClose } from "react-icons/fa";
+import { experienceModalStyle } from '../../styles/globalStyle';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -35,20 +36,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '850px',
-    height: '650px',
-    overflow: 'scroll',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 5,
-
-};
 
 
 const Experience_Modal = ({ handleChangeExperience, Open_experience, experienceInfo, HandleClose_experience, handleSubmit }) => {
@@ -97,7 +84,7 @@ const Experience_Modal = ({ handleChangeExperience, Open_experience, experienceI
                 aria-describedby="modal-modal-description"
 
             >
-                <Box sx={style}>
+                <Box sx={experienceModalStyle}>
 
                     <FaWindowClose size={25} color='red' cursor={'pointer'} onClick={HandleClose_experience} />
 

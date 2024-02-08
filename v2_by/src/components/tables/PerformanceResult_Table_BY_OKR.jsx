@@ -9,7 +9,6 @@ import { FaEye } from "react-icons/fa";
 
 const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo }) => {
 
-
     const dataGrid_Columns = [
         // {
         //     field: "id",
@@ -175,7 +174,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
             flex: 1,
         },
         {
-            field: "ManagerScoreScale",
+            field: "FinalScoreScale",
             headerName: "Yönetici Değerlendirme",
             minWidth: 180,
             headerAlign: "center",
@@ -191,7 +190,7 @@ const PerformanceResult_Table_BY_OKR = ({ byOkrPerformance, handleOpen, setInfo 
             flex: 1,
         },
         {
-            field: "ManagerScore",
+            field: "FinalScore",
             headerName: "Yönetici Puanı", // ismi yönetici puanı olacak
             minWidth: 100,
             headerAlign: "center",

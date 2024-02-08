@@ -1,9 +1,10 @@
 import React from 'react'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import { Typography, Grid } from "@mui/material"
+import { Typography, Grid, Container } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { FaWindowClose } from "react-icons/fa";
+import { okrViewModalStyle } from '../../styles/globalStyle';
 
 
 
@@ -27,11 +28,11 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
 
   const scaleDescription = (score) => {
 
-    if (score.ManagerScore > 0 && score.ManagerScore <= 40) return "1";
-    if (score.ManagerScore > 40 && score.ManagerScore <= 60) return "2";
-    if (score.ManagerScore > 60 && score.ManagerScore <= 80) return "3";
-    if (score.ManagerScore > 80 && score.ManagerScore <= 90) return "4";
-    if (score.ManagerScore > 90 && score.ManagerScore <= 100) return "5";
+    if (score.FinalScore > 0 && score.FinalScore <= 40) return "1";
+    if (score.FinalScore > 40 && score.FinalScore <= 60) return "2";
+    if (score.FinalScore > 60 && score.FinalScore <= 80) return "3";
+    if (score.FinalScore > 80 && score.FinalScore <= 90) return "4";
+    if (score.FinalScore > 90 && score.FinalScore <= 100) return "5";
     return "";
 
   }
@@ -47,9 +48,9 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
         aria-describedby="modal-modal-description"
 
       >
-        <Box sx={style}>
+        <Box sx={okrViewModalStyle}>
 
-          <FaWindowClose size={25} color='red' onClick={handleClose} cursor={'pointer'}/>
+          <FaWindowClose size={25} color='red' onClick={handleClose} cursor={'pointer'} />
 
           <img src={bonnaLogo} style={{ width: '125px', margin: 'auto' }} />
 
@@ -102,17 +103,17 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
           <Box mt={15} display={'flex'} flexDirection={'column'} gap={3}>
 
 
-            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici Puan (Performans Puanı) : {info?.ManagerScore} puan</Typography>
+            <Typography variant='subtitle2' align='center' fontWeight={700}>Yönetici Puan (Performans Puanı) : {info?.FinalScore} puan</Typography>
 
             <Typography variant='subtitle2' align='center' fontWeight={700}>Skala : {scaleDescription(info)}</Typography>
 
             <Typography variant='subtitle2' align='center' fontWeight={700}>
               Değerlendirme Sonuç:
-              {info?.ManagerScore >= 0 && info?.ManagerScore <= 45 && " Beklentileri Karşılamıyor 😫"}
-              {info?.ManagerScore > 45 && info?.ManagerScore <= 60 && " Beklentilerin Altında 🙁"}
-              {info?.ManagerScore > 60 && info?.ManagerScore <= 80 && " Beklenen Performans 😐"}
-              {info?.ManagerScore > 80 && info?.ManagerScore <= 90 && " Beklentilerin Üzerinde 😬"}
-              {info?.ManagerScore > 90 && info?.ManagerScore <= 100 && " Üstün Performans 😎"}
+              {info?.FinalScore >= 0 && info?.FinalScore <= 45 && " Beklentileri Karşılamıyor 😫"}
+              {info?.FinalScore > 45 && info?.FinalScore <= 60 && " Beklentilerin Altında 🙁"}
+              {info?.FinalScore > 60 && info?.FinalScore <= 80 && " Beklenen Performans 😐"}
+              {info?.FinalScore > 80 && info?.FinalScore <= 90 && " Beklentilerin Üzerinde 😬"}
+              {info?.FinalScore > 90 && info?.FinalScore <= 100 && " Üstün Performans 😎"}
             </Typography>
 
 
@@ -121,15 +122,18 @@ const PerformanceResultView_OKR = ({ handleClose, open, info }) => {
           <Box display={'flex'} flexDirection={'column'} gap={5} mt={5}>
 
 
-            <Box>
+            <Container sx={{display:'flex',flexDirection:'column',gap:5}}>
               <Typography variant='subtitle2'>Aydınlatma Metni : İşbu form, Kişisel Verileri Koruma Kanunu kapsamında belirli, açık ve meşru olarak Performans Değerlendirme Süreçlerinin Yürütülmesi amacıyla bağlantılı, sınırlı ve ölçülü olma ilkeleri gözetilerek oluşturulmuştur. Yukarıda doldurduğum bilgilerin doğruluğunu ve gizliliğini kabul ediyorum.</Typography>
-            </Box>
+
+              <Box display={'flex'} justifyContent={'space-around'}>
+                <Typography variant='subtitle2'>Çalışan İmza:</Typography>
+                <Typography variant='subtitle2'>Yönetici İmza:</Typography>
+              </Box>
+            </Container>
 
 
-            <Box display={'flex'} justifyContent={'space-around'}>
-              <Typography variant='subtitle2'>Çalışan İmza:</Typography>
-              <Typography variant='subtitle2'>Yönetici İmza:</Typography>
-            </Box>
+
+
           </Box>
 
         </Box>

@@ -8,6 +8,7 @@ import PerformanceResultView_HR from '../components/modals/PerformanceResultView
 import DeleteModal from '../components/delete/DeleteModal'
 import PerformanceUpdate from '../components/modals/PerformanceUpdate'
 import { personelChanceData } from '../helper/personelScoreData'
+import { reportPageBgStyle } from '../styles/globalStyle'
 
 
 const ManagerReports = () => {
@@ -277,11 +278,11 @@ const ManagerReports = () => {
   
 
   return (
-    <div>
+    <div style={reportPageBgStyle}>
 
 
 
-      <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Yönetici Değerlendirme Sonuçları</Typography>
+      <Typography variant='h6' align='center' pt={10} letterSpacing={5} fontWeight={700} color={'red'}>Yönetici Değerlendirme Sonuçları</Typography>
 
       {/* //! MEVCUT VERİLERİN DEĞİŞTİRİLMESİ İÇİN MANUEL OLARAK TETİKLENEN BUTTON */}
       {/* <Button onClick={handleCalistir}>Çalıştır</Button> */}

@@ -10,6 +10,7 @@ import { toastWarnNotify } from '../helper/ToastNotify'
 import { bonnaYears } from '../helper/data'
 import CircularProgress from '@mui/material/CircularProgress';
 import { element } from 'prop-types'
+import { reportPageBgStyle } from '../styles/globalStyle'
 
 
 const Calculates = () => {
@@ -428,11 +429,11 @@ const Calculates = () => {
 
 
   return (
-    <div>
+    <div style={reportPageBgStyle}>
 
       <Box display={'flex'} flexDirection={'column'} gap={3}>
 
-        <Typography variant='h6' align='center' mt={12} mb={5} letterSpacing={5} fontWeight={700} color={'red'}>Tüm Değerlendirme ve Hesaplama Sonuçları</Typography>
+        <Typography variant='h6' align='center' pt={10} mb={5} letterSpacing={5} fontWeight={700} color={'red'}>Tüm Değerlendirme ve Hesaplama Sonuçları</Typography>
 
         {/* <Typography variant='subtitle' align='center' color={'black'}>Hesaplama yapmak için ücret yılını seçiniz.</Typography> */}
 

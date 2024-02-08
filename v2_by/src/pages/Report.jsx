@@ -6,6 +6,7 @@ import PerformanceResult_Table from '../components/tables/PerformanceResult_Tabl
 import PerformanceUpdate from '../components/modals/PerformanceUpdate'
 import { Box, Typography } from "@mui/material"
 import PerformanceResultView_Manager from '../components/modals/PerformanceResultView_Manager'
+import { reportPageBgStyle } from '../styles/globalStyle'
 
 
 const Report = () => {
@@ -233,9 +234,9 @@ const Report = () => {
 
 
   return (
-    <div>
+    <div style={reportPageBgStyle}>
 
-      <Typography variant='h6' align='center' mt={12} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
+      <Typography variant='h6' align='center' pt={10} letterSpacing={10} color={'red'} fontWeight={700}>Sonuçlar</Typography>
 
       <PerformanceResult_Table handleOpen_editPage={handleOpen_editPage} handleOpen_viewPage={handleOpen_viewPage} all_performanceData={all_performanceData} setInfo={setInfo} info={info} matchedState={matchedState}/>
 

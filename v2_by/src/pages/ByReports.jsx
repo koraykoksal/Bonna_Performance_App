@@ -16,6 +16,7 @@ import usePerformanceCall from '../hooks/usePerformanceCall';
 import PerformanceResult_Table_BY_OKR from '../components/tables/PerformanceResult_Table_BY_OKR';
 import { useState } from 'react';
 import PerformanceResultView_OKR from '../components/modals/PerformanceResultView_OKR';
+import { reportPageBgStyle } from '../styles/globalStyle';
 
 
 
@@ -88,9 +89,9 @@ const ByReports = () => {
 
     return (
 
-        <div>
+        <div style={reportPageBgStyle}>
 
-            <Typography variant='h6' align='center' mt={12} letterSpacing={5} fontWeight={700} color={'red'}>Beyaz Yaka OKR Sonuçlar</Typography>
+            <Typography variant='h6' align='center' pt={10} letterSpacing={5} fontWeight={700} color={'red'}>Beyaz Yaka OKR Sonuçlar</Typography>
 
             <PerformanceResult_Table_BY_OKR byOkrPerformance={byOkrPerformance} setInfo={setInfo} handleOpen={handleOpen} />
 
