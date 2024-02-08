@@ -13,7 +13,6 @@ import { personelViewModalStyle } from '../../styles/globalStyle';
 
 const PerformanceResultView_HR = ({ open, handleClose, info }) => {
 
-    console.log(info)
 
     return (
         <div id='modalContent'>

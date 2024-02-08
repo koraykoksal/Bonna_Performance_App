@@ -369,8 +369,6 @@ const usePerformanceCall = () => {
 
     //! kıdem oranı bilgisini güncelle
     const put_experienceData = async (url, info) => {
-
-        console.log(info)
         
         try {
 

@@ -98,6 +98,29 @@ export const personelViewModalStyle={
 }
 
 
+export const performanceResultViewModalStyle={
+
+    overflow:'auto',
+    backgroundImage: `url(${pattern3})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '80%',
+    height: '90%',
+    overflow: 'scroll',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 5,
+
+}
+
+
 export const okrViewModalStyle={
 
     overflow:'auto',

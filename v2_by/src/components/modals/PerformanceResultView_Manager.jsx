@@ -5,23 +5,7 @@ import { Typography, Grid } from "@mui/material"
 import bonnaLogo from "../../assets/img/logobonna_b.png"
 import { my1_questions, my2_questions } from "../../helper/data"
 import { FaWindowClose } from "react-icons/fa";
-
-
-
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90%',
-    height: '90%',
-    overflow: 'scroll',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 5,
-
-};
+import { performanceResultViewModalStyle } from '../../styles/globalStyle';
 
 
 const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, info }) => {
@@ -40,7 +24,7 @@ const PerformanceResultView_Manager = ({ open_viewPage, handleClose_viewPage, in
                 aria-describedby="modal-modal-description"
 
             >
-                <Box sx={style}>
+                <Box sx={performanceResultViewModalStyle}>
 
                     <FaWindowClose size={25} color='red' onClick={handleClose_viewPage} cursor={'pointer'} />
 
