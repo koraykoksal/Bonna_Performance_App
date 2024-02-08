@@ -8,6 +8,7 @@ import Sallary_Table from '../components/tables/Sallary_Table'
 import DeleteModal from '../components/delete/DeleteModal'
 import Experience_Table from '../components/tables/Experience_Table'
 import Experience_Modal from '../components/modals/Experience_Modal'
+import { settingPageBgStyle } from '../styles/globalStyle'
 
 
 const Settings = () => {
@@ -187,7 +188,7 @@ const Settings = () => {
 
 
     return (
-        <div>
+        <div style={settingPageBgStyle}>
 
             <Typography letterSpacing={10} mt={12} mb={5} fontWeight={700} color={'red'} align='center' variant='h6'>Ayarlar</Typography>
 

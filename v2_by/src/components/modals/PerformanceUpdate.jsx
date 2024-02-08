@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from "react-redux"
 import usePerformanceCall from '../../hooks/usePerformanceCall';
 import { FaWindowClose } from "react-icons/fa";
+import { performanceUpdateModalStyle } from '../../styles/globalStyle';
 
 
 
@@ -40,21 +41,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '90%',
-  height: '90%',
-  overflow: 'scroll',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-
-};
 
 
 const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, info }) => {
@@ -383,7 +369,7 @@ const PerformanceUpdate = ({ handleChange, handleClose_editPage, open_editPage, 
         aria-describedby="modal-modal-description"
 
       >
-        <Box sx={style}>
+        <Box sx={performanceUpdateModalStyle}>
 
           <FaWindowClose size={25} color='red' cursor={'pointer'} onClick={handleClose_editPage}/>
 

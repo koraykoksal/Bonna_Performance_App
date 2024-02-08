@@ -5,6 +5,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
 import { Button, Box, Container, Grid, Typography } from "@mui/material"
+import { experienceDataTableStyle } from '../../styles/globalStyle';
 
 
 const Experience_Table = ({ experienceDatas, experienceInfo, setExperienceInfo, HandleOpen_experience, HandleOpen_delete }) => {
@@ -126,7 +127,7 @@ const Experience_Table = ({ experienceDatas, experienceInfo, setExperienceInfo, 
     return (
         <div>
             <Box p={5}>
-                <Typography variant='subtitle1' fontWeight={700} align='center'>Kıdem Oranları</Typography>
+                <Typography variant='subtitle1' fontWeight={700} align='center' color={'#ffffff'}>Kıdem Oranları</Typography>
                 <DataGrid
                     columns={dataGrid_Columns}
                     rows={experienceDatas}
@@ -140,9 +141,7 @@ const Experience_Table = ({ experienceDatas, experienceInfo, setExperienceInfo, 
                     pageSizeOptions={[5, 10, 25, 50, 75, 100]}
                     slots={{ toolbar: GridToolbar }}
                     disableRowSelectionOnClick
-                    sx={{
-                        boxShadow: 4,
-                    }}
+                    style={experienceDataTableStyle}
                 />
             </Box>
 

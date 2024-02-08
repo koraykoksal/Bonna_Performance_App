@@ -13,7 +13,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { FaWindowClose } from "react-icons/fa";
-import { modalPageBgStyle, sallaryModalStyle } from '../../styles/globalStyle';
+import { sallaryModalStyle } from '../../styles/globalStyle';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

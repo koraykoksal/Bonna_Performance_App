@@ -110,8 +110,8 @@ const Calculates = () => {
 
   //! Performans değerlendirmesi açıklamasını belirleyen fonksiyon
   const getPerformanceDescription = (score) => {
-    if (score > 0 && score <= 40) return "Beklentiyi Karşılamıyor 😩";
-    if (score > 40 && score <= 60) return "Beklentilerin Altında 🥺";
+    if (score > 0 && score <= 45) return "Beklentiyi Karşılamıyor 😩";
+    if (score > 45 && score <= 60) return "Beklentilerin Altında 🥺";
     if (score > 60 && score <= 80) return "Beklenen Performans 😑";
     if (score > 80 && score <= 90) return "Beklentilerin Üzerinde 😀";
     if (score > 90 && score <= 100) return "Üstün Performans 🥳";
@@ -131,7 +131,7 @@ const Calculates = () => {
 
     if (yakaTipi == "Mavi") {
 
-      if (sonuc >= 0 && sonuc <= 40) {
+      if (sonuc >= 0 && sonuc <= 45) {
 
         scale = "1"
         standartRaise = zamData.s1_myZam
@@ -141,7 +141,7 @@ const Calculates = () => {
         nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
 
       }
-      else if (sonuc > 40 && sonuc <= 60) {
+      else if (sonuc > 45 && sonuc <= 60) {
         scale = "2"
         standartRaise = zamData.s2_myZam
         performanceRaise = zamData.s2_perZam
@@ -177,11 +177,9 @@ const Calculates = () => {
         nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
       }
 
-
-
     }
     else {
-      if (sonuc >= 0 && sonuc <= 40) {
+      if (sonuc >= 0 && sonuc <= 45) {
         scale = "1"
         standartRaise = zamData.s1_byZam
         performanceRaise = zamData.s1_perZam
@@ -190,7 +188,7 @@ const Calculates = () => {
         nextSallary = (Number(mevcutUcret) + Number(fark)).toFixed(2)
       }
 
-      else if (sonuc > 40 && sonuc <= 60) {
+      else if (sonuc > 45 && sonuc <= 60) {
         scale = "2"
         standartRaise = zamData.s2_byZam
         performanceRaise = zamData.s2_perZam
@@ -382,7 +380,6 @@ const Calculates = () => {
       const kidem = item?.kidemOrani
 
       const result = calculateSalary(
-        // parseFloat(item.ManagerScore),
         parseFloat(item.FinalScore),
         parseFloat(item.maas),
         zamData,
@@ -426,8 +423,7 @@ const Calculates = () => {
 
 
 
-
-
+  
   return (
     <div style={reportPageBgStyle}>
 
