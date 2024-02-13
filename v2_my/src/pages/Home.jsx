@@ -76,7 +76,7 @@ export const Home = () => {
 
   }, [currentUser])
 
-
+ console.log(userInfo)
 
 
   return (
@@ -96,13 +96,13 @@ export const Home = () => {
             <Grid>
               <Paper sx={{display:'flex',flexDirection:'column',p:3,border:'1px solid red',borderRadius:'5px'}}>
               
-              <Typography sx={{textTransform:'none'}}>Tc No : {userInfo.TC}</Typography>
-              <Typography sx={{textTransform:'none'}}>Personel : {userInfo.PERSONEL}</Typography>
-              <Typography sx={{textTransform:'none'}}>Görev : {userInfo.GOREV}</Typography>
+              <Typography sx={{textTransform:'none'}}>Tc No : {userInfo.TCKIMLIKNO}</Typography>
+              <Typography sx={{textTransform:'none'}}>Personel : {userInfo.NAME +" "+userInfo.SURNAME}</Typography>
+              <Typography sx={{textTransform:'none'}}>Görev : {userInfo.GOREVACIKLAMA}</Typography>
               <Typography sx={{textTransform:'none'}}>Lokasyon : {userInfo.LOKASYON}</Typography>
-              <Typography sx={{textTransform:'none'}}>Sicil No : {userInfo.SICILNO}</Typography>
-              <Typography sx={{textTransform:'none'}}>Üst Birim / Birim / Bölüm : {userInfo.USTBIRIM} / {userInfo.BIRIM} / {userInfo.BOLUM}</Typography>
-              <Typography sx={{textTransform:'none'}}>Yönetici : {userManagerInfo.PERSONEL}</Typography>
+              <Typography sx={{textTransform:'none'}}>Sicil No : {userInfo.PERSID}</Typography>
+              <Typography sx={{textTransform:'none'}}>Üst Birim / Birim / Bölüm : {userInfo.USTBIRIMACIKLAMA} / {userInfo.BIRIMACIKLAMA} / {userInfo.DEPARTMANACIKLAMA}</Typography>
+              <Typography sx={{textTransform:'none'}}>Yönetici : {userInfo.YONETICI}</Typography>
 
               </Paper>
             </Grid>

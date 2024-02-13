@@ -42,13 +42,15 @@ const authSlice = createSlice({
 
         },
         loginSuccess: (state, { payload }) => {
-
-            console.log(payload)
-            state.loading = false;
-            state.currentUser = payload[0]?.PERSONEL
-            state.currentUserTitle = payload[0].GOREV
-            state.userManagerInfo = JSON.parse(payload[0].YONETICI)
-            state.userInfo = payload[0]
+            // state.loading = false;
+            // state.currentUser = payload[0]?.PERSONEL
+            // state.currentUserTitle = payload[0].GOREV
+            // state.userManagerInfo = JSON.parse(payload[0].YONETICI)
+            // state.userInfo = payload[0]
+            state.currentUser = payload?.NAME + " " + payload.SURNAME
+            state.currentUserTitle = payload.ORGANIZASYONTIPIACIKLAMA
+            state.userManagerInfo = payload.YONETICI
+            state.userInfo = payload
       
         },
         logoutSuccess: (state) => {

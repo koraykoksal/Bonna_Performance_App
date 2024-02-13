@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 export const PrivateRouter = () => {
 
+
   const {currentUser} = useSelector((state)=>state.auth)
   
   // const currentUser = true

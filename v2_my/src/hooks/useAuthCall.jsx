@@ -14,7 +14,7 @@ const useAuthCall = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { allBonnaPersonel } = useSelector((state) => state.auth)
-
+    const currentYear = new Date().getFullYear()
 
     
     const get_bonnaPersonel = async () => {
@@ -24,17 +24,16 @@ const useAuthCall = () => {
         try {
 
             const options = {
-                method: 'GET',
+                method: 'POST',
                 url: `${import.meta.env.VITE_bonnaUsers_BaseAddress}`,
                 headers: {
-                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`
+                    'APIKEY': `${import.meta.env.VITE_ERP_API_KEY}`,
+                    'PYEAR' : currentYear
 
                 }
             }
 
             const res = await axios(options)
-
-            console.log(res)
 
             if (res?.data.length > 0) {
                 dispatch(fetchAllUsers(res?.data))
@@ -66,20 +65,21 @@ const useAuthCall = () => {
 
         try {
 
-            // await get_bonnaPersonel()
+            await get_bonnaPersonel()
 
-            // const findPersonel = allBonnaPersonel.find((item) => item.TCKIMLIKNO == userdata.tcno)
-            const findPersonel = personelData.find((item) => item.TCKIMLIKNO == userdata.tcno)
+            const findPersonel = allBonnaPersonel.find((item) => item.TCKIMLIKNO == userdata.tcno)
+            // const findPersonel = personelData.find((item) => item.TCKIMLIKNO == userdata.tcno)
 
-            console.log("find personel: ",findPersonel)
+            // console.log("find personel: ",findPersonel)
 
             if (findPersonel) {
 
-                const res = await axios(options)
+                // const res = await axios(options)
                 
-                console.log("res : ",res)
+                // console.log("res : ",res)
 
-                dispatch(loginSuccess(res?.data))
+                // dispatch(loginSuccess(res?.data))
+                dispatch(loginSuccess(findPersonel))
                 navigate('/myperformance')
                 toastSuccessNotify('Login Successful.')
                 
