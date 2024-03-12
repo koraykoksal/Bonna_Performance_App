@@ -1,7 +1,13 @@
 # Performance Application
 
 This application made for performance evaulation.
-There is two step. 1 - Employee Evaulation. 2 - Manager Evaulation after employee
+
+#### About Project : 
+##### There is two step. 1 - Employee Evaulation. 2 - Manager Evaulation after employee
+##### There is ERP (enterprise resource planning) integration within the application.
+##### User authentication is done through ERP integration.
+##### Production process data is kept in the firebase database.
+##### During production process data recording, data is received through the ERP system.
 
 ## Installation
 This project was created using React and the Vite package manager.
