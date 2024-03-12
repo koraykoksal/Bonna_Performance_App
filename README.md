@@ -62,15 +62,9 @@ The same salary calculation process used for workers is also applicable to white
 * Performance raise data.
 
 
+## Images
 
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+![ManagerLoginpage](./v2_by/src/assets/pictures/loginPage.png)
+![twiserApiData](./v2_by/src/assets/pictures/twiserSonuc.png)
+![hesaplamaGrafikSonuc](./v2_by/src/assets/pictures/hesaplamaGrafikSonuc1.png)
+![hesaplamaGrafikSonuc](./v2_by/src/assets/pictures/hesaplamaGrafikSonuc2.png)
