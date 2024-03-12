@@ -8,6 +8,7 @@ This application made for performance evaulation.
 ##### User authentication is done through ERP integration.
 ##### Production process data is kept in the firebase database.
 ##### During production process data recording, data is received through the ERP system.
+##### The project was deployed via docker on prime.
 
 ## Installation
 This project was created using React and the Vite package manager.
