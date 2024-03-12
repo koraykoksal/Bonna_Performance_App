@@ -64,7 +64,8 @@ The same salary calculation process used for workers is also applicable to white
 
 ## Images
 
-![ManagerLoginpage](./v2_by/src/assets/pictures/loginPage.png)
-![twiserApiData](./v2_by/src/assets/pictures/twiserSonuc.png)
-![hesaplamaGrafikSonuc](./v2_by/src/assets/pictures/hesaplamaGrafikSonuc1.png)
-![hesaplamaGrafikSonuc](./v2_by/src/assets/pictures/hesaplamaGrafikSonuc2.png)
+![ManagerLoginpage](./pictures/loginPage.png)
+![userLoginPage](./pictures/userLoginPage.png)
+![twiserApiData](./pictures/twiserSonuc.png)
+![hesaplamaGrafikSonuc](./pictures/hesaplamaGrafikSonuc1.png)
+![hesaplamaGrafikSonuc](./pictures/hesaplamaGrafikSonuc2.png)
